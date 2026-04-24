@@ -14,3 +14,56 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Persists a contact submission from the portfolio form
+ * @summary Submit a contact form message
+ */
+export const submitContactBodyNameMax = 120;
+
+export const submitContactBodyEmailMax = 200;
+
+export const submitContactBodySubjectMax = 200;
+
+export const submitContactBodyMessageMax = 4000;
+
+export const SubmitContactBody = zod.object({
+  name: zod.string().min(1).max(submitContactBodyNameMax),
+  email: zod.string().email().max(submitContactBodyEmailMax),
+  subject: zod.string().max(submitContactBodySubjectMax).optional(),
+  message: zod.string().min(1).max(submitContactBodyMessageMax),
+});
+
+/**
+ * Returns simulated uptime/latency metrics for a portfolio "status board"
+ * @summary Simulated SRE service status snapshot
+ */
+export const GetServiceStatusResponse = zod.object({
+  overall: zod.enum(["operational", "degraded", "maintenance", "down"]),
+  generatedAt: zod.coerce.date(),
+  services: zod.array(
+    zod.object({
+      name: zod.string(),
+      region: zod.string(),
+      state: zod.enum(["operational", "degraded", "maintenance", "down"]),
+      uptime: zod.number().describe("Uptime percentage over the last 30 days"),
+      latencyMs: zod.number().describe("Current p50 latency in ms"),
+      lastCheckedAt: zod.coerce.date(),
+    }),
+  ),
+});
+
+/**
+ * Returns a curated list of recent (simulated) incidents for the SRE board
+ * @summary Recent simulated incidents
+ */
+export const ListIncidentsResponseItem = zod.object({
+  id: zod.number(),
+  title: zod.string(),
+  severity: zod.enum(["info", "low", "medium", "high", "critical"]),
+  service: zod.string(),
+  startedAt: zod.coerce.date(),
+  resolvedAt: zod.coerce.date().nullish(),
+  summary: zod.string(),
+});
+export const ListIncidentsResponse = zod.array(ListIncidentsResponseItem);

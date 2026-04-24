@@ -30,3 +30,9 @@ id = "iTOhgkrvibpkZUfFH6TTL"
 uri = "file://artifacts/portfolio/public/project-3.png"
 type = "image"
 title = "App Android Cover"
+
+[[generated]]
+id = "rZoFi_z8PVoN5z-ua0Ip2"
+uri = "file://artifacts/portfolio/src/assets/tracks-bg.png"
+type = "image"
+title = "Abstract glowing neon train tracks"

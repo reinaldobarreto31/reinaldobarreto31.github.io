@@ -8,3 +8,87 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface ContactSubmissionInput {
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
+  name: string;
+  /** @maxLength 200 */
+  email: string;
+  /** @maxLength 200 */
+  subject?: string;
+  /**
+   * @minLength 1
+   * @maxLength 4000
+   */
+  message: string;
+}
+
+export interface ContactSubmission {
+  id: number;
+  name: string;
+  email: string;
+  subject?: string | null;
+  message: string;
+  createdAt: string;
+}
+
+export type ServiceStatusState =
+  (typeof ServiceStatusState)[keyof typeof ServiceStatusState];
+
+export const ServiceStatusState = {
+  operational: "operational",
+  degraded: "degraded",
+  maintenance: "maintenance",
+  down: "down",
+} as const;
+
+export interface ServiceStatus {
+  name: string;
+  region: string;
+  state: ServiceStatusState;
+  /** Uptime percentage over the last 30 days */
+  uptime: number;
+  /** Current p50 latency in ms */
+  latencyMs: number;
+  lastCheckedAt: string;
+}
+
+export type ServiceStatusSnapshotOverall =
+  (typeof ServiceStatusSnapshotOverall)[keyof typeof ServiceStatusSnapshotOverall];
+
+export const ServiceStatusSnapshotOverall = {
+  operational: "operational",
+  degraded: "degraded",
+  maintenance: "maintenance",
+  down: "down",
+} as const;
+
+export interface ServiceStatusSnapshot {
+  overall: ServiceStatusSnapshotOverall;
+  generatedAt: string;
+  services: ServiceStatus[];
+}
+
+export type IncidentSeverity =
+  (typeof IncidentSeverity)[keyof typeof IncidentSeverity];
+
+export const IncidentSeverity = {
+  info: "info",
+  low: "low",
+  medium: "medium",
+  high: "high",
+  critical: "critical",
+} as const;
+
+export interface Incident {
+  id: number;
+  title: string;
+  severity: IncidentSeverity;
+  service: string;
+  startedAt: string;
+  resolvedAt?: string | null;
+  summary: string;
+}

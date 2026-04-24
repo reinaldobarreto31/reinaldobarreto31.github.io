@@ -10,6 +10,10 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: contact
+    description: Contact form operations
+  - name: status
+    description: Simulated SRE server status
 paths:
   /healthz:
     get:
@@ -24,6 +28,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit a contact form message
+      description: Persists a contact submission from the portfolio form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactSubmissionInput"
+      responses:
+        "201":
+          description: Submission stored
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactSubmission"
+  /status/services:
+    get:
+      operationId: getServiceStatus
+      tags: [status]
+      summary: Simulated SRE service status snapshot
+      description: Returns simulated uptime/latency metrics for a portfolio "status board"
+      responses:
+        "200":
+          description: Service snapshot
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceStatusSnapshot"
+  /status/incidents:
+    get:
+      operationId: listIncidents
+      tags: [status]
+      summary: Recent simulated incidents
+      description: Returns a curated list of recent (simulated) incidents for the SRE board
+      responses:
+        "200":
+          description: Incident list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Incident"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +84,119 @@ components:
           type: string
       required:
         - status
-
+    ContactSubmissionInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        email:
+          type: string
+          format: email
+          maxLength: 200
+        subject:
+          type: string
+          maxLength: 200
+        message:
+          type: string
+          minLength: 1
+          maxLength: 4000
+      required:
+        - name
+        - email
+        - message
+    ContactSubmission:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        subject:
+          type: string
+          nullable: true
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - message
+        - createdAt
+    ServiceStatus:
+      type: object
+      properties:
+        name:
+          type: string
+        region:
+          type: string
+        state:
+          type: string
+          enum: [operational, degraded, maintenance, down]
+        uptime:
+          type: number
+          description: Uptime percentage over the last 30 days
+        latencyMs:
+          type: integer
+          description: Current p50 latency in ms
+        lastCheckedAt:
+          type: string
+          format: date-time
+      required:
+        - name
+        - region
+        - state
+        - uptime
+        - latencyMs
+        - lastCheckedAt
+    ServiceStatusSnapshot:
+      type: object
+      properties:
+        overall:
+          type: string
+          enum: [operational, degraded, maintenance, down]
+        generatedAt:
+          type: string
+          format: date-time
+        services:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceStatus"
+      required:
+        - overall
+        - generatedAt
+        - services
+    Incident:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        severity:
+          type: string
+          enum: [info, low, medium, high, critical]
+        service:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+          nullable: true
+        summary:
+          type: string
+      required:
+        - id
+        - title
+        - severity
+        - service
+        - startedAt
+        - summary
