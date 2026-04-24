@@ -1,0 +1,32 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Q-Gc-Vf0emFDKjZMHuu0w"
+uri = "file://artifacts/portfolio/public/icon-192.png"
+type = "image"
+title = "RB Monogram Icon"
+
+[[generated]]
+id = "OE3hwwrEMQBmhUFhJCr-V"
+uri = "file://artifacts/portfolio/public/icon-512.png"
+type = "image"
+title = "RB Monogram Icon 512"
+
+[[generated]]
+id = "YnZjHCGLuUukgCJ3WNP63"
+uri = "file://artifacts/portfolio/public/project-1.png"
+type = "image"
+title = "StockWise Cover"
+
+[[generated]]
+id = "yMycwiM9_2b7gDmaw7PiY"
+uri = "file://artifacts/portfolio/public/project-2.png"
+type = "image"
+title = "API Cadastro Cover"
+
+[[generated]]
+id = "iTOhgkrvibpkZUfFH6TTL"
+uri = "file://artifacts/portfolio/public/project-3.png"
+type = "image"
+title = "App Android Cover"
