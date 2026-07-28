@@ -31,9 +31,11 @@ export function AboutSection() {
             
             <div className="prose prose-invert prose-p:font-sans prose-p:text-muted-foreground max-w-none">
               <p>
-                Iniciei minha jornada resolvendo problemas de infraestrutura e administração de sistemas. 
-                Com o tempo, evoluí para o desenvolvimento, atuando com Java e ecossistema corporativo, mas sempre 
-                com um olhar atento para a esteira de CI/CD, observabilidade e containers.
+                Iniciei minha jornada resolvendo problemas de infraestrutura e administração de sistemas em 
+                <strong> Linux Ubuntu</strong> — o ambiente de trabalho em todas as empresas por onde passei. 
+                Com o tempo, evoluí para o desenvolvimento, atuando com <strong>Java</strong> no ecossistema corporativo 
+                e também com <strong>Ruby on Rails</strong> em projetos de laboratório, mas sempre com um olhar 
+                atento para CI/CD, observabilidade e containers.
               </p>
               <p>
                 Atualmente, estou focado em me tornar um especialista em <strong>Ruby on Rails</strong>. 

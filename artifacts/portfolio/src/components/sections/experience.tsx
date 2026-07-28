@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { TerminalSquare, Briefcase } from "lucide-react";
+import { SiLinux, SiRubyonrails, SiOpenjdk, SiWindows } from "react-icons/si";
 
 export function ExperienceSection() {
   const experiences = [
@@ -8,21 +9,24 @@ export function ExperienceSection() {
       role: "Estagiário de Desenvolvimento de Software",
       period: "mar/2024 – set/2024",
       location: "Salvador/BA",
-      description: "Atuou no desenvolvimento e manutenção de sistemas internos, integrações entre serviços e suporte à infraestrutura."
+      description: "Desenvolvimento e manutenção de sistemas internos com Java, integrações entre serviços e suporte à infraestrutura. Ambiente híbrido com Linux Ubuntu e Windows.",
+      tags: ["Java", "Linux Ubuntu", "Windows"]
     },
     {
       company: "LAMPP",
       role: "Desenvolvedor",
       period: "mar/2022 – mai/2022",
       location: "Salvador/BA",
-      description: "Desenvolvimento de aplicações web e automações para o laboratório."
+      description: "Desenvolvimento de aplicações web com Ruby on Rails e automações para o laboratório em ambiente Linux Ubuntu.",
+      tags: ["Ruby on Rails", "Linux Ubuntu"]
     },
     {
       company: "EDZA Engenharia",
       role: "Auxiliar de TI",
       period: "nov/2019 – mar/2022",
       location: "Salvador/BA",
-      description: "Suporte técnico, redes e administração de sistemas."
+      description: "Suporte técnico, redes e administração de sistemas em ambiente Linux Ubuntu.",
+      tags: ["Linux Ubuntu", "Redes"]
     }
   ];
 
@@ -72,9 +76,19 @@ export function ExperienceSection() {
                 </div>
               </div>
               
-              <p className="text-muted-foreground text-sm font-sans leading-relaxed">
+              <p className="text-muted-foreground text-sm font-sans leading-relaxed mb-4">
                 {exp.description}
               </p>
+
+              {exp.tags && (
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-border/30">
+                  {exp.tags.map((tag) => (
+                    <span key={tag} className="px-2 py-0.5 bg-background border border-border rounded text-[10px] font-mono text-muted-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
