@@ -50,14 +50,13 @@ export function HeroSection() {
               /contato
             </a>
             <a
-              href="/curriculo.html"
-              download="CV-Reinaldo-Barreto.html"
+              href="/curriculo.html?auto=pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-transparent border border-primary/50 text-primary px-6 py-3 rounded-md font-mono text-sm font-semibold hover:bg-primary/10 transition-colors"
               data-testid="link-hero-cv"
             >
-              ↓ Currículo
+              ↓ Currículo PDF
             </a>
           </div>
         </motion.div>

@@ -179,6 +179,13 @@ function downloadPDF() {
     btn.textContent = '⬇ Baixar PDF';
   });
 }
+
+// Auto-trigger when opened with ?auto=pdf (from portfolio button)
+window.addEventListener('DOMContentLoaded', function() {
+  if (new URLSearchParams(window.location.search).get('auto') === 'pdf') {
+    setTimeout(downloadPDF, 800); // small delay so html2pdf loads
+  }
+});
 </script>
 </head>
 <body>
