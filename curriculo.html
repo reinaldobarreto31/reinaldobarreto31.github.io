@@ -164,7 +164,10 @@ function downloadPDF() {
 
 <!-- Print button (hidden in print) -->
 <div class='no-print' style='text-align:center;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:8px'>
-  <button id='dl-btn' class='print-btn' onclick='downloadPDF()'>⬇ Baixar PDF</button>
+  <div style='display:flex;gap:12px;flex-wrap:wrap;justify-content:center'>
+    <a href='/' style='display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:transparent;border:2px solid #CC0000;color:#CC0000;font-weight:700;font-size:13px;border-radius:6px;text-decoration:none;transition:all .2s' onmouseover="this.style.background='#CC0000';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#CC0000'">← Voltar ao Portfólio</a>
+    <button id='dl-btn' class='print-btn' onclick='downloadPDF()'>⬇ Baixar PDF</button>
+  </div>
   <p class='print-instructions'>Clique para baixar o currículo em PDF — sem instalar nada.</p>
 </div>
 
@@ -188,7 +191,7 @@ function downloadPDF() {
     <!-- contato -->
     <div>
       <div class='s-section-title'>Contato</div>
-      <div class='contact-item'><span class='icon'>✉</span><a href='mailto:reinaldo3178@gmail.com'>reinaldo3178@gmail.com</a></div>
+      <div class='contact-item'><span class='icon'>✉</span><a href='mailto:reinaldobarretosilva@gmail.com'>reinaldobarretosilva@gmail.com</a></div>
       <div class='contact-item'><span class='icon'>📱</span><span>+55 (47) 98830-2308</span></div>
       <div class='contact-item'><span class='icon'>🐙</span><a href='https://github.com/reinaldobarreto31'>github.com/reinaldobarreto31</a></div>
       <div class='contact-item'><span class='icon'>🔗</span><a href='https://www.linkedin.com/in/reinaldo-barreto-840896253'>LinkedIn</a></div>
