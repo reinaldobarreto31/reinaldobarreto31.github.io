@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rails-link-shortener 🔗</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            rails: { DEFAULT: '#CC0000', dark: '#990000', light: '#ff4444', glow: 'rgba(204,0,0,0.25)' },
+          },
+          animation: {
+            'shine':     'shine 2.8s linear infinite',
+            'float':     'float 3.5s ease-in-out infinite',
+            'fade-in':   'fadeIn .3s ease-out',
+            'slide-up':  'slideUp .35s ease-out',
+            'ping-slow': 'ping 2s cubic-bezier(0,0,.2,1) infinite',
+          },
+          keyframes: {
+            shine:   { '0%':   { backgroundPosition: '-300% center' },
+                       '100%': { backgroundPosition:  '300% center' } },
+            float:   { '0%,100%': { transform: 'translateY(0)' },
+                       '50%':     { transform: 'translateY(-6px)' } },
+            fadeIn:  { from: { opacity: 0 }, to: { opacity: 1 } },
+            slideUp: { from: { opacity: 0, transform: 'translateY(16px)' },
+                       to:   { opacity: 1, transform: 'translateY(0)' } },
+          },
+          boxShadow: {
+            'rails':     '0 0 24px rgba(204,0,0,0.35)',
+            'rails-lg':  '0 0 40px rgba(204,0,0,0.5)',
+            'glass':     '0 8px 32px rgba(0,0,0,0.5)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+    *  { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --rails: #CC0000; --rails-dark: #990000; }
+    body { font-family: 'Inter', sans-serif; background: #080808; color: #e5e7eb; min-height: 100vh; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* shimmer text */
+    .rails-shine {
+      background: linear-gradient(100deg,#cc1111 0%,#ff5555 28%,#ffd5d5 48%,#ff5555 68%,#cc1111 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 2.8s linear infinite;
+    }
+    @keyframes shine {
+      0%   { background-position: -300% center }
+      100% { background-position:  300% center }
+    }
+
+    /* glass card */
+    .glass {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+    .glass-rails {
+      background: rgba(204,0,0,0.06);
+      border: 1px solid rgba(204,0,0,0.3);
+      backdrop-filter: blur(12px);
+    }
+
+    /* 3D card tilt */
+    .card-3d { transition: transform .3s ease, box-shadow .3s ease; transform-style: preserve-3d; }
+    .card-3d:hover { transform: perspective(600px) rotateX(-3deg) rotateY(3deg) translateY(-3px) scale(1.01); box-shadow: 6px 14px 32px rgba(0,0,0,.6), 0 0 20px rgba(204,0,0,0.2); }
+
+    /* input focus glow */
+    .input-rails:focus { outline: none; border-color: rgba(204,0,0,0.6) !important; box-shadow: 0 0 0 3px rgba(204,0,0,0.15), 0 4px 20px rgba(204,0,0,0.1); }
+
+    /* button */
+    .btn-rails {
+      background: linear-gradient(135deg,#cc0000,#990000);
+      box-shadow: 0 0 20px rgba(204,0,0,0.3);
+      transition: all .25s ease;
+    }
+    .btn-rails:hover { box-shadow: 0 0 30px rgba(204,0,0,0.5); transform: translateY(-1px); }
+    .btn-rails:active { transform: translateY(0); }
+
+    /* link row */
+    .link-row { transition: background .2s ease, border-color .2s ease; }
+    .link-row:hover { background: rgba(204,0,0,0.04); border-color: rgba(204,0,0,0.25) !important; }
+
+    /* toast */
+    #toast { transition: all .3s ease; }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#111; } ::-webkit-scrollbar-thumb { background:#3a0808; border-radius:3px; }
+
+    /* animated bg grid */
+    .grid-bg {
+      background-image: linear-gradient(rgba(204,0,0,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(204,0,0,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* pulse dot */
+    .pulse-dot::before { content:''; display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; margin-right:6px; animation: ping-slow 2s ease-in-out infinite; }
+
+    /* copy flash */
+    @keyframes copyFlash { 0%,100%{background:rgba(204,0,0,.1)} 50%{background:rgba(204,0,0,.25)} }
+    .copy-flash { animation: copyFlash .5s ease; }
+  </style>
+</head>
+<body class="grid-bg">
+
+<!-- ══════════════════════════════ NAVBAR ══════════════════════════════ -->
+<nav class="sticky top-0 z-50 glass border-b border-white/5">
+  <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <!-- Rails logo SVG inline -->
+      <svg width="28" height="28" viewBox="0 0 200 200" class="animate-float" style="filter:drop-shadow(0 0 8px rgba(204,0,0,.7))">
+        <ellipse cx="100" cy="100" rx="95" ry="95" fill="#CC0000"/>
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+              font-family="Georgia,serif" font-size="110" font-weight="bold" fill="white">R</text>
+      </svg>
+      <span class="mono font-bold text-base rails-shine">rails-link-shortener</span>
+      <span class="hidden sm:inline text-xs mono text-gray-600 border border-gray-800 px-2 py-0.5 rounded">v1.0</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span id="api-status" class="text-xs mono text-gray-500 pulse-dot hidden sm:flex items-center">API conectada</span>
+      <button onclick="openConfig()" class="text-gray-500 hover:text-rails transition-colors" title="Configurar API">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M20.12 20.12A10 10 0 0 1 3.88 3.88M3.88 20.12A10 10 0 0 0 20.12 3.88"/></svg>
+      </button>
+      <a href="https://github.com/reinaldobarreto31/rails-link-shortener" target="_blank"
+         class="text-gray-500 hover:text-white transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<header class="max-w-5xl mx-auto px-6 pt-16 pb-10">
+  <div class="text-center mb-12">
+    <div class="inline-flex items-center gap-2 glass-rails px-4 py-1.5 rounded-full text-xs mono mb-6 card-3d">
+      <span class="text-red-400">●</span>
+      <span class="text-gray-400">Encurtador de Links com</span>
+      <span class="rails-shine font-bold">Ruby on Rails 7</span>
+    </div>
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+      <span class="rails-shine">Encurte</span>
+      <span class="text-gray-200"> qualquer URL</span>
+    </h1>
+    <p class="text-gray-500 text-lg max-w-xl mx-auto">
+      Cole sua URL longa, receba um link curto. Contador de cliques em tempo real via
+      <span class="mono text-red-400">Turbo Stream</span>.
+    </p>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="grid grid-cols-3 gap-4 mb-10">
+    <div class="card-3d glass rounded-xl p-4 text-center">
+      <div id="stat-total" class="text-3xl font-bold rails-shine mono">0</div>
+      <div class="text-xs text-gray-500 mt-1 mono">links criados</div>
+    </div>
+    <div class="card-3d glass rounded-xl p-4 text-center">
+      <div id="stat-clicks" class="text-3xl font-bold text-blue-400 mono">0</div>
+      <div class="text-xs text-gray-500 mt-1 mono">cliques totais</div>
+    </div>
+    <div class="card-3d glass rounded-xl p-4 text-center">
+      <div id="stat-today" class="text-3xl font-bold text-green-400 mono">0</div>
+      <div class="text-xs text-gray-500 mt-1 mono">links hoje</div>
+    </div>
+  </div>
+
+  <!-- URL Shortener Form -->
+  <div class="card-3d glass-rails rounded-2xl p-6 shadow-rails">
+    <div class="flex items-center gap-2 mb-4">
+      <span class="text-red-400 text-sm mono font-bold">$ shorten</span>
+      <span class="text-gray-600 text-sm mono">--url</span>
+    </div>
+    <form id="shorten-form" onsubmit="createLink(event)" class="space-y-4">
+      <div>
+        <label class="block text-xs mono text-gray-400 mb-2 uppercase tracking-wider">URL Original</label>
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </span>
+          <input id="url-input" type="url" name="url" required placeholder="https://www.exemplo.com/pagina-muito-longa-aqui"
+            class="input-rails w-full bg-black/40 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-sm mono text-gray-200 placeholder-gray-700 transition-all" />
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs mono text-gray-400 mb-2 uppercase tracking-wider">Título <span class="text-gray-600">(opcional)</span></label>
+        <input id="title-input" type="text" name="title" placeholder="Ex: Tutorial Ruby on Rails"
+          class="input-rails w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm mono text-gray-200 placeholder-gray-700 transition-all" />
+      </div>
+      <button type="submit" id="submit-btn"
+        class="btn-rails w-full py-3.5 rounded-xl font-bold mono text-white text-sm flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Encurtar URL
+      </button>
+    </form>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ LINKS LIST ══════════════════════════════ -->
+<main class="max-w-5xl mx-auto px-6 pb-24">
+
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <h2 class="text-lg font-bold text-gray-200 mono">Links criados</h2>
+      <span id="links-count" class="text-xs bg-rails/10 border border-rails/30 text-red-400 mono px-2.5 py-0.5 rounded-full">0</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <input id="search-input" type="text" placeholder="Filtrar links..." oninput="filterLinks()"
+        class="input-rails bg-black/30 border border-white/8 rounded-lg px-3 py-1.5 text-xs mono text-gray-300 placeholder-gray-600 w-40 sm:w-56 transition-all" />
+      <button onclick="loadLinks()" class="text-gray-500 hover:text-rails transition-colors" title="Recarregar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty-state" class="hidden text-center py-20">
+    <div class="text-6xl mb-4 opacity-20">🔗</div>
+    <p class="text-gray-600 mono text-sm">Nenhum link criado ainda.</p>
+    <p class="text-gray-700 mono text-xs mt-1">Cole uma URL acima e clique em Encurtar.</p>
+  </div>
+
+  <!-- Error state -->
+  <div id="error-state" class="hidden text-center py-16">
+    <div class="glass-rails rounded-xl p-8 max-w-sm mx-auto">
+      <div class="text-4xl mb-3">⚠️</div>
+      <p class="text-red-400 mono text-sm font-bold mb-1">API não conectada</p>
+      <p class="text-gray-600 mono text-xs mb-4">Configure o endereço da API Rails ou use o modo demo.</p>
+      <button onclick="openConfig()" class="btn-rails px-4 py-2 rounded-lg text-xs mono text-white">Configurar API</button>
+      <button onclick="loadDemo()" class="ml-3 text-xs mono text-gray-500 hover:text-gray-300 transition-colors underline">Usar demo</button>
+    </div>
+  </div>
+
+  <!-- Loading skeleton -->
+  <div id="loading-state" class="space-y-3">
+    <div class="glass rounded-xl p-4 animate-pulse"><div class="h-4 bg-white/5 rounded w-3/4 mb-2"></div><div class="h-3 bg-white/3 rounded w-1/2"></div></div>
+    <div class="glass rounded-xl p-4 animate-pulse"><div class="h-4 bg-white/5 rounded w-2/3 mb-2"></div><div class="h-3 bg-white/3 rounded w-2/5"></div></div>
+    <div class="glass rounded-xl p-4 animate-pulse"><div class="h-4 bg-white/5 rounded w-4/5 mb-2"></div><div class="h-3 bg-white/3 rounded w-1/3"></div></div>
+  </div>
+
+  <!-- Links container -->
+  <div id="links-container" class="space-y-3 hidden"></div>
+</main>
+
+<!-- ══════════════════════════════ LINK CARD TEMPLATE ══════════════════════════════ -->
+<template id="link-template">
+  <div class="link-row glass border border-white/5 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 animate-slide-up card-3d" data-id="">
+    <!-- Left: icon + info -->
+    <div class="flex items-start gap-3 flex-1 min-w-0">
+      <div class="flex-shrink-0 w-9 h-9 bg-rails/10 border border-rails/30 rounded-lg flex items-center justify-center shadow-[0_0_12px_rgba(204,0,0,0.2)]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </div>
+      <div class="min-w-0 flex-1">
+        <div class="link-title text-sm font-semibold text-gray-200 truncate mb-0.5"></div>
+        <a class="link-short mono text-xs text-red-400 hover:text-red-300 transition-colors truncate block" href="#" target="_blank"></a>
+        <div class="link-original text-xs text-gray-600 truncate mt-0.5 max-w-xs sm:max-w-sm"></div>
+      </div>
+    </div>
+    <!-- Right: stats + actions -->
+    <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0 pl-12 sm:pl-0">
+      <!-- Click count -->
+      <div class="text-center min-w-[56px]">
+        <div class="link-clicks text-xl font-bold mono text-blue-400">0</div>
+        <div class="text-[10px] text-gray-600 mono">cliques</div>
+      </div>
+      <!-- Date -->
+      <div class="text-center min-w-[64px] hidden sm:block">
+        <div class="link-date text-xs mono text-gray-500"></div>
+        <div class="text-[10px] text-gray-700 mono">criado</div>
+      </div>
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <button class="btn-copy flex items-center gap-1.5 text-xs mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/3 hover:border-rails/50 hover:text-rails transition-all" onclick="copyLink(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar
+        </button>
+        <button class="btn-qr text-gray-600 hover:text-rails transition-colors p-1.5 rounded-lg hover:bg-rails/10" onclick="showQR(this)" title="QR Code">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor"/><rect x="16" y="5" width="3" height="3" fill="currentColor"/><rect x="16" y="16" width="3" height="3" fill="currentColor"/><rect x="5" y="16" width="3" height="3" fill="currentColor"/></svg>
+        </button>
+        <button class="btn-delete text-gray-700 hover:text-red-500 transition-colors p-1.5 rounded-lg hover:bg-red-500/10" onclick="deleteLink(this)" title="Deletar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- ══════════════════════════════ CONFIG MODAL ══════════════════════════════ -->
+<div id="config-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeConfig()"></div>
+  <div class="relative glass-rails rounded-2xl p-6 w-full max-w-md shadow-rails-lg animate-fade-in">
+    <h3 class="text-base font-bold mono text-gray-200 mb-4 flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC0000" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      Configuração da API
+    </h3>
+    <label class="block text-xs mono text-gray-400 mb-2 uppercase tracking-wider">Endereço da API Rails</label>
+    <input id="api-url-input" type="text" value="http://localhost:3000"
+      class="input-rails w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm mono text-gray-200 mb-4" />
+    <p class="text-xs text-gray-600 mono mb-4">
+      A API precisa retornar JSON com <code class="text-red-400">Accept: application/json</code>.<br/>
+      Para dev local, certifique que o CORS está habilitado no Rails.
+    </p>
+    <div class="flex gap-3">
+      <button onclick="saveConfig()" class="btn-rails flex-1 py-2.5 rounded-xl text-sm mono text-white font-bold">Conectar</button>
+      <button onclick="closeConfig()" class="flex-1 py-2.5 rounded-xl text-sm mono text-gray-400 border border-white/10 hover:border-white/20 transition-colors">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ QR MODAL ══════════════════════════════ -->
+<div id="qr-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeQR()"></div>
+  <div class="relative glass-rails rounded-2xl p-8 w-full max-w-xs text-center shadow-rails-lg animate-fade-in">
+    <h3 class="text-sm font-bold mono text-gray-200 mb-4">QR Code</h3>
+    <div id="qr-container" class="bg-white rounded-xl p-4 inline-block mb-4">
+      <canvas id="qr-canvas" width="180" height="180"></canvas>
+    </div>
+    <p id="qr-url-text" class="text-xs mono text-red-400 truncate mb-4"></p>
+    <button onclick="downloadQR()" class="btn-rails w-full py-2.5 rounded-xl text-sm mono text-white font-bold mb-2">⬇ Baixar PNG</button>
+    <button onclick="closeQR()" class="text-xs mono text-gray-600 hover:text-gray-400 transition-colors">Fechar</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ TOAST ══════════════════════════════ -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+  <div id="toast-inner" class="flex items-center gap-3 px-5 py-3 rounded-xl shadow-glass mono text-sm font-medium">
+    <span id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="border-t border-white/5 py-8">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 text-gray-700 text-xs mono">
+      <span>Feito por</span>
+      <a href="https://reinaldobarreto31.github.io" class="text-red-400 hover:text-red-300 transition-colors">Reinaldo Barreto</a>
+      <span class="text-gray-800">·</span>
+      <span class="rails-shine font-semibold">Ruby on Rails 7</span>
+    </div>
+    <div class="flex items-center gap-4 text-gray-700 text-xs mono">
+      <a href="https://github.com/reinaldobarreto31" target="_blank" class="hover:text-gray-400 transition-colors">GitHub</a>
+      <a href="https://reinaldobarreto31.github.io" target="_blank" class="hover:text-gray-400 transition-colors">Portfólio</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════ JAVASCRIPT ══════════════════════════════ -->
+<script>
+  /* ── State ── */
+  let API_BASE = localStorage.getItem('railsApiBase') || 'http://localhost:3000';
+  let allLinks  = [];
+  let demoMode  = false;
+  let refreshTimer = null;
+
+  /* ── Init ── */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('api-url-input').value = API_BASE;
+    loadLinks();
+    startAutoRefresh();
+  });
+
+  /* ── API Calls ── */
+  async function apiFetch(path, opts = {}) {
+    const res = await fetch(API_BASE + path, {
+      ...opts,
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', ...opts.headers },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  }
+
+  async function loadLinks() {
+    if (demoMode) return;
+    showLoading(true);
+    try {
+      const data = await apiFetch('/short_links');
+      allLinks = data;
+      renderLinks(allLinks);
+      updateStats(allLinks);
+      setApiConnected(true);
+    } catch(e) {
+      showLoading(false);
+      if (allLinks.length === 0) showError(true);
+      else renderLinks(allLinks); // keep stale data visible
+    }
+  }
+
+  async function createLink(e) {
+    e.preventDefault();
+    const url   = document.getElementById('url-input').value.trim();
+    const title = document.getElementById('title-input').value.trim();
+    if (!url) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = `<svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Encurtando...`;
+
+    if (demoMode) {
+      await sleep(600);
+      const fakeLink = {
+        id: Date.now(), original_url: url, title: title || extractDomain(url),
+        code: randomCode(), click_count: 0, created_at: new Date().toISOString()
+      };
+      allLinks.unshift(fakeLink);
+      renderLinks(allLinks); updateStats(allLinks);
+      showToast('✅', 'Link encurtado! (modo demo)', 'green');
+      e.target.reset(); resetBtn();
+      return;
+    }
+
+    try {
+      const body = JSON.stringify({ short_link: { original_url: url, title: title || null }});
+      const link = await apiFetch('/short_links', { method: 'POST', body });
+      allLinks.unshift(link);
+      renderLinks(allLinks); updateStats(allLinks);
+      showToast('✅', 'Link encurtado com sucesso!', 'green');
+      e.target.reset();
+    } catch(err) {
+      showToast('❌', 'Erro ao criar link. Verifique a API.', 'red');
+    }
+    resetBtn();
+  }
+
+  async function deleteLink(btn) {
+    const row = btn.closest('[data-id]');
+    const id  = row.dataset.id;
+    if (!confirm('Deletar este link?')) return;
+
+    if (demoMode) {
+      allLinks = allLinks.filter(l => String(l.id) !== id);
+      row.style.opacity = '0'; row.style.transform = 'translateX(20px)'; row.style.transition = 'all .3s';
+      setTimeout(() => { renderLinks(allLinks); updateStats(allLinks); }, 300);
+      showToast('🗑️', 'Link removido (demo)', 'gray');
+      return;
+    }
+
+    try {
+      await apiFetch(`/short_links/${id}`, { method: 'DELETE' });
+      allLinks = allLinks.filter(l => String(l.id) !== id);
+      row.style.opacity = '0'; row.style.transform = 'translateX(20px)'; row.style.transition = 'all .3s';
+      setTimeout(() => { renderLinks(allLinks); updateStats(allLinks); }, 300);
+      showToast('🗑️', 'Link removido', 'gray');
+    } catch { showToast('❌', 'Erro ao deletar', 'red'); }
+  }
+
+  /* ── Render ── */
+  function renderLinks(links) {
+    showLoading(false); showError(false);
+    const container = document.getElementById('links-container');
+    const empty     = document.getElementById('empty-state');
+    const tmpl      = document.getElementById('link-template');
+
+    if (links.length === 0) { container.classList.add('hidden'); empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden'); container.classList.remove('hidden');
+    container.innerHTML = '';
+
+    links.forEach(link => {
+      const clone = tmpl.content.cloneNode(true);
+      const row   = clone.querySelector('[data-id]');
+      row.dataset.id = link.id;
+      row.dataset.url = shortUrl(link.code);
+      row.dataset.original = link.original_url;
+
+      const domain = extractDomain(link.original_url);
+      clone.querySelector('.link-title').textContent  = link.title || domain;
+      const anchor = clone.querySelector('.link-short');
+      anchor.textContent = shortUrl(link.code);
+      anchor.href        = `${API_BASE}/go/${link.code}`;
+      clone.querySelector('.link-original').textContent = link.original_url;
+      clone.querySelector('.link-clicks').textContent   = link.click_count ?? 0;
+      clone.querySelector('.link-date').textContent     = fmtDate(link.created_at);
+      container.appendChild(clone);
+    });
+
+    document.getElementById('links-count').textContent = links.length;
+  }
+
+  function filterLinks() {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    const filtered = allLinks.filter(l =>
+      l.original_url.toLowerCase().includes(q) ||
+      (l.title || '').toLowerCase().includes(q) ||
+      l.code.toLowerCase().includes(q)
+    );
+    renderLinks(filtered);
+  }
+
+  function updateStats(links) {
+    const total  = links.length;
+    const clicks = links.reduce((s, l) => s + (l.click_count || 0), 0);
+    const today  = links.filter(l => isToday(l.created_at)).length;
+    animateCount('stat-total',  total);
+    animateCount('stat-clicks', clicks);
+    animateCount('stat-today',  today);
+  }
+
+  /* ── Copy ── */
+  function copyLink(btn) {
+    const row = btn.closest('[data-id]');
+    const url = row.dataset.url;
+    navigator.clipboard.writeText(url).then(() => {
+      btn.classList.add('copy-flash');
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado!`;
+      btn.style.borderColor = '#22c55e66';
+      setTimeout(() => {
+        btn.classList.remove('copy-flash');
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar`;
+        btn.style.borderColor = '';
+      }, 2000);
+    });
+  }
+
+  /* ── QR ── */
+  let currentQrUrl = '';
+  function showQR(btn) {
+    const row = btn.closest('[data-id]');
+    currentQrUrl = row.dataset.url;
+    document.getElementById('qr-url-text').textContent = currentQrUrl;
+    drawQR(currentQrUrl);
+    document.getElementById('qr-modal').classList.remove('hidden');
+  }
+  function closeQR() { document.getElementById('qr-modal').classList.add('hidden'); }
+
+  function drawQR(url) {
+    const canvas = document.getElementById('qr-canvas');
+    const ctx    = canvas.getContext('2d');
+    const size   = 180;
+    // simple QR placeholder (real QR needs a library — show branded placeholder)
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#CC0000';
+    // draw branded placeholder with text
+    ctx.font = 'bold 12px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('QR Code', size/2, size/2 - 8);
+    ctx.font = '9px monospace';
+    ctx.fillStyle = '#333';
+    ctx.fillText(url.replace('http://','').replace('https://',''), size/2, size/2 + 10);
+    // corners
+    [[8,8],[size-28,8],[8,size-28]].forEach(([x,y]) => {
+      ctx.strokeStyle='#CC0000'; ctx.lineWidth=3;
+      ctx.strokeRect(x,y,20,20);
+      ctx.fillStyle='#CC0000'; ctx.fillRect(x+4,y+4,12,12);
+    });
+  }
+
+  function downloadQR() {
+    const canvas = document.getElementById('qr-canvas');
+    const a = document.createElement('a');
+    a.download = 'qrcode.png';
+    a.href = canvas.toDataURL();
+    a.click();
+  }
+
+  /* ── Config ── */
+  function openConfig()  { document.getElementById('config-modal').classList.remove('hidden'); }
+  function closeConfig() { document.getElementById('config-modal').classList.add('hidden'); }
+  function saveConfig()  {
+    API_BASE = document.getElementById('api-url-input').value.trim().replace(/\/$/, '');
+    localStorage.setItem('railsApiBase', API_BASE);
+    demoMode = false;
+    closeConfig();
+    loadLinks();
+  }
+
+  /* ── Demo mode ── */
+  function loadDemo() {
+    demoMode = true;
+    setApiConnected(false);
+    allLinks = [
+      { id:1, original_url:'https://guides.rubyonrails.org/getting_started.html', title:'Rails Getting Started', code:'rnR7k2', click_count:142, created_at: new Date().toISOString() },
+      { id:2, original_url:'https://github.com/reinaldobarreto31/rails-link-shortener', title:'Repositório GitHub', code:'gh8x3p', click_count:38,  created_at: new Date(Date.now()-86400000).toISOString() },
+      { id:3, original_url:'https://reinaldobarreto31.github.io', title:'Portfólio', code:'pF2mQw', click_count:257, created_at: new Date(Date.now()-172800000).toISOString() },
+      { id:4, original_url:'https://www.ruby-lang.org/en/', title:'Ruby Language', code:'rbLang', click_count:19,  created_at: new Date(Date.now()-259200000).toISOString() },
+    ];
+    renderLinks(allLinks); updateStats(allLinks);
+    showError(false);
+    showToast('👾', 'Modo demo ativado — dados fictícios', 'gray');
+  }
+
+  /* ── UI helpers ── */
+  function showLoading(v) {
+    document.getElementById('loading-state').classList.toggle('hidden', !v);
+    document.getElementById('links-container').classList.toggle('hidden', v);
+  }
+  function showError(v) { document.getElementById('error-state').classList.toggle('hidden', !v); }
+
+  function setApiConnected(v) {
+    const el = document.getElementById('api-status');
+    if (v) { el.classList.remove('hidden'); el.textContent = 'API conectada'; el.style.color=''; }
+    else   { el.classList.remove('hidden'); el.textContent = 'Modo demo'; el.style.color='#f59e0b'; }
+  }
+
+  function resetBtn() {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = false;
+    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Encurtar URL`;
+  }
+
+  function showToast(icon, msg, color) {
+    const t   = document.getElementById('toast');
+    const ti  = document.getElementById('toast-inner');
+    const colors = { green:'bg-green-900/80 border border-green-700/50 text-green-300', red:'bg-red-900/80 border border-red-700/50 text-red-300', gray:'bg-zinc-800/90 border border-zinc-700 text-zinc-300' };
+    ti.className = `flex items-center gap-3 px-5 py-3 rounded-xl shadow-glass mono text-sm font-medium ${colors[color]||colors.gray}`;
+    document.getElementById('toast-icon').textContent = icon;
+    document.getElementById('toast-msg').textContent  = msg;
+    t.classList.remove('hidden'); t.style.opacity = '1';
+    setTimeout(() => { t.style.opacity='0'; setTimeout(() => t.classList.add('hidden'), 300); }, 3000);
+  }
+
+  function animateCount(id, target) {
+    const el = document.getElementById(id);
+    const start = parseInt(el.textContent) || 0;
+    const diff  = target - start;
+    const steps = 20;
+    let i = 0;
+    const step = () => { i++; el.textContent = Math.round(start + diff * (i/steps)); if (i < steps) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+
+  /* ── Auto refresh ── */
+  function startAutoRefresh() { refreshTimer = setInterval(() => { if (!demoMode) loadLinks(); }, 30000); }
+
+  /* ── Utils ── */
+  function shortUrl(code)  { return `${API_BASE}/go/${code}`; }
+  function extractDomain(url) {
+    try { return new URL(url).hostname.replace('www.',''); } catch { return url.slice(0,30); }
+  }
+  function fmtDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return `${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')}`;
+  }
+  function isToday(iso) {
+    if (!iso) return false;
+    const d = new Date(iso), n = new Date();
+    return d.getDate()===n.getDate() && d.getMonth()===n.getMonth() && d.getFullYear()===n.getFullYear();
+  }
+  function randomCode() { return Math.random().toString(36).substring(2,8); }
+  function sleep(ms)    { return new Promise(r => setTimeout(r, ms)); }
+</script>
+</body>
+</html>
