@@ -39,6 +39,13 @@ export function AboutSection() {
     "TDD / RSpec", "MVC", "DevOps", "CI/CD",
   ];
 
+  const aiSkills = [
+    { name: "Prompt Engineering", desc: "ChatGPT · Claude · Gemini" },
+    { name: "GitHub Copilot", desc: "Autocomplete & code review" },
+    { name: "OpenAI API", desc: "Integração em apps Rails/React" },
+    { name: "AI-assisted Dev", desc: "Cursor · Replit AI · Codeium" },
+  ];
+
   return (
     <section id="about" className="py-24 relative bg-card/30">
       <div className="container mx-auto px-4">
@@ -161,6 +168,21 @@ export function AboutSection() {
                   <div key={skill.name} className="flex items-center gap-2 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-mono hover:bg-muted transition-colors">
                     <skill.icon className={`${skill.color} opacity-80`} />
                     <span>{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* AI Skills */}
+            <div>
+              <h3 className="font-mono text-xs text-muted-foreground mb-3 border-b border-border pb-2 uppercase tracking-wider">
+                🤖 IA &amp; Prompts
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {aiSkills.map((skill) => (
+                  <div key={skill.name} className="flex flex-col p-3 bg-card border border-primary/20 rounded-md hover:border-primary/50 transition-colors">
+                    <span className="text-xs font-mono text-primary font-semibold">{skill.name}</span>
+                    <span className="text-[10px] text-muted-foreground mt-0.5">{skill.desc}</span>
                   </div>
                 ))}
               </div>
