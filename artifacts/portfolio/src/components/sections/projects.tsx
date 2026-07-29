@@ -104,7 +104,8 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative bg-card border rounded-lg overflow-hidden flex flex-col transition-colors ${
+              onClick={() => window.open(project.live ?? project.github, "_blank")}
+              className={`group relative bg-card border rounded-lg overflow-hidden flex flex-col transition-colors cursor-pointer ${
                 project.highlight
                   ? "border-primary/30 hover:border-primary/60"
                   : "border-border hover:border-border/80"
