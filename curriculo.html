@@ -139,6 +139,9 @@ function downloadPDF() {
   btn.disabled = true;
   btn.textContent = '⏳ Gerando PDF…';
 
+  // Scroll to top before capture to avoid offset
+  window.scrollTo(0, 0);
+
   const element = document.querySelector('.page');
   const opt = {
     margin: 0,
@@ -149,7 +152,21 @@ function downloadPDF() {
       useCORS: true,
       letterRendering: true,
       scrollY: 0,
-      windowWidth: 794   // 210mm @ 96dpi
+      scrollX: 0,
+      windowWidth: 794,   // 210mm @ 96dpi
+      windowHeight: 1123, // 297mm @ 96dpi
+      onclone: function(clonedDoc) {
+        // Force exact A4 width on the cloned element so no offset occurs
+        const page = clonedDoc.querySelector('.page');
+        if (page) {
+          page.style.width = '794px';
+          page.style.minHeight = '1123px';
+          page.style.margin = '0';
+          page.style.boxShadow = 'none';
+        }
+        // Hide no-print elements in the clone
+        clonedDoc.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
+      }
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
