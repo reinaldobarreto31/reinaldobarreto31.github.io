@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { TerminalSquare, Briefcase } from "lucide-react";
+import { SiRubyonrails } from "react-icons/si";
 
 export function ExperienceSection() {
   const experiences = [
@@ -31,6 +32,8 @@ export function ExperienceSection() {
       tags: ["Angular", "Vue.js", "JavaScript", "Java EE", "Ruby on Rails", "MySQL", "Bash Script", "Linux Ubuntu", "APIs REST"],
     },
   ];
+
+  const RAILS_TAGS = new Set(["Ruby on Rails", "Ruby"]);
 
   return (
     <section id="experience" className="py-24 relative border-y border-border">
@@ -84,14 +87,25 @@ export function ExperienceSection() {
 
               {exp.tags && (
                 <div className="flex flex-wrap gap-2 pt-2 border-t border-border/30">
-                  {exp.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 bg-background border border-border rounded text-[10px] font-mono text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {exp.tags.map((tag) =>
+                    RAILS_TAGS.has(tag) ? (
+                      /* ── glowing Rails tag with 3D icon ── */
+                      <span
+                        key={tag}
+                        className="tag-rails inline-flex items-center gap-1.5 px-2.5 py-1 bg-background border rounded text-[10px] font-mono font-bold transition-all hover:scale-105"
+                      >
+                        <SiRubyonrails className="text-red-400 text-xs project-icon-orb" />
+                        {tag}
+                      </span>
+                    ) : (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 bg-background border border-border rounded text-[10px] font-mono text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    )
+                  )}
                 </div>
               )}
             </motion.div>

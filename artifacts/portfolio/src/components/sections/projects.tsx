@@ -13,7 +13,7 @@ const projects = [
       "Controle de gastos pessoais com interface web moderna. Ruby on Rails API no backend, React Vite + TypeScript no frontend. Gráficos de pizza e barras por categoria. Deploy automático no GitHub Pages.",
     tech: ["Ruby on Rails", "React", "Vite", "TypeScript", "Recharts"],
     icon: SiRubyonrails,
-    iconColor: "text-red-500",
+    rails: true,
     image: "/projects/expense-tracker-web.jpg",
     github: `${GITHUB}/expense-tracker-web`,
     live: "https://reinaldobarreto31.github.io/expense-tracker-web/",
@@ -27,7 +27,7 @@ const projects = [
       "API de gerenciamento de tarefas com Ruby on Rails 7 e PostgreSQL. Endpoints REST completos com validações, escopos e JSON responses.",
     tech: ["Ruby on Rails", "PostgreSQL", "REST API", "RSpec"],
     icon: SiRubyonrails,
-    iconColor: "text-red-500",
+    rails: true,
     image: "/projects/rails-tasks-api.jpg",
     github: `${GITHUB}/rails-tasks-api`,
     live: null,
@@ -41,7 +41,7 @@ const projects = [
       "API RESTful com autenticação completa via JWT usando Devise. Signup, login, logout, rotas protegidas e autorização por dono do recurso. RSpec com FactoryBot.",
     tech: ["Ruby on Rails", "JWT", "Devise", "RSpec"],
     icon: SiRubyonrails,
-    iconColor: "text-red-400",
+    rails: true,
     image: "/projects/rails-auth-api.jpg",
     github: `${GITHUB}/rails-auth-api`,
     live: null,
@@ -55,7 +55,7 @@ const projects = [
       "Encurtador de URLs com interface web moderna. Rails 7 + Tailwind CSS escuro + Stimulus JS. Contador de cliques em tempo real com Turbo.",
     tech: ["Ruby on Rails", "Tailwind CSS", "Hotwire", "Stimulus"],
     icon: SiRubyonrails,
-    iconColor: "text-red-400",
+    rails: true,
     image: "/projects/rails-link-shortener.jpg",
     github: `${GITHUB}/rails-link-shortener`,
     live: null,
@@ -69,13 +69,15 @@ const projects = [
       "Versão CLI do controle de gastos em Ruby puro, sem gems. Relatórios por categoria com barras no terminal. Persistência JSON. Base do expense-tracker-web.",
     tech: ["Ruby", "CLI", "JSON", "Linux"],
     icon: SiRuby,
-    iconColor: "text-rose-400",
+    rails: true,
     image: "/projects/ruby-expense-tracker.jpg",
     github: `${GITHUB}/ruby-expense-tracker`,
     live: "https://reinaldobarreto31.github.io/expense-tracker-web/",
     highlight: false,
   },
 ];
+
+const RAILS_TECHS = new Set(["Ruby on Rails", "Ruby"]);
 
 export function ProjectsSection() {
   return (
@@ -105,7 +107,7 @@ export function ProjectsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => window.open(project.live ?? project.github, "_blank")}
-              className={`group relative bg-card border rounded-lg overflow-hidden flex flex-col transition-colors cursor-pointer ${
+              className={`icon-card-3d group relative bg-card border rounded-lg overflow-hidden flex flex-col transition-colors cursor-pointer ${
                 project.highlight
                   ? "border-primary/30 hover:border-primary/60"
                   : "border-border hover:border-border/80"
@@ -119,89 +121,69 @@ export function ProjectsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="flex items-center gap-1.5 bg-primary text-white text-[10px] font-mono
-                               px-2.5 py-1 rounded-full shadow-lg hover:bg-primary/80 transition-colors"
+                    className="flex items-center gap-1 text-[10px] font-mono bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded-full hover:bg-primary/30 transition-colors"
                   >
                     <Globe size={10} />
-                    Live Demo
+                    live
                   </a>
                 </div>
               )}
 
-              {/* Project image with hover overlay */}
-              {project.image && (
-                <div className="relative overflow-hidden aspect-video bg-zinc-900">
-                  <img
-                    src={project.image}
-                    alt={`Preview do ${project.title}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  {/* Hover overlay — GitHub + optional Live buttons */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-zinc-900 border border-primary text-white text-sm font-mono px-4 py-2 rounded-md shadow-lg hover:bg-zinc-800 transition-colors"
-                    >
-                      <Github size={16} />
-                      GitHub
-                    </a>
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-primary text-white text-sm font-mono px-4 py-2 rounded-md shadow-lg hover:bg-primary/80 transition-colors"
-                      >
-                        <Globe size={16} />
-                        Ver App
-                      </a>
-                    )}
+              {/* Project image */}
+              <div className="relative h-40 overflow-hidden bg-card border-b border-border">
+                <img
+                  src={project.image}
+                  alt={project.titlePt}
+                  className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+                {/* 3D icon orb overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-background/70 border border-primary/30 rounded-2xl p-4 backdrop-blur-sm shadow-[0_0_30px_rgba(204,0,0,0.3)]">
+                    <project.icon className="text-5xl text-red-400 project-icon-orb" />
                   </div>
                 </div>
-              )}
+              </div>
 
-              {/* Card body */}
-              <div className="p-5 flex-1 flex flex-col">
-                <div className="flex items-start justify-between mb-3">
+              {/* Content */}
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-start justify-between mb-1 gap-2">
                   <div>
-                    <h3 className="font-mono font-bold text-base group-hover:text-primary transition-colors">
+                    <h3 className="font-mono text-sm font-bold text-foreground flex items-center gap-1.5">
+                      <project.icon className="text-red-400 text-sm project-icon-orb shrink-0" />
                       {project.title}
                     </h3>
-                    <p className="text-xs text-zinc-400 font-sans mt-0.5">
-                      ({project.titlePt})
-                    </p>
-                    <p className="text-[10px] text-muted-foreground font-mono mt-0.5">
-                      {project.subtitle}
-                    </p>
+                    <p className="text-[11px] text-muted-foreground font-mono mt-0.5">{project.subtitle}</p>
                   </div>
-                  <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+                  <div className="flex gap-2 shrink-0">
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-primary transition-colors"
-                      title="Ver no GitHub"
+                      onClick={(e) => e.stopPropagation()}
+                      className="hover:text-primary transition-colors text-muted-foreground"
                     >
-                      <Github size={18} />
+                      <Github size={16} />
                     </a>
                     {project.live ? (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors"
-                        title="Ver app ao vivo"
+                        onClick={(e) => e.stopPropagation()}
+                        className="hover:text-primary transition-colors text-muted-foreground"
                       >
-                        <Globe size={18} />
+                        <ExternalLink size={18} />
                       </a>
                     ) : (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                        className="hover:text-primary transition-colors text-muted-foreground"
                       >
                         <ExternalLink size={18} />
                       </a>
@@ -209,19 +191,29 @@ export function ProjectsSection() {
                   </div>
                 </div>
 
-                <p className="text-sm text-muted-foreground font-sans flex-1 mb-4 leading-relaxed">
+                <p className="text-sm text-muted-foreground font-sans flex-1 mb-4 leading-relaxed mt-2">
                   {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 mt-auto">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[10px] font-mono px-2 py-0.5 bg-background border border-border rounded"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {project.tech.map((t) =>
+                    RAILS_TECHS.has(t) ? (
+                      <span
+                        key={t}
+                        className="tag-rails inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 border rounded font-bold"
+                      >
+                        <project.icon className="text-[9px]" />
+                        {t}
+                      </span>
+                    ) : (
+                      <span
+                        key={t}
+                        className="text-[10px] font-mono px-2 py-0.5 bg-background border border-border rounded"
+                      >
+                        {t}
+                      </span>
+                    )
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -234,7 +226,7 @@ export function ProjectsSection() {
             href={GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-border px-6 py-3 rounded-md font-mono text-sm
+            className="icon-card-3d inline-flex items-center gap-2 border border-border px-6 py-3 rounded-md font-mono text-sm
                        text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
           >
             <Github size={16} />
