@@ -132,13 +132,40 @@ body{background:#e8e0e0;display:flex;flex-direction:column;align-items:center;pa
 .print-btn:hover{background:var(--red-dark)}
 .print-instructions{font-size:12px;color:#666;margin-top:8px;text-align:center}
 </style>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js'></script>
+<script>
+function downloadPDF() {
+  const btn = document.getElementById('dl-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Gerando PDF…';
+
+  const element = document.querySelector('.page');
+  const opt = {
+    margin: 0,
+    filename: 'CV-Reinaldo-Barreto-da-Silva.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      letterRendering: true,
+      scrollY: 0,
+      windowWidth: 794   // 210mm @ 96dpi
+    },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save().then(() => {
+    btn.disabled = false;
+    btn.textContent = '⬇ Baixar PDF';
+  });
+}
+</script>
 </head>
 <body>
 
 <!-- Print button (hidden in print) -->
-<div class='no-print' style='text-align:center;padding:10px 0'>
-  <button class='print-btn' onclick='window.print()'>⬇ Baixar como PDF (Ctrl+P → Salvar como PDF)</button>
-  <p class='print-instructions'>Use Ctrl+P → Salvar como PDF para baixar o currículo em PDF.</p>
+<div class='no-print' style='text-align:center;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:8px'>
+  <button id='dl-btn' class='print-btn' onclick='downloadPDF()'>⬇ Baixar PDF</button>
+  <p class='print-instructions'>Clique para baixar o currículo em PDF — sem instalar nada.</p>
 </div>
 
 <div class='page'>
