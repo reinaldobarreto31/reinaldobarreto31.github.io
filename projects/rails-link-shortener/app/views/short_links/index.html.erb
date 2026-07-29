@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkCurto — Encurtador de URLs</title>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen font-mono">
+
+  <!-- Header -->
+  <header class="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="text-red-500 text-2xl font-bold">🔗</span>
+      <span class="text-xl font-bold tracking-tight">link<span class="text-red-500">curto</span></span>
+    </div>
+    <span class="text-xs text-zinc-500">Powered by Ruby on Rails</span>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-12">
+
+    <!-- Flash messages -->
+    <% if notice.present? %>
+      <div class="mb-6 bg-green-900/30 border border-green-700 text-green-300 px-4 py-3 rounded-lg text-sm">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="mb-6 bg-red-900/30 border border-red-700 text-red-300 px-4 py-3 rounded-lg text-sm">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <!-- Form -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 mb-10">
+      <h1 class="text-2xl font-bold mb-1">Encurtar URL</h1>
+      <p class="text-zinc-400 text-sm mb-6">Cole qualquer link longo e receba um curto.</p>
+
+      <%= form_with model: @short_link, local: true, class: "space-y-4" do |f| %>
+        <div>
+          <%= f.label :original_url, "URL original", class: "block text-xs text-zinc-400 mb-1" %>
+          <%= f.url_field :original_url,
+              placeholder: "https://exemplo.com/link-muito-longo",
+              class: "w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-sm
+                      focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors",
+              required: true %>
+        </div>
+        <div>
+          <%= f.label :title, "Título (opcional)", class: "block text-xs text-zinc-400 mb-1" %>
+          <%= f.text_field :title,
+              placeholder: "Ex: Meu portfólio",
+              class: "w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-sm
+                      focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors" %>
+        </div>
+        <%= f.submit "Encurtar →",
+            class: "bg-red-600 hover:bg-red-500 text-white font-semibold px-6 py-3 rounded-lg
+                    transition-colors cursor-pointer text-sm" %>
+      <% end %>
+    </div>
+
+    <!-- Links list -->
+    <% if @short_links.any? %>
+      <h2 class="text-lg font-bold mb-4 text-zinc-300">Seus links</h2>
+      <div class="space-y-3">
+        <% @short_links.each do |link| %>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl px-5 py-4
+                      flex items-center justify-between gap-4 hover:border-zinc-600 transition-colors">
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold truncate"><%= link.title.presence || link.original_url %></p>
+              <p class="text-xs text-zinc-500 truncate mt-0.5"><%= link.original_url %></p>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-xs text-zinc-400 bg-zinc-800 px-2 py-1 rounded">
+                <%= link.clicks %> cliques
+              </span>
+              <a href="/<%= link.code %>"
+                 class="text-red-400 font-mono text-sm hover:text-red-300 transition-colors"
+                 target="_blank">
+                /<%= link.code %>
+              </a>
+              <%= button_to "×", short_link_path(link), method: :delete,
+                  class: "text-zinc-600 hover:text-red-400 transition-colors text-lg leading-none bg-transparent border-0 cursor-pointer",
+                  data: { confirm: "Remover este link?" } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center text-zinc-600 py-16">
+        <p class="text-4xl mb-3">🔗</p>
+        <p class="text-sm">Nenhum link encurtado ainda.</p>
+      </div>
+    <% end %>
+
+  </main>
+
+  <footer class="text-center text-xs text-zinc-700 pb-8">
+    Feito com ❤️ e Ruby on Rails por
+    <a href="https://github.com/reinaldobarreto31" class="text-zinc-500 hover:text-white transition-colors">
+      Reinaldo Barreto
+    </a>
+  </footer>
+
+</body>
+</html>
