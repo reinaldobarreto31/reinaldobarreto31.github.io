@@ -1,10 +1,24 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Globe } from "lucide-react";
-import { SiRubyonrails, SiRuby } from "react-icons/si";
+import { SiRubyonrails, SiRuby, SiReact } from "react-icons/si";
 
 const GITHUB = "https://github.com/reinaldobarreto31";
 
 const projects = [
+  {
+    title: "pdf-compressor",
+    titlePt: "Compressor de PDF",
+    subtitle: "React + Vite · 100% no navegador",
+    description:
+      "Compressor de PDFs para os padrões brasileiros — Governo BR (2 MB), Empresa (5 MB), E-mail (8 MB) e mais. Processa tudo localmente no navegador, sem enviar arquivos a nenhum servidor.",
+    tech: ["React", "Vite", "TypeScript", "pdf-lib", "pdfjs-dist"],
+    icon: SiReact,
+    rails: false,
+    image: "/projects/pdf-compressor.jpg",
+    github: `${GITHUB}/reinaldobarreto31.github.io`,
+    live: "https://senior-profile-suite.replit.app/pdf-compressor/",
+    highlight: true,
+  },
   {
     title: "expense-tracker-web",
     titlePt: "Controle de Gastos Web",
