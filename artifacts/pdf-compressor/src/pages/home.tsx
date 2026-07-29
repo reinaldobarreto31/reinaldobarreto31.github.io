@@ -19,6 +19,26 @@ import {
   savePdf,
 } from '@/lib/compress-pdf';
 
+const QUALITY_LABELS: Record<number, string> = {
+  1: 'Mínima',
+  2: 'Muito baixa',
+  3: 'Baixa',
+  4: 'Média-baixa',
+  5: 'Média',
+  6: 'Média-alta',
+  7: 'Boa',
+  8: 'Alta',
+  9: 'Muito alta',
+  10: 'Máxima',
+};
+
+const SCALE_OPTIONS = [
+  { label: '72 dpi — menor arquivo', value: 1.0 },
+  { label: '96 dpi — equilíbrio', value: 1.33 },
+  { label: '144 dpi — boa qualidade', value: 2.0 },
+  { label: '216 dpi — alta fidelidade', value: 3.0 },
+];
+
 type AppState = 'drop' | 'loaded' | 'processing' | 'done' | 'error';
 
 export default function Home() {
@@ -26,6 +46,9 @@ export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [selectedPreset, setSelectedPreset] = useState<CompressionPreset>(PRESETS[0]);
   const [customMB, setCustomMB] = useState(10);
+  const [customQuality, setCustomQuality] = useState(7); // 1–10
+  const [customScale, setCustomScale] = useState(1.33);
+  const [targetMet, setTargetMet] = useState(true);
   const [progress, setProgress] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -40,7 +63,12 @@ export default function Home() {
 
   const activePreset: CompressionPreset =
     selectedPreset.id === 'personalizado'
-      ? { ...selectedPreset, targetMB: customMB }
+      ? {
+          ...selectedPreset,
+          targetMB: customMB,
+          quality: customQuality / 10,
+          scale: customScale,
+        }
       : selectedPreset;
 
   const handleFile = useCallback((f: File) => {
@@ -75,7 +103,7 @@ export default function Home() {
     setTotalPages(0);
 
     try {
-      const bytes = await compressPdf(
+      const result = await compressPdf(
         file,
         activePreset,
         (ev) => {
@@ -85,7 +113,8 @@ export default function Home() {
         },
         cancelledRef.current,
       );
-      setResultBytes(bytes);
+      setResultBytes(result.bytes);
+      setTargetMet(result.targetMet);
       setDownloadName(file.name.replace(/\.pdf$/i, '') + '_comprimido');
       setState('done');
     } catch (err: unknown) {
@@ -268,28 +297,72 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Custom MB slider */}
+              {/* Custom controls */}
               {selectedPreset.id === 'personalizado' && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
-                  className="bg-zinc-900/60 border border-red-900/30 rounded-lg px-4 py-3 space-y-2"
+                  className="bg-zinc-900/60 border border-red-900/30 rounded-lg px-4 py-4 space-y-4"
                 >
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Tamanho alvo</span>
-                    <span className="text-red-400 font-mono font-bold text-sm">{customMB} MB</span>
+                  {/* Tamanho alvo */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Tamanho alvo</span>
+                      <span className="text-red-400 font-mono font-bold text-sm">{customMB} MB</span>
+                    </div>
+                    <input
+                      type="range" min={1} max={50} value={customMB}
+                      onChange={(e) => setCustomMB(Number(e.target.value))}
+                      className="w-full accent-red-500 cursor-pointer"
+                      data-testid="custom-mb-slider"
+                    />
+                    <div className="flex justify-between text-[10px] text-gray-600 font-mono">
+                      <span>1 MB</span><span>50 MB</span>
+                    </div>
                   </div>
-                  <input
-                    type="range"
-                    min={1}
-                    max={50}
-                    value={customMB}
-                    onChange={(e) => setCustomMB(Number(e.target.value))}
-                    className="w-full accent-red-500 cursor-pointer"
-                    data-testid="custom-mb-slider"
-                  />
-                  <div className="flex justify-between text-[10px] text-gray-600 font-mono">
-                    <span>1 MB</span><span>50 MB</span>
+
+                  <div className="border-t border-zinc-800" />
+
+                  {/* Qualidade */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Qualidade da imagem</span>
+                      <span className="text-red-400 font-mono font-bold text-sm">
+                        {customQuality * 10}% — {QUALITY_LABELS[customQuality]}
+                      </span>
+                    </div>
+                    <input
+                      type="range" min={1} max={10} step={1} value={customQuality}
+                      onChange={(e) => setCustomQuality(Number(e.target.value))}
+                      className="w-full accent-red-500 cursor-pointer"
+                      data-testid="custom-quality-slider"
+                    />
+                    <div className="flex justify-between text-[10px] text-gray-600 font-mono">
+                      <span>Mínima (menor arquivo)</span><span>Máxima</span>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-zinc-800" />
+
+                  {/* Resolução */}
+                  <div className="space-y-2">
+                    <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Resolução (DPI)</span>
+                    <div className="grid grid-cols-2 gap-1.5 mt-1">
+                      {SCALE_OPTIONS.map((opt) => (
+                        <button
+                          key={opt.value}
+                          onClick={() => setCustomScale(opt.value)}
+                          data-testid={`scale-${opt.value}`}
+                          className={`text-left px-3 py-2 rounded-lg border text-[11px] font-mono transition-all ${
+                            customScale === opt.value
+                              ? 'border-red-500 bg-red-950/40 text-red-300'
+                              : 'border-zinc-800 text-gray-500 hover:border-zinc-600'
+                          }`}
+                        >
+                          {opt.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -423,6 +496,25 @@ export default function Home() {
                     {(((originalSize - resultBytes.byteLength) / originalSize) * 100).toFixed(0)}%
                   </span>
                 </div>
+              )}
+
+              {/* Target not met warning */}
+              {!targetMet && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex gap-2.5 bg-yellow-950/40 border border-yellow-700/40 rounded-lg px-4 py-3"
+                  data-testid="target-warning"
+                >
+                  <AlertTriangle className="w-4 h-4 text-yellow-500 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-yellow-300 text-xs font-semibold">Alvo não atingido</p>
+                    <p className="text-yellow-200/60 text-[11px] mt-0.5 leading-relaxed">
+                      O PDF não pôde ser reduzido até {activePreset.targetMB} MB.
+                      Tente diminuir a <strong>qualidade</strong> ou a <strong>resolução</strong> no preset Personalizado.
+                    </p>
+                  </div>
+                </motion.div>
               )}
 
               {/* Rename */}

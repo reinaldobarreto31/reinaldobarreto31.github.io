@@ -75,12 +75,18 @@ export interface ProgressEvent {
 
 export type ProgressCallback = (ev: ProgressEvent) => void;
 
+export interface CompressResult {
+  bytes: Uint8Array;
+  targetMet: boolean;
+  actualMB: number;
+}
+
 export async function compressPdf(
   file: File,
   preset: CompressionPreset,
   onProgress: ProgressCallback,
   cancelledRef: { current: boolean },
-): Promise<Uint8Array> {
+): Promise<CompressResult> {
   const arrayBuffer = await file.arrayBuffer();
 
   // Load with pdfjs
@@ -127,16 +133,13 @@ export async function compressPdf(
   }
 
   const pdfBytes = await outDoc.save();
+  const actualMB = pdfBytes.byteLength / (1024 * 1024);
 
-  // Verify target size
-  const resultMB = pdfBytes.byteLength / (1024 * 1024);
-  if (resultMB > preset.targetMB) {
-    throw new Error(
-      `Não foi possível atingir ${preset.targetMB} MB. Resultado: ${resultMB.toFixed(1)} MB. Tente um preset com menor qualidade.`,
-    );
-  }
-
-  return pdfBytes;
+  return {
+    bytes: pdfBytes,
+    targetMet: actualMB <= preset.targetMB,
+    actualMB,
+  };
 }
 
 export function formatBytes(bytes: number): string {
