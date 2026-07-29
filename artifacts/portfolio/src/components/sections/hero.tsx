@@ -34,7 +34,7 @@ export function HeroSection() {
             Software Engineer focado em infraestrutura, DevOps e SRE. Construindo sistemas resilientes e em transição de stack para <span className="text-primary font-mono">Ruby on Rails</span>.
           </p>
 
-          <div className="flex items-center gap-4 mt-4">
+          <div className="flex flex-wrap items-center gap-3 mt-4">
             <a 
               href="#projects" 
               className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-mono text-sm font-semibold hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(200,50,50,0.3)]"
@@ -48,6 +48,16 @@ export function HeroSection() {
               data-testid="link-hero-contact"
             >
               /contato
+            </a>
+            <a
+              href="/curriculo.html"
+              download="CV-Reinaldo-Barreto.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-transparent border border-primary/50 text-primary px-6 py-3 rounded-md font-mono text-sm font-semibold hover:bg-primary/10 transition-colors"
+              data-testid="link-hero-cv"
+            >
+              ↓ Currículo
             </a>
           </div>
         </motion.div>
