@@ -9,8 +9,8 @@ export function ExperienceSection() {
       period: "mar/2024 – set/2024",
       location: "Salvador/BA",
       description:
-        "Desenvolvimento e manutenção de sistemas web para órgãos estaduais utilizando Vue.js no front-end e Spring Boot (Java) no back-end. Construção de APIs RESTful seguras com autenticação e versionamento via Git. Colaboração em equipes ágeis (Scrum) com entrega contínua. Ambiente híbrido: Linux Ubuntu como primário e Windows no suporte.",
-      tags: ["Vue.js", "Spring Boot", "Java", "APIs REST", "PostgreSQL", "Git", "Scrum", "Linux Ubuntu", "Windows"],
+        "Desenvolvimento e manutenção de sistemas web para órgãos estaduais com Vue.js (front) e Spring Boot/Java (back). Construção de APIs RESTful seguras, versionamento com Git e entrega contínua em squads Scrum. Em paralelo, aprofundamento em Ruby on Rails — estudos e projetos pessoais consolidando a transição para a stack Rails. Ambiente Linux Ubuntu (primário) e Windows.",
+      tags: ["Vue.js", "Spring Boot", "Java", "Ruby on Rails", "APIs REST", "PostgreSQL", "Git", "Scrum", "Linux Ubuntu"],
     },
     {
       company: "LAMPP IT Solutions",
@@ -27,8 +27,8 @@ export function ExperienceSection() {
       period: "nov/2019 – mar/2022",
       location: "Salvador/BA",
       description:
-        "Desenvolvimento de sistemas administrativos internos para prefeituras: módulos de RH, Tributário e Contábil. Front-end com Angular e Vue.js; back-end em Java EE, JSP e JavaScript/TypeScript com jQuery. Integração de APIs REST e manutenção de sistemas legados. Scripts de automação em Bash (Linux Ubuntu). Suporte técnico e administração de redes. Ambiente Linux Ubuntu e Windows.",
-      tags: ["Angular", "Vue.js", "JavaScript", "TypeScript", "Java EE", "jQuery", "MySQL", "Bash Script", "Linux Ubuntu", "Redes"],
+        "Desenvolvimento de sistemas administrativos para prefeituras: módulos de RH, Tributário e Contábil. Front-end com Angular e Vue.js; back-end em Java EE, JSP e JavaScript/TypeScript. Início dos estudos em Ruby on Rails neste período — base que abriu a trajetória para a stack Rails. Scripts de automação Bash no Linux Ubuntu, integração de APIs REST e manutenção de sistemas legados.",
+      tags: ["Angular", "Vue.js", "JavaScript", "Java EE", "Ruby on Rails", "MySQL", "Bash Script", "Linux Ubuntu", "APIs REST"],
     },
   ];
 
