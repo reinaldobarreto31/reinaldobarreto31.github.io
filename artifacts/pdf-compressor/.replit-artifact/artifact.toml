@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/pdf-compressor/"
+title = "PDF Compressor — Rails Dark"
+version = "1.0.0"
+id = "artifacts/pdf-compressor"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/pdf-compressor/" ]
+localPort = 21860
+
+[services.development]
+run = "pnpm --filter @workspace/pdf-compressor run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pdf-compressor", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/pdf-compressor/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21860"
+BASE_PATH = "/pdf-compressor/"
