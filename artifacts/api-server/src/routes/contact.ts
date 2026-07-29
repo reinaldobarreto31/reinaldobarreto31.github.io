@@ -1,20 +1,10 @@
 import { Router, type IRouter } from "express";
 import { SubmitContactBody } from "@workspace/api-zod";
 import { db, contactSubmissionsTable } from "@workspace/db";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
-
-function createTransporter() {
-  const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
-  if (!user || !pass) return null;
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
-}
 
 router.post("/contact", async (req, res, next) => {
   try {
@@ -45,17 +35,17 @@ router.post("/contact", async (req, res, next) => {
       return;
     }
 
-    // 2. Send email notification (non-blocking — failure doesn't affect the response)
-    const transporter = createTransporter();
-    if (transporter) {
-      const toEmail = process.env.GMAIL_USER!;
-      transporter
-        .sendMail({
-          from: `"Portfólio Contact" <${toEmail}>`,
+    // 2. Send email notification via Resend (non-blocking)
+    const resendKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.GMAIL_USER ?? "reinaldobarretosilva@gmail.com";
+    if (resendKey) {
+      const resend = new Resend(resendKey);
+      resend.emails
+        .send({
+          from: "Portfolio <onboarding@resend.dev>",
           to: toEmail,
           replyTo: email,
           subject: `[Portfólio] ${subject || "Nova mensagem"} — de ${name}`,
-          text: `Nome: ${name}\nEmail: ${email}\nAssunto: ${subject || "(sem assunto)"}\n\n${message}`,
           html: `
             <div style="font-family:sans-serif;max-width:600px">
               <h2 style="color:#CC0000">Nova mensagem pelo portfólio</h2>
@@ -68,10 +58,10 @@ router.post("/contact", async (req, res, next) => {
               <p style="white-space:pre-wrap">${message}</p>
             </div>`,
         })
-        .then(() => logger.info({ to: toEmail }, "Contact email sent"))
-        .catch((err) => logger.warn({ err }, "Failed to send contact email — message saved to DB"));
+        .then(() => logger.info({ to: toEmail }, "Contact email sent via Resend"))
+        .catch((err) => logger.warn({ err }, "Resend failed — message saved to DB"));
     } else {
-      logger.warn("GMAIL_USER / GMAIL_APP_PASSWORD not set — email not sent, message saved to DB only");
+      logger.warn("RESEND_API_KEY not set — email not sent, message saved to DB only");
     }
 
     res.status(201).json({
