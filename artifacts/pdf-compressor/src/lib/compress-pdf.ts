@@ -16,6 +16,10 @@ export interface CompressionPreset {
   scale: number;   // page render scale (1.0 = 72dpi equivalent)
 }
 
+// DPI reference (alinhado com perfis Ghostscript):
+//   /screen  =  72 dpi → scale 1.00
+//   /ebook   = 150 dpi → scale 2.08
+//   /printer = 300 dpi → scale 4.17
 export const PRESETS: CompressionPreset[] = [
   {
     id: 'governo',
@@ -23,23 +27,23 @@ export const PRESETS: CompressionPreset[] = [
     description: 'Máx. 2 MB — padrão SEI/protocolo',
     targetMB: 2,
     quality: 0.55,
-    scale: 1.2,
+    scale: 1.0,   // /screen — 72 dpi
   },
   {
     id: 'empresa',
     label: 'Empresa',
     description: 'Máx. 5 MB — envio corporativo',
     targetMB: 5,
-    quality: 0.7,
-    scale: 1.5,
+    quality: 0.72,
+    scale: 2.08,  // /ebook — 150 dpi
   },
   {
     id: 'email',
     label: 'E-mail',
     description: 'Máx. 8 MB — anexo de e-mail',
     targetMB: 8,
-    quality: 0.8,
-    scale: 1.8,
+    quality: 0.80,
+    scale: 2.08,  // /ebook — 150 dpi
   },
   {
     id: 'otimo',
@@ -47,7 +51,7 @@ export const PRESETS: CompressionPreset[] = [
     description: 'Máx. 15 MB — boa qualidade',
     targetMB: 15,
     quality: 0.88,
-    scale: 2.0,
+    scale: 2.08,  // /ebook — 150 dpi
   },
   {
     id: 'maximo',
@@ -55,15 +59,15 @@ export const PRESETS: CompressionPreset[] = [
     description: 'Máx. 25 MB — alta fidelidade',
     targetMB: 25,
     quality: 0.95,
-    scale: 2.5,
+    scale: 4.17,  // /printer — 300 dpi
   },
   {
     id: 'personalizado',
     label: 'Personalizado',
     description: 'Defina o tamanho alvo',
     targetMB: 10,
-    quality: 0.82,
-    scale: 1.8,
+    quality: 0.80,
+    scale: 2.08,  // /ebook — 150 dpi (padrão)
   },
 ];
 
@@ -132,7 +136,9 @@ export async function compressPdf(
     });
   }
 
-  const pdfBytes = await outDoc.save();
+  // useObjectStreams: false melhora compatibilidade e compressão
+  // conforme recomendado pela estratégia padrão de mercado com pdf-lib
+  const pdfBytes = await outDoc.save({ useObjectStreams: false });
   const actualMB = pdfBytes.byteLength / (1024 * 1024);
 
   return {

@@ -33,10 +33,9 @@ const QUALITY_LABELS: Record<number, string> = {
 };
 
 const SCALE_OPTIONS = [
-  { label: '72 dpi — menor arquivo', value: 1.0 },
-  { label: '96 dpi — equilíbrio', value: 1.33 },
-  { label: '144 dpi — boa qualidade', value: 2.0 },
-  { label: '216 dpi — alta fidelidade', value: 3.0 },
+  { label: '72 dpi — /screen (menor arquivo)', value: 1.0 },
+  { label: '150 dpi — /ebook (corporativo)', value: 2.08 },
+  { label: '300 dpi — /printer (alta fidelidade)', value: 4.17 },
 ];
 
 type AppState = 'drop' | 'loaded' | 'processing' | 'done' | 'error';
