@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
-import { SiSpring, SiKotlin, SiDocker, SiGo } from "react-icons/si";
+import { SiSpring, SiKotlin, SiDocker, SiGo, SiGithub } from "react-icons/si";
 import { JavaIcon } from "@/components/icons/JavaIcon";
+import { Mail } from "lucide-react";
 
 const STACK = [
   {
@@ -125,6 +126,47 @@ export function HeroSection() {
             >
               Currículo PDF
             </motion.a>
+          </div>
+
+          {/* Social links — visible to recruiters without scrolling */}
+          <div className="flex items-center gap-4 mt-1">
+            <motion.a
+              href="https://github.com/reinaldoBarreto"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.93 }}
+              className="text-muted-foreground hover:text-green-400 transition-colors duration-200 hover:drop-shadow-[0_0_8px_rgba(109,179,63,0.7)]"
+              data-testid="link-hero-github"
+            >
+              <SiGithub size={22} />
+            </motion.a>
+            <motion.a
+              href="https://linkedin.com/in/reinaldo-barreto"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.93 }}
+              className="text-muted-foreground hover:text-green-400 transition-colors duration-200 hover:drop-shadow-[0_0_8px_rgba(109,179,63,0.7)]"
+              data-testid="link-hero-linkedin"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </motion.a>
+            <motion.a
+              href="#contact"
+              aria-label="Email"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.93 }}
+              className="text-muted-foreground hover:text-green-400 transition-colors duration-200 hover:drop-shadow-[0_0_8px_rgba(109,179,63,0.7)]"
+              data-testid="link-hero-email"
+            >
+              <Mail size={22} />
+            </motion.a>
+            <span className="text-muted-foreground/40 text-xs font-mono select-none">· connect</span>
           </div>
         </motion.div>
 
