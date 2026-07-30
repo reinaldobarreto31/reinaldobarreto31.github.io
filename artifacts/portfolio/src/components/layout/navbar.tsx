@@ -17,7 +17,7 @@ export function Navbar() {
     { name: "Sobre",       href: "#about",      icon: User },
     { name: "Experiência", href: "#experience", icon: Briefcase },
     { name: "Projetos",    href: "#projects",   icon: Code2 },
-    { name: "Status",      href: "#status",     icon: Activity },
+    { name: "Stack",       href: "#stack",      icon: Activity },
     { name: "Contato",     href: "#contact",    icon: Mail },
   ];
 

@@ -72,7 +72,7 @@ export function ContactSection() {
         <div className="grid md:grid-cols-3 gap-12">
 
           {/* — Info cards — */}
-          <div className="md:col-span-1 space-y-4 font-mono text-sm">
+          <div className="md:col-span-1 space-y-4 text-sm">
 
             <div className="contact-card-3d p-4 bg-card border border-border rounded-lg shadow-sm group">
               <div className="flex items-center gap-2 mb-2">
@@ -136,7 +136,7 @@ export function ContactSection() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="font-mono text-xs uppercase flex items-center gap-1.5">
+                        <FormLabel className="text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
                           <User size={11} className="text-primary" />
                           Nome
                         </FormLabel>
@@ -145,7 +145,7 @@ export function ContactSection() {
                             <Input
                               placeholder="Seu nome"
                               {...field}
-                              className="bg-background font-mono text-sm focus:border-primary/50 transition-colors"
+                              className="bg-background text-sm focus:border-primary/50 transition-colors"
                               data-testid="input-contact-name"
                             />
                           </div>
@@ -160,7 +160,7 @@ export function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="font-mono text-xs uppercase flex items-center gap-1.5">
+                        <FormLabel className="text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
                           <AtSign size={11} className="text-primary" />
                           Email
                         </FormLabel>
@@ -170,7 +170,7 @@ export function ContactSection() {
                               type="email"
                               placeholder="seu@email.com"
                               {...field}
-                              className="bg-background font-mono text-sm focus:border-primary/50 transition-colors"
+                              className="bg-background text-sm focus:border-primary/50 transition-colors"
                               data-testid="input-contact-email"
                             />
                           </div>
@@ -186,9 +186,9 @@ export function ContactSection() {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-mono text-xs uppercase flex items-center gap-1.5">
+                      <FormLabel className="text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
                         <Tag size={11} className="text-primary" />
-                        Assunto <span className="text-muted-foreground normal-case">(opcional)</span>
+                        Assunto <span className="text-muted-foreground normal-case font-normal">(opcional)</span>
                       </FormLabel>
                       <FormControl>
                         <div className="input-glow rounded-md">
@@ -196,7 +196,7 @@ export function ContactSection() {
                             placeholder="Assunto da mensagem"
                             {...field}
                             value={field.value || ''}
-                            className="bg-background font-mono text-sm focus:border-primary/50 transition-colors"
+                            className="bg-background text-sm focus:border-primary/50 transition-colors"
                             data-testid="input-contact-subject"
                           />
                         </div>
@@ -211,7 +211,7 @@ export function ContactSection() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-mono text-xs uppercase flex items-center gap-1.5">
+                      <FormLabel className="text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
                         <MessageSquare size={11} className="text-primary" />
                         Mensagem
                       </FormLabel>
@@ -219,7 +219,7 @@ export function ContactSection() {
                         <div className="input-glow rounded-md">
                           <Textarea
                             placeholder="Como posso ajudar?"
-                            className="min-h-[120px] bg-background font-mono text-sm resize-y focus:border-primary/50 transition-colors"
+                            className="min-h-[120px] bg-background text-sm resize-y focus:border-primary/50 transition-colors"
                             {...field}
                             data-testid="input-contact-message"
                           />
@@ -233,7 +233,7 @@ export function ContactSection() {
                 <Button
                   type="submit"
                   disabled={submitMutation.isPending}
-                  className="w-full font-mono uppercase tracking-wider bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_rgba(109,179,63,0.25)] hover:shadow-[0_0_30px_rgba(109,179,63,0.4)] transition-all"
+                  className="w-full font-semibold text-sm bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-[0_0_20px_rgba(109,179,63,0.25)] hover:shadow-[0_0_30px_rgba(109,179,63,0.4)] transition-all"
                   data-testid="button-contact-submit"
                 >
                   {submitMutation.isPending ? (
