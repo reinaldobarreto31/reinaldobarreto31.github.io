@@ -2,8 +2,10 @@ package com.barreto.kotlintasks.presentation.tasklist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.WorkManager
 import com.barreto.kotlintasks.domain.model.Task
 import com.barreto.kotlintasks.domain.repository.ITaskRepository
+import com.barreto.kotlintasks.notification.TaskReminderWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -14,6 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TaskListViewModel @Inject constructor(
     private val repository: ITaskRepository,
+    private val workManager: WorkManager,
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -39,16 +42,29 @@ class TaskListViewModel @Inject constructor(
 
     fun toggleTaskCompleted(task: Task) {
         viewModelScope.launch {
-            repository.setTaskCompleted(task.id, !task.isCompleted)
+            val nowCompleted = !task.isCompleted
+            repository.setTaskCompleted(task.id, nowCompleted)
+            // Cancel the pending reminder when a task is marked complete
+            if (nowCompleted) {
+                workManager.cancelAllWorkByTag(TaskReminderWorker.workTagFor(task.id))
+            }
         }
     }
 
     fun deleteTask(task: Task) {
-        viewModelScope.launch { repository.deleteTask(task) }
+        viewModelScope.launch {
+            repository.deleteTask(task)
+            // Always cancel any pending reminder when a task is deleted
+            workManager.cancelAllWorkByTag(TaskReminderWorker.workTagFor(task.id))
+        }
     }
 
     fun deleteAllCompleted() {
-        viewModelScope.launch { repository.deleteAllCompleted() }
+        viewModelScope.launch {
+            // Completed tasks already had their reminders cancelled when they were
+            // marked complete via toggleTaskCompleted, so no extra cancellation needed.
+            repository.deleteAllCompleted()
+        }
     }
 }
 

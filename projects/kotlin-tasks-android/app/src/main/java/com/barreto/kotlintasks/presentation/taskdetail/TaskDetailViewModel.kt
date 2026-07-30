@@ -2,14 +2,19 @@ package com.barreto.kotlintasks.presentation.taskdetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.barreto.kotlintasks.data.local.Priority
 import com.barreto.kotlintasks.domain.model.Task
 import com.barreto.kotlintasks.domain.repository.ITaskRepository
+import com.barreto.kotlintasks.notification.TaskReminderWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 sealed class DetailUiState {
@@ -22,6 +27,7 @@ sealed class DetailUiState {
 @HiltViewModel
 class TaskDetailViewModel @Inject constructor(
     private val repository: ITaskRepository,
+    private val workManager: WorkManager,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<DetailUiState>(DetailUiState.Idle)
@@ -39,7 +45,7 @@ class TaskDetailViewModel @Inject constructor(
         }
     }
 
-    /** Save (create or update) a task with the provided field values. */
+    /** Save (create or update) a task, then schedule or replace its WorkManager reminder. */
     fun saveTask(
         existingId: Long,
         title: String,
@@ -53,29 +59,62 @@ class TaskDetailViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
+            val taskId: Long
+            val trimmedTitle = title.trim()
+
             if (existingId == -1L) {
-                // Create
-                repository.addTask(
+                // Create — addTask returns the new row id
+                taskId = repository.addTask(
                     Task(
-                        title = title.trim(),
+                        title = trimmedTitle,
                         description = description.trim(),
                         priority = priority,
                         dueDateMillis = dueDateMillis,
                     )
                 )
             } else {
-                // Update — fetch current to preserve immutable fields
+                // Update — preserve immutable fields
                 val current = repository.getTaskById(existingId) ?: return@launch
                 repository.updateTask(
                     current.copy(
-                        title = title.trim(),
+                        title = trimmedTitle,
                         description = description.trim(),
                         priority = priority,
                         dueDateMillis = dueDateMillis,
                     )
                 )
+                taskId = existingId
             }
+
+            scheduleOrCancelReminder(taskId, trimmedTitle, dueDateMillis)
             _uiState.value = DetailUiState.Saved
         }
+    }
+
+    /**
+     * Cancels any existing reminder for [taskId], then enqueues a new one if
+     * [dueDateMillis] is non-null and still in the future.
+     */
+    private fun scheduleOrCancelReminder(taskId: Long, title: String, dueDateMillis: Long?) {
+        val tag = TaskReminderWorker.workTagFor(taskId)
+        workManager.cancelAllWorkByTag(tag)
+
+        if (dueDateMillis == null) return
+
+        val delayMs = dueDateMillis - System.currentTimeMillis()
+        if (delayMs <= 0) return // due date already passed — skip
+
+        val request = OneTimeWorkRequestBuilder<TaskReminderWorker>()
+            .setInitialDelay(delayMs, TimeUnit.MILLISECONDS)
+            .setInputData(
+                workDataOf(
+                    TaskReminderWorker.KEY_TASK_ID    to taskId,
+                    TaskReminderWorker.KEY_TASK_TITLE to title,
+                )
+            )
+            .addTag(tag)
+            .build()
+
+        workManager.enqueue(request)
     }
 }

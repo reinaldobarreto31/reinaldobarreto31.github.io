@@ -2,6 +2,7 @@ package com.barreto.kotlintasks.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.barreto.kotlintasks.data.local.TaskDatabase
 import com.barreto.kotlintasks.data.repository.TaskRepository
 import com.barreto.kotlintasks.domain.repository.ITaskRepository
@@ -28,6 +29,11 @@ object DatabaseModule {
 
     @Provides
     fun provideTaskDao(db: TaskDatabase) = db.taskDao()
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager =
+        WorkManager.getInstance(context)
 }
 
 @Module
