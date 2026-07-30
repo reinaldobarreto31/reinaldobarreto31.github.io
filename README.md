@@ -1,2 +1,2 @@
 # reinaldobarreto31.github.io
-Portfolio pessoal — Ruby on Rails Engineer
+Portfolio pessoal — Java · Spring Boot · Kotlin · Go · React
