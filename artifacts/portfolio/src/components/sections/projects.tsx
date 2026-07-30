@@ -22,7 +22,7 @@ const projects = [
     live: null,
     github: `${GITHUB}/clientehub`,
     highlight: true,
-    comingSoon: true,
+    comingSoon: false,
     badge: "novo",
   },
   {
