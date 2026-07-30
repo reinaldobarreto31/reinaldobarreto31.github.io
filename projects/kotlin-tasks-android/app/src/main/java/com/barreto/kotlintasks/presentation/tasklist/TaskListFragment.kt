@@ -94,11 +94,12 @@ class TaskListFragment : Fragment() {
                                 target: RecyclerView.ViewHolder) = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val task = taskAdapter.currentList[viewHolder.adapterPosition]
+                val position = viewHolder.adapterPosition
+                val task = taskAdapter.currentList[position]
                 viewModel.deleteTask(task)
                 Snackbar.make(binding.root, task.title, Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_cancel) {
-                        // undo not wired (requires separate UndoUseCase); scaffold only
+                        viewModel.undoDelete(task)
                     }.show()
             }
         }

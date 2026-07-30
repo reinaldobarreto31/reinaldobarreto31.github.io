@@ -59,6 +59,14 @@ class TaskListViewModel @Inject constructor(
         }
     }
 
+    fun undoDelete(task: Task) {
+        viewModelScope.launch {
+            // Re-insert the task with its original ID (Room uses REPLACE strategy,
+            // so the row is restored at the same primary key).
+            repository.addTask(task)
+        }
+    }
+
     fun deleteAllCompleted() {
         viewModelScope.launch {
             // Completed tasks already had their reminders cancelled when they were
