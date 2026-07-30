@@ -79,7 +79,7 @@ export function ContactSection() {
                 <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(109,179,63,0.2)] group-hover:shadow-[0_0_16px_rgba(109,179,63,0.4)] transition-all">
                   <MapPin size={14} className="text-primary" />
                 </span>
-                <h3 className="text-muted-foreground uppercase tracking-wider text-xs">/local</h3>
+                <h3 className="text-muted-foreground uppercase tracking-wider text-xs">Localização</h3>
               </div>
               <p className="text-foreground pl-1" data-testid="text-contact-location">Navegantes/SC, Brasil</p>
             </div>
@@ -89,7 +89,7 @@ export function ContactSection() {
                 <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(109,179,63,0.2)] group-hover:shadow-[0_0_16px_rgba(109,179,63,0.4)] transition-all">
                   <AtSign size={14} className="text-primary" />
                 </span>
-                <h3 className="text-muted-foreground uppercase tracking-wider text-xs">/email</h3>
+                <h3 className="text-muted-foreground uppercase tracking-wider text-xs">Email</h3>
               </div>
               <a
                 href="mailto:reinaldobarretosilva@gmail.com"
@@ -105,7 +105,7 @@ export function ContactSection() {
                 <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(109,179,63,0.2)] group-hover:shadow-[0_0_16px_rgba(109,179,63,0.4)] transition-all">
                   <Phone size={14} className="text-primary" />
                 </span>
-                <h3 className="text-muted-foreground uppercase tracking-wider text-xs">/telefone</h3>
+                <h3 className="text-muted-foreground uppercase tracking-wider text-xs">Telefone</h3>
               </div>
               <a
                 href="tel:+5547988302308"
@@ -124,7 +124,7 @@ export function ContactSection() {
 
             <div className="mb-6 flex items-center gap-2 border-b border-border pb-4">
               <TerminalSquare size={16} className="text-muted-foreground" />
-              <span className="font-mono text-sm text-muted-foreground">enviar_mensagem.sh</span>
+              <span className="font-mono text-sm text-muted-foreground">Enviar Mensagem</span>
             </div>
 
             <Form {...form}>

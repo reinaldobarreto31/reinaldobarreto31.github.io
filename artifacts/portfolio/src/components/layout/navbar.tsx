@@ -29,18 +29,22 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo — Spring Boot themed */}
-        <div className="flex items-center gap-2">
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          >
-            <SiSpring className="text-primary text-lg" />
-          </motion.div>
-          <span className="font-bold text-lg tracking-tighter font-mono">
-            rb<span className="text-primary">::</span>spring
-          </span>
-        </div>
+        {/* Logo */}
+        <a href="#hero" className="flex items-center gap-2.5 group">
+          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(109,179,63,0.3)] group-hover:shadow-[0_0_20px_rgba(109,179,63,0.5)] transition-shadow">
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute"
+            >
+              <SiSpring className="text-primary text-sm" />
+            </motion.div>
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="font-bold text-sm tracking-tight text-foreground">Reinaldo Barreto</span>
+            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">Software Engineer</span>
+          </div>
+        </a>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
@@ -48,7 +52,7 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="hover:text-primary transition-colors uppercase tracking-wider text-xs font-mono"
+              className="hover:text-primary transition-colors text-xs font-medium tracking-wide"
               data-testid={`link-nav-${link.name.toLowerCase()}`}
             >
               {link.name}
@@ -61,21 +65,21 @@ export function Navbar() {
           href="/curriculo.html?auto=pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-1.5 text-xs font-mono border border-primary/40 text-primary px-3 py-1.5 rounded hover:bg-primary/10 transition-colors"
+          className="hidden md:flex items-center gap-1.5 text-xs font-semibold border border-primary/40 text-primary px-3 py-1.5 rounded-md hover:bg-primary/10 transition-colors shadow-[0_0_8px_rgba(109,179,63,0.15)]"
         >
-          ↓ CV
+          Baixar CV
         </a>
       </div>
 
       {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 w-full bg-card border-t border-border grid grid-cols-6 h-14 z-50">
+      <nav className="md:hidden fixed bottom-0 w-full bg-card/95 backdrop-blur border-t border-border grid grid-cols-6 h-14 z-50">
         {navLinks.map((link) => (
           <a
             key={link.name}
             href={link.href}
             className="flex flex-col items-center justify-center text-[10px] text-muted-foreground hover:text-primary transition-colors border-r border-border last:border-r-0"
           >
-            <span className="truncate w-full text-center px-1 font-mono">{link.name.substring(0, 3)}</span>
+            <span className="truncate w-full text-center px-1 font-medium">{link.name.substring(0, 3)}</span>
           </a>
         ))}
       </nav>

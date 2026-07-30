@@ -1,13 +1,43 @@
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
-import { SiSpring, SiKotlin } from "react-icons/si";
+import { SiSpring, SiKotlin, SiDocker, SiGo } from "react-icons/si";
 import { Coffee } from "lucide-react";
+
+const STACK = [
+  {
+    label: "Java",
+    icon: <Coffee size={13} />,
+    color: "from-orange-500/20 to-orange-950/0 border-orange-500/50 text-orange-300 shadow-[0_0_14px_rgba(237,139,0,0.25)]",
+  },
+  {
+    label: "Spring Boot",
+    icon: <SiSpring size={13} />,
+    color: "from-green-500/20 to-green-950/0 border-green-500/50 text-green-300 shadow-[0_0_14px_rgba(109,179,63,0.35)]",
+  },
+  {
+    label: "Kotlin",
+    icon: <SiKotlin size={13} />,
+    color: "from-purple-500/20 to-purple-950/0 border-purple-500/50 text-purple-300 shadow-[0_0_14px_rgba(127,82,255,0.25)]",
+  },
+  {
+    label: "Go",
+    icon: <SiGo size={13} />,
+    color: "from-cyan-500/15 to-cyan-950/0 border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(0,173,216,0.2)]",
+  },
+  {
+    label: "Docker",
+    icon: <SiDocker size={13} />,
+    color: "from-blue-500/15 to-blue-950/0 border-blue-500/40 text-blue-300 shadow-[0_0_10px_rgba(36,150,237,0.2)]",
+  },
+];
 
 export function HeroSection() {
   return (
     <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center pt-16 overflow-hidden">
-      {/* Green HUD gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background z-0" />
+      {/* Radial glow from center */}
+      <div className="absolute inset-0 z-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(109,179,63,0.07) 0%, transparent 70%)" }}
+      />
       {/* Cockpit scan line */}
       <div className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -15,7 +45,7 @@ export function HeroSection() {
         }}
       />
       {/* Racing stripe accent — left edge */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-primary to-transparent opacity-60 z-10" />
+      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-60 z-10" />
 
       <div className="container mx-auto px-4 z-10 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -25,13 +55,16 @@ export function HeroSection() {
           className="flex flex-col gap-6"
         >
           {/* Stack trinity badge */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
             className="icon-card-3d icon-card-spring inline-flex items-center gap-3 px-4 py-2 rounded-md w-fit text-sm font-mono tracking-tight cursor-default"
             data-testid="badge-hero-specialty"
           >
             <SiSpring className="icon-spring-float text-green-400 text-lg shrink-0" />
             <span className="boot-shine font-bold">Java · Spring Boot · Kotlin</span>
-          </div>
+          </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">
             Reinaldo<br />
@@ -42,49 +75,57 @@ export function HeroSection() {
             Software Engineer especializado em{" "}
             <span className="boot-shine font-bold font-mono">Spring Boot</span>{" "}
             e{" "}
-            <span className="java-glow font-bold font-mono">Java</span>.
+            <span className="java-glow font-bold font-mono">Java</span>.{" "}
             Sistemas críticos para o setor público, microsserviços, OAuth2/Keycloak e DevOps.
           </p>
 
-          {/* RPM-style tech indicators */}
+          {/* 3D Futuristic stack pills */}
           <div className="flex flex-wrap gap-2">
-            {[
-              { label: "Java",        color: "border-orange-500/40 text-orange-400 bg-orange-950/20" },
-              { label: "Spring Boot", color: "border-primary/40 text-primary bg-primary/10" },
-              { label: "Kotlin",      color: "border-purple-500/40 text-purple-400 bg-purple-950/20" },
-              { label: "Go",          color: "border-cyan-500/30 text-cyan-400 bg-cyan-950/10" },
-              { label: "Docker",      color: "border-blue-500/30 text-blue-400 bg-blue-950/10" },
-            ].map(({ label, color }) => (
-              <span key={label} className={`px-2.5 py-1 rounded border text-[11px] font-mono font-bold ${color}`}>
+            {STACK.map(({ label, icon, color }, i) => (
+              <motion.span
+                key={label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + i * 0.08 }}
+                whileHover={{ scale: 1.08, y: -2 }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border bg-gradient-to-br text-[11px] font-bold font-mono cursor-default transition-all ${color}`}
+              >
+                {icon}
                 {label}
-              </span>
+              </motion.span>
             ))}
           </div>
 
           <div className="flex flex-wrap items-center gap-3 mt-2">
-            <a
+            <motion.a
               href="#projects"
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-mono text-sm font-semibold hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(109,179,63,0.3)]"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-all shadow-[0_0_24px_rgba(109,179,63,0.35)] hover:shadow-[0_0_32px_rgba(109,179,63,0.5)]"
               data-testid="link-hero-projects"
             >
-              /ver_projetos
-            </a>
-            <a
+              Ver Projetos
+            </motion.a>
+            <motion.a
               href="#contact"
-              className="bg-transparent border border-border text-foreground px-6 py-3 rounded-md font-mono text-sm font-semibold hover:bg-muted transition-colors"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-transparent border border-border text-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:bg-muted hover:border-primary/40 transition-all"
               data-testid="link-hero-contact"
             >
-              /contato
-            </a>
-            <a
+              Contato
+            </motion.a>
+            <motion.a
               href="/curriculo.html?auto=pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-transparent border border-primary/50 text-primary px-6 py-3 rounded-md font-mono text-sm font-semibold hover:bg-primary/10 transition-colors shadow-[0_0_12px_rgba(109,179,63,0.15)]"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-2 border border-primary/50 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all shadow-[0_0_12px_rgba(109,179,63,0.15)]"
               data-testid="link-hero-cv"
             >
-              ↓ Currículo PDF
-            </a>
+              Currículo PDF
+            </motion.a>
           </div>
         </motion.div>
 
