@@ -57,14 +57,14 @@ export function ContactSection() {
         <div className="mb-12">
           <h2 className="text-3xl font-bold tracking-tighter flex items-center gap-3 mb-4">
             {/* 3D floating mail icon */}
-            <span className="bg-primary/10 border border-primary/30 p-2 rounded-lg shadow-[0_0_20px_rgba(204,0,0,0.25)] inline-flex icon-card-3d">
+            <span className="bg-primary/10 border border-primary/30 p-2 rounded-lg shadow-[0_0_20px_rgba(109,179,63,0.25)] inline-flex icon-card-3d">
               <Mail className="text-primary text-xl" />
             </span>
             Contato
           </h2>
           <p className="text-muted-foreground">
             Interessado em discutir{" "}
-            <span className="rails-shine font-semibold font-mono">Ruby on Rails</span>
+            <span className="boot-shine font-semibold font-mono">Java · Spring Boot · Kotlin</span>
             {" "}ou oportunidades? Me envie uma mensagem.
           </p>
         </div>
@@ -76,17 +76,17 @@ export function ContactSection() {
 
             <div className="contact-card-3d p-4 bg-card border border-border rounded-lg shadow-sm group">
               <div className="flex items-center gap-2 mb-2">
-                <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(204,0,0,0.2)] group-hover:shadow-[0_0_16px_rgba(204,0,0,0.4)] transition-all">
+                <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(109,179,63,0.2)] group-hover:shadow-[0_0_16px_rgba(109,179,63,0.4)] transition-all">
                   <MapPin size={14} className="text-primary" />
                 </span>
                 <h3 className="text-muted-foreground uppercase tracking-wider text-xs">/local</h3>
               </div>
-              <p className="text-foreground pl-1" data-testid="text-contact-location">Salvador/BA, Brasil</p>
+              <p className="text-foreground pl-1" data-testid="text-contact-location">Navegantes/SC, Brasil</p>
             </div>
 
             <div className="contact-card-3d p-4 bg-card border border-border rounded-lg shadow-sm group">
               <div className="flex items-center gap-2 mb-2">
-                <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(204,0,0,0.2)] group-hover:shadow-[0_0_16px_rgba(204,0,0,0.4)] transition-all">
+                <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(109,179,63,0.2)] group-hover:shadow-[0_0_16px_rgba(109,179,63,0.4)] transition-all">
                   <AtSign size={14} className="text-primary" />
                 </span>
                 <h3 className="text-muted-foreground uppercase tracking-wider text-xs">/email</h3>
@@ -102,7 +102,7 @@ export function ContactSection() {
 
             <div className="contact-card-3d p-4 bg-card border border-border rounded-lg shadow-sm group">
               <div className="flex items-center gap-2 mb-2">
-                <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(204,0,0,0.2)] group-hover:shadow-[0_0_16px_rgba(204,0,0,0.4)] transition-all">
+                <span className="bg-primary/10 border border-primary/20 p-1.5 rounded-md shadow-[0_0_10px_rgba(109,179,63,0.2)] group-hover:shadow-[0_0_16px_rgba(109,179,63,0.4)] transition-all">
                   <Phone size={14} className="text-primary" />
                 </span>
                 <h3 className="text-muted-foreground uppercase tracking-wider text-xs">/telefone</h3>
@@ -233,7 +233,7 @@ export function ContactSection() {
                 <Button
                   type="submit"
                   disabled={submitMutation.isPending}
-                  className="w-full font-mono uppercase tracking-wider bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_rgba(204,0,0,0.25)] hover:shadow-[0_0_30px_rgba(204,0,0,0.4)] transition-all"
+                  className="w-full font-mono uppercase tracking-wider bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_rgba(109,179,63,0.25)] hover:shadow-[0_0_30px_rgba(109,179,63,0.4)] transition-all"
                   data-testid="button-contact-submit"
                 >
                   {submitMutation.isPending ? (
