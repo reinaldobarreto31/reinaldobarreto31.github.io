@@ -79,7 +79,7 @@ const projects = [
     live: null,
     github: `${GITHUB}/kotlin-tasks-android`,
     highlight: false,
-    comingSoon: true,
+    comingSoon: false,
     badge: null,
   },
   {
