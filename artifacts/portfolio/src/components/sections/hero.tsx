@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import { SiSpring, SiKotlin, SiDocker, SiGo } from "react-icons/si";
-import { Coffee } from "lucide-react";
+import { JavaIcon } from "@/components/icons/JavaIcon";
 
 const STACK = [
   {
     label: "Java",
-    icon: <Coffee size={13} />,
+    icon: <JavaIcon size={13} />,
     color: "from-orange-500/20 to-orange-950/0 border-orange-500/50 text-orange-300 shadow-[0_0_14px_rgba(237,139,0,0.25)]",
   },
   {
@@ -174,7 +174,7 @@ export function HeroSection() {
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             className="absolute top-1/2 -right-2 md:right-4 z-20 bg-card border border-orange-500/40 p-2 rounded-xl shadow-[0_0_16px_rgba(237,139,0,0.3)] backdrop-blur-sm"
           >
-            <Coffee className="text-xl text-orange-400 project-icon-orb-java" />
+            <JavaIcon size={22} className="text-orange-400 project-icon-orb-java" />
           </motion.div>
 
           {/* Status blip */}

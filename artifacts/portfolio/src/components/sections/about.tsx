@@ -8,12 +8,12 @@ import {
   SiJavascript, SiTypescript,
   SiGithubactions,
 } from "react-icons/si";
-import { Coffee } from "lucide-react";
+import { JavaIcon } from "@/components/icons/JavaIcon";
 
 export function AboutSection() {
   /* ── Core stack (3-D cards with glow) ── */
   const coreStack = [
-    { name: "Java",        icon: Coffee,   color: "text-orange-400", variant: "java" },
+    { name: "Java",        icon: JavaIcon,  color: "text-orange-400", variant: "java" },
     { name: "Spring Boot", icon: SiSpring, color: "text-green-400",  variant: "spring" },
     { name: "Kotlin",      icon: SiKotlin, color: "text-purple-400", variant: "kotlin" },
     { name: "Go (Golang)", icon: SiGo,     color: "text-cyan-400",   variant: "plain" },

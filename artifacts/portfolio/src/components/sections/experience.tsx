@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { TerminalSquare, Briefcase } from "lucide-react";
 import { SiSpring, SiKotlin } from "react-icons/si";
-import { Coffee } from "lucide-react";
+import { JavaIcon } from "@/components/icons/JavaIcon";
 
 export function ExperienceSection() {
   const experiences = [
@@ -98,7 +98,7 @@ export function ExperienceSection() {
                       </span>
                     ) : JAVA_TAGS.has(tag) ? (
                       <span key={tag} className="tag-java inline-flex items-center gap-1.5 px-2.5 py-1 bg-background border rounded text-[10px] font-mono font-bold transition-all hover:scale-105">
-                        <Coffee className="text-orange-400 text-xs" size={10} />
+                        <JavaIcon size={10} className="text-orange-400" />
                         {tag}
                       </span>
                     ) : KOTLIN_TAGS.has(tag) ? (
