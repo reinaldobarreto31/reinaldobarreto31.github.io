@@ -12,8 +12,8 @@
       --ruby-dk: #990000;
       --ruby-lt: #e83535;
       --text:    #1a1a1a;
-      --muted:   #555555;
-      --light:   #888888;
+      --muted:   #555;
+      --light:   #888;
       --bg:      #ffffff;
       --sidebar: #f7f7f7;
       --border:  #e0e0e0;
@@ -22,22 +22,21 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #e8e8e8;
+      background: #ddd;
       color: var(--text);
-      font-size: 11px;
+      font-size: 10.5px;
       line-height: 1.55;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
     a { color: var(--ruby); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    /* ── Page shell ── */
+    /* ── Page ── */
     .page {
       max-width: 900px;
-      margin: 24px auto;
+      margin: 20px auto;
       display: grid;
-      grid-template-columns: 255px 1fr;
+      grid-template-columns: 248px 1fr;
       background: var(--bg);
       box-shadow: 0 4px 32px rgba(0,0,0,0.18);
       border-radius: 4px;
@@ -47,133 +46,129 @@
     /* ── Sidebar ── */
     .sidebar {
       background: var(--sidebar);
-      border-right: 1px solid var(--border);
-      padding: 28px 18px;
+      border-right: 2px solid var(--ruby);
+      padding: 26px 17px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 17px;
     }
-
-    /* ── Header block inside sidebar ── */
     .profile-name {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--text);
       line-height: 1.25;
     }
     .profile-role {
-      font-size: 10px;
-      font-weight: 600;
+      font-size: 9.5px;
+      font-weight: 700;
       color: var(--ruby);
       margin-top: 5px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
     }
     .profile-sub {
-      font-size: 9.5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
       color: var(--muted);
       margin-top: 2px;
-      font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ── Sidebar section title ── */
+    /* ── Section titles ── */
     .sb-title {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 8.5px;
+      font-size: 8px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.15em;
       color: var(--ruby);
       border-bottom: 2px solid var(--ruby);
       padding-bottom: 4px;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
-
-    /* ── Contact items ── */
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      font-size: 9.5px;
-      color: var(--muted);
-      word-break: break-all;
-      margin-bottom: 5px;
-    }
-    .contact-item .icon { color: var(--ruby); flex-shrink: 0; font-size: 10px; margin-top: 1px; }
-    .contact-item a { color: var(--text); }
-
-    /* ── Skill bars ── */
-    .skill-row { margin-bottom: 7px; }
-    .skill-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 9.5px;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-    .skill-label .pct { color: var(--light); font-family: 'JetBrains Mono', monospace; font-size: 8.5px; }
-    .skill-bar-bg { background: #e5e5e5; border-radius: 2px; height: 4px; overflow: hidden; }
-    .skill-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ruby-dk), var(--ruby)); }
-    .skill-bar-blue { background: linear-gradient(90deg, #005f8a, #2196F3); }
-    .skill-bar-gray { background: linear-gradient(90deg, #444, #888); }
-
-    /* ── Tags ── */
-    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
-    .tag {
-      padding: 2px 7px;
-      border-radius: 3px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8.5px;
-      font-weight: 500;
-      background: rgba(204,0,0,0.07);
-      border: 1px solid rgba(204,0,0,0.25);
-      color: var(--ruby-dk);
-    }
-    .tag-neutral {
-      background: #f0f0f0;
-      border: 1px solid #d0d0d0;
-      color: var(--muted);
-    }
-    .tag-blue {
-      background: rgba(33,150,243,0.07);
-      border: 1px solid rgba(33,150,243,0.25);
-      color: #1565c0;
-    }
-
-    /* ── Certifications ── */
-    .cert-item {
-      font-size: 9.5px;
-      color: var(--muted);
-      padding: 4px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .cert-item:last-child { border-bottom: none; }
-    .cert-item strong { color: var(--ruby-dk); display: block; margin-bottom: 1px; font-size: 9.5px; }
-
-    /* ── Lang row ── */
-    .lang-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
-    .lang-row:last-child { border-bottom: none; }
-    .lang-name { font-size: 9.5px; color: var(--text); }
-    .lang-level { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--light); }
-
-    /* ── Main content ── */
-    .main { padding: 28px 24px; display: flex; flex-direction: column; gap: 20px; }
-
-    /* ── Section title ── */
     .section-title {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
+      font-size: 8px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.15em;
       color: var(--ruby);
       border-bottom: 2px solid var(--ruby);
       padding-bottom: 4px;
       margin-bottom: 11px;
     }
 
+    /* ── Contact ── */
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 9px;
+      color: var(--muted);
+      word-break: break-all;
+      margin-bottom: 4px;
+    }
+    .contact-item .icon { color: var(--ruby); flex-shrink: 0; margin-top: 1px; }
+    .contact-item a { color: var(--text); }
+
+    /* ── Skill bars ── */
+    .skill-row { margin-bottom: 6px; }
+    .skill-label { display: flex; justify-content: space-between; font-size: 9px; color: var(--text); margin-bottom: 3px; }
+    .skill-label .pct { color: var(--light); font-family: 'JetBrains Mono', monospace; font-size: 8px; }
+    .skill-bar-bg { background: #e0e0e0; border-radius: 2px; height: 3.5px; overflow: hidden; }
+    .skill-bar-ruby { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ruby-dk), var(--ruby)); }
+    .skill-bar-blue { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #0d47a1, #1976D2); }
+    .skill-bar-gray { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #444, #777); }
+
+    /* ── Tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 3px; }
+    .tag {
+      padding: 1.5px 6px;
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 500;
+    }
+    .tag-ruby    { background: rgba(204,0,0,0.07); border: 1px solid rgba(204,0,0,0.28); color: var(--ruby-dk); }
+    .tag-blue    { background: rgba(25,118,210,0.07); border: 1px solid rgba(25,118,210,0.28); color: #1565c0; }
+    .tag-neutral { background: #f0f0f0; border: 1px solid #d4d4d4; color: var(--muted); }
+
+    /* ── Certs ── */
+    .cert-item { font-size: 9px; color: var(--muted); padding: 3.5px 0; border-bottom: 1px solid var(--border); }
+    .cert-item:last-child { border-bottom: none; }
+    .cert-item strong { color: var(--ruby-dk); display: block; margin-bottom: 1px; font-size: 9px; }
+
+    /* ── Lang row ── */
+    .lang-row { display: flex; justify-content: space-between; padding: 3.5px 0; border-bottom: 1px solid var(--border); }
+    .lang-row:last-child { border-bottom: none; }
+    .lang-name { font-size: 9px; color: var(--text); }
+    .lang-level { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--light); }
+
+    /* ── Main ── */
+    .main { padding: 26px 22px; display: flex; flex-direction: column; gap: 18px; }
+
     /* ── Summary ── */
-    .summary { font-size: 10.5px; color: var(--muted); line-height: 1.7; }
+    .summary { font-size: 10px; color: var(--muted); line-height: 1.7; }
     .summary strong { color: var(--text); }
+
+    /* ── Timeline ── */
+    .timeline { display: flex; flex-direction: column; gap: 7px; padding-left: 14px; border-left: 2px solid var(--ruby); margin-top: 6px; }
+    .tl-item { position: relative; }
+    .tl-dot { position: absolute; left: -18px; top: 3px; width: 7px; height: 7px; border-radius: 50%; border: 2px solid var(--ruby); background: #fff; }
+    .tl-dot.filled { background: var(--ruby); }
+    .tl-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; color: var(--ruby); text-transform: uppercase; letter-spacing: 0.06em; }
+    .tl-text { font-size: 9.5px; color: var(--muted); margin-top: 1px; line-height: 1.5; }
+    .tl-text strong { color: var(--text); }
+
+    /* ── Methodologies pills ── */
+    .pills { display: flex; flex-wrap: wrap; gap: 3px; }
+    .pill {
+      padding: 2px 7px;
+      background: rgba(204,0,0,0.06);
+      border: 1px solid rgba(204,0,0,0.22);
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      color: var(--ruby-dk);
+    }
 
     /* ── Objective ── */
     .objective {
@@ -187,73 +182,64 @@
     }
     .objective strong { color: var(--ruby-dk); }
 
-    /* ── Experience cards ── */
+    /* ── Experience ── */
     .exp-card {
       border: 1px solid var(--border);
       border-left: 3px solid var(--ruby);
       border-radius: 0 4px 4px 0;
-      padding: 11px 14px;
-      margin-bottom: 10px;
+      padding: 10px 13px;
+      margin-bottom: 9px;
       background: var(--card);
     }
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 8px; }
-    .exp-company { font-weight: 700; font-size: 11px; color: var(--text); }
-    .exp-role { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--ruby); margin-top: 2px; }
-    .exp-meta { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--light); text-align: right; flex-shrink: 0; }
-    .exp-desc { font-size: 10px; color: var(--muted); line-height: 1.65; margin-bottom: 7px; }
-    .exp-desc li { margin-left: 14px; margin-bottom: 2px; }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+    .exp-company { font-weight: 700; font-size: 10.5px; color: var(--text); }
+    .exp-role { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--ruby); margin-top: 2px; }
+    .exp-meta { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--light); text-align: right; flex-shrink: 0; line-height: 1.5; }
+    .exp-desc { font-size: 9.5px; color: var(--muted); line-height: 1.65; margin-bottom: 7px; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 3px; }
 
     /* ── Projects ── */
     .project-card {
       border: 1px solid var(--border);
       border-left: 3px solid var(--ruby);
       border-radius: 0 4px 4px 0;
-      padding: 9px 12px;
-      margin-bottom: 8px;
+      padding: 8px 12px;
+      margin-bottom: 7px;
       background: var(--card);
     }
-    .project-name { font-weight: 700; font-size: 11px; color: var(--text); }
-    .project-tech { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--ruby); margin: 2px 0 4px; }
-    .project-desc { font-size: 10px; color: var(--muted); line-height: 1.6; }
+    .project-name { font-weight: 700; font-size: 10px; color: var(--text); }
+    .project-tech { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--ruby); margin: 2px 0 3px; }
+    .project-desc { font-size: 9.5px; color: var(--muted); line-height: 1.6; }
 
     /* ── Education ── */
-    .edu-card { border: 1px solid var(--border); border-radius: 4px; padding: 9px 12px; background: var(--card); margin-bottom: 7px; }
-    .edu-degree { font-weight: 700; font-size: 10.5px; color: var(--text); }
-    .edu-institution { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
-    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--light); }
+    .edu-card { border: 1px solid var(--border); border-radius: 4px; padding: 8px 12px; background: var(--card); margin-bottom: 6px; }
+    .edu-degree { font-weight: 700; font-size: 10px; color: var(--text); }
+    .edu-institution { font-size: 9px; color: var(--muted); margin-top: 2px; }
+    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--light); }
 
-    /* ── Print bar ── */
-    .print-bar {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 100;
-    }
+    /* ── Print btn ── */
+    .print-bar { position: fixed; bottom: 18px; right: 18px; z-index: 100; }
     .btn-print {
       background: linear-gradient(135deg, var(--ruby-dk), var(--ruby));
       color: #fff;
       border: none;
-      padding: 10px 22px;
-      border-radius: 8px;
+      padding: 9px 20px;
+      border-radius: 7px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(204,0,0,0.35);
-      transition: box-shadow 0.2s;
     }
-    .btn-print:hover { box-shadow: 0 6px 24px rgba(204,0,0,0.55); }
 
     @media print {
       body { background: #fff; }
       .print-bar { display: none; }
-      .page { margin: 0; max-width: 100%; box-shadow: none; border-radius: 0; }
+      .page { margin: 0; max-width: 100%; box-shadow: none; }
     }
   </style>
 </head>
 <body>
-
 <div class="page">
 
   <!-- ══ SIDEBAR ══ -->
@@ -262,7 +248,7 @@
     <div>
       <div class="profile-name">Reinaldo Barreto<br/>da Silva</div>
       <div class="profile-role">Software Engineer</div>
-      <div class="profile-sub">Ruby on Rails · React</div>
+      <div class="profile-sub">Ruby on Rails · React · PostgreSQL</div>
     </div>
 
     <!-- Contato -->
@@ -273,6 +259,7 @@
       <div class="contact-item"><span class="icon">✉️</span><a href="mailto:reinaldobarretosilva@gmail.com">reinaldobarretosilva@gmail.com</a></div>
       <div class="contact-item"><span class="icon">🐙</span><a href="https://github.com/reinaldobarreto31">github.com/reinaldobarreto31</a></div>
       <div class="contact-item"><span class="icon">💼</span><a href="https://linkedin.com/in/reinaldo-barreto-2a4ba2116">linkedin/reinaldo-barreto</a></div>
+      <div class="contact-item"><span class="icon">🌐</span><a href="https://reinaldobarreto31.github.io">reinaldobarreto31.github.io</a></div>
     </div>
 
     <!-- Core Stack -->
@@ -280,27 +267,40 @@
       <div class="sb-title">Core Stack</div>
       <div class="skill-row">
         <div class="skill-label"><span>Ruby on Rails</span><span class="pct">90%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div>
+        <div class="skill-bar-bg"><div class="skill-bar-ruby" style="width:90%"></div></div>
       </div>
       <div class="skill-row">
         <div class="skill-label"><span>RSpec / TDD</span><span class="pct">88%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div>
+        <div class="skill-bar-bg"><div class="skill-bar-ruby" style="width:88%"></div></div>
       </div>
       <div class="skill-row">
         <div class="skill-label"><span>PostgreSQL</span><span class="pct">88%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar skill-bar-gray" style="width:88%"></div></div>
+        <div class="skill-bar-bg"><div class="skill-bar-gray" style="width:88%"></div></div>
       </div>
       <div class="skill-row">
         <div class="skill-label"><span>React.js</span><span class="pct">85%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar skill-bar-blue" style="width:85%"></div></div>
+        <div class="skill-bar-bg"><div class="skill-bar-blue" style="width:85%"></div></div>
       </div>
       <div class="skill-row">
         <div class="skill-label"><span>Redis / Sidekiq</span><span class="pct">80%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
+        <div class="skill-bar-bg"><div class="skill-bar-ruby" style="width:80%"></div></div>
       </div>
       <div class="skill-row">
         <div class="skill-label"><span>Docker / CI/CD</span><span class="pct">82%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar skill-bar-gray" style="width:82%"></div></div>
+        <div class="skill-bar-bg"><div class="skill-bar-gray" style="width:82%"></div></div>
+      </div>
+    </div>
+
+    <!-- Ecossistema Rails -->
+    <div>
+      <div class="sb-title">Ecossistema Rails</div>
+      <div class="tags">
+        <span class="tag tag-ruby">Active Record / ORM</span>
+        <span class="tag tag-ruby">Action Mailer</span>
+        <span class="tag tag-ruby">Active Job / Sidekiq</span>
+        <span class="tag tag-ruby">Devise / JWT</span>
+        <span class="tag tag-ruby">Rswag / OpenAPI 3</span>
+        <span class="tag tag-ruby">Hotwire / Turbo</span>
       </div>
     </div>
 
@@ -308,12 +308,12 @@
     <div>
       <div class="sb-title">Frontend</div>
       <div class="tags">
-        <span class="tag-blue tag">React.js</span>
-        <span class="tag tag-neutral">Next.js</span>
-        <span class="tag tag-neutral">Angular</span>
-        <span class="tag tag-neutral">Vue.js</span>
-        <span class="tag tag-neutral">TypeScript</span>
+        <span class="tag tag-blue">React 18</span>
+        <span class="tag tag-blue">TypeScript</span>
         <span class="tag tag-neutral">Tailwind CSS</span>
+        <span class="tag tag-neutral">Vue.js</span>
+        <span class="tag tag-neutral">Angular</span>
+        <span class="tag tag-neutral">Next.js</span>
       </div>
     </div>
 
@@ -326,18 +326,8 @@
         <span class="tag tag-neutral">CI/CD</span>
         <span class="tag tag-neutral">Linux Ubuntu</span>
         <span class="tag tag-neutral">Bash Script</span>
+        <span class="tag tag-neutral">Git</span>
         <span class="tag tag-neutral">Nginx</span>
-      </div>
-    </div>
-
-    <!-- Auth & APIs -->
-    <div>
-      <div class="sb-title">Auth &amp; APIs</div>
-      <div class="tags">
-        <span class="tag">Devise / JWT</span>
-        <span class="tag">Rswag / OpenAPI 3</span>
-        <span class="tag tag-neutral">OAuth2</span>
-        <span class="tag tag-neutral">APIs REST</span>
       </div>
     </div>
 
@@ -368,15 +358,31 @@
     <div>
       <div class="section-title">Perfil Profissional</div>
       <p class="summary">
-        Engenheiro de Software especializado em <strong>Ruby on Rails</strong> e
-        <strong>React.js</strong>, com sólida experiência no desenvolvimento de APIs RESTful
-        seguras e escaláveis para sistemas críticos do setor público. Expertise em
-        <strong>TDD/BDD com RSpec</strong>, documentação com <strong>Rswag/OpenAPI 3</strong>,
-        autenticação com <strong>Devise/JWT</strong> e arquitetura
-        <strong>Convention over Configuration</strong>. Histórico comprovado de entrega em
-        ambientes de alta criticidade (SSP-BA, PM-BA e PRODEB/BA). Forte base em
-        <strong>DevOps</strong>: Docker, GitHub Actions, CI/CD e Linux Ubuntu.
+        Engenheiro de Software com trajetória sólida em <strong>Ruby on Rails</strong> e background enterprise em
+        Java/Spring Boot. Especialista em <strong>APIs RESTful para o setor público</strong> — estadual, municipal e
+        segurança pública. Domínio de <strong>TDD com RSpec</strong>, documentação automática via
+        <strong>Rswag/OpenAPI 3</strong> e entrega com <strong>CI/CD (GitHub Actions)</strong>.
+        Convention over Configuration como filosofia de trabalho.
       </p>
+
+      <!-- Timeline igual ao portfólio -->
+      <div class="timeline" style="margin-top:10px">
+        <div class="tl-item">
+          <div class="tl-dot filled"></div>
+          <div class="tl-label">Trajetória</div>
+          <div class="tl-text">EDZA (<strong>Java EE / JSP / Struts</strong>) → LAMPP (<strong>Spring Boot / OAuth2</strong>) → PRODEB (<strong>Spring Boot / Java</strong>)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot filled"></div>
+          <div class="tl-label">Agora</div>
+          <div class="tl-text">Consolidando <strong>Rails + RSpec + React</strong> como stack principal — TDD first, Rswag, Service Objects</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Próximo</div>
+          <div class="tl-text">Engenheiro Sênior <strong>Ruby on Rails</strong> em produto de alto impacto e escala</div>
+        </div>
+      </div>
     </div>
 
     <!-- Objetivo -->
@@ -384,9 +390,27 @@
       <div class="section-title">Objetivo</div>
       <div class="objective">
         Atuar como <strong>Engenheiro de Software Ruby on Rails</strong> — backend ou fullstack —
-        contribuindo com <strong>APIs RESTful bem testadas</strong>, documentação OpenAPI de
-        qualidade e entrega contínua em produção. Busco projetos que valorizem
+        contribuindo com <strong>APIs RESTful bem testadas</strong>, documentação OpenAPI de qualidade
+        e entrega contínua em produção. Busco projetos que valorizem
         <strong>TDD first, código limpo e Convention over Configuration</strong>.
+      </div>
+    </div>
+
+    <!-- Metodologias -->
+    <div>
+      <div class="section-title">Metodologias &amp; Arquitetura</div>
+      <div class="pills">
+        <span class="pill">Scrum</span>
+        <span class="pill">Kanban</span>
+        <span class="pill">APIs RESTful</span>
+        <span class="pill">Clean Code</span>
+        <span class="pill">TDD / RSpec</span>
+        <span class="pill">Clean Architecture</span>
+        <span class="pill">Convention over Configuration</span>
+        <span class="pill">CI/CD</span>
+        <span class="pill">Service Objects</span>
+        <span class="pill">OpenAPI / Swagger</span>
+        <span class="pill">FactoryBot</span>
       </div>
     </div>
 
@@ -402,19 +426,20 @@
           </div>
           <div class="exp-meta">mar/2024 – set/2024<br/>Salvador/BA</div>
         </div>
-        <ul class="exp-desc">
-          <li>Desenvolvimento e manutenção de APIs RESTful para sistemas críticos de órgãos públicos estaduais.</li>
-          <li>Evolução de módulos back-end com foco em escalabilidade e conformidade com normas de segurança pública.</li>
-          <li>Frontend com Vue.js; colaboração em squads Scrum com entregas CI/CD em Linux Ubuntu.</li>
-          <li>Exposição a padrões OAuth2 — base diretamente aplicável a Devise/JWT em Rails.</li>
-        </ul>
+        <p class="exp-desc">
+          Desenvolvimento e manutenção de APIs REST e soluções web para órgãos públicos estaduais do Governo da Bahia.
+          Aplicação de arquitetura RESTful escalável, separação de camadas (controller / service / repository) e integração com
+          banco de dados relacional — padrões diretamente alinhados ao desenvolvimento em Ruby on Rails. Frontend em
+          Vue.js integrado às APIs. Modernização de sistemas legados com foco em qualidade de código e entregas em Scrum.
+        </p>
         <div class="exp-tags">
+          <span class="tag tag-neutral">Java</span>
           <span class="tag tag-neutral">APIs REST</span>
           <span class="tag tag-neutral">Vue.js</span>
           <span class="tag tag-neutral">PostgreSQL</span>
           <span class="tag tag-neutral">Linux Ubuntu</span>
+          <span class="tag tag-neutral">Git</span>
           <span class="tag tag-neutral">Scrum</span>
-          <span class="tag tag-neutral">CI/CD</span>
         </div>
       </div>
 
@@ -426,19 +451,20 @@
           </div>
           <div class="exp-meta">mar/2022 – mai/2022<br/>Salvador/BA</div>
         </div>
-        <ul class="exp-desc">
-          <li>Construção de APIs REST seguras para sistemas críticos da SSP-BA e PM-BA.</li>
-          <li>Módulo de controle de acesso do Sistema de Auditoria Interna prototipado em <strong>Ruby on Rails</strong>.</li>
-          <li>Autenticação OAuth2 — fundamentos aplicáveis a Devise/JWT em Rails.</li>
-          <li>Frontend em Angular e React.js; integração com PostgreSQL.</li>
-        </ul>
+        <p class="exp-desc">
+          Construção de APIs REST seguras para sistemas críticos da Secretaria de Segurança Pública (SSP-BA) e Polícia Militar (PM-BA).
+          Módulo de controle de acesso do Sistema de Auditoria Interna prototipado em <strong>Ruby on Rails</strong>, demonstrando
+          viabilidade da stack para sistemas de alta criticidade. Autenticação OAuth2 — fundamentos aplicáveis a
+          Devise/JWT em Rails. Frontend em Angular e React.js.
+        </p>
         <div class="exp-tags">
-          <span class="tag">Ruby on Rails (módulo)</span>
+          <span class="tag tag-ruby">Ruby on Rails (módulo)</span>
           <span class="tag tag-neutral">APIs REST</span>
           <span class="tag tag-neutral">OAuth2</span>
           <span class="tag tag-neutral">Angular</span>
-          <span class="tag-blue tag">React.js</span>
+          <span class="tag tag-blue">React.js</span>
           <span class="tag tag-neutral">PostgreSQL</span>
+          <span class="tag tag-neutral">Linux Ubuntu</span>
         </div>
       </div>
 
@@ -450,18 +476,21 @@
           </div>
           <div class="exp-meta">nov/2019 – mar/2022<br/>Salvador/BA</div>
         </div>
-        <ul class="exp-desc">
-          <li>Desenvolvimento full-stack de ERP Municipal (Tributário, Saúde, RH, NF-e) para prefeituras de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas.</li>
-          <li>Módulo NF-e explorado em <strong>Ruby on Rails</strong> — viabilidade comprovada para emissão e validação de notas fiscais.</li>
-          <li>APIs REST integradas a frontends Angular e Vue.js; infraestrutura Linux/Windows 24/7.</li>
-        </ul>
+        <p class="exp-desc">
+          Desenvolvimento full-stack de ERP Municipal (Módulos Tributário, Saúde, RH e NF-e) para prefeituras de Ilhéus, Juazeiro,
+          Candeias, Porto Seguro e Lauro de Freitas. Módulo de modernização do ERP (Nota Fiscal Eletrônica) explorado em
+          <strong>Ruby on Rails</strong> como proposta de refatoração da camada de APIs REST. Angular e Vue.js no frontend.
+          Administração de servidores Linux Ubuntu (24/7) e scripts Bash — infraestrutura diretamente aplicável ao deploy de apps Rails em produção.
+        </p>
         <div class="exp-tags">
-          <span class="tag">Ruby on Rails (módulo)</span>
+          <span class="tag tag-ruby">Ruby on Rails (módulo)</span>
           <span class="tag tag-neutral">APIs REST</span>
           <span class="tag tag-neutral">Angular</span>
           <span class="tag tag-neutral">Vue.js</span>
+          <span class="tag tag-neutral">Java EE</span>
           <span class="tag tag-neutral">MySQL</span>
           <span class="tag tag-neutral">Linux Ubuntu</span>
+          <span class="tag tag-neutral">Bash Script</span>
           <span class="tag tag-neutral">Scrum</span>
         </div>
       </div>
@@ -472,21 +501,27 @@
       <div class="section-title">Projetos Pessoais</div>
 
       <div class="project-card">
-        <div class="project-name">rails-swagger-crud — API Rails com TDD e OpenAPI</div>
-        <div class="project-tech">Ruby on Rails · RSpec · Rswag/OpenAPI 3 · Devise/JWT · PostgreSQL · Docker</div>
-        <div class="project-desc">API RESTful completa com autenticação Devise/JWT, Swagger UI interativo, cobertura RSpec e CI/CD via GitHub Actions. Demonstra domínio do ciclo Rails TDD-first.</div>
+        <div class="project-name">rails-swagger-crud — API REST + OpenAPI 3 <span style="font-size:8px;color:var(--ruby);font-family:'JetBrains Mono',monospace;"> · DESTAQUE</span></div>
+        <div class="project-tech">Ruby on Rails · Rswag · RSpec · FactoryBot · Devise/JWT · PostgreSQL · Docker</div>
+        <div class="project-desc">RESTful CRUD API em Rails API mode com documentação OpenAPI 3 gerada automaticamente pelos testes RSpec via Rswag. Swagger UI em /api-docs. TDD first — FactoryBot + Shoulda Matchers. Docker Compose para dev local. GitHub: github.com/reinaldobarreto31/rails-swagger-crud</div>
       </div>
 
       <div class="project-card">
-        <div class="project-name">StockWise — Sistema de Controle de Estoque</div>
-        <div class="project-tech">Go (Golang) · React.js · PostgreSQL · JWT · Docker</div>
-        <div class="project-desc">Backend Go com API RESTful, JWT e Swagger UI interativo disponível ao vivo para exploração sem instalação. Frontend em React.js.</div>
+        <div class="project-name">RailsHub — API Rails + Frontend React <span style="font-size:8px;color:var(--ruby);font-family:'JetBrains Mono',monospace;"> · EM CONSTRUÇÃO</span></div>
+        <div class="project-tech">Ruby on Rails · React 18 · Rswag · Devise · JWT · PostgreSQL · Docker · RSpec</div>
+        <div class="project-desc">Aplicação full-stack: API Rails com autenticação Devise/JWT, Rswag/OpenAPI 3 e TDD via RSpec + FactoryBot. Frontend React 18 + Tailwind com dashboard paginado. Docker Compose + CI/CD GitHub Actions.</div>
       </div>
 
       <div class="project-card">
-        <div class="project-name">Compressor de PDF</div>
-        <div class="project-tech">React.js · TypeScript · Vite · pdf-lib · pdfjs-dist</div>
-        <div class="project-desc">Compressor 100% no navegador, sem upload. Presets: Governo BR, Empresa, E-mail. Ao vivo: reinaldobarreto31.github.io</div>
+        <div class="project-name">StockWise — Controle de Estoque</div>
+        <div class="project-tech">Go (Golang) · React.js · PostgreSQL · JWT · REST API</div>
+        <div class="project-desc">Backend Go com API RESTful, autenticação JWT, CRUD de produtos e movimentações. Frontend React.js. GitHub: github.com/reinaldobarreto31/stockwise-go</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">Compressor de PDF — Padrões Brasileiros</div>
+        <div class="project-tech">React · TypeScript · Vite · pdf-lib · 100% no navegador</div>
+        <div class="project-desc">Compressor de PDFs para padrões BR (Governo BR 2 MB, Empresa 5 MB, E-mail). Processamento 100% local, sem upload. Ao vivo: reinaldobarreto31.github.io</div>
       </div>
     </div>
 
@@ -511,7 +546,6 @@
 <div class="print-bar">
   <button class="btn-print" onclick="window.print()">⬇ Baixar PDF</button>
 </div>
-
 <script>
   if (window.location.search.includes('auto=pdf')) {
     window.addEventListener('load', () => setTimeout(() => window.print(), 800));
