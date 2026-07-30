@@ -166,14 +166,14 @@ export function AboutSection() {
           </div>
 
           {/* ── Right: skill panels — instrument panel ── */}
-          <div className="flex-1 w-full space-y-5 bg-background border border-border p-6 rounded-lg shadow-xl cockpit-scanline relative">
+          <div className="flex-1 w-full space-y-5 bg-background border border-border p-4 sm:p-6 rounded-lg shadow-xl cockpit-scanline relative">
 
             {/* Core Stack — Java · Spring Boot · Kotlin · Go */}
             <div>
               <h3 className="font-mono text-xs text-muted-foreground mb-3 border-b border-border pb-2 uppercase tracking-wider flex items-center gap-2">
                 <Cpu size={12} className="text-primary" /> Core Stack
               </h3>
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {coreStack.map((skill) => (
                   <div key={skill.name} className={cardClass(skill.variant)}>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-md" />
@@ -201,7 +201,7 @@ export function AboutSection() {
             {/* Frontend */}
             <div>
               <h3 className="font-mono text-xs text-muted-foreground mb-3 border-b border-border pb-2 uppercase tracking-wider">Frontend</h3>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {frontendSkills.map((skill) => (
                   <div key={skill.name} className="icon-card-3d flex flex-col items-center justify-center p-2.5 bg-card border border-border rounded-md cursor-default group">
                     <skill.icon className={`text-2xl mb-1.5 ${skill.color} opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all`} />

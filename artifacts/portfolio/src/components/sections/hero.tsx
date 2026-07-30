@@ -33,7 +33,7 @@ const STACK = [
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center pt-16 overflow-hidden">
+    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center pt-16 pb-16 md:pb-0 overflow-hidden">
       {/* Radial glow from center */}
       <div className="absolute inset-0 z-0 pointer-events-none"
         style={{ background: "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(109,179,63,0.07) 0%, transparent 70%)" }}
@@ -66,7 +66,7 @@ export function HeroSection() {
             <span className="boot-shine font-bold">Java · Spring Boot · Kotlin</span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">
             Reinaldo<br />
             <span className="text-muted-foreground">Barreto</span>
           </h1>
