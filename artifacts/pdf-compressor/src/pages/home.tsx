@@ -11,6 +11,7 @@ import {
   Sliders,
   Zap,
 } from 'lucide-react';
+import { SiSpring, SiKotlin } from 'react-icons/si';
 import {
   PRESETS,
   CompressionPreset,
@@ -45,7 +46,7 @@ export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [selectedPreset, setSelectedPreset] = useState<CompressionPreset>(PRESETS[0]);
   const [customMB, setCustomMB] = useState(10);
-  const [customQuality, setCustomQuality] = useState(7); // 1–10
+  const [customQuality, setCustomQuality] = useState(7);
   const [customScale, setCustomScale] = useState(1.33);
   const [targetMet, setTargetMet] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -62,12 +63,7 @@ export default function Home() {
 
   const activePreset: CompressionPreset =
     selectedPreset.id === 'personalizado'
-      ? {
-          ...selectedPreset,
-          targetMB: customMB,
-          quality: customQuality / 10,
-          scale: customScale,
-        }
+      ? { ...selectedPreset, targetMB: customMB, quality: customQuality / 10, scale: customScale }
       : selectedPreset;
 
   const handleFile = useCallback((f: File) => {
@@ -100,36 +96,24 @@ export default function Home() {
     setProgress(0);
     setCurrentPage(0);
     setTotalPages(0);
-
     try {
-      const result = await compressPdf(
-        file,
-        activePreset,
-        (ev) => {
-          setCurrentPage(ev.page);
-          setTotalPages(ev.total);
-          setProgress(Math.round((ev.page / ev.total) * 100));
-        },
-        cancelledRef.current,
-      );
+      const result = await compressPdf(file, activePreset, (ev) => {
+        setCurrentPage(ev.page);
+        setTotalPages(ev.total);
+        setProgress(Math.round((ev.page / ev.total) * 100));
+      }, cancelledRef.current);
       setResultBytes(result.bytes);
       setTargetMet(result.targetMet);
       setDownloadName(file.name.replace(/\.pdf$/i, '') + '_comprimido');
       setState('done');
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
-      if (msg === 'CANCELLED') {
-        setState('loaded');
-      } else {
-        setErrorMsg(msg);
-        setState('error');
-      }
+      if (msg === 'CANCELLED') setState('loaded');
+      else { setErrorMsg(msg); setState('error'); }
     }
   };
 
-  const handleCancel = () => {
-    cancelledRef.current.current = true;
-  };
+  const handleCancel = () => { cancelledRef.current.current = true; };
 
   const handleDownload = () => {
     if (!resultBytes) return;
@@ -137,34 +121,47 @@ export default function Home() {
     const blob = new Blob([resultBytes], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = name;
-    a.click();
+    a.href = url; a.download = name; a.click();
     URL.revokeObjectURL(url);
   };
 
   const handleReset = () => {
-    setFile(null);
-    setResultBytes(null);
-    setErrorMsg('');
-    setProgress(0);
-    setState('drop');
+    setFile(null); setResultBytes(null); setErrorMsg('');
+    setProgress(0); setState('drop');
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] font-sans flex flex-col">
+    <div className="min-h-screen bg-[#080a08] font-sans flex flex-col">
+
       {/* ── Navbar ── */}
-      <nav className="border-b border-red-900/30 bg-black/60 backdrop-blur-md sticky top-0 z-50">
+      <nav className="border-b border-green-900/30 bg-black/60 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-red-500" />
+          <div className="flex items-center gap-2.5">
+            <div className="relative w-7 h-7 flex items-center justify-center rounded-lg bg-green-950/60 border border-green-700/40 shadow-[0_0_10px_rgba(109,179,63,0.3)]">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                className="absolute"
+              >
+                <SiSpring className="text-green-400 text-sm" />
+              </motion.div>
+            </div>
             <span className="font-mono font-bold text-white tracking-tight text-sm">
               Compressor de PDF
             </span>
           </div>
+          {/* Kotlin + Spring Boot badge */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            <span className="flex items-center gap-1 text-[10px] font-mono border border-green-700/40 text-green-400 bg-green-950/30 px-2 py-0.5 rounded">
+              <SiSpring size={9} /> Spring Boot
+            </span>
+            <span className="flex items-center gap-1 text-[10px] font-mono border border-purple-700/40 text-purple-400 bg-purple-950/30 px-2 py-0.5 rounded">
+              <SiKotlin size={9} /> Kotlin
+            </span>
+          </div>
           <span className="text-xs text-gray-500 font-mono">
-            reinaldo<span className="text-red-500">.</span>dev
+            reinaldo<span className="text-green-500">.</span>dev
           </span>
         </div>
       </nav>
@@ -177,7 +174,7 @@ export default function Home() {
           className="text-3xl sm:text-4xl font-bold text-white tracking-tight"
         >
           Compressor de{' '}
-          <span className="text-red-500">PDF</span>
+          <span className="text-green-400">PDF</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -213,20 +210,16 @@ export default function Home() {
                   relative cursor-pointer rounded-xl border-2 border-dashed transition-all duration-300
                   flex flex-col items-center justify-center py-16 px-8 gap-4
                   ${isDragOver
-                    ? 'border-red-500 bg-red-950/20 shadow-[0_0_30px_4px_rgba(204,0,0,0.2)]'
-                    : 'border-red-900/40 bg-black/40 hover:border-red-700/60 hover:bg-red-950/10'}
+                    ? 'border-green-500 bg-green-950/20 shadow-[0_0_30px_4px_rgba(109,179,63,0.2)]'
+                    : 'border-green-900/40 bg-black/40 hover:border-green-700/60 hover:bg-green-950/10'}
                 `}
               >
-                <div className={`p-4 rounded-full border ${isDragOver ? 'border-red-500 bg-red-900/30' : 'border-red-900/40 bg-zinc-900'}`}>
-                  <Upload className={`w-8 h-8 ${isDragOver ? 'text-red-400' : 'text-red-700'}`} />
+                <div className={`p-4 rounded-full border ${isDragOver ? 'border-green-500 bg-green-900/30' : 'border-green-900/40 bg-zinc-900'}`}>
+                  <Upload className={`w-8 h-8 ${isDragOver ? 'text-green-400' : 'text-green-700'}`} />
                 </div>
                 <div className="text-center">
-                  <p className="text-white font-semibold text-base">
-                    Arraste um PDF aqui
-                  </p>
-                  <p className="text-gray-500 text-sm mt-1">
-                    ou clique para selecionar o arquivo
-                  </p>
+                  <p className="text-white font-semibold text-base">Arraste um PDF aqui</p>
+                  <p className="text-gray-500 text-sm mt-1">ou clique para selecionar o arquivo</p>
                 </div>
                 <input
                   ref={fileInputRef}
@@ -250,15 +243,15 @@ export default function Home() {
               className="space-y-4"
             >
               {/* File info */}
-              <div className="flex items-center gap-3 bg-zinc-900/80 border border-red-900/30 rounded-xl px-4 py-3">
-                <FileText className="w-6 h-6 text-red-500 shrink-0" />
+              <div className="flex items-center gap-3 bg-zinc-900/80 border border-green-900/30 rounded-xl px-4 py-3">
+                <FileText className="w-6 h-6 text-green-500 shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-medium truncate">{file.name}</p>
                   <p className="text-gray-500 text-xs">{formatBytes(originalSize)}</p>
                 </div>
                 <button
                   onClick={handleReset}
-                  className="text-gray-500 hover:text-red-400 transition-colors"
+                  className="text-gray-500 hover:text-green-400 transition-colors"
                   title="Remover arquivo"
                 >
                   <X className="w-4 h-4" />
@@ -279,14 +272,14 @@ export default function Home() {
                       className={`
                         rounded-lg border px-3 py-2.5 text-left transition-all duration-200
                         ${selectedPreset.id === p.id
-                          ? 'border-red-500 bg-red-950/40 shadow-[0_0_12px_1px_rgba(204,0,0,0.25)]'
-                          : 'border-zinc-800 bg-zinc-900/60 hover:border-red-800/60'}
+                          ? 'border-green-500 bg-green-950/30 shadow-[0_0_12px_1px_rgba(109,179,63,0.25)]'
+                          : 'border-zinc-800 bg-zinc-900/60 hover:border-green-800/60'}
                       `}
                     >
                       <div className="flex items-center gap-1.5 mb-0.5">
                         {p.id === 'personalizado'
-                          ? <Sliders className="w-3 h-3 text-red-400" />
-                          : <Zap className="w-3 h-3 text-red-500" />
+                          ? <Sliders className="w-3 h-3 text-purple-400" />
+                          : <Zap className="w-3 h-3 text-green-500" />
                         }
                         <span className="text-white text-xs font-semibold">{p.label}</span>
                       </div>
@@ -301,18 +294,18 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
-                  className="bg-zinc-900/60 border border-red-900/30 rounded-lg px-4 py-4 space-y-4"
+                  className="bg-zinc-900/60 border border-green-900/30 rounded-lg px-4 py-4 space-y-4"
                 >
                   {/* Tamanho alvo */}
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Tamanho alvo</span>
-                      <span className="text-red-400 font-mono font-bold text-sm">{customMB} MB</span>
+                      <span className="text-green-400 font-mono font-bold text-sm">{customMB} MB</span>
                     </div>
                     <input
                       type="range" min={1} max={50} value={customMB}
                       onChange={(e) => setCustomMB(Number(e.target.value))}
-                      className="w-full accent-red-500 cursor-pointer"
+                      className="w-full accent-green-500 cursor-pointer"
                       data-testid="custom-mb-slider"
                     />
                     <div className="flex justify-between text-[10px] text-gray-600 font-mono">
@@ -326,14 +319,14 @@ export default function Home() {
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Qualidade da imagem</span>
-                      <span className="text-red-400 font-mono font-bold text-sm">
+                      <span className="text-green-400 font-mono font-bold text-sm">
                         {customQuality * 10}% — {QUALITY_LABELS[customQuality]}
                       </span>
                     </div>
                     <input
                       type="range" min={1} max={10} step={1} value={customQuality}
                       onChange={(e) => setCustomQuality(Number(e.target.value))}
-                      className="w-full accent-red-500 cursor-pointer"
+                      className="w-full accent-green-500 cursor-pointer"
                       data-testid="custom-quality-slider"
                     />
                     <div className="flex justify-between text-[10px] text-gray-600 font-mono">
@@ -354,7 +347,7 @@ export default function Home() {
                           data-testid={`scale-${opt.value}`}
                           className={`text-left px-3 py-2 rounded-lg border text-[11px] font-mono transition-all ${
                             customScale === opt.value
-                              ? 'border-red-500 bg-red-950/40 text-red-300'
+                              ? 'border-green-500 bg-green-950/30 text-green-300'
                               : 'border-zinc-800 text-gray-500 hover:border-zinc-600'
                           }`}
                         >
@@ -372,7 +365,7 @@ export default function Home() {
                 onClick={startCompression}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm tracking-wide transition-colors shadow-[0_0_20px_2px_rgba(204,0,0,0.3)]"
+                className="w-full py-3 rounded-xl bg-green-700 hover:bg-green-600 text-white font-bold text-sm tracking-wide transition-colors shadow-[0_0_20px_2px_rgba(109,179,63,0.35)]"
               >
                 Comprimir PDF
               </motion.button>
@@ -388,58 +381,48 @@ export default function Home() {
               exit={{ opacity: 0 }}
               className="rounded-xl overflow-hidden"
             >
-              {/* Glassmorphism processing card */}
               <div
                 data-testid="processing-card"
-                className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-xl p-6 shadow-[0_0_40px_4px_rgba(204,0,0,0.15)]"
+                className="relative bg-black/50 backdrop-blur-xl border border-green-900/30 rounded-xl p-6 shadow-[0_0_40px_4px_rgba(109,179,63,0.12)]"
               >
-                {/* Subtle scanline overlay */}
                 <div className="pointer-events-none absolute inset-0 rounded-xl overflow-hidden">
-                  <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.015)_2px,rgba(255,255,255,0.015)_4px)]" />
+                  <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(109,179,63,0.018)_2px,rgba(109,179,63,0.018)_4px)]" />
                 </div>
 
                 <div className="relative space-y-5">
-                  {/* Filename */}
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-red-500 shrink-0" />
+                    <FileText className="w-4 h-4 text-green-500 shrink-0" />
                     <span className="text-white text-sm font-mono truncate" data-testid="processing-filename">
                       {file?.name}
                     </span>
                   </div>
 
-                  {/* Progress label */}
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-gray-400">
-                      {totalPages > 0
-                        ? `Página ${currentPage} de ${totalPages}`
-                        : 'Carregando…'}
+                      {totalPages > 0 ? `Página ${currentPage} de ${totalPages}` : 'Carregando…'}
                     </span>
-                    <span className="text-red-400 font-bold">{progress}%</span>
+                    <span className="text-green-400 font-bold">{progress}%</span>
                   </div>
 
-                  {/* Progress bar */}
                   <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">
                     <motion.div
-                      className="absolute inset-y-0 left-0 bg-red-600 rounded-full"
+                      className="absolute inset-y-0 left-0 bg-green-600 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${progress}%` }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     />
-                    {/* Shimmer */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_1.5s_linear_infinite]" />
                   </div>
 
-                  {/* Preset info */}
                   <p className="text-gray-500 text-xs font-mono">
-                    Preset: <span className="text-red-400">{activePreset.label}</span>
+                    Preset: <span className="text-green-400">{activePreset.label}</span>
                     {' '}→ alvo <span className="text-white">{activePreset.targetMB} MB</span>
                   </p>
 
-                  {/* Cancel */}
                   <button
                     data-testid="cancel-btn"
                     onClick={handleCancel}
-                    className="flex items-center gap-2 text-gray-500 hover:text-red-400 transition-colors text-xs font-mono"
+                    className="flex items-center gap-2 text-gray-500 hover:text-green-400 transition-colors text-xs font-mono"
                   >
                     <X className="w-3.5 h-3.5" />
                     Cancelar compressão
@@ -456,10 +439,9 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="rounded-xl border border-green-700/40 bg-black/50 backdrop-blur-xl p-6 shadow-[0_0_30px_4px_rgba(0,200,80,0.08)] space-y-5"
+              className="rounded-xl border border-green-700/40 bg-black/50 backdrop-blur-xl p-6 shadow-[0_0_30px_4px_rgba(109,179,63,0.12)] space-y-5"
               data-testid="done-card"
             >
-              {/* Success icon */}
               <div className="flex justify-center">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -475,7 +457,6 @@ export default function Home() {
                 <p className="text-gray-400 text-sm font-mono truncate">{file.name}</p>
               </div>
 
-              {/* Size comparison */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-zinc-900/80 border border-zinc-800 rounded-lg px-4 py-3 text-center">
                   <p className="text-gray-500 text-xs uppercase tracking-widest font-mono">Original</p>
@@ -487,7 +468,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Reduction badge */}
               {originalSize > 0 && (
                 <div className="text-center">
                   <span className="inline-block bg-green-900/30 border border-green-700/30 text-green-400 text-xs font-mono px-3 py-1 rounded-full">
@@ -497,7 +477,6 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Target not met warning */}
               {!targetMet && (
                 <motion.div
                   initial={{ opacity: 0, y: 6 }}
@@ -516,12 +495,11 @@ export default function Home() {
                 </motion.div>
               )}
 
-              {/* Rename */}
               <div className="space-y-1.5">
                 <label className="text-xs text-gray-400 uppercase tracking-widest font-mono">
                   Nome do arquivo
                 </label>
-                <div className="flex items-center gap-0 rounded-lg border border-zinc-700 focus-within:border-red-600 transition-colors overflow-hidden bg-zinc-900/60">
+                <div className="flex items-center gap-0 rounded-lg border border-zinc-700 focus-within:border-green-600 transition-colors overflow-hidden bg-zinc-900/60">
                   <input
                     data-testid="download-name-input"
                     type="text"
@@ -535,7 +513,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Actions */}
               <div className="flex gap-3">
                 <motion.button
                   data-testid="download-btn"
@@ -559,7 +536,7 @@ export default function Home() {
             </motion.div>
           )}
 
-          {/* ── ERROR ── */}
+          {/* ── ERROR — mantém vermelho (estado de erro) ── */}
           {state === 'error' && (
             <motion.div
               key="error"
@@ -627,18 +604,18 @@ export default function Home() {
       </div>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-red-900/20 py-4">
+      <footer className="border-t border-green-900/20 py-4">
         <p className="text-center text-[11px] text-gray-600 font-mono">
           Feito por{' '}
           <a
             href="https://reinaldobarreto31.github.io/"
             target="_blank"
             rel="noreferrer"
-            className="text-red-600 hover:text-red-400 transition-colors"
+            className="text-green-600 hover:text-green-400 transition-colors"
           >
             Reinaldo Barreto
           </a>
-          {' '}· Compressor de PDF · Nenhum dado é enviado
+          {' '}· Kotlin · Spring Boot · Nenhum dado é enviado
         </p>
       </footer>
     </div>

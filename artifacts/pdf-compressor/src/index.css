@@ -79,52 +79,54 @@
   100% { transform: translateX(100%); }
 }
 
-/* Base definitions */
+/* Base definitions — Spring Boot + Kotlin dark theme */
 :root, .dark {
-  /* Dark mode is the only mode for this app (Mission Control style) */
-  --background: 0 0% 3%;      /* #080808 */
-  --foreground: 220 14% 91%;  /* #e5e7eb */
-  --border: 0 100% 40% / 0.25; /* rgba(204,0,0,0.25) */
-  --input: 0 100% 40% / 0.25;
-  --ring: 0 100% 40%;         /* #CC0000 */
+  --background: 120 10% 4%;        /* deep carbon */
+  --foreground: 220 14% 91%;       /* #e5e7eb */
+  --border: 100 42% 43% / 0.20;    /* Spring green border */
+  --input: 100 42% 43% / 0.20;
+  --ring: 100 42% 43%;             /* Spring Boot green #6DB33F */
 
-  --card: 0 0% 7%;            /* #111111 */
+  --card: 120 8% 7%;               /* #101410 */
   --card-foreground: 220 14% 91%;
-  --card-border: 0 100% 40% / 0.25;
+  --card-border: 100 42% 43% / 0.20;
 
-  --popover: 0 0% 7%;
+  --popover: 120 8% 7%;
   --popover-foreground: 220 14% 91%;
-  --popover-border: 0 100% 40% / 0.25;
+  --popover-border: 100 42% 43% / 0.20;
 
-  --primary: 0 100% 40%;      /* #CC0000 */
-  --primary-foreground: 0 0% 100%;
-  --primary-border: 0 100% 40%;
+  /* Primary: Spring Boot green #6DB33F */
+  --primary: 100 42% 43%;
+  --primary-foreground: 120 10% 4%;
+  --primary-border: 100 42% 43%;
 
-  --secondary: 0 100% 5%;     /* #1a0000 */
-  --secondary-foreground: 0 100% 70%; /* #ff6666 */
-  --secondary-border: 0 100% 40% / 0.25;
+  /* Secondary: Kotlin purple dark */
+  --secondary: 258 100% 10%;       /* dark purple */
+  --secondary-foreground: 258 100% 75%;
+  --secondary-border: 258 100% 66% / 0.25;
 
-  --muted: 0 0% 9%;           /* #161616 */
-  --muted-foreground: 215 14% 46%; /* #6b7280 */
-  --muted-border: 0 0% 20%;
+  --muted: 120 8% 9%;
+  --muted-foreground: 215 14% 46%;
+  --muted-border: 120 8% 20%;
 
-  --accent: 0 100% 70%;       /* #ff6666 */
-  --accent-foreground: 0 0% 3%;
-  --accent-border: 0 100% 70%;
+  /* Accent: Kotlin purple #7F52FF */
+  --accent: 258 100% 66%;
+  --accent-foreground: 120 10% 4%;
+  --accent-border: 258 100% 66%;
 
   --destructive: 0 100% 40%;
   --destructive-foreground: 0 0% 100%;
   --destructive-border: 0 100% 40%;
 
   /* Sidebar fallback */
-  --sidebar: 0 0% 7%;
+  --sidebar: 120 8% 7%;
   --sidebar-foreground: 220 14% 91%;
-  --sidebar-border: 0 100% 40% / 0.25;
-  --sidebar-primary: 0 100% 40%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 100% 5%;
-  --sidebar-accent-foreground: 0 100% 70%;
-  --sidebar-ring: 0 100% 40%;
+  --sidebar-border: 100 42% 43% / 0.20;
+  --sidebar-primary: 100 42% 43%;
+  --sidebar-primary-foreground: 120 10% 4%;
+  --sidebar-accent: 258 100% 10%;
+  --sidebar-accent-foreground: 258 100% 75%;
+  --sidebar-ring: 100 42% 43%;
 }
 
 @layer base {
@@ -134,6 +136,10 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    /* Carbon fiber micro-texture */
+    background-image:
+      repeating-linear-gradient(0deg, rgba(109,179,63,0.008) 0px, rgba(109,179,63,0.008) 1px, transparent 1px, transparent 4px),
+      repeating-linear-gradient(90deg, rgba(109,179,63,0.008) 0px, rgba(109,179,63,0.008) 1px, transparent 1px, transparent 4px);
   }
 }
 
