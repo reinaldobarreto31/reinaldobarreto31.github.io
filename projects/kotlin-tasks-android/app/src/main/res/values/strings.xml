@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kotlin Tasks</string>
+    <string name="title_task_list">Minhas Tarefas</string>
+    <string name="title_add_task">Nova Tarefa</string>
+    <string name="title_edit_task">Editar Tarefa</string>
+    <string name="hint_task_title">Título da tarefa</string>
+    <string name="hint_task_description">Descrição (opcional)</string>
+    <string name="label_priority">Prioridade</string>
+    <string name="label_due_date">Data de vencimento</string>
+    <string name="priority_low">Baixa</string>
+    <string name="priority_medium">Média</string>
+    <string name="priority_high">Alta</string>
+    <string name="filter_all">Todas</string>
+    <string name="filter_pending">Pendentes</string>
+    <string name="filter_completed">Concluídas</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="empty_state_title">Nenhuma tarefa ainda</string>
+    <string name="empty_state_subtitle">Toque no botão + para criar sua primeira tarefa</string>
+    <string name="notification_channel_name">Lembretes de Tarefas</string>
+    <string name="notification_channel_description">Notificações de vencimento de tarefas</string>
+</resources>

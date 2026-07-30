@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/taskListFragment">
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.barreto.kotlintasks.presentation.tasklist.TaskListFragment"
+        android:label="@string/title_task_list"
+        tools:layout="@layout/fragment_task_list">
+
+        <!-- Navigate to add new task (no arg → id defaults to -1) -->
+        <action
+            android:id="@+id/action_taskList_to_addTask"
+            app:destination="@id/taskDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Navigate to edit existing task -->
+        <action
+            android:id="@+id/action_taskList_to_editTask"
+            app:destination="@id/taskDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.barreto.kotlintasks.presentation.taskdetail.TaskDetailFragment"
+        android:label="@string/title_add_task"
+        tools:layout="@layout/fragment_task_detail">
+
+        <!-- Optional task ID: -1L means create new -->
+        <argument
+            android:name="taskId"
+            app:argType="long"
+            android:defaultValue="-1" />
+
+    </fragment>
+
+</navigation>
