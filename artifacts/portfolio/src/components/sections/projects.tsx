@@ -60,7 +60,7 @@ const projects = [
     live: null,
     github: `${GITHUB}/stockwise-go`,
     highlight: true,
-    comingSoon: true,
+    comingSoon: false,
     badge: null,
   },
   {
