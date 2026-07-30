@@ -116,9 +116,8 @@ export function HeroSection() {
               Contato
             </motion.a>
             <motion.a
-              href="/curriculo.html?auto=pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/curriculo.pdf"
+              download="Curriculo_Reinaldo_Barreto.pdf"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center gap-2 border border-primary/50 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all shadow-[0_0_12px_rgba(109,179,63,0.15)]"

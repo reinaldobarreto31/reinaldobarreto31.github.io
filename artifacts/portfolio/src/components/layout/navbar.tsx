@@ -63,9 +63,8 @@ export function Navbar() {
 
         {/* Currículo button */}
         <a
-          href="/curriculo.html?auto=pdf"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/curriculo.pdf"
+          download="Curriculo_Reinaldo_Barreto.pdf"
           className="hidden md:flex items-center gap-1.5 text-xs font-semibold border border-primary/40 text-primary px-3 py-1.5 rounded-md hover:bg-primary/10 transition-colors shadow-[0_0_8px_rgba(109,179,63,0.15)]"
         >
           Baixar CV
