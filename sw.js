@@ -1,20 +1,12 @@
-const CACHE_NAME = 'reinaldo-portfolio-v2';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.webmanifest'
-];
+// Self-destruct: clear all caches and unregister this service worker
+self.addEventListener('install', () => self.skipWaiting());
 
-self.addEventListener('install', event => {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    caches.keys()
+      .then(keys => Promise.all(keys.map(key => caches.delete(key))))
+      .then(() => self.registration.unregister())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then(clients => clients.forEach(client => client.navigate(client.url)))
   );
 });
