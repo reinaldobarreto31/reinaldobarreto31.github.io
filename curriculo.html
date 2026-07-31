@@ -52,7 +52,16 @@
       gap: 20px;
       border-bottom: 3px solid var(--red);
     }
-    .header-left {}
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-photo {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
     .header-name {
       font-family: 'JetBrains Mono', monospace;
       font-size: 21px;
@@ -261,9 +270,12 @@
   <!-- ══ HEADER ══ -->
   <div class="header">
     <div class="header-left">
+      <img src="foto-reinaldo.png" alt="Reinaldo Barreto" class="header-photo" />
+      <div>
       <div class="header-name">Reinaldo Barreto da Silva</div>
       <div class="header-role">Engenheiro de Software · Ruby on Rails</div>
       <div class="header-sub">APIs RESTful · TDD · OpenAPI 3 · PostgreSQL · Docker</div>
+      </div><!-- /header-text -->
     </div>
     <div class="header-right">
       <div class="contact-line"><span class="icon">📞</span> +55 (47) 98830-2308</div>
