@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { BriefcaseBusiness, MapPin, CalendarDays, Code2, Copy, Check } from "lucide-react";
 import { useState } from "react";
-import { SiJava, SiSpringboot, SiVueDotJs, SiPostgresql, SiLinux, SiAngular, SiReact, SiMysql } from "react-icons/si";
+import { SiSpringboot, SiVuedotjs, SiPostgresql, SiLinux, SiAngular, SiReact, SiMysql } from "react-icons/si";
 
 type Experience = {
   company: string;
@@ -41,9 +41,9 @@ const experiences: Experience[] = [
       "Desenvolvimento e manutenção de soluções web para órgãos públicos estaduais do Governo da Bahia, com foco em sistemas críticos de escala, integrações entre módulos e modernização de legado. Participação em squad com rituais ágeis, refinamento, estimativas e entregas contínuas em pipeline estruturado.",
     sector: "Governo do Estado da Bahia · sistemas públicos estaduais",
     stack: [
-      { label: "Java", icon: <SiJava size={13} />, tone: "tech-ruby" },
+      { label: "Java", icon: <Code2 size={13} />, tone: "tech-ruby" },
       { label: "Spring-Boot", icon: <SiSpringboot size={13} />, tone: "tech-rails" },
-      { label: "Vue.js", icon: <SiVueDotJs size={13} />, tone: "tech-ts" },
+      { label: "Vue.js", icon: <SiVuedotjs size={13} />, tone: "tech-ts" },
       { label: "PostgreSQL", icon: <SiPostgresql size={13} />, tone: "tech-postgres" },
       { label: "Linux", icon: <SiLinux size={13} />, tone: "tech-docker" },
     ],
@@ -59,7 +59,7 @@ const experiences: Experience[] = [
       "Atuação em ambiente de alta responsabilidade para segurança pública (SSP-BA / Polícia Militar da Bahia), com foco em autenticação forte, autorização granular, auditoria e integridade de dados sensíveis. Entregas com práticas de qualidade, testes e revisão de código em stack Java + frontend moderno.",
     sector: "SSP-BA · PM-BA · Segurança Pública",
     stack: [
-      { label: "Java", icon: <SiJava size={13} />, tone: "tech-ruby" },
+      { label: "Java", icon: <Code2 size={13} />, tone: "tech-ruby" },
       { label: "Spring-Boot", icon: <SiSpringboot size={13} />, tone: "tech-rails" },
       { label: "Spring-Security", tone: "tech-rails" },
       { label: "OAuth2", tone: "tech-jwt" },
@@ -78,9 +78,9 @@ const experiences: Experience[] = [
       "Desenvolvimento e sustentação de ERP Municipal usado em diversas prefeituras do sul da Bahia (Ilhéus, Juazeiro, Candeias, Porto Seguro, Lauro de Freitas). Implantação, customização, automação de módulos pequenos (Hubs/relatórios) e regras de negócio específicas de gestão pública com foco em estabilidade e performance em bases de produção.",
     sector: "ERP Municipal · Ilhéus · Juazeiro · Candeias · Porto-Seguro · Lauro-de-Freitas",
     stack: [
-      { label: "Java-EE", icon: <SiJava size={13} />, tone: "tech-ruby" },
+      { label: "Java-EE", icon: <Code2 size={13} />, tone: "tech-ruby" },
       { label: "Spring-Boot", icon: <SiSpringboot size={13} />, tone: "tech-rails" },
-      { label: "Vue.js", icon: <SiVueDotJs size={13} />, tone: "tech-ts" },
+      { label: "Vue.js", icon: <SiVuedotjs size={13} />, tone: "tech-ts" },
       { label: "Angular", icon: <SiAngular size={13} />, tone: "tech-ruby" },
       { label: "MySQL", icon: <SiMysql size={13} />, tone: "tech-openapi" },
       { label: "Linux", icon: <SiLinux size={13} />, tone: "tech-docker" },

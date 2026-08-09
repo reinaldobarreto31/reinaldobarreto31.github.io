@@ -3,6 +3,23 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { Activity, AlertCircle, CheckCircle2, Clock, ServerCrash, AlertTriangle } from "lucide-react";
 
+type ServiceStatusInfo = {
+  name: string;
+  region: string;
+  uptime: number;
+  latencyMs: number;
+  state: "operational" | "degraded" | "maintenance" | "down" | string;
+};
+
+type IncidentInfo = {
+  id: string | number;
+  title: string;
+  service: string;
+  startedAt: string;
+  summary: string;
+  severity: "critical" | "high" | "medium" | "low" | "info" | string;
+};
+
 export function StatusBoardSection() {
   const { data: statusData, isLoading: isLoadingStatus } = useGetServiceStatus({
     query: {
@@ -103,7 +120,7 @@ export function StatusBoardSection() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {statusData?.services?.map((service, i) => (
+                      {statusData?.services?.map((service: ServiceStatusInfo, i: number) => (
                         <motion.tr 
                           key={service.name}
                           initial={{ opacity: 0, x: -10 }}
@@ -150,7 +167,7 @@ export function StatusBoardSection() {
                   </div>
                 ) : incidentsData && incidentsData.length > 0 ? (
                   <div className="divide-y divide-border">
-                    {incidentsData.map((incident) => (
+                    {incidentsData.map((incident: IncidentInfo) => (
                       <div key={incident.id} className="p-4 hover:bg-muted/50 transition-colors" data-testid={`item-incident-${incident.id}`}>
                         <div className="flex items-start gap-3">
                           <div className="mt-0.5">{getSeverityIcon(incident.severity)}</div>

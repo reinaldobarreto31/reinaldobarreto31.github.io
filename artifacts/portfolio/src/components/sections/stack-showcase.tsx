@@ -7,7 +7,7 @@ type StackCard = {
   name: string;
   tagline: string;
   tone: string;
-  frontIcon: "ruby" | "rails" | "postgres" | "docker" | "rspec" | "sidekiq" | "devise" | "pundit" | "hotwire" | "redis" | "api" | "observability";
+  frontIcon: "ruby" | "rails" | "postgres" | "docker" | "rspec" | "sidekiq" | "devise" | "pundit" | "hotwire" | "redis" | "api" | "observability" | "satellite";
   frontDetail: string;
   backTitle: string;
   backSubtitle: string;
