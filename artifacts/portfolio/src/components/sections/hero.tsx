@@ -15,27 +15,51 @@ const STACK = [
 export function HeroSection() {
   return <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
-    <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,.018) 3px, rgba(255,255,255,.018) 4px)" }} />
     <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-70 z-10" />
-    <div className="container mx-auto px-4 z-10 grid md:grid-cols-2 gap-12 items-center">
+
+    <div className="track-cinema absolute inset-0 z-0">
+      <div className="track-cinema-scene absolute inset-0">
+        <div className="track-cinema-vanish" />
+        <div className="tracks-dream tracks-dream-bg" />
+        <div className="tracks-dream tracks-dream-fg" />
+        <div className="tracks-sleeper tracks-sleeper-bg" />
+        <div className="tracks-sleeper tracks-sleeper-fg" />
+        <div className="tracks-rails tracks-rails-left" />
+        <div className="tracks-rails tracks-rails-right" />
+        <div className="tracks-ballast tracks-ballast-far" />
+        <div className="tracks-ballast tracks-ballast-near" />
+        <div className="track-night-sky" />
+        <div className="track-night-vignette" />
+
+        <div className="track-cinema-image absolute inset-[-16%]">
+          <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-[center_45%] track-cinema-image-fx" />
+        </div>
+
+        <TrackLocomotive />
+
+        <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[46%] pointer-events-none" />
+        <div className="track-top-mask absolute inset-x-0 top-0 h-[30%] pointer-events-none" />
+      </div>
+    </div>
+
+    <div className="container mx-auto px-4 z-20 grid md:grid-cols-2 gap-12 items-center">
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .7 }} className="flex flex-col gap-6">
         <div className="rails-badge inline-flex items-center gap-3 px-4 py-2 rounded-full w-fit text-sm font-mono tracking-tight"><SiRubyonrails className="text-[#cc0000] text-lg shrink-0" /><span className="rails-shine font-bold">Ruby on Rails Developer</span></div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">Reinaldo<br /><span className="text-muted-foreground">Barreto</span></h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed" data-testid="text-hero-description">Desenvolvedor <span className="text-primary font-bold font-mono">Ruby on Rails</span> focado em produtos web bem estruturados, APIs REST, bancos de dados e entregas que transformam ideias em aplicacoes confiaveis.</p>
         <div className="flex flex-wrap gap-2">{STACK.map(({ label, icon, tone }, i) => <motion.span key={label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .35 + i * .08 }} whileHover={{ y: -3, scale: 1.04 }} className={`rails-pill ${tone} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-bold font-mono`}>{icon}{label}</motion.span>)}</div>
-        <div className="flex flex-wrap items-center gap-3 mt-2"><motion.a href="#projects" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="rails-button px-6 py-3 rounded-lg font-semibold text-sm inline-flex items-center gap-2">Ver projetos <ArrowDownRight size={16} /></motion.a><motion.a href="#contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-border text-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary/60 hover:bg-primary/5 transition-all">Vamos conversar</motion.a><motion.a href="/curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-primary/45 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all">Curriculo PDF</motion.a></div>
+        <div className="flex flex-wrap items-center gap-3 mt-2"><motion.a href="#projects" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="rails-button px-6 py-3 rounded-lg font-semibold text-sm inline-flex items-center gap-2">Ver projetos <ArrowDownRight size={16} /></motion.a><motion.a href="#contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-border text-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary/60 hover:bg-primary/5 transition-all backdrop-blur-[2px]">Vamos conversar</motion.a><motion.a href="/curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-primary/45 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all backdrop-blur-[2px]">Curriculo PDF</motion.a></div>
         <div className="flex items-center gap-4 mt-1"><a href="https://github.com/reinaldobarreto31" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link"><SiGithub size={21} /></a><a href="https://linkedin.com/in/reinaldo-barreto-2a4ba2116" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link">in</a><a href="#contact" aria-label="Email" className="social-link"><Mail size={21} /></a></div>
       </motion.div>
+
       <motion.div initial={{ opacity: 0, scale: .92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .9, delay: .15 }} className="relative flex min-h-[25rem] items-center justify-center md:justify-end">
-        <div className="track-backdrop absolute left-1/2 top-1/2 z-0 h-[27rem] w-[27rem] -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-hidden rounded-[2rem]">
-          <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-center" />
-          <TrackLocomotive />
-        </div>
         <div className="profile-frame group relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden z-10" tabIndex={0}>
           <img src={fotoRei} alt="Reinaldo Barreto" className="profile-photo w-full h-full object-cover object-center" data-testid="img-hero-profile" />
         </div>
         <div className="pointer-events-none absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full border border-dashed border-primary/35 animate-[spin_60s_linear_infinite]" /><div className="pointer-events-none absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-[128%] h-[128%] rounded-full border border-[#bd93f9]/30 animate-[spin_42s_linear_infinite_reverse]" />
-        <motion.div animate={{ y: [0, -9, 0], rotateY: [0, 18, 0], rotateZ: [-2, 3, -2] }} transition={{ duration: 4, repeat: Infinity }} className="ruby-gem ruby-gem-large absolute top-4 right-2 md:right-0 z-20"><SiRuby className="text-4xl" /></motion.div><motion.div animate={{ y: [0, 8, 0], rotateY: [0, -14, 0] }} transition={{ duration: 4.7, repeat: Infinity }} className="ruby-gem ruby-gem-rails absolute bottom-7 left-1 md:left-3 z-20"><SiRubyonrails className="text-2xl" /></motion.div><motion.div animate={{ y: [0, -5, 0], rotateZ: [0, 10, 0] }} transition={{ duration: 3.8, repeat: Infinity, delay: .4 }} className="ruby-gem ruby-gem-small absolute top-24 left-3 md:left-5 z-20"><SiRuby className="text-xl" /></motion.div>
+        <motion.div animate={{ y: [0, -18, 4, -12, 0], x: [0, 8, -5, 10, 0], rotateY: [0, 28, -14, 30, 0], rotateZ: [-4, 10, -6, 8, -4], scale: [1, 1.12, 0.96, 1.08, 1] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }} className="ruby-gem ruby-gem-large absolute top-0 right-0 md:right-2 z-20"><SiRuby className="text-5xl" /></motion.div>
+        <motion.div animate={{ y: [0, 16, -6, 12, 0], x: [0, -10, 6, -8, 0], rotateY: [0, -22, 12, -26, 0], rotateZ: [3, -8, 14, -5, 3], scale: [1, 1.15, 0.94, 1.1, 1] }} transition={{ duration: 7.4, repeat: Infinity, ease: "easeInOut", delay: .8 }} className="ruby-gem ruby-gem-rails absolute bottom-4 left-0 md:left-2 z-20"><SiRubyonrails className="text-3xl" /></motion.div>
+        <motion.div animate={{ y: [0, -14, 6, -8, 2, 0], x: [0, 6, -8, 4, -6, 0], rotateZ: [0, 18, -12, 22, -8, 0], scale: [1, 1.2, 0.92, 1.14, 0.98, 1] }} transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: .2 }} className="ruby-gem ruby-gem-small absolute top-20 left-1 md:left-4 z-20"><SiRuby className="text-2xl" /></motion.div>
         <div className="absolute bottom-3 right-0 bg-card/90 border border-border px-3 py-2 rounded-md shadow-lg flex items-center gap-2 z-20 backdrop-blur-sm"><span className="w-2 h-2 rounded-full bg-[#50fa7b] animate-pulse" /><span className="text-xs text-muted-foreground font-mono">rails.status: ready</span></div>
       </motion.div>
     </div>

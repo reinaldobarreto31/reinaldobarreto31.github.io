@@ -3,8 +3,24 @@
 @plugin "@tailwindcss/typography";
 
 @keyframes shine-sweep { 0% { background-position: -300% center; } 100% { background-position: 300% center; } }
-@keyframes locomotive-run { 0% { offset-distance: 0%; opacity: 0; } 6% { opacity: 1; } 94% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
-@keyframes smoke-puff { 0%, 100% { opacity: .25; transform: translateY(0); } 50% { opacity: .85; transform: translateY(-3px); } }
+@keyframes locomotive-run { 0% { offset-distance: -4%; opacity: 0; filter: drop-shadow(0 5px 12px rgba(20,21,28,.55)); } 7% { opacity: 1; } 50% { filter: drop-shadow(0 6px 20px rgba(255,107,107,.5)) drop-shadow(0 3px 7px rgba(20,21,28,.78)); } 93% { opacity: 1; } 100% { offset-distance: 104%; opacity: 0; filter: drop-shadow(0 5px 12px rgba(20,21,28,.55)); } }
+@keyframes smoke-puff-1 { 0%, 100% { opacity: .2; transform: translateY(0) scale(1); stroke-dashoffset: 0; } 50% { opacity: .95; transform: translateY(-9px) scale(1.3); stroke-dashoffset: -9; } }
+@keyframes smoke-puff-2 { 0%, 100% { opacity: .15; transform: translateY(0) scale(.95) translateX(0); } 40% { opacity: .9; transform: translateY(-13px) scale(1.45) translateX(3.5px); } }
+@keyframes smoke-puff-3 { 0%, 100% { opacity: .1; transform: translateY(0) scale(1); } 60% { opacity: .72; transform: translateY(-7px) scale(1.18) translateX(-4px); } }
+@keyframes spark-flicker { 0%, 100% { opacity: 0; transform: translate(0,0) scale(.4); } 10% { opacity: 1; transform: translate(1px,-1px) scale(1.05); } 30% { opacity: .8; transform: translate(4px,-5px) scale(.92); } 55% { opacity: .3; transform: translate(8px,-3px) scale(.55); } 70% { opacity: 0; transform: translate(11px,-6px) scale(.2); } }
+@keyframes headlight-pulse { 0%, 100% { opacity: .74; } 50% { opacity: 1; } }
+@keyframes sleepers-forever-fast { 0% { transform: scaleY(2.4) translateY(-56%); filter: blur(0px); opacity: .82; } 100% { transform: scaleY(2.4) translateY(160%); filter: blur(0px); opacity: .82; } }
+@keyframes sleepers-forever-slow { 0% { transform: scaleY(2.2) translateY(-60%); filter: blur(1px); opacity: .6; } 100% { transform: scaleY(2.2) translateY(165%); filter: blur(1px); opacity: .6; } }
+@keyframes dream-rush-fast { 0% { background-position-y: -180%, 180%, center; } 100% { background-position-y: 180%, -180%, center; } }
+@keyframes dream-rush-slow { 0% { background-position-y: -130%, 130%, center; } 100% { background-position-y: 130%, -130%, center; } }
+@keyframes ballast-surge-far { 0% { background-position-y: -120%; opacity: .55; } 100% { background-position-y: 120%; opacity: .55; } }
+@keyframes ballast-surge-near { 0% { background-position-y: -240%; opacity: .78; } 100% { background-position-y: 240%; opacity: .78; } }
+@keyframes trio-orb-run { 0% { offset-distance: -6%; opacity: 0; transform: scale(.55); } 12% { opacity: .9; transform: scale(1.08); } 88% { opacity: .9; transform: scale(1.08); } 100% { offset-distance: 106%; opacity: 0; transform: scale(.55); } }
+@keyframes orb-glow { 0%, 100% { filter: drop-shadow(0 0 5px currentColor) drop-shadow(0 0 12px currentColor); } 50% { filter: drop-shadow(0 0 10px currentColor) drop-shadow(0 0 26px currentColor); } }
+@keyframes rails-speed-line { 0% { transform: translateY(-60%) scaleY(0.1); opacity: 0; } 15% { opacity: .85; } 85% { opacity: .7; } 100% { transform: translateY(160%) scaleY(1); opacity: 0; } }
+@keyframes light-trail-fade { 0% { opacity: 0; } 8% { opacity: .68; } 92% { opacity: .52; } 100% { opacity: 0; } }
+@keyframes profile-tilt-intense { 0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); } 25% { transform: translateY(-6px) rotateX(3deg) rotateY(-4deg); } 75% { transform: translateY(4px) rotateX(-2deg) rotateY(3deg); } }
+@keyframes image-slow-rush { 0% { transform: scale(1.24) translateY(-1%) translateX(0); } 50% { transform: scale(1.38) translateY(-4.5%) translateX(.5%); } 100% { transform: scale(1.24) translateY(-1%) translateX(0); } }
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -36,24 +52,124 @@
 .rails-badge, .rails-panel, .rails-project-card, .rails-experience-card, .rails-mini-card { background: linear-gradient(145deg, rgba(68,71,90,.86), rgba(40,42,54,.94)); border: 1px solid rgba(248,248,242,.1); box-shadow: 0 14px 34px rgba(20,21,28,.32), inset 0 1px rgba(255,255,255,.045); }
 .rails-button { color: white; background: linear-gradient(135deg, #b91f32, #e33446); box-shadow: 0 10px 26px rgba(211,43,60,.28), inset 0 1px rgba(255,255,255,.22); transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }.rails-button:hover { filter: brightness(1.1); box-shadow: 0 14px 34px rgba(211,43,60,.42), inset 0 1px rgba(255,255,255,.22); }
 .rails-pill { color: var(--tech-color, #ff5555); background: rgba(68,71,90,.7); border-color: color-mix(in srgb, var(--tech-color, #ff5555) 34%, rgba(248,248,242,.12)); box-shadow: inset 0 1px rgba(255,255,255,.055), 0 7px 16px rgba(20,21,28,.2); }
-.profile-frame { border: 4px solid hsl(var(--card)); box-shadow: 0 0 0 2px rgba(255,85,85,.6), 0 0 58px rgba(204,0,0,.3); cursor: pointer; }
+.profile-frame { border: 4px solid hsl(var(--card)); box-shadow: 0 0 0 2px rgba(255,85,85,.6), 0 0 58px rgba(204,0,0,.3); cursor: pointer; animation: profile-tilt-intense 7s ease-in-out infinite; }
 .profile-photo { filter: grayscale(1) saturate(.4) brightness(.92); transition: filter .55s ease, transform .55s ease; }
 .profile-frame:hover .profile-photo, .profile-frame:focus-visible .profile-photo { filter: grayscale(0) saturate(1.12) contrast(1.04) brightness(1.02); transform: scale(1.02); }
 @media (hover: none) { .profile-photo { filter: grayscale(.35) saturate(.9) brightness(.96); } }
-.track-backdrop { opacity: .9; transform-style: preserve-3d; transform: translate(-50%, -50%) perspective(900px) rotateX(6deg) rotateY(-8deg) scale(.96); box-shadow: -18px 24px 44px rgba(20,21,28,.62), 0 0 48px rgba(204,0,0,.23); border: 1px solid rgba(255,85,85,.28); mask-image: radial-gradient(ellipse 78% 73% at 50% 52%, #000 45%, transparent 82%); }
-.track-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,85,85,.13), transparent 42%, rgba(40,42,54,.38)); box-shadow: inset 0 0 42px rgba(20,21,28,.7); pointer-events: none; }
-.track-train { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.track-locomotive { position: absolute; width: 2.75rem; height: 1.85rem; offset-path: path("M 36 392 C 108 318, 168 248, 248 178 S 360 92, 396 58"); offset-rotate: auto; animation: locomotive-run 11s linear infinite; filter: drop-shadow(0 4px 10px rgba(20,21,28,.65)); }
-.track-locomotive-trail { animation-delay: -.55s; opacity: .92; }
-.track-locomotive-svg { width: 100%; height: 100%; display: block; }
-.track-smoke { animation: smoke-puff 1.4s ease-in-out infinite; }
-.track-smoke-delay { animation-delay: .45s; }
-.track-car { position: absolute; display: block; height: .45rem; border-radius: 2px; background: linear-gradient(90deg, #6272a4, #44475a); border: 1px solid rgba(189,147,249,.35); top: 50%; transform: translateY(-50%); }
-.track-car-1 { width: .85rem; left: -.95rem; }
-.track-car-2 { width: .65rem; left: -1.85rem; opacity: .85; }
-@media (prefers-reduced-motion: reduce) { .track-locomotive { animation: none; offset-distance: 62%; opacity: .85; } .track-smoke, .track-smoke-delay { animation: none; } }
+.track-cinema { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.track-cinema-scene { position: absolute; inset: 0; transform-origin: 50% 26%; perspective: 1500px; perspective-origin: 50% 24%; }
+.track-cinema-vanish { position: absolute; top: 22%; left: 50%; transform: translateX(-50%); width: 14rem; height: 14rem; border-radius: 999px; background: radial-gradient(circle at 50% 50%, rgba(255,107,107,.22) 0%, rgba(189,147,249,.1) 32%, transparent 70%); filter: blur(6px); pointer-events: none; }
+.track-cinema-image { position: absolute; inset: -16%; z-index: 1; pointer-events: none; }
+.track-cinema-image-fx { width: 100%; height: 100%; object-fit: cover; animation: image-slow-rush 13s ease-in-out infinite; transform-origin: 50% 30%; filter: saturate(1.22) contrast(1.12) brightness(.88) hue-rotate(-6deg); opacity: .78; }
+
+.tracks-dream { position: absolute; left: 50%; top: 0; bottom: -8%; width: 82%; transform: translateX(-50%) perspective(1400px) rotateX(66deg); transform-origin: 50% 22%; z-index: 2; pointer-events: none; }
+.tracks-dream-bg { background:
+    linear-gradient(180deg, rgba(20,21,28,.22) 0%, transparent 30%, rgba(255,107,107,.04) 68%, transparent 100%),
+    repeating-linear-gradient(180deg,
+      transparent 0, transparent 26px,
+      rgba(255,107,107,.12) 26px, rgba(255,107,107,.12) 28.5px,
+      transparent 28.5px, transparent 54px,
+      rgba(189,147,249,.09) 54px, rgba(189,147,249,.09) 56.5px,
+      transparent 56.5px),
+    repeating-linear-gradient(180deg,
+      transparent 0, transparent 13px,
+      rgba(255,255,255,.03) 13px, rgba(255,255,255,.03) 14px,
+      transparent 14px);
+  background-size: 100% 220%, 100% 220%, 100% 220%;
+  animation: dream-rush-slow 3.8s linear infinite;
+  mix-blend-mode: screen;
+  opacity: .62;
+}
+.tracks-dream-fg { background:
+    repeating-linear-gradient(180deg,
+      transparent 0, transparent 15px,
+      rgba(255,107,107,.22) 15px, rgba(255,107,107,.22) 18px,
+      transparent 18px, transparent 32px,
+      rgba(255,209,102,.1) 32px, rgba(255,209,102,.1) 34px,
+      transparent 34px);
+  background-size: 100% 220%, 100% 220%;
+  animation: dream-rush-fast 1.9s linear infinite;
+  mix-blend-mode: screen;
+  opacity: .58;
+}
+
+.tracks-sleeper { position: absolute; left: 50%; transform: translateX(-50%); transform-origin: 50% 22%; pointer-events: none; z-index: 3; }
+.tracks-sleeper-bg { top: 20%; width: 46%; height: 82%; clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 20px, rgba(140,120,100,.36) 20px, rgba(140,120,100,.36) 26px, transparent 26px); background-size: 100% 200%; animation: sleepers-forever-slow 2.9s linear infinite; filter: brightness(.78) saturate(.6); mix-blend-mode: multiply; }
+.tracks-sleeper-fg { top: 18%; width: 56%; height: 86%; clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 16px, rgba(160,140,118,.42) 16px, rgba(160,140,118,.42) 22px, transparent 22px); background-size: 100% 200%; animation: sleepers-forever-fast 1.35s linear infinite; filter: brightness(.85) saturate(.65); mix-blend-mode: multiply; }
+
+.tracks-rails { position: absolute; left: 50%; transform: translateX(-50%); top: 22%; width: 2px; height: 78%; transform-origin: 50% 0%; pointer-events: none; z-index: 4; }
+.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background: linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px)); transform: translateX(-50%) translateX(-23%) skewX(-16deg); filter: drop-shadow(-6px 0 10px rgba(204,0,0,.25)); animation: sleepers-forever-fast 1.25s linear infinite; }
+.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background: linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px)); transform: translateX(-50%) translateX(23%) skewX(16deg); filter: drop-shadow(6px 0 10px rgba(204,0,0,.25)); animation: sleepers-forever-fast 1.25s linear infinite; animation-delay: -.05s; }
+
+.tracks-ballast { position: absolute; left: 50%; top: 20%; transform: translateX(-50%); width: 72%; height: 80%; transform-origin: 50% 22%; pointer-events: none; z-index: 2; mix-blend-mode: overlay; }
+.tracks-ballast-far { clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 4px, rgba(80,60,50,.35) 4px, rgba(80,60,50,.35) 7px, transparent 7px), repeating-linear-gradient(45deg, transparent 0, transparent 5px, rgba(120,90,70,.22) 5px, rgba(120,90,70,.22) 8px, transparent 8px); background-size: 18px 18px, 22px 22px, 100% 200%; animation: ballast-surge-far 4.4s linear infinite; opacity: .55; }
+.tracks-ballast-near { clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 3px, rgba(100,75,60,.4) 3px, rgba(100,75,60,.4) 6px, transparent 6px), repeating-linear-gradient(45deg, transparent 0, transparent 4px, rgba(140,110,80,.25) 4px, rgba(140,110,80,.25) 7px, transparent 7px); background-size: 14px 14px, 16px 16px, 100% 200%; animation: ballast-surge-near 2.1s linear infinite; opacity: .72; }
+
+.track-night-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; background:
+    radial-gradient(ellipse 72% 46% at 50% 18%, rgba(40,10,30,.6) 0%, rgba(10,8,20,.75) 42%, rgba(0,0,0,.92) 80%),
+    repeating-radial-gradient(circle at 22% 14%, rgba(255,209,102,.28) 0 1px, transparent 1px 60px),
+    repeating-radial-gradient(circle at 68% 10%, rgba(189,147,249,.22) 0 1px, transparent 1px 80px),
+    repeating-radial-gradient(circle at 82% 22%, rgba(255,255,255,.2) 0 1px, transparent 1px 100px);
+  opacity: .78;
+}
+.track-night-vignette { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: radial-gradient(ellipse 64% 58% at 50% 40%, transparent 42%, rgba(20,21,28,.6) 80%, rgba(0,0,0,.88) 100%), linear-gradient(90deg, rgba(0,0,0,.7) 0%, transparent 18%, transparent 82%, rgba(0,0,0,.72) 100%); }
+.track-bottom-mask { z-index: 6; background: linear-gradient(180deg, transparent 0%, rgba(29,30,38,.5) 42%, hsl(var(--background)) 100%); }
+.track-top-mask { z-index: 6; background: linear-gradient(0deg, transparent 0%, rgba(0,0,0,.45) 45%, hsl(var(--background)) 100%); }
+
+.track-train { position: absolute; inset: -4%; z-index: 7; pointer-events: none; }
+.track-train-main { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
+.track-locomotive { position: absolute; width: 4.6rem; height: 3rem; offset-path: path("M -30 880 C 200 770, 400 650, 620 520 S 1000 280, 1240 130"); offset-rotate: auto; animation: locomotive-run 10s cubic-bezier(.42,0,.58,1) infinite; animation-delay: -.6s; }
+@media (min-width: 768px) { .track-locomotive { width: 6rem; height: 4rem; offset-path: path("M -50 980 C 300 870, 620 740, 980 600 S 1620 330, 1980 140"); } }
+.track-locomotive-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.track-headlight-beam { animation: headlight-pulse 1.2s ease-in-out infinite; transform-origin: left center; }
+.track-headlight-core { animation: headlight-pulse .9s ease-in-out infinite; }
+.track-smoke-1 { animation: smoke-puff-1 1.1s ease-in-out infinite; stroke-dasharray: 40 60; }
+.track-smoke-2 { animation: smoke-puff-2 1.6s ease-in-out infinite; animation-delay: .2s; stroke-dasharray: 35 65; }
+.track-smoke-3 { animation: smoke-puff-3 1.3s ease-in-out infinite; animation-delay: -.15s; stroke-dasharray: 30 70; }
+.track-spark-1 { animation: spark-flicker 0.9s ease-out infinite; }
+.track-spark-2 { animation: spark-flicker 1.1s ease-out infinite; animation-delay: .15s; }
+.track-spark-3 { animation: spark-flicker 0.75s ease-out infinite; animation-delay: .35s; }
+.track-spark-4 { animation: spark-flicker 1.3s ease-out infinite; animation-delay: -.1s; }
+.track-trail-cars { position: absolute; width: 4.6rem; height: 3rem; offset-path: path("M -30 880 C 200 770, 400 650, 620 520 S 1000 280, 1240 130"); offset-rotate: auto; animation: locomotive-run 10s cubic-bezier(.42,0,.58,1) infinite; }
+@media (min-width: 768px) { .track-trail-cars { width: 6rem; height: 4rem; offset-path: path("M -50 980 C 300 870, 620 740, 980 600 S 1620 330, 1980 140"); } }
+.track-car-box { position: absolute; top: 50%; transform: translateY(-50%); }
+.track-car-svg { display: block; overflow: visible; }
+.track-car-passenger { width: 4rem; height: 2.6rem; left: -4.3rem; opacity: .95; }
+@media (min-width: 768px) { .track-car-passenger { width: 5.2rem; height: 3.4rem; left: -5.6rem; } }
+.track-car-passenger .track-car-svg { width: 100%; height: 100%; }
+.track-car-cargo { width: 3.7rem; height: 2.5rem; left: -8.3rem; opacity: .92; }
+@media (min-width: 768px) { .track-car-cargo { width: 4.8rem; height: 3.2rem; left: -10.7rem; } }
+.track-car-cargo .track-car-svg { width: 100%; height: 100%; }
+.track-car-caboose { width: 3.3rem; height: 2.45rem; left: -12.1rem; opacity: .88; }
+@media (min-width: 768px) { .track-car-caboose { width: 4.3rem; height: 3.1rem; left: -15.6rem; } }
+.track-car-caboose .track-car-svg { width: 100%; height: 100%; }
+.track-light-trail { position: absolute; inset: 0; z-index: -1; offset-path: path("M -30 880 C 200 770, 400 650, 620 520 S 1000 280, 1240 130"); offset-rotate: auto; animation: locomotive-run 10s cubic-bezier(.42,0,.58,1) infinite, light-trail-fade 10s ease-in-out infinite; animation-delay: -.6s, -.6s; background: linear-gradient(90deg, transparent 0%, rgba(255,107,107,.38) 30%, rgba(255,184,108,.58) 58%, rgba(255,243,160,.25) 100%); filter: blur(10px); width: 9rem; height: 1.6rem; margin-top: .8rem; margin-left: -2.4rem; border-radius: 999px; }
+@media (min-width: 768px) { .track-light-trail { width: 12rem; height: 2.1rem; offset-path: path("M -50 980 C 300 870, 620 740, 980 600 S 1620 330, 1980 140"); } }
+.track-ghost { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.trio-ghost-a { offset-path: path("M 10 840 C 240 730, 450 610, 660 490 S 1020 260, 1260 120"); offset-rotate: auto; animation: trio-orb-run 12s ease-in-out infinite; animation-delay: -1.2s; }
+.trio-ghost-b { offset-path: path("M -50 900 C 180 790, 380 670, 600 550 S 960 310, 1200 160"); offset-rotate: auto; animation: trio-orb-run 12s ease-in-out infinite; animation-delay: -5.1s; }
+.trio-ghost-c { offset-path: path("M 30 860 C 260 750, 470 630, 680 510 S 1040 280, 1280 130"); offset-rotate: auto; animation: trio-orb-run 12s ease-in-out infinite; animation-delay: -8.8s; }
+@media (min-width: 768px) {
+  .trio-ghost-a { offset-path: path("M 20 940 C 320 840, 660 720, 1020 580 S 1640 320, 1980 130"); }
+  .trio-ghost-b { offset-path: path("M -60 990 C 250 890, 580 770, 940 640 S 1560 380, 1920 200"); }
+  .trio-ghost-c { offset-path: path("M 50 950 C 360 850, 700 730, 1060 590 S 1680 330, 2020 140"); }
+}
+.ghost-orb { width: 1.7rem; height: 1.7rem; border-radius: 999px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: orb-glow 2.4s ease-in-out infinite; mix-blend-mode: screen; }
+@media (min-width: 768px) { .ghost-orb { width: 2rem; height: 2rem; } }
+.orb-primary { background: radial-gradient(circle, #ffffff 0%, #ff6b6b 30%, #cc0000 70%, transparent 100%); color: #ff5555; box-shadow: 0 0 14px #ff5555, 0 0 30px rgba(255,85,85,.55); }
+.orb-secondary { background: radial-gradient(circle, #ffffff 0%, #bd93f9 30%, #6272a4 70%, transparent 100%); color: #bd93f9; box-shadow: 0 0 14px #bd93f9, 0 0 30px rgba(189,147,249,.55); width: 1.4rem; height: 1.4rem; animation-delay: .5s; }
+@media (min-width: 768px) { .orb-secondary { width: 1.7rem; height: 1.7rem; } }
+.orb-accent { background: radial-gradient(circle, #ffffff 0%, #ff79c6 30%, #b91f32 70%, transparent 100%); color: #ff79c6; box-shadow: 0 0 13px #ff79c6, 0 0 26px rgba(255,121,198,.5); width: 1.2rem; height: 1.2rem; animation-delay: -1.1s; }
+@media (min-width: 768px) { .orb-accent { width: 1.5rem; height: 1.5rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .track-locomotive, .track-trail-cars, .track-light-trail, .trio-ghost-a, .trio-ghost-b, .trio-ghost-c { animation: none; offset-distance: 62%; opacity: .85; }
+  .track-smoke-1, .track-smoke-2, .track-smoke-3, .track-spark-1, .track-spark-2, .track-spark-3, .track-spark-4, .track-headlight-beam, .track-headlight-core, .ghost-orb, .profile-frame, .tracks-dream-bg, .tracks-dream-fg, .tracks-sleeper-bg, .tracks-sleeper-fg, .tracks-rails-left, .tracks-rails-right, .tracks-ballast-far, .tracks-ballast-near, .track-cinema-image-fx { animation: none; }
+  .track-cinema-image-fx { transform: scale(1.32); }
+}
 .ruby-gem { display: grid; place-items: center; color: #ff5555; background: linear-gradient(145deg, rgba(255,85,85,.33), rgba(204,0,0,.15) 46%, rgba(40,42,54,.92)); border: 1px solid rgba(255,184,108,.42); box-shadow: 9px 12px 22px rgba(20,21,28,.46), inset 1px 1px rgba(255,255,255,.25), inset -3px -4px 10px rgba(110,0,10,.35); transform-style: preserve-3d; }
-.ruby-gem-large { width: 4.5rem; height: 4.5rem; clip-path: polygon(25% 5%, 75% 5%, 100% 35%, 50% 100%, 0 35%); }.ruby-gem-rails { width: 3.6rem; height: 3.6rem; border-radius: 1rem; }.ruby-gem-small { width: 2.7rem; height: 2.7rem; clip-path: polygon(25% 5%, 75% 5%, 100% 35%, 50% 100%, 0 35%); }
+.ruby-gem-large { width: 4.8rem; height: 4.8rem; clip-path: polygon(25% 5%, 75% 5%, 100% 35%, 50% 100%, 0 35%); }
+.ruby-gem-rails { width: 3.8rem; height: 3.8rem; border-radius: 1rem; }
+.ruby-gem-small { width: 2.9rem; height: 2.9rem; clip-path: polygon(25% 5%, 75% 5%, 100% 35%, 50% 100%, 0 35%); }
 .social-link { color: hsl(var(--muted-foreground)); transition: color .2s ease, transform .2s ease; font-weight: 800; font-size: 1.25rem; line-height: 1; }.social-link:hover { color: hsl(var(--primary)); transform: translateY(-2px); }
 .rails-grid { background-image: linear-gradient(rgba(189,147,249,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,85,85,.07) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent); }
 .rails-stack-card { position: relative; border: 1px solid rgba(248,248,242,.1); background: linear-gradient(145deg, rgba(68,71,90,.92), rgba(40,42,54,.98)); box-shadow: 0 8px 22px rgba(20,21,28,.3); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }.rails-stack-card:hover { transform: perspective(700px) rotateX(3deg) rotateY(-3deg) translateY(-7px); box-shadow: 14px 22px 34px rgba(20,21,28,.44); }
@@ -69,3 +185,23 @@
 .rails-stack-card:hover, .rails-project-card:hover, .rails-tool-card:hover { border-color: color-mix(in srgb, var(--tech-color, #ff5555) 60%, transparent); }.rails-stack-card.tech-ruby { box-shadow: inset 3px 0 #ff5555, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-rails { box-shadow: inset 3px 0 #ff6e6e, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-postgres { box-shadow: inset 3px 0 #8be9fd, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-docker { box-shadow: inset 3px 0 #50fa7b, 0 8px 22px rgba(20,21,28,.3); }
 .rails-stack-card.tech-rails.is-active, .rails-stack-card.tech-ruby.is-active { border-color: color-mix(in srgb, var(--tech-color) 72%, rgba(248,248,242,.18)); box-shadow: inset 3px 0 var(--tech-color), 0 12px 28px rgba(20,21,28,.42), 0 0 24px color-mix(in srgb, var(--tech-color) 22%, transparent); }
 .footer-social { display: grid; place-items: center; width: 2.45rem; height: 2.45rem; border-radius: 999px; color: hsl(var(--muted-foreground)); background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); transition: all .2s ease; }.footer-social:hover { color: white; background: hsl(var(--primary)); transform: translateY(-2px); }
+
+.rails-flip-card-scope { perspective: 1400px; display: block; }
+.rails-flip-card { position: relative; width: 100%; min-height: 20rem; perspective: 1400px; cursor: pointer; border: none; padding: 0; background: transparent; text-align: left; color: inherit; border-radius: 1rem; transition: filter .3s ease, transform .3s ease; }
+.rails-flip-card:hover:not(.is-flipped) { transform: translateY(-6px); filter: drop-shadow(0 16px 24px rgba(20,21,28,.52)); }
+.rails-flip-inner { position: relative; width: 100%; min-height: 20rem; transform-style: preserve-3d; transition: transform .78s cubic-bezier(.2,.8,.2,1); border-radius: 1rem; }
+.rails-flip-card.is-flipped .rails-flip-inner { transform: rotateY(180deg); }
+@media (hover: hover) and (pointer: fine) { .rails-flip-card:hover:not(.is-flipped) .rails-flip-inner { transform: rotateY(10deg) rotateX(-4deg) translateZ(6px); } }
+.rails-flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(248,248,242,.1); background: linear-gradient(145deg, rgba(68,71,90,.94), rgba(40,42,54,.98)); box-shadow: 0 10px 28px rgba(20,21,28,.32), inset 0 1px rgba(255,255,255,.04); }
+.rails-flip-face::before { content: ""; position: absolute; inset: 0; border-radius: 1rem; padding: 1px; background: linear-gradient(135deg, color-mix(in srgb, var(--tech-color, #ff5555) 42%, transparent), transparent 45%, color-mix(in srgb, var(--tech-color, #ff5555) 28%, transparent)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .7; pointer-events: none; }
+.rails-flip-front { z-index: 2; transform: rotateY(0deg); }
+.rails-flip-back { z-index: 1; transform: rotateY(180deg); background: linear-gradient(155deg, rgba(40,42,54,.98), rgba(68,71,90,.95) 45%, color-mix(in srgb, var(--tech-color, #ff5555) 10%, rgba(40,42,54,.98))); box-shadow: 0 14px 36px rgba(20,21,28,.48), inset 0 1px rgba(255,255,255,.05); }
+.rails-flip-card.tech-ruby .rails-flip-front { box-shadow: inset 3px 0 #ff5555, 0 10px 28px rgba(20,21,28,.32); }
+.rails-flip-card.tech-rails .rails-flip-front { box-shadow: inset 3px 0 #ff6e6e, 0 10px 28px rgba(20,21,28,.32); }
+.rails-flip-card.tech-postgres .rails-flip-front { box-shadow: inset 3px 0 #8be9fd, 0 10px 28px rgba(20,21,28,.32); }
+.rails-flip-card.tech-redis .rails-flip-front { box-shadow: inset 3px 0 #ff5555, 0 10px 28px rgba(20,21,28,.32); }
+.rails-flip-card.tech-docker .rails-flip-front { box-shadow: inset 3px 0 #50fa7b, 0 10px 28px rgba(20,21,28,.32); }
+.rails-flip-card.tech-actions .rails-flip-front { box-shadow: inset 3px 0 #bd93f9, 0 10px 28px rgba(20,21,28,.32); }
+.rails-flip-card.is-flipped .rails-flip-front, .rails-flip-card.is-flipped .rails-flip-back { box-shadow: inset 3px 0 var(--tech-color, #ff5555), 0 16px 40px rgba(20,21,28,.52), 0 0 28px color-mix(in srgb, var(--tech-color, #ff5555) 24%, transparent); }
+.rails-flip-card:focus-visible { outline: 2px solid color-mix(in srgb, var(--tech-color, #ff5555) 72%, white); outline-offset: 4px; border-radius: 1rem; }
+@media (prefers-reduced-motion: reduce) { .rails-flip-inner { transition: none; } .rails-flip-back { transform: rotateY(0deg); position: relative; margin-top: 1rem; z-index: 2; } .rails-flip-front { position: relative; } .rails-flip-face { backface-visibility: visible; } .rails-flip-card.is-flipped .rails-flip-inner { transform: none; } }
