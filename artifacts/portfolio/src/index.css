@@ -353,17 +353,17 @@
 }
 .photo-mini-train-loco {
   position: absolute;
-  width: 2.35rem;
-  height: 1.6rem;
+  width: 3.2rem;
+  height: 2.4rem;
   z-index: 15;
   offset-path: ellipse(42% 37% at 50% 50%);
   offset-rotate: auto;
-  animation: photo-train-oval-loop 24s linear infinite;
+  animation: photo-train-oval-loop 48s ease-in-out infinite alternate;
   filter: drop-shadow(0 4px 8px rgba(20, 21, 28, 0.65)) drop-shadow(0 1px 2px rgba(255, 107, 107, 0.35));
   opacity: 0.94;
 }
 @media (min-width: 768px) {
-  .photo-mini-train-loco { width: 2.85rem; height: 1.95rem; }
+  .photo-mini-train-loco { width: 4.1rem; height: 3rem; }
 }
 .photo-mini-train-svg {
   width: 100%;
@@ -414,6 +414,35 @@
   animation: mini-train-trail-breathe 2s ease-in-out infinite;
 }
 
+.classic-smoke-layer { transform-box: fill-box; transform-origin: center center; }
+.classic-smoke-a-1 { animation: smoke-puff-a1 3.4s ease-out infinite; transform-origin: 82px 22px; }
+.classic-smoke-a-2 { animation: smoke-puff-a2 3.8s ease-out infinite; transform-origin: 96px 10px; }
+.classic-smoke-a-3 { animation: smoke-puff-a3 4.1s ease-out infinite; transform-origin: 114px -2px; }
+.classic-smoke-a-4 { animation: smoke-puff-a4 3.1s ease-out infinite; transform-origin: 70px 30px; }
+.classic-smoke-b-1 { animation: smoke-puff-b1 4.4s ease-out infinite; transform-origin: 108px 8px; }
+.classic-smoke-b-2 { animation: smoke-puff-b2 4.8s ease-out infinite; transform-origin: 122px -8px; }
+.classic-smoke-b-3 { animation: smoke-puff-b3 5.2s ease-out infinite; transform-origin: 136px -18px; }
+.classic-smoke-b-4 { animation: smoke-puff-b4 3.9s ease-out infinite; transform-origin: 88px 16px; }
+.classic-smoke-b-5 { animation: smoke-puff-b5 4.6s ease-out infinite; transform-origin: 148px -6px; }
+.classic-smoke-c-1 { animation: smoke-puff-c1 5.8s ease-out infinite; transform-origin: 130px -22px; }
+.classic-smoke-c-2 { animation: smoke-puff-c2 6.2s ease-out infinite; transform-origin: 152px -30px; }
+.classic-smoke-c-3 { animation: smoke-puff-c3 6.6s ease-out infinite; transform-origin: 168px -20px; }
+.classic-smoke-c-4 { animation: smoke-puff-c4 5.4s ease-out infinite; transform-origin: 116px -12px; }
+
+@keyframes smoke-puff-a1 { 0% { transform: translate(0,0) scale(.85); opacity: .92; } 45% { transform: translate(-2px,-26px) scale(1.25); opacity: .48; } 100% { transform: translate(-6px,-58px) scale(1.7); opacity: 0; } }
+@keyframes smoke-puff-a2 { 0% { transform: translate(0,0) scale(.9); opacity: .88; } 48% { transform: translate(4px,-30px) scale(1.35); opacity: .42; } 100% { transform: translate(8px,-64px) scale(1.8); opacity: 0; } }
+@keyframes smoke-puff-a3 { 0% { transform: translate(0,0) scale(.8); opacity: .82; } 50% { transform: translate(-3px,-28px) scale(1.3); opacity: .36; } 100% { transform: translate(-8px,-60px) scale(1.75); opacity: 0; } }
+@keyframes smoke-puff-a4 { 0% { transform: translate(0,0) scale(.78); opacity: .86; } 42% { transform: translate(5px,-22px) scale(1.18); opacity: .44; } 100% { transform: translate(12px,-52px) scale(1.6); opacity: 0; } }
+@keyframes smoke-puff-b1 { 0% { transform: translate(0,0) scale(.82); opacity: .94; animation-delay: .2s; } 50% { transform: translate(6px,-34px) scale(1.42); opacity: .38; } 100% { transform: translate(14px,-72px) scale(1.92); opacity: 0; } }
+@keyframes smoke-puff-b2 { 0% { transform: translate(0,0) scale(.88); opacity: .9; } 52% { transform: translate(-5px,-38px) scale(1.48); opacity: .34; } 100% { transform: translate(-12px,-78px) scale(2); opacity: 0; } }
+@keyframes smoke-puff-b3 { 0% { transform: translate(0,0) scale(.76); opacity: .84; } 55% { transform: translate(8px,-36px) scale(1.38); opacity: .28; } 100% { transform: translate(18px,-74px) scale(1.85); opacity: 0; } }
+@keyframes smoke-puff-b4 { 0% { transform: translate(0,0) scale(.74); opacity: .82; } 45% { transform: translate(-6px,-26px) scale(1.22); opacity: .36; } 100% { transform: translate(-14px,-58px) scale(1.65); opacity: 0; } }
+@keyframes smoke-puff-b5 { 0% { transform: translate(0,0) scale(.7); opacity: .72; } 50% { transform: translate(3px,-32px) scale(1.28); opacity: .26; } 100% { transform: translate(8px,-68px) scale(1.72); opacity: 0; } }
+@keyframes smoke-puff-c1 { 0% { transform: translate(0,0) scale(.92); opacity: .78; } 52% { transform: translate(-8px,-42px) scale(1.55); opacity: .3; } 100% { transform: translate(-18px,-86px) scale(2.1); opacity: 0; } }
+@keyframes smoke-puff-c2 { 0% { transform: translate(0,0) scale(.86); opacity: .66; } 55% { transform: translate(10px,-46px) scale(1.62); opacity: .24; } 100% { transform: translate(22px,-92px) scale(2.2); opacity: 0; } }
+@keyframes smoke-puff-c3 { 0% { transform: translate(0,0) scale(.8); opacity: .58; } 58% { transform: translate(-6px,-40px) scale(1.48); opacity: .2; } 100% { transform: translate(-14px,-82px) scale(2); opacity: 0; } }
+@keyframes smoke-puff-c4 { 0% { transform: translate(0,0) scale(.84); opacity: .68; } 50% { transform: translate(4px,-36px) scale(1.42); opacity: .28; } 100% { transform: translate(10px,-76px) scale(1.9); opacity: 0; } }
+
 .track-train { position: absolute; inset: -4%; z-index: 7; pointer-events: none; opacity: 0; display: none; }
 .track-train-main { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
 .track-locomotive { position: absolute; width: 4.6rem; height: 3rem; offset-path: path("M -30 880 C 200 770, 400 650, 620 520 S 1000 280, 1240 130"); offset-rotate: auto; animation: locomotive-run 10s cubic-bezier(.42,0,.58,1) infinite; animation-delay: -.6s; opacity: 0; display: none; }
@@ -423,6 +452,7 @@
 @media (prefers-reduced-motion: reduce) {
   .photo-mini-train-loco { animation-duration: 180s; }
   .mini-smoke-1, .mini-smoke-2, .mini-smoke-3, .mini-headlight-beam, .mini-headlight-core, .mini-glow-window, .mini-train-light-trail { animation: none; }
+  .classic-smoke-a-1, .classic-smoke-a-2, .classic-smoke-a-3, .classic-smoke-a-4, .classic-smoke-b-1, .classic-smoke-b-2, .classic-smoke-b-3, .classic-smoke-b-4, .classic-smoke-b-5, .classic-smoke-c-1, .classic-smoke-c-2, .classic-smoke-c-3, .classic-smoke-c-4 { animation: none; opacity: 0.5; }
   .photo-mini-train-loco { animation: none; offset-distance: 12%; }
   .profile-frame, .tracks-dream-bg, .tracks-dream-fg, .tracks-sleeper-bg, .tracks-sleeper-fg, .tracks-rails-left, .tracks-rails-right, .tracks-ballast-far, .tracks-ballast-near, .track-cinema-image-fx, .track-cinema-scene { animation: none; transition: none; }
   .track-cinema-scene { transform: none; }
