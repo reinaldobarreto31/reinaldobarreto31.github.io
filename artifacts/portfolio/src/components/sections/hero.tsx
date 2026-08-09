@@ -4,7 +4,7 @@ import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import tracksBg from "@/assets/tracks-bg.png";
 import { TrackLocomotive } from "@/components/hero/track-locomotive";
 import { SiRuby, SiRubyonrails, SiPostgresql, SiDocker, SiGithub } from "react-icons/si";
-import { Mail, ArrowDownRight } from "lucide-react";
+import { Mail, ArrowDownRight, Workflow } from "lucide-react";
 
 const STACK = [
   { label: "Ruby", icon: <SiRuby size={13} />, tone: "tech-ruby" },
@@ -56,6 +56,12 @@ export function HeroSection() {
     <div className="container mx-auto px-4 z-20 grid md:grid-cols-2 gap-12 items-center">
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .7 }} className="flex flex-col gap-6">
         <div className="rails-badge inline-flex items-center gap-3 px-4 py-2 rounded-full w-fit text-sm font-mono tracking-tight"><SiRubyonrails className="text-[#cc0000] text-lg shrink-0" /><span className="rails-shine font-bold">Ruby on Rails Developer</span></div>
+        <div className="rails-mini-card rounded-lg p-4 flex flex-col gap-1.5 max-w-lg border-primary/35 bg-primary/5">
+          <p className="font-bold text-[15px] md:text-base text-foreground flex items-center gap-2"><Workflow size={17} className="text-primary shrink-0" /> Software Engineer <span className="text-primary">Full-Cycle</span></p>
+          <p className="text-[13.5px] md:text-sm text-muted-foreground leading-[1.7]">
+            Gerenciando todo o ciclo de desenvolvimento: da arquitetura com <strong className="text-primary/90 font-semibold">Java/Spring</strong> até UI/UX com <strong className="text-[#bd93f9]/90 font-semibold">React/Angular</strong> e qualidade automatizada em <strong className="text-[#50fa7b]/90 font-semibold">CI/CD</strong>.
+          </p>
+        </div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">Reinaldo<br /><span className="text-muted-foreground">Barreto</span></h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed" data-testid="text-hero-description">Desenvolvedor <span className="text-primary font-bold font-mono">Ruby on Rails</span> focado em produtos web bem estruturados, APIs REST, bancos de dados e entregas que transformam ideias em aplicacoes confiaveis.</p>
         <div className="flex flex-wrap gap-2">{STACK.map(({ label, icon, tone }, i) => <motion.span key={label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .35 + i * .08 }} whileHover={{ y: -3, scale: 1.04 }} className={`rails-pill ${tone} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-bold font-mono`}>{icon}{label}</motion.span>)}</div>

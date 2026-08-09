@@ -110,23 +110,94 @@
 @keyframes dream-sway { 0%, 100% { skewX(-.5deg); } 50% { skewX(.5deg); } }
 
 .tracks-sleeper { position: absolute; left: 50%; transform: translateX(-50%); transform-origin: 50% 22%; pointer-events: none; z-index: 3; }
-.tracks-sleeper-bg { top: 18%; width: 46%; height: 90%; clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 20px, rgba(140,120,100,.38) 20px, rgba(140,120,100,.38) 26px, transparent 26px); background-size: 100% 200%; animation: sleepers-forever-slow 2.9s linear infinite; filter: brightness(calc(.78 + var(--travel-accent) * .12)) saturate(.6); mix-blend-mode: multiply; opacity: calc(.72 + var(--travel-accent) * .2); }
-.tracks-sleeper-fg { top: 14%; width: 56%; height: 94%; clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 16px, rgba(160,140,118,.42) 16px, rgba(160,140,118,.42) 22px, transparent 22px); background-size: 100% 200%; animation: sleepers-forever-fast 1.35s linear infinite; filter: brightness(calc(.85 + var(--travel-accent) * .14)) saturate(.65); mix-blend-mode: multiply; opacity: calc(.82 + var(--travel-accent) * .14); }
+.tracks-sleeper-bg { top: 18%; width: 46%; height: 90%; clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  background: repeating-linear-gradient(180deg,
+    transparent 0, transparent 20px,
+    rgba(92,30,14,.5) 20px,
+    linear-gradient(90deg, #5c1e0e 0%, #8b3a1a 15%, #a04020 30%, #8b3a1a 55%, #6b2810 78%, #4a1808 100%) 20px,
+    transparent 26px);
+  background-size: 100% 200%;
+  animation: sleepers-forever-slow 2.9s linear infinite;
+  filter: brightness(calc(.82 + var(--travel-accent) * .14)) saturate(1.35);
+  mix-blend-mode: normal;
+  opacity: calc(.88 + var(--travel-accent) * .12);
+  box-shadow: inset 0 0 40px rgba(0,0,0,.4);
+}
+.tracks-sleeper-fg { top: 14%; width: 56%; height: 94%; clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+  background: repeating-linear-gradient(180deg,
+    transparent 0, transparent 16px,
+    rgba(74,24,8,.58) 16px,
+    linear-gradient(90deg, #4a1808 0%, #6e2510 8%, #9c4020 22%, #b84820 38%, #8b3a1a 58%, #702a14 78%, #5c1e0e 92%, #3a1208 100%) 16px,
+    transparent 22px);
+  background-size: 100% 200%;
+  animation: sleepers-forever-fast 1.35s linear infinite;
+  filter: brightness(calc(.94 + var(--travel-accent) * .12)) saturate(1.55) drop-shadow(0 4px 10px rgba(0,0,0,.45));
+  mix-blend-mode: normal;
+  opacity: calc(.96 + var(--travel-accent) * .04);
+}
 
 .tracks-rails { position: absolute; left: 50%; transform: translateX(-50%); top: 20%; width: 2px; height: 82%; transform-origin: 50% 0%; pointer-events: none; z-index: 4; }
-.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 82%; background: linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px)); transform: translateX(-50%) translateX(-23%) skewX(-16deg); filter: drop-shadow(-6px 0 10px rgba(204,0,0,.25)); animation: sleepers-forever-fast 1.25s linear infinite; }
-.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 82%; background: linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px)); transform: translateX(-50%) translateX(23%) skewX(16deg); filter: drop-shadow(6px 0 10px rgba(204,0,0,.25)); animation: sleepers-forever-fast 1.25s linear infinite; animation-delay: -.05s; }
+.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 82%;
+  background: linear-gradient(90deg,
+    transparent 0, transparent calc(50% - 4px),
+    #1a1a1f calc(50% - 4px),
+    #5a5a63 calc(50% - 3.5px),
+    #9090a0 calc(50% - 2px),
+    #e8e8f0 calc(50% - .6px),
+    #b0b0be calc(50%),
+    rgba(255,80,80,.8) calc(50% + .8px),
+    #70707e calc(50% + 2.6px),
+    #2a2a30 calc(50% + 4px),
+    transparent calc(50% + 5px));
+  transform: translateX(-50%) translateX(-23%) skewX(-16deg);
+  filter: drop-shadow(-6px 0 18px rgba(255,60,60,.28)) drop-shadow(-2px 0 2px rgba(255,255,255,.15));
+  animation: sleepers-forever-fast 1.25s linear infinite; }
+.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 82%;
+  background: linear-gradient(90deg,
+    transparent 0, transparent calc(50% - 4px),
+    #1a1a1f calc(50% - 4px),
+    #5a5a63 calc(50% - 3.5px),
+    #9090a0 calc(50% - 2px),
+    #e8e8f0 calc(50% - .6px),
+    #b0b0be calc(50%),
+    rgba(255,80,80,.8) calc(50% + .8px),
+    #70707e calc(50% + 2.6px),
+    #2a2a30 calc(50% + 4px),
+    transparent calc(50% + 5px));
+  transform: translateX(-50%) translateX(23%) skewX(16deg);
+  filter: drop-shadow(6px 0 18px rgba(255,60,60,.28)) drop-shadow(2px 0 2px rgba(255,255,255,.15));
+  animation: sleepers-forever-fast 1.25s linear infinite; animation-delay: -.05s; }
 
-.tracks-ballast { position: absolute; left: 50%; top: 18%; transform: translateX(-50%); width: 74%; height: 86%; transform-origin: 50% 22%; pointer-events: none; z-index: 2; mix-blend-mode: overlay; }
-.tracks-ballast-far { clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 4px, rgba(80,60,50,.35) 4px, rgba(80,60,50,.35) 7px, transparent 7px), repeating-linear-gradient(45deg, transparent 0, transparent 5px, rgba(120,90,70,.22) 5px, rgba(120,90,70,.22) 8px, transparent 8px); background-size: 18px 18px, 22px 22px, 100% 200%; animation: ballast-surge-far 4.4s linear infinite; opacity: calc(.45 + var(--travel-accent) * .25); }
-.tracks-ballast-near { clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 3px, rgba(100,75,60,.4) 3px, rgba(100,75,60,.4) 6px, transparent 6px), repeating-linear-gradient(45deg, transparent 0, transparent 4px, rgba(140,110,80,.25) 4px, rgba(140,110,80,.25) 7px, transparent 7px); background-size: 14px 14px, 16px 16px, 100% 200%; animation: ballast-surge-near 2.1s linear infinite; opacity: calc(.62 + var(--travel-accent) * .22); }
+.tracks-ballast { position: absolute; left: 50%; top: 18%; transform: translateX(-50%); width: 74%; height: 86%; transform-origin: 50% 22%; pointer-events: none; z-index: 2; mix-blend-mode: normal; }
+.tracks-ballast-far { clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+  background:
+    repeating-linear-gradient(135deg, transparent 0, transparent 4px, rgba(70,40,30,.48) 4px, rgba(70,40,30,.48) 7px, transparent 7px),
+    repeating-linear-gradient(45deg, transparent 0, transparent 5px, rgba(100,65,45,.32) 5px, rgba(100,65,45,.32) 8px, transparent 8px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 10px, rgba(120,80,55,.16) 10px, rgba(120,80,55,.16) 11px, transparent 11px);
+  background-size: 18px 18px, 22px 22px, 100% 200%;
+  animation: ballast-surge-far 4.4s linear infinite; opacity: calc(.8 + var(--travel-accent) * .2); }
+.tracks-ballast-near { clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+  background:
+    repeating-linear-gradient(135deg, transparent 0, transparent 3px, rgba(95,60,40,.52) 3px, rgba(95,60,40,.52) 6px, transparent 6px),
+    repeating-linear-gradient(45deg, transparent 0, transparent 4px, rgba(130,90,60,.34) 4px, rgba(130,90,60,.34) 7px, transparent 7px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 9px, rgba(150,100,65,.18) 9px, rgba(150,100,65,.18) 10px, transparent 10px);
+  background-size: 14px 14px, 16px 16px, 100% 200%;
+  animation: ballast-surge-near 2.1s linear infinite; opacity: calc(.9 + var(--travel-accent) * .1); }
 
 .track-night-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; background:
-    radial-gradient(ellipse 72% 46% at 50% 18%, rgba(40,10,30,.6) 0%, rgba(10,8,20,.75) 42%, rgba(0,0,0,.92) 80%),
-    repeating-radial-gradient(circle at 22% 14%, rgba(255,209,102,.28) 0 1px, transparent 1px 60px),
-    repeating-radial-gradient(circle at 68% 10%, rgba(189,147,249,.22) 0 1px, transparent 1px 80px),
-    repeating-radial-gradient(circle at 82% 22%, rgba(255,255,255,.2) 0 1px, transparent 1px 100px);
-  opacity: calc(.7 + var(--travel-accent) * .12);
+    radial-gradient(ellipse 110% 72% at 50% 26%, rgba(20,4,36,.45) 0%, rgba(12,6,22,.78) 40%, rgba(2,1,10,.94) 78%, #000 100%),
+    linear-gradient(0deg, transparent 20%, rgba(255,100,80,.08) 38%, rgba(255,200,140,.10) 44%, rgba(120,80,200,.09) 50%, transparent 62%),
+    repeating-radial-gradient(circle at 12% 38%, rgba(255,220,150,.85) 0 1.2px, transparent 1.2px 38px),
+    repeating-radial-gradient(circle at 30% 34%, rgba(255,255,255,.6) 0 .8px, transparent .8px 55px),
+    repeating-radial-gradient(circle at 48% 40%, rgba(255,120,120,.9) 0 1px, transparent 1px 44px),
+    repeating-radial-gradient(circle at 65% 36%, rgba(180,255,200,.7) 0 1px, transparent 1px 60px),
+    repeating-radial-gradient(circle at 82% 33%, rgba(189,147,249,.85) 0 1.2px, transparent 1.2px 50px),
+    repeating-radial-gradient(circle at 90% 42%, rgba(255,209,102,.75) 0 .9px, transparent .9px 46px),
+    radial-gradient(circle at 18% 32%, rgba(255,107,107,.5) 0 3px, transparent 3px 140px),
+    radial-gradient(circle at 55% 30%, rgba(255,209,102,.35) 0 4px, transparent 4px 220px),
+    radial-gradient(circle at 78% 30%, rgba(189,147,249,.32) 0 3.5px, transparent 3.5px 180px);
+  opacity: calc(.86 + var(--travel-accent) * .12);
+  mix-blend-mode: normal;
 }
 .track-night-vignette { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: radial-gradient(ellipse 64% 58% at 50% 40%, transparent 42%, rgba(20,21,28,.6) 80%, rgba(0,0,0,.88) 100%), linear-gradient(90deg, rgba(0,0,0,.7) 0%, transparent 18%, transparent 82%, rgba(0,0,0,.72) 100%); }
 .track-bottom-mask { z-index: 6; background: linear-gradient(180deg, transparent 0%, rgba(29,30,38,.5) 42%, hsl(var(--background)) 100%); }
