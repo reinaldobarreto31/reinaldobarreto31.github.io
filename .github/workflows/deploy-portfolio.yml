@@ -56,19 +56,27 @@ jobs:
           set -x
           export PORT=3000
           export BASE_PATH=/
+          set +e
           pnpm --filter @workspace/portfolio run build > /tmp/build.log 2>&1
           BUILD_EXIT=$?
+          set -e
           echo "Build exit code: ${BUILD_EXIT}"
-          echo "::group::BUILD LOG (tail 200 lines)"
-          tail -200 /tmp/build.log
+          echo "::group::FULL BUILD LOG (last 500 lines)"
+          tail -500 /tmp/build.log
           echo "::endgroup::"
-          echo "::group::Find files in dist/public"
-          find artifacts/portfolio/dist -maxdepth 3 -type f | sort | head -50
-          echo "::endgroup::"
+          LAST_ERR=$(tail -80 /tmp/build.log | tr '\n' ' ' | head -c 64000)
           if [ "${BUILD_EXIT}" != "0" ]; then
-            echo "::error::Build failed with exit ${BUILD_EXIT}"
+            echo "::error title=Build failed exit ${BUILD_EXIT}::Build failed — ${LAST_ERR}"
+            echo "::group::Snippet around 'error'"
+            grep -n -i -C 4 "error" /tmp/build.log || true
+            echo "::endgroup::"
+            echo "::group::Snippet around 'Rollup' or 'ENOENT'"
+            grep -n -i -C 4 "rollup\|ENOENT\|cannot find\|failed to resolve\|transform" /tmp/build.log || true
+            echo "::endgroup::"
             exit ${BUILD_EXIT}
           fi
+          echo "::group::Files in dist/public"
+          find artifacts/portfolio/dist -maxdepth 3 -type f | sort | head -60
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
