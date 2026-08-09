@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import tracksBg from "@/assets/tracks-bg.png";
@@ -13,7 +14,77 @@ const STACK = [
 ];
 
 export function HeroSection() {
-  return <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
+  const sceneRef = useRef<HTMLDivElement | null>(null);
+  const burstRef = useRef(0);
+  const burstRaf = useRef<number | null>(null);
+
+  const handleMouse = useCallback((e: MouseEvent) => {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const rect = scene.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+
+    const speedBase = 1;
+    const distanceToVanish = Math.hypot(nx * 0.9, (ny + 1) * 0.55);
+    const forwardBoost = Math.max(0, 1 - Math.min(1, distanceToVanish));
+    const burst = Math.min(1.8, burstRef.current);
+
+    const travelSpeed = speedBase + forwardBoost * 3.2 + burst * 2.4;
+    const travelSway = nx * 1;
+    const travelDive = -ny * 1;
+    const travelRoll = nx * -1;
+    const travelAccent = 0.6 + forwardBoost * 0.9 + burst * 0.7;
+
+    scene.style.setProperty("--travel-speed", travelSpeed.toFixed(3));
+    scene.style.setProperty("--travel-sway", travelSway.toFixed(3));
+    scene.style.setProperty("--travel-dive", travelDive.toFixed(3));
+    scene.style.setProperty("--travel-roll", travelRoll.toFixed(3));
+    scene.style.setProperty("--travel-accent", travelAccent.toFixed(3));
+  }, []);
+
+  const decayBurst = useCallback(() => {
+    burstRef.current = Math.max(0, burstRef.current - 0.018);
+    if (burstRef.current > 0) {
+      burstRaf.current = window.requestAnimationFrame(decayBurst);
+    } else {
+      burstRef.current = 0;
+      burstRaf.current = null;
+    }
+  }, []);
+
+  const handleWheel = useCallback((e: WheelEvent) => {
+    if (e.deltaY < -8 || Math.abs(e.deltaX) > 0) return;
+    e.preventDefault();
+    const add = Math.min(1.2, Math.max(0.05, e.deltaY) / 180);
+    burstRef.current = Math.min(2.1, burstRef.current + add);
+    if (!burstRaf.current) burstRaf.current = window.requestAnimationFrame(decayBurst);
+    const fakeEvent = new MouseEvent("mousemove", {
+      clientX: window.innerWidth / 2,
+      clientY: window.innerHeight * 0.32,
+    });
+    handleMouse(fakeEvent);
+  }, [handleMouse, decayBurst]);
+
+  useEffect(() => {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    scene.style.setProperty("--travel-speed", "1");
+    scene.style.setProperty("--travel-sway", "0");
+    scene.style.setProperty("--travel-dive", "0");
+    scene.style.setProperty("--travel-roll", "0");
+    scene.style.setProperty("--travel-accent", "0.6");
+
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      window.removeEventListener("mousemove", handleMouse);
+      window.removeEventListener("wheel", handleWheel);
+      if (burstRaf.current) cancelAnimationFrame(burstRaf.current);
+    };
+  }, [handleMouse, handleWheel]);
+
+  return <section id="hero" ref={sceneRef} className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
     <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-70 z-10" />
 
@@ -39,6 +110,13 @@ export function HeroSection() {
 
         <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[46%] pointer-events-none" />
         <div className="track-top-mask absolute inset-x-0 top-0 h-[30%] pointer-events-none" />
+      </div>
+      <div className="track-horizon-bar absolute top-[24%] left-0 right-0 pointer-events-none" />
+      <div className="track-travel-label absolute left-4 bottom-4 z-30 pointer-events-none select-none font-mono text-[10px] uppercase tracking-[.2em] text-foreground/60 flex items-center gap-3">
+        <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-foreground/15 bg-background/60 backdrop-blur-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <span>viajando nos trilhos <span className="text-primary">mova o mouse</span> · <span className="text-[#bd93f9]">scroll</span> para acelerar</span>
+        </span>
       </div>
     </div>
 
