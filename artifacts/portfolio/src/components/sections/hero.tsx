@@ -31,25 +31,30 @@ export function HeroSection() {
     <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-70 z-10" />
 
     <div className="track-cinema absolute inset-0 z-0">
+      <div className="track-cinema-letterbox-top absolute top-0 left-0 right-0 z-[20] pointer-events-none" />
+      <div className="track-cinema-letterbox-bottom absolute bottom-0 left-0 right-0 z-[20] pointer-events-none" />
+      <div className="track-cinema-frame absolute inset-0 z-[19] pointer-events-none" />
+
       <div className="track-cinema-scene absolute inset-0">
+        <div className="track-night-sky absolute inset-0" />
         <div className="track-cinema-vanish" />
         <div className="tracks-dream tracks-dream-bg" />
         <div className="tracks-dream tracks-dream-fg" />
+        <div className="tracks-ballast tracks-ballast-far" />
+        <div className="tracks-ballast tracks-ballast-near" />
         <div className="tracks-sleeper tracks-sleeper-bg" />
         <div className="tracks-sleeper tracks-sleeper-fg" />
         <div className="tracks-rails tracks-rails-left" />
         <div className="tracks-rails tracks-rails-right" />
-        <div className="tracks-ballast tracks-ballast-far" />
-        <div className="tracks-ballast tracks-ballast-near" />
-        <div className="track-night-sky" />
-        <div className="track-night-vignette" />
+        <div className="track-horizon-bar absolute left-0 right-0 top-[22%]" />
 
-        <div className="track-cinema-image absolute inset-[-16%]">
+        <div className="track-cinema-image absolute inset-[-16%] z-[5] opacity-[.32]">
           <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-[center_45%] track-cinema-image-fx" />
         </div>
 
-        <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[46%] pointer-events-none" />
-        <div className="track-top-mask absolute inset-x-0 top-0 h-[30%] pointer-events-none" />
+        <div className="track-night-vignette" />
+        <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[14%] pointer-events-none" />
+        <div className="track-top-mask absolute inset-x-0 top-0 h-[10%] pointer-events-none" />
       </div>
     </div>
 

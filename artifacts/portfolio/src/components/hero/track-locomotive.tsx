@@ -4,31 +4,96 @@ export function TrackLocomotive() {
       <svg viewBox="0 0 500 500" className="photo-mini-train-track" role="presentation" preserveAspectRatio="xMidYMid meet">
         <defs>
           <radialGradient id="ballast-gradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#3a2e25" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#1a1410" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#4a2818" stopOpacity="0.78" />
+            <stop offset="55%" stopColor="#2a1810" stopOpacity="0.62" />
+            <stop offset="100%" stopColor="#0e0806" stopOpacity="0.42" />
           </radialGradient>
           <linearGradient id="steel-rail" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#ffb86c" stopOpacity="0.9" />
-            <stop offset="40%" stopColor="#e87070" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="#8b3030" stopOpacity="0.75" />
+            <stop offset="0%" stopColor="#e8e8f0" stopOpacity="1" />
+            <stop offset="18%" stopColor="#a0a0ab" stopOpacity="1" />
+            <stop offset="42%" stopColor="#6a6a75" stopOpacity="1" />
+            <stop offset="68%" stopColor="#3a3a43" stopOpacity="1" />
+            <stop offset="85%" stopColor="#7a7a85" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#1a1a1f" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="steel-rail-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="45%" stopColor="rgba(255,255,255,0.35)" />
+            <stop offset="50%" stopColor="rgba(255,90,90,0.55)" />
+            <stop offset="55%" stopColor="rgba(255,255,255,0.35)" />
+            <stop offset="100%" stopColor="transparent" />
           </linearGradient>
           <linearGradient id="sleeper-wood" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#7a5a3e" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#4a3826" stopOpacity="0.85" />
+            <stop offset="0%" stopColor="#c85028" stopOpacity="0.98" />
+            <stop offset="20%" stopColor="#a03818" stopOpacity="0.98" />
+            <stop offset="48%" stopColor="#7a2410" stopOpacity="0.95" />
+            <stop offset="78%" stopColor="#5a1808" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#340e04" stopOpacity="0.9" />
           </linearGradient>
+          <linearGradient id="sleeper-wood-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="35%" stopColor="rgba(255,140,80,0.35)" />
+            <stop offset="52%" stopColor="rgba(255,180,120,0.5)" />
+            <stop offset="70%" stopColor="rgba(255,140,80,0.3)" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+          <radialGradient id="night-vignette" cx="50%" cy="50%" r="50%">
+            <stop offset="52%" stopColor="transparent" stopOpacity="0" />
+            <stop offset="76%" stopColor="rgba(10,4,20,0.55)" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="rgba(0,0,0,0.88)" stopOpacity="1" />
+          </radialGradient>
+          <radialGradient id="night-horizon-glow" cx="50%" cy="52%" r="45%">
+            <stop offset="0%" stopColor="transparent" stopOpacity="0" />
+            <stop offset="58%" stopColor="rgba(255,90,70,0.09)" stopOpacity="1" />
+            <stop offset="72%" stopColor="rgba(189,147,249,0.07)" stopOpacity="1" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
           <filter id="rail-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.8" result="blur" />
+            <feGaussianBlur stdDeviation="2.2" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+          <filter id="sleeper-shadow" x="-20%" y="-50%" width="140%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="1.2" floodColor="#000000" floodOpacity="0.55" />
+          </filter>
+          <filter id="city-lights-blur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.1" />
+          </filter>
         </defs>
 
+        <rect x="0" y="0" width="500" height="500" fill="url(#night-vignette)" />
+        <rect x="0" y="0" width="500" height="500" fill="url(#night-horizon-glow)" />
+
+        <g filter="url(#city-lights-blur)" opacity="0.72">
+          {Array.from({ length: 32 }).map((_, i) => {
+            const seed = i * 97.31;
+            const angle = (seed % (Math.PI * 2));
+            const radius = 140 + ((seed * 7.1) % 90);
+            const cx = 250 + Math.cos(angle) * radius;
+            const cy = 250 + Math.sin(angle) * radius * 0.82;
+            const colors = ["#ffdd77", "#ff7777", "#aaffbb", "#bd93f9", "#ffffff"];
+            const color = colors[i % colors.length];
+            const size = 0.8 + ((i * 1.7) % 2.2);
+            return <circle key={`city-${i}`} cx={cx} cy={cy} r={size} fill={color} opacity={0.55 + ((i * 0.23) % 0.45)} />;
+          })}
+        </g>
+
         <ellipse cx="250" cy="250" rx="200" ry="175" fill="url(#ballast-gradient)" />
-        <ellipse cx="250" cy="250" rx="208" ry="183" fill="none" stroke="url(#steel-rail)" strokeWidth="4.5" filter="url(#rail-glow)" opacity="0.85" />
-        <ellipse cx="250" cy="250" rx="192" ry="167" fill="none" stroke="url(#steel-rail)" strokeWidth="4.5" filter="url(#rail-glow)" opacity="0.85" />
-        <g stroke="url(#sleeper-wood)" strokeWidth="4" strokeLinecap="round">
+        <g filter="url(#sleeper-shadow)" stroke="url(#sleeper-wood)" strokeWidth="5.2" strokeLinecap="round">
+          {Array.from({ length: 56 }).map((_, i) => {
+            const angle = (i / 56) * Math.PI * 2;
+            const rxOut = 214, ryOut = 189;
+            const rxIn = 186, ryIn = 161;
+            const x1 = 250 + Math.cos(angle) * rxOut;
+            const y1 = 250 + Math.sin(angle) * ryOut;
+            const x2 = 250 + Math.cos(angle) * rxIn;
+            const y2 = 250 + Math.sin(angle) * ryIn;
+            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} opacity="0.92" />;
+          })}
+        </g>
+        <g stroke="url(#sleeper-wood-highlight)" strokeWidth="2" strokeLinecap="round" opacity="0.55">
           {Array.from({ length: 56 }).map((_, i) => {
             const angle = (i / 56) * Math.PI * 2;
             const rxOut = 212, ryOut = 187;
@@ -37,11 +102,36 @@ export function TrackLocomotive() {
             const y1 = 250 + Math.sin(angle) * ryOut;
             const x2 = 250 + Math.cos(angle) * rxIn;
             const y2 = 250 + Math.sin(angle) * ryIn;
-            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} opacity="0.75" />;
+            return <line key={`hl-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
           })}
         </g>
-        <ellipse cx="250" cy="250" rx="208" ry="183" fill="none" stroke="#fff5b8" strokeWidth="0.8" opacity="0.35" strokeDasharray="1 7" />
-        <ellipse cx="250" cy="250" rx="192" ry="167" fill="none" stroke="#fff5b8" strokeWidth="0.8" opacity="0.35" strokeDasharray="1 7" />
+        <g stroke="#000" strokeWidth="0.6" strokeLinecap="round" opacity="0.4">
+          {Array.from({ length: 56 }).map((_, i) => {
+            const angle = (i / 56) * Math.PI * 2;
+            const rxOut = 213, ryOut = 188;
+            const rxInMid = 202, ryInMid = 177;
+            const x1 = 250 + Math.cos(angle) * rxOut;
+            const y1 = 250 + Math.sin(angle) * ryOut;
+            const x2 = 250 + Math.cos(angle) * rxInMid;
+            const y2 = 250 + Math.sin(angle) * ryInMid;
+            const knots = [0.35, 0.65];
+            return knots.map((k, ki) => {
+              const kx = x1 + (x2 - x1) * k + ((i + ki) % 3 - 1) * 1.2;
+              const ky = y1 + (y2 - y1) * k + ((i * 2 + ki) % 3 - 1) * 1.2;
+              return <circle key={`knot-${i}-${ki}`} cx={kx} cy={ky} r={0.8 + ((i + ki) % 3) * 0.25} fill="#2a0a04" opacity="0.7" />;
+            });
+          })}
+        </g>
+
+        <ellipse cx="250" cy="250" rx="208" ry="183" fill="none" stroke="url(#steel-rail)" strokeWidth="5.2" filter="url(#rail-glow)" opacity="0.95" />
+        <ellipse cx="250" cy="250" rx="192" ry="167" fill="none" stroke="url(#steel-rail)" strokeWidth="5.2" filter="url(#rail-glow)" opacity="0.95" />
+        <ellipse cx="250" cy="250" rx="208" ry="183" fill="none" stroke="url(#steel-rail-glow)" strokeWidth="1.6" opacity="0.78" />
+        <ellipse cx="250" cy="250" rx="192" ry="167" fill="none" stroke="url(#steel-rail-glow)" strokeWidth="1.6" opacity="0.78" />
+
+        <ellipse cx="250" cy="250" rx="208" ry="183" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.28" strokeDasharray="1.2 6.5" />
+        <ellipse cx="250" cy="250" rx="192" ry="167" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.28" strokeDasharray="1.2 6.5" />
+        <ellipse cx="250" cy="250" rx="208" ry="183" fill="none" stroke="rgba(255,90,90,0.4)" strokeWidth="0.4" opacity="0.55" strokeDasharray="2 3" />
+        <ellipse cx="250" cy="250" rx="192" ry="167" fill="none" stroke="rgba(255,90,90,0.4)" strokeWidth="0.4" opacity="0.55" strokeDasharray="2 3" />
       </svg>
 
       <div className="photo-mini-train-loco">
