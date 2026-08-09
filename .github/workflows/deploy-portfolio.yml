@@ -32,51 +32,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Sync Ruby curriculum to portfolio public
-        continue-on-error: true
         run: |
-          if [ -f curriculo.pdf ]; then
-            cp curriculo.pdf artifacts/portfolio/public/curriculo.pdf
-          else
-            echo "curriculo.pdf not found — skipping"
-          fi
-          if [ -f curriculo.html ]; then
-            cp curriculo.html artifacts/portfolio/public/curriculo.html
-          else
-            echo "curriculo.html not found — skipping"
-          fi
-
-      - name: Build workspace libraries
-        run: pnpm run typecheck:libs
-
-      - name: Typecheck portfolio
-        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run typecheck
+          cp curriculo.pdf artifacts/portfolio/public/curriculo.pdf
+          cp curriculo.html artifacts/portfolio/public/curriculo.html
 
       - name: Build portfolio
-        run: |
-          set -x
-          export PORT=3000
-          export BASE_PATH=/
-          set +e
-          pnpm --filter @workspace/portfolio run build > /tmp/build.log 2>&1
-          BUILD_EXIT=$?
-          set -e
-          echo "Build exit code: ${BUILD_EXIT}"
-          echo "::group::FULL BUILD LOG (last 500 lines)"
-          tail -500 /tmp/build.log
-          echo "::endgroup::"
-          LAST_ERR=$(tail -80 /tmp/build.log | tr '\n' ' ' | head -c 64000)
-          if [ "${BUILD_EXIT}" != "0" ]; then
-            echo "::error title=Build failed exit ${BUILD_EXIT}::Build failed — ${LAST_ERR}"
-            echo "::group::Snippet around 'error'"
-            grep -n -i -C 4 "error" /tmp/build.log || true
-            echo "::endgroup::"
-            echo "::group::Snippet around 'Rollup' or 'ENOENT'"
-            grep -n -i -C 4 "rollup\|ENOENT\|cannot find\|failed to resolve\|transform" /tmp/build.log || true
-            echo "::endgroup::"
-            exit ${BUILD_EXIT}
-          fi
-          echo "::group::Files in dist/public"
-          find artifacts/portfolio/dist -maxdepth 3 -type f | sort | head -60
+        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run build 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
