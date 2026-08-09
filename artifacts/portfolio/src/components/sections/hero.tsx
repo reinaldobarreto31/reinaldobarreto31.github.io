@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
+import tracksBg from "@/assets/tracks-bg.png";
 import { SiRuby, SiRubyonrails, SiPostgresql, SiDocker, SiGithub } from "react-icons/si";
 import { Mail, ArrowDownRight } from "lucide-react";
 
@@ -56,6 +57,9 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, delay: 0.15 }} className="relative flex justify-center md:justify-end">
+          <div className="track-backdrop absolute inset-[-22%] z-0 pointer-events-none overflow-hidden rounded-[2.5rem]">
+            <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-center" />
+          </div>
           <div className="profile-frame relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden z-10">
             <img src={fotoRei} alt="Reinaldo Barreto" className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500" data-testid="img-hero-profile" />
           </div>
