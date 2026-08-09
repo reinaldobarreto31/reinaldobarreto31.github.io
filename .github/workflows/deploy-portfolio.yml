@@ -37,7 +37,18 @@ jobs:
           cp curriculo.html artifacts/portfolio/public/curriculo.html
 
       - name: Build portfolio
-        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run build 
+        run: |
+          export PORT=3000; export BASE_PATH=/
+          pnpm --filter @workspace/portfolio run build > /tmp/build.log 2>&1
+          BUILD_EXIT=$?
+          echo "Build exit code: ${BUILD_EXIT}"
+          echo "::group::BUILD LOG (tail 300 lines)"
+          tail -300 /tmp/build.log
+          echo "::endgroup::"
+          echo "::group::Find CSS-related snippets (first 50 matches ERR/WARN/error/warn/parse)"
+          grep -iE "error|warn|parse|fail|css|transform|keyframes|animation|syntax" /tmp/build.log | head -50 || true
+          echo "::endgroup::"
+          if [ "${BUILD_EXIT}" != "0" ]; then exit ${BUILD_EXIT}; fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
