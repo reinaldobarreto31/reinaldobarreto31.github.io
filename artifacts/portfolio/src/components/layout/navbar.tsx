@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { SiSpring } from "react-icons/si";
+import { SiRubyonrails } from "react-icons/si";
 import { Home, User, Briefcase, Code2, Activity, Mail } from "lucide-react";
 
 export function Navbar() {
@@ -38,12 +38,12 @@ export function Navbar() {
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute"
             >
-              <SiSpring className="text-primary text-sm" />
+              <SiRubyonrails className="text-primary text-sm" />
             </motion.div>
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-bold text-sm tracking-tight text-foreground">Reinaldo Barreto</span>
-            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">Software Engineer</span>
+            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">Ruby on Rails Developer</span>
           </div>
         </a>
 
