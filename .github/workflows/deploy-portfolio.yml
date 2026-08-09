@@ -4,13 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "artifacts/portfolio/**"
-      - "pnpm-workspace.yaml"
-      - "pnpm-lock.yaml"
-      - "package.json"
-      - "curriculo.*"
-      - ".github/workflows/deploy-portfolio.yml"
   workflow_dispatch:
 
 permissions:
@@ -23,86 +16,43 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
-          run_install: false
 
-      - name: Set up Node.js (LTS 24.x)
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'pnpm'
 
-      - name: Install pnpm dependencies
-        run: |
-          echo "::group::pnpm version"
-          pnpm -v
-          echo "::endgroup::"
-          echo "::group::Install workspace dependencies"
-          pnpm install --prefer-offline --no-frozen-lockfile || pnpm install --prefer-offline
-          echo "::endgroup::"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Sync Ruby curriculum files to portfolio public
+      - name: Sync Ruby curriculum to portfolio public
         continue-on-error: true
         run: |
-          set -x
-          PUBLIC_DIR="artifacts/portfolio/public"
-          mkdir -p "${PUBLIC_DIR}"
           if [ -f curriculo.pdf ]; then
-            cp -v curriculo.pdf "${PUBLIC_DIR}/curriculo.pdf"
+            cp curriculo.pdf artifacts/portfolio/public/curriculo.pdf
           else
-            echo "⚠️  curriculo.pdf not found in root — skipping sync"
+            echo "curriculo.pdf not found — skipping"
           fi
           if [ -f curriculo.html ]; then
-            cp -v curriculo.html "${PUBLIC_DIR}/curriculo.html"
+            cp curriculo.html artifacts/portfolio/public/curriculo.html
           else
-            echo "⚠️  curriculo.html not found in root — skipping sync"
+            echo "curriculo.html not found — skipping"
           fi
-          ls -la "${PUBLIC_DIR}" || true
 
-      - name: Build workspace libraries (api-client-react, etc)
-        run: |
-          echo "::group::Typecheck workspace libs with tsc --build"
-          pnpm run typecheck:libs
-          echo "::endgroup::"
+      - name: Build workspace libraries
+        run: pnpm run typecheck:libs
 
       - name: Typecheck portfolio
-        env:
-          PORT: "3000"
-          BASE_PATH: "/"
-        run: |
-          echo "::group::Typecheck @workspace/portfolio"
-          pnpm --filter @workspace/portfolio run typecheck
-          echo "::endgroup::"
+        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run typecheck
 
       - name: Build portfolio
-        env:
-          PORT: "3000"
-          BASE_PATH: "https://reinaldobarreto31.github.io/"
-        run: |
-          echo "::group::Build @workspace/portfolio"
-          echo "PORT=${PORT}"
-          echo "BASE_PATH=${BASE_PATH}"
-          pnpm --filter @workspace/portfolio run build 2>&1 | tail -80
-          BUILD_EXIT=$?
-          echo "Build exit code: ${BUILD_EXIT}"
-          echo "::endgroup::"
-          echo "::group::Inspect built artifacts"
-          find artifacts/portfolio/dist -maxdepth 3 -type f | sort | head -40
-          echo "---"
-          ls -la artifacts/portfolio/dist/ || true
-          echo "---"
-          ls -la artifacts/portfolio/dist/public/ || true
-          echo "::endgroup::"
-          if [ "${BUILD_EXIT}" != "0" ]; then
-            echo "::error::Build failed with exit ${BUILD_EXIT}"
-            exit ${BUILD_EXIT}
-          fi
+        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
