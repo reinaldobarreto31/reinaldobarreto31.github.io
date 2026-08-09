@@ -52,7 +52,23 @@ jobs:
         run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run typecheck
 
       - name: Build portfolio
-        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run build
+        run: |
+          set -x
+          export PORT=3000
+          export BASE_PATH=/
+          pnpm --filter @workspace/portfolio run build > /tmp/build.log 2>&1
+          BUILD_EXIT=$?
+          echo "Build exit code: ${BUILD_EXIT}"
+          echo "::group::BUILD LOG (tail 200 lines)"
+          tail -200 /tmp/build.log
+          echo "::endgroup::"
+          echo "::group::Find files in dist/public"
+          find artifacts/portfolio/dist -maxdepth 3 -type f | sort | head -50
+          echo "::endgroup::"
+          if [ "${BUILD_EXIT}" != "0" ]; then
+            echo "::error::Build failed with exit ${BUILD_EXIT}"
+            exit ${BUILD_EXIT}
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
