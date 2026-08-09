@@ -4,44 +4,119 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "artifacts/portfolio/**"
+      - "pnpm-workspace.yaml"
+      - "pnpm-lock.yaml"
+      - "package.json"
+      - "curriculo.*"
+      - ".github/workflows/deploy-portfolio.yml"
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
+          run_install: false
 
-      - name: Set up Node.js
+      - name: Set up Node.js (LTS 20.x)
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '20'
           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Sync Ruby curriculum to portfolio public
+      - name: Install pnpm dependencies
         run: |
-          cp curriculo.pdf artifacts/portfolio/public/curriculo.pdf
-          cp curriculo.html artifacts/portfolio/public/curriculo.html
+          echo "::group::pnpm version"
+          pnpm -v
+          echo "::endgroup::"
+          echo "::group::Install workspace dependencies"
+          pnpm install --prefer-offline --no-frozen-lockfile || pnpm install --prefer-offline
+          echo "::endgroup::"
+
+      - name: Sync Ruby curriculum files to portfolio public
+        continue-on-error: true
+        run: |
+          set -x
+          PUBLIC_DIR="artifacts/portfolio/public"
+          mkdir -p "${PUBLIC_DIR}"
+          if [ -f curriculo.pdf ]; then
+            cp -v curriculo.pdf "${PUBLIC_DIR}/curriculo.pdf"
+          else
+            echo "⚠️  curriculo.pdf not found in root — skipping sync"
+          fi
+          if [ -f curriculo.html ]; then
+            cp -v curriculo.html "${PUBLIC_DIR}/curriculo.html"
+          else
+            echo "⚠️  curriculo.html not found in root — skipping sync"
+          fi
+          ls -la "${PUBLIC_DIR}" || true
+
+      - name: Typecheck portfolio
+        env:
+          PORT: "3000"
+          BASE_PATH: "/"
+        run: |
+          echo "::group::Typecheck @workspace/portfolio"
+          pnpm --filter @workspace/portfolio run typecheck
+          echo "::endgroup::"
 
       - name: Build portfolio
-        run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run build
+        env:
+          PORT: "3000"
+          BASE_PATH: "https://reinaldobarreto31.github.io/"
+        run: |
+          echo "::group::Build @workspace/portfolio"
+          echo "PORT=${PORT}"
+          echo "BASE_PATH=${BASE_PATH}"
+          pnpm --filter @workspace/portfolio run build 2>&1 | tail -80
+          BUILD_EXIT=$?
+          echo "Build exit code: ${BUILD_EXIT}"
+          echo "::endgroup::"
+          echo "::group::Inspect built artifacts"
+          find artifacts/portfolio/dist -maxdepth 3 -type f | sort | head -40
+          echo "---"
+          ls -la artifacts/portfolio/dist/ || true
+          echo "---"
+          ls -la artifacts/portfolio/dist/public/ || true
+          echo "::endgroup::"
+          if [ "${BUILD_EXIT}" != "0" ]; then
+            echo "::error::Build failed with exit ${BUILD_EXIT}"
+            exit ${BUILD_EXIT}
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: success()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifacts/portfolio/dist/public
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: artifacts/portfolio/dist/public
-          publish_branch: gh-pages
+        id: deployment
+        if: success()
+        uses: actions/deploy-pages@v4
