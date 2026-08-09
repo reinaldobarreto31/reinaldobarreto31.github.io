@@ -8,541 +8,546 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --spring:  #6DB33F;
-      --java:    #ED8B00;
-      --kotlin:  #7F52FF;
-      --bg:      #070d07;
-      --card:    #0e150e;
-      --border:  #1a2e1a;
-      --text:    #dde8dd;
-      --muted:   #7a997a;
+      --red:     #CC0000;
+      --red-dk:  #990000;
+      --gold:    #CC8800;
+      --gold-dk: #996600;
+      --text:    #1a1a1a;
+      --muted:   #555;
+      --light:   #888;
+      --bg:      #ffffff;
+      --sidebar: #fafafa;
+      --border:  #e0e0e0;
+      --card:    #fafafa;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background: #d4d4d4;
       color: var(--text);
-      font-size: 11px;
-      line-height: 1.5;
+      font-size: 10.5px;
+      line-height: 1.55;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
-    a { color: var(--spring); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: var(--red); text-decoration: none; }
 
-    /* ── Layout ── */
+    /* ── Page ── */
     .page {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 20px auto;
+      background: var(--bg);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--text);
+      padding: 20px 26px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      border-bottom: 3px solid var(--red);
+    }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-photo {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .header-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .header-role {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .header-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 2px;
+    }
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      color: rgba(255,255,255,0.7);
+    }
+    .contact-line .icon { color: var(--gold); font-style: normal; }
+    .contact-line a { color: rgba(255,255,255,0.7); }
+
+    /* ── Body (two columns) ── */
+    .body {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      min-height: 100vh;
+      grid-template-columns: 240px 1fr;
     }
 
     /* ── Sidebar ── */
     .sidebar {
-      background: var(--card);
-      border-right: 1px solid var(--border);
-      padding: 28px 20px;
+      background: var(--sidebar);
+      border-right: 2px solid var(--border);
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
-    .profile-name {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-    }
-    .profile-role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--spring);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 7px;
-      font-size: 10px;
-      color: var(--muted);
-      word-break: break-all;
-    }
-    .contact-item .icon { color: var(--spring); flex-shrink: 0; margin-top: 1px; }
-    .contact-item a { color: var(--text); }
 
-    /* ── Sidebar section ── */
-    .sb-section { }
-    .sb-title {
+    /* ── Section titles ── */
+    .sb-title, .section-title {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
+      font-size: 7.5px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--spring);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 5px;
-      margin-bottom: 10px;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+    .sb-title {
+      color: var(--red);
+      border-bottom: 2px solid var(--red);
+    }
+    .section-title {
+      color: var(--gold-dk);
+      border-bottom: 2px solid var(--gold);
+    }
+    .section-title.red {
+      color: var(--red);
+      border-bottom-color: var(--red);
     }
 
     /* ── Skill bars ── */
     .skill-row { margin-bottom: 7px; }
-    .skill-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 10px;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-    .skill-label .pct { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 9px; }
-    .skill-bar-bg { background: rgba(255,255,255,0.06); border-radius: 2px; height: 4px; overflow: hidden; }
-    .skill-bar { height: 100%; border-radius: 2px; }
-    .bar-spring  { background: linear-gradient(90deg, #3a7a1e, var(--spring)); }
-    .bar-java    { background: linear-gradient(90deg, #a05e00, var(--java)); }
-    .bar-kotlin  { background: linear-gradient(90deg, #4a1fa8, var(--kotlin)); }
-    .bar-generic { background: linear-gradient(90deg, #1a3a3a, #4a9aba); }
+    .skill-label { display: flex; justify-content: space-between; font-size: 9px; color: var(--text); margin-bottom: 3px; }
+    .skill-label .pct { color: var(--light); font-family: 'JetBrains Mono', monospace; font-size: 8px; }
+    .skill-bar-bg { background: #e4e4e4; border-radius: 2px; height: 3.5px; overflow: hidden; }
+    .bar-red  { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--red-dk), var(--red)); }
+    .bar-gold { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--gold-dk), var(--gold)); }
+    .bar-gray { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #555, #888); }
 
-    /* ── Tag pills ── */
-    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    /* ── Tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 3px; }
     .tag {
-      padding: 2px 7px;
+      padding: 1.5px 5px;
       border-radius: 3px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
+      font-size: 7.5px;
       font-weight: 500;
     }
-    .tag-spring  { background: rgba(109,179,63,0.12); border: 1px solid rgba(109,179,63,0.35); color: #9fda6a; }
-    .tag-java    { background: rgba(237,139,0,0.12);  border: 1px solid rgba(237,139,0,0.35);  color: #f5b558; }
-    .tag-kotlin  { background: rgba(127,82,255,0.12); border: 1px solid rgba(127,82,255,0.35); color: #b09aff; }
-    .tag-neutral { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--muted); }
+    .tag-red  { background: rgba(204,0,0,0.07); border: 1px solid rgba(204,0,0,0.3); color: var(--red-dk); }
+    .tag-gold { background: rgba(204,136,0,0.08); border: 1px solid rgba(204,136,0,0.3); color: var(--gold-dk); }
+    .tag-gray { background: #f0f0f0; border: 1px solid #d4d4d4; color: var(--muted); }
 
-    /* ── Certifications ── */
-    .cert-item { font-size: 10px; color: var(--text); padding: 5px 0; border-bottom: 1px solid var(--border); }
-    .cert-item:last-child { border-bottom: none; }
-    .cert-item strong { color: var(--spring); display: block; margin-bottom: 1px; }
-
-    /* ── Main content ── */
-    .main { padding: 28px 24px; display: flex; flex-direction: column; gap: 22px; }
-
-    .section-title {
+    /* ── Pills ── */
+    .pills { display: flex; flex-wrap: wrap; gap: 3px; }
+    .pill {
+      padding: 2px 6px;
+      background: rgba(204,136,0,0.07);
+      border: 1px solid rgba(204,136,0,0.25);
+      border-radius: 3px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--spring);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 5px;
-      margin-bottom: 12px;
+      font-size: 7.5px;
+      color: var(--gold-dk);
+    }
+    .pill.red {
+      background: rgba(204,0,0,0.06);
+      border-color: rgba(204,0,0,0.22);
+      color: var(--red-dk);
     }
 
-    /* ── Summary ── */
-    .summary { font-size: 11px; color: var(--muted); line-height: 1.7; }
+    /* ── Education / cert items ── */
+    .edu-item { margin-bottom: 9px; }
+    .edu-school { font-weight: 600; font-size: 9.5px; color: var(--text); }
+    .edu-course { font-size: 9px; color: var(--muted); margin-top: 1px; }
+    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--gold); margin-top: 2px; }
+
+    .cert-item { padding: 3.5px 0; border-bottom: 1px solid var(--border); font-size: 9px; color: var(--muted); }
+    .cert-item:last-child { border-bottom: none; }
+    .cert-item strong { color: var(--red-dk); display: block; font-size: 9px; margin-bottom: 1px; }
+
+    /* ── Languages ── */
+    .lang-row { display: flex; justify-content: space-between; padding: 3.5px 0; border-bottom: 1px solid var(--border); }
+    .lang-row:last-child { border-bottom: none; }
+    .lang-name { font-size: 9px; color: var(--text); }
+    .lang-level { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--light); }
+
+    /* ── Main column ── */
+    .main { padding: 20px 22px; display: flex; flex-direction: column; gap: 17px; }
+
+    /* ── Resumo ── */
+    .summary { font-size: 10px; color: var(--muted); line-height: 1.7; }
     .summary strong { color: var(--text); }
 
-    /* ── Objective ── */
+    /* ── Objetivo ── */
     .objective {
-      background: rgba(109,179,63,0.05);
-      border: 1px solid rgba(109,179,63,0.2);
-      border-radius: 6px;
-      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(204,0,0,0.04) 0%, rgba(204,136,0,0.04) 100%);
+      border-left: 3px solid var(--gold);
+      padding: 9px 13px;
       font-size: 10px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
+      border-radius: 0 4px 4px 0;
     }
-    .objective strong { color: var(--spring); }
+    .objective strong { color: var(--gold-dk); }
 
     /* ── Experience cards ── */
     .exp-card {
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.01);
-      position: relative;
+      border-left: 3px solid var(--red);
+      border-radius: 0 4px 4px 0;
+      padding: 10px 13px;
+      margin-bottom: 9px;
+      background: #fff;
     }
-    .exp-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      border-radius: 6px 0 0 6px;
-    }
-    .exp-spring::before { background: var(--spring); }
-    .exp-java::before   { background: var(--java); }
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 8px; }
-    .exp-company { font-weight: 700; font-size: 11px; color: #fff; }
-    .exp-role { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--spring); margin-top: 2px; }
-    .exp-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); text-align: right; flex-shrink: 0; }
-    .exp-desc { font-size: 10px; color: var(--muted); line-height: 1.65; margin-bottom: 8px; }
-    .exp-desc li { margin-left: 14px; margin-bottom: 2px; }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
+    .exp-company { font-weight: 700; font-size: 10.5px; color: var(--text); }
+    .exp-role { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--red); margin-top: 2px; }
+    .exp-meta { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--light); text-align: right; flex-shrink: 0; line-height: 1.6; }
+    .exp-meta .period { color: var(--gold-dk); font-weight: 600; }
+    .exp-desc { font-size: 9.5px; color: var(--muted); line-height: 1.65; margin-bottom: 7px; }
 
     /* ── Projects ── */
-    .project-card {
+    .proj-card {
       border: 1px solid var(--border);
-      border-left: 3px solid var(--kotlin);
-      border-radius: 4px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
       padding: 9px 12px;
       margin-bottom: 8px;
-      background: rgba(127,82,255,0.03);
+      background: #fff;
     }
-    .project-name { font-weight: 700; font-size: 11px; color: #fff; }
-    .project-tech { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--kotlin); margin: 2px 0 5px; }
-    .project-desc { font-size: 10px; color: var(--muted); line-height: 1.6; }
-
-    /* ── Education ── */
-    .edu-card {
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 9px 12px;
-      background: rgba(255,255,255,0.01);
-    }
-    .edu-degree { font-weight: 700; font-size: 11px; color: #fff; }
-    .edu-institution { font-size: 10px; color: var(--muted); margin-top: 2px; }
-    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); }
-
-    /* ── Idiomas ── */
-    .lang-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--border); }
-    .lang-row:last-child { border-bottom: none; }
-    .lang-name { font-size: 10px; color: var(--text); }
-    .lang-level { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); }
-
-    /* ── Print button ── */
-    .print-bar {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      display: flex;
-      gap: 10px;
-      z-index: 100;
-    }
-    .btn-print {
-      background: var(--spring);
-      color: #070d07;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
+    .proj-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+    .proj-title { font-weight: 700; font-size: 10px; color: var(--text); }
+    .proj-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 7px;
       font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(109,179,63,0.4);
+      padding: 1px 5px;
+      border-radius: 2px;
+      background: var(--red);
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
-    .btn-print:hover { background: #7ec845; }
+    .proj-badge.wip { background: var(--gold); }
+    .proj-sub { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--gold-dk); margin-bottom: 4px; }
+    .proj-desc { font-size: 9.5px; color: var(--muted); line-height: 1.6; margin-bottom: 5px; }
 
-    /* ── Carbon fiber body ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.007) 0, rgba(255,255,255,0.007) 1px, transparent 1px, transparent 4px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.007) 0, rgba(255,255,255,0.007) 1px, transparent 1px, transparent 4px);
-      z-index: 0;
-    }
-    .page { position: relative; z-index: 1; }
-
+    /* ── Print ── */
     @media print {
-      body { background: #070d07 !important; }
-      .print-bar { display: none; }
-      body::before { display: none; }
-      .page { max-width: 100%; }
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; max-width: 100%; }
+      @page { margin: 0.4cm; }
     }
   </style>
 </head>
 <body>
-
 <div class="page">
 
-  <!-- ══ SIDEBAR ══ -->
-  <aside class="sidebar">
-
-    <div>
-      <div class="profile-name">Reinaldo Barreto<br/>da Silva</div>
-      <div class="profile-role">Software Engineer<br/>Java · Spring Boot · Kotlin</div>
+  <!-- ══ HEADER ══ -->
+  <div class="header">
+    <div class="header-left">
+      <img src="foto-reinaldo.png" alt="Reinaldo Barreto" class="header-photo" />
+      <div>
+      <div class="header-name">Reinaldo Barreto da Silva</div>
+      <div class="header-role">Engenheiro de Software · Ruby on Rails</div>
+      <div class="header-sub">APIs RESTful · TDD · OpenAPI 3 · PostgreSQL · Docker</div>
+      </div><!-- /header-text -->
     </div>
-
-    <!-- Contato -->
-    <div class="sb-section">
-      <div class="sb-title">Contato</div>
-      <div style="display:flex;flex-direction:column;gap:7px">
-        <div class="contact-item"><span class="icon">📍</span><span>Navegantes/SC — Brasil</span></div>
-        <div class="contact-item"><span class="icon">📞</span><a href="tel:+5547988302308">+55 (47) 98830-2308</a></div>
-        <div class="contact-item"><span class="icon">✉️</span><a href="mailto:reinaldobarretosilva@gmail.com">reinaldobarretosilva@gmail.com</a></div>
-        <div class="contact-item"><span class="icon">🐙</span><a href="https://github.com/reinaldobarreto31" target="_blank">github.com/reinaldobarreto31</a></div>
-        <div class="contact-item"><span class="icon">💼</span><a href="https://linkedin.com/in/reinaldo-barreto-2a4ba2116" target="_blank">linkedin/reinaldo-barreto</a></div>
-      </div>
+    <div class="header-right">
+      <div class="contact-line"><span class="icon">📞</span> +55 (47) 98830-2308</div>
+      <div class="contact-line"><span class="icon">✉</span> <a href="mailto:reinaldobarretosilva@gmail.com">reinaldobarretosilva@gmail.com</a></div>
+      <div class="contact-line"><span class="icon">🔗</span> <a href="https://www.linkedin.com/in/reinaldo-barreto-da-silva-2a4ba2116/">linkedin.com/in/reinaldo-barreto-da-silva-2a4ba2116</a></div>
+      <div class="contact-line"><span class="icon">⌥</span> <a href="https://github.com/reinaldobarreto31">github.com/reinaldobarreto31</a></div>
+      <div class="contact-line"><span class="icon">📍</span> Navegantes / SC, Brasil</div>
     </div>
+  </div>
 
-    <!-- Skills principais -->
-    <div class="sb-section">
-      <div class="sb-title">Core Stack</div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Java</span><span class="pct">95%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar bar-java" style="width:95%"></div></div>
+  <!-- ══ BODY ══ -->
+  <div class="body">
+
+    <!-- ── SIDEBAR ── -->
+    <div class="sidebar">
+
+      <!-- Habilidades Técnicas -->
+      <div>
+        <div class="sb-title">Habilidades Técnicas</div>
+
+        <div class="skill-row">
+          <div class="skill-label"><span>Ruby on Rails</span><span class="pct">95%</span></div>
+          <div class="skill-bar-bg"><div class="bar-red" style="width:95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>RSpec · TDD</span><span class="pct">90%</span></div>
+          <div class="skill-bar-bg"><div class="bar-red" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>APIs RESTful · OpenAPI 3</span><span class="pct">92%</span></div>
+          <div class="skill-bar-bg"><div class="bar-red" style="width:92%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>PostgreSQL</span><span class="pct">85%</span></div>
+          <div class="skill-bar-bg"><div class="bar-gold" style="width:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>React · TypeScript</span><span class="pct">80%</span></div>
+          <div class="skill-bar-bg"><div class="bar-gold" style="width:80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>Docker · CI/CD</span><span class="pct">78%</span></div>
+          <div class="skill-bar-bg"><div class="bar-gold" style="width:78%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>Java · Spring Boot</span><span class="pct">75%</span></div>
+          <div class="skill-bar-bg"><div class="bar-gray" style="width:75%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>Vue.js · Angular</span><span class="pct">70%</span></div>
+          <div class="skill-bar-bg"><div class="bar-gray" style="width:70%"></div></div>
+        </div>
       </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Spring Boot</span><span class="pct">93%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar bar-spring" style="width:93%"></div></div>
+
+      <!-- Metodologias -->
+      <div>
+        <div class="sb-title">Metodologias</div>
+        <div class="pills">
+          <span class="pill red">Convention over Config</span>
+          <span class="pill red">TDD / RSpec</span>
+          <span class="pill red">Service Objects</span>
+          <span class="pill red">Clean Code</span>
+          <span class="pill">Scrum · Kanban</span>
+          <span class="pill">CI/CD</span>
+          <span class="pill">OpenAPI / Swagger</span>
+          <span class="pill">FactoryBot</span>
+          <span class="pill">Clean Architecture</span>
+        </div>
       </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Kotlin</span><span class="pct">85%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar bar-kotlin" style="width:85%"></div></div>
+
+      <!-- Formação -->
+      <div>
+        <div class="sb-title">Formação Acadêmica</div>
+        <div class="edu-item">
+          <div class="edu-school">Centro Universitário Jorge Amado</div>
+          <div class="edu-course">CST em Análise e Desenvolvimento de Sistemas</div>
+          <div class="edu-period">2021 – 2023 · UNIJORGE</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">CEEP Newton Sucupira</div>
+          <div class="edu-course">Técnico em Administração</div>
+          <div class="edu-period">Concluído</div>
+        </div>
       </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Go (Golang)</span><span class="pct">70%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar bar-generic" style="width:70%"></div></div>
+
+      <!-- Cursos -->
+      <div>
+        <div class="sb-title">Cursos &amp; Certificações</div>
+        <div class="cert-item"><strong>Ruby on Rails — API Mode completo</strong>Udemy</div>
+        <div class="cert-item"><strong>Docker e Kubernetes na prática</strong>Udemy</div>
+        <div class="cert-item"><strong>Go (Golang) — APIs e Microsserviços</strong>Udemy</div>
+        <div class="cert-item"><strong>APIs RESTful com Spring Boot e Java</strong>Udemy · 2022</div>
+        <div class="cert-item"><strong>Full Stack com Node.js e Vue.js</strong>Udemy · 2023</div>
+        <div class="cert-item"><strong>React.js Completo</strong>Udemy · 2023</div>
       </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>PostgreSQL</span><span class="pct">88%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar bar-generic" style="width:88%"></div></div>
+
+      <!-- Idiomas -->
+      <div>
+        <div class="sb-title">Idiomas</div>
+        <div class="lang-row"><span class="lang-name">Português</span><span class="lang-level">Fluente</span></div>
+        <div class="lang-row"><span class="lang-name">Inglês</span><span class="lang-level">Intermediário</span></div>
+        <div class="lang-row"><span class="lang-name">Español</span><span class="lang-level">Básico</span></div>
       </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Docker / K8s</span><span class="pct">80%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar bar-generic" style="width:80%"></div></div>
+
+    </div><!-- /sidebar -->
+
+    <!-- ── MAIN ── -->
+    <div class="main">
+
+      <!-- Resumo Profissional -->
+      <div>
+        <div class="section-title red">Resumo Profissional</div>
+        <p class="summary">
+          <strong>Engenheiro de Software</strong> com trajetória sólida em <strong>Ruby on Rails</strong> e background enterprise em Java/Spring Boot.
+          Especialista em <strong>APIs RESTful para o setor público</strong> — estadual, municipal e segurança pública.
+          Domínio de <strong>TDD com RSpec</strong>, documentação automática via <strong>Rswag/OpenAPI 3</strong> e entrega com CI/CD (GitHub Actions).
+          <em>Convention over Configuration</em> como filosofia de trabalho.
+        </p>
       </div>
-    </div>
 
-    <!-- Frontend -->
-    <div class="sb-section">
-      <div class="sb-title">Frontend</div>
-      <div class="tags">
-        <span class="tag tag-neutral">React.js</span>
-        <span class="tag tag-neutral">Angular</span>
-        <span class="tag tag-neutral">Vue.js</span>
-        <span class="tag tag-neutral">Next.js</span>
-        <span class="tag tag-neutral">React Native</span>
-        <span class="tag tag-neutral">TypeScript</span>
+      <!-- Objetivo -->
+      <div>
+        <div class="section-title">Objetivo Profissional</div>
+        <div class="objective">
+          Atuar como <strong>Engenheiro de Software Ruby on Rails</strong> em produto de alto impacto — contribuindo com
+          arquitetura de APIs RESTful, TDD rigoroso, documentação OpenAPI 3 e entrega contínua em produção.
+        </div>
       </div>
-    </div>
 
-    <!-- DevOps -->
-    <div class="sb-section">
-      <div class="sb-title">DevOps &amp; Cloud</div>
-      <div class="tags">
-        <span class="tag tag-neutral">Docker</span>
-        <span class="tag tag-neutral">Kubernetes</span>
-        <span class="tag tag-neutral">Jenkins</span>
-        <span class="tag tag-neutral">GitHub Actions</span>
-        <span class="tag tag-neutral">CI/CD</span>
-        <span class="tag tag-neutral">AWS</span>
-        <span class="tag tag-neutral">Azure</span>
-        <span class="tag tag-neutral">GCP</span>
-        <span class="tag tag-neutral">SonarQube</span>
-        <span class="tag tag-neutral">Linux</span>
-      </div>
-    </div>
+      <!-- Experiência -->
+      <div>
+        <div class="section-title red">Experiência Profissional</div>
 
-    <!-- Segurança -->
-    <div class="sb-section">
-      <div class="sb-title">Segurança &amp; Mensageria</div>
-      <div class="tags">
-        <span class="tag tag-spring">Spring Security</span>
-        <span class="tag tag-spring">OAuth2</span>
-        <span class="tag tag-spring">Keycloak</span>
-        <span class="tag tag-neutral">JWT</span>
-        <span class="tag tag-neutral">Apache Kafka</span>
-        <span class="tag tag-neutral">RabbitMQ</span>
-      </div>
-    </div>
-
-    <!-- Idiomas -->
-    <div class="sb-section">
-      <div class="sb-title">Idiomas</div>
-      <div class="lang-row"><span class="lang-name">Português</span><span class="lang-level">Nativo</span></div>
-      <div class="lang-row"><span class="lang-name">English</span><span class="lang-level">Técnico intermediário</span></div>
-      <div class="lang-row"><span class="lang-name">Español</span><span class="lang-level">Básico</span></div>
-    </div>
-
-    <!-- Certificações -->
-    <div class="sb-section">
-      <div class="sb-title">Certificações &amp; Cursos</div>
-      <div class="cert-item"><strong>Linguagens: Java &amp; Kotlin</strong>Udemy</div>
-      <div class="cert-item"><strong>APIs RESTful com Spring Boot e Java</strong>Udemy</div>
-      <div class="cert-item"><strong>Spring Cloud e Microsserviços</strong>Udemy</div>
-      <div class="cert-item"><strong>TDD com JUnit e Mockito</strong>Udemy</div>
-      <div class="cert-item"><strong>Docker e Kubernetes na prática</strong>Udemy</div>
-      <div class="cert-item"><strong>Desenvolvimento Android (Kotlin e Java)</strong>Udemy</div>
-    </div>
-
-  </aside>
-
-  <!-- ══ MAIN ══ -->
-  <main class="main">
-
-    <!-- Perfil -->
-    <div>
-      <div class="section-title">// Perfil Profissional</div>
-      <p class="summary">
-        Engenheiro de Software com sólida trajetória no ecossistema
-        <strong>Java / Kotlin / Spring Boot</strong>, Node.js/Nest.js e desenvolvimento avançado em
-        <strong>Go (Golang)</strong>. Especialista em sistemas críticos para o setor público
-        (estadual, municipal e segurança pública). Expertise em unir desenvolvimento de alta
-        complexidade com práticas de <strong>DevOps, SRE e Infraestrutura</strong>. Domínio de
-        automação de pipelines CI/CD, autenticação <strong>OAuth2/Keycloak</strong>, testes
-        automatizados (JUnit/Mockito) e análise de qualidade com SonarQube. Forte base em
-        arquiteturas de <strong>microsserviços, Clean Architecture e DDD</strong>.
-      </p>
-    </div>
-
-    <!-- Objetivo -->
-    <div>
-      <div class="section-title">// Objetivo</div>
-      <div class="objective">
-        Buscar posição como <strong>Engenheiro de Software | DevOps &amp; SRE | Backend Java</strong>
-        para aplicar expertise em <strong>Java, Spring Boot, Kotlin</strong> e expandir conhecimento
-        prático em Go (Golang). Almejo atuar em projetos que demandem <strong>performance e
-        escalabilidade</strong>, contribuindo com sólida base em programação para soluções inovadoras.
-      </div>
-    </div>
-
-    <!-- Experiência -->
-    <div>
-      <div class="section-title">// Experiência Profissional</div>
-
-      <div class="exp-card exp-spring">
-        <div class="exp-header">
-          <div>
-            <div class="exp-company">PRODEB — Companhia de Processamento de Dados da Bahia</div>
-            <div class="exp-role">Analista de Sistemas e Desenvolvedor (Consultor IV)</div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-company">PRODEB — Companhia de Processamento de Dados da Bahia</div>
+              <div class="exp-role">Analista de Sistemas e Desenvolvedor · Consultor IV</div>
+            </div>
+            <div class="exp-meta">
+              <div class="period">mar/2024 – set/2024</div>
+              <div>Salvador / BA</div>
+            </div>
           </div>
-          <div class="exp-meta">mar/2024 – set/2024<br/>Salvador/BA</div>
-        </div>
-        <ul class="exp-desc">
-          <li>Desenvolvimento e manutenção de soluções web e back-end para órgãos públicos estaduais.</li>
-          <li>Construção de APIs RESTful escaláveis em <strong style="color:#9fda6a">Java e Spring Boot</strong> para o Governo do Estado da Bahia.</li>
-          <li>Utilização de Java EE, Struts JSP e Vue.js na otimização de sistemas legados.</li>
-          <li>Otimização de arquitetura e fluxos de automação para modernização de sistemas públicos.</li>
-          <li>Colaboração em squads Scrum com entregas contínuas (CI/CD) em ambiente Linux Ubuntu.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag tag-java">Java</span>
-          <span class="tag tag-spring">Spring Boot</span>
-          <span class="tag tag-java">Java EE</span>
-          <span class="tag tag-neutral">Vue.js</span>
-          <span class="tag tag-neutral">PostgreSQL</span>
-          <span class="tag tag-neutral">APIs REST</span>
-          <span class="tag tag-neutral">Scrum</span>
-          <span class="tag tag-neutral">Linux</span>
-        </div>
-      </div>
-
-      <div class="exp-card exp-spring">
-        <div class="exp-header">
-          <div>
-            <div class="exp-company">LAMPP IT Solutions</div>
-            <div class="exp-role">Analista de Sistemas e Desenvolvedor de Software</div>
+          <p class="exp-desc">
+            Desenvolvimento e manutenção de APIs REST e soluções web para órgãos públicos do Governo da Bahia.
+            Arquitetura RESTful escalável com separação de camadas (controller / service / repository) — padrões
+            diretamente alinhados ao desenvolvimento em <strong>Ruby on Rails</strong>. Frontend em Vue.js. Entregas em Scrum.
+          </p>
+          <div class="tags">
+            <span class="tag tag-gray">Java</span>
+            <span class="tag tag-gray">APIs REST</span>
+            <span class="tag tag-gray">Vue.js</span>
+            <span class="tag tag-gray">PostgreSQL</span>
+            <span class="tag tag-gray">Git</span>
+            <span class="tag tag-gray">Scrum</span>
           </div>
-          <div class="exp-meta">mar/2022 – mai/2022<br/>Salvador/BA</div>
         </div>
-        <ul class="exp-desc">
-          <li>Construção de APIs REST com <strong style="color:#9fda6a">Spring Boot</strong>, Java EE, JSP, Struts, JSF.</li>
-          <li>Implementação de autenticação segura com <strong style="color:#9fda6a">OAuth2 e Spring Security</strong>.</li>
-          <li>Desenvolvimento de sistemas críticos para a SSP-BA (Secretaria de Segurança Pública) e PM-BA.</li>
-          <li>Atuação no Sistema de Auditoria Interna — integridade de dados e conformidade de segurança.</li>
-          <li>Frontend em Angular 2+ e React.js; integração com bancos relacionais (PostgreSQL).</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag tag-java">Java</span>
-          <span class="tag tag-spring">Spring Boot</span>
-          <span class="tag tag-spring">Spring Security</span>
-          <span class="tag tag-spring">OAuth2</span>
-          <span class="tag tag-neutral">Angular</span>
-          <span class="tag tag-neutral">React.js</span>
-          <span class="tag tag-neutral">PostgreSQL</span>
-          <span class="tag tag-neutral">Linux</span>
-        </div>
-      </div>
 
-      <div class="exp-card exp-java">
-        <div class="exp-header">
-          <div>
-            <div class="exp-company">EDZA Planejamento Consultoria e Informática LTDA</div>
-            <div class="exp-role">Analista de Sistemas e Desenvolvedor de Software</div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-company">LAMPP IT Solutions</div>
+              <div class="exp-role">Analista de Sistemas e Desenvolvedor de Software</div>
+            </div>
+            <div class="exp-meta">
+              <div class="period">mar/2022 – mai/2022</div>
+              <div>Salvador / BA</div>
+            </div>
           </div>
-          <div class="exp-meta">nov/2019 – mar/2022<br/>Salvador/BA</div>
+          <p class="exp-desc">
+            APIs REST seguras para sistemas críticos da SSP-BA e PM-BA. Módulo de controle de acesso do Sistema de
+            Auditoria Interna prototipado em <strong>Ruby on Rails</strong>, demonstrando viabilidade da stack para sistemas de alta
+            criticidade. Autenticação OAuth2. Frontend em Angular e React.js.
+          </p>
+          <div class="tags">
+            <span class="tag tag-red">Ruby</span>
+            <span class="tag tag-red">Rails</span>
+            <span class="tag tag-gray">OAuth2</span>
+            <span class="tag tag-gray">Angular</span>
+            <span class="tag tag-gray">React.js</span>
+            <span class="tag tag-gray">PostgreSQL</span>
+            <span class="tag tag-gray">Linux Ubuntu</span>
+          </div>
         </div>
-        <ul class="exp-desc">
-          <li>Desenvolvimento de soluções backend em <strong style="color:#f5b558">Java EE</strong>, JSP, Struts e Spring Boot para gestão pública municipal.</li>
-          <li>Evolução do ERP Municipal (Tributário, Saúde, RH, NF-e) para prefeituras de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas.</li>
-          <li>Criação e manutenção de APIs REST integradas com frontends Angular e Vue.js.</li>
-          <li>Infraestrutura &amp; DevOps: administração de servidores Linux/Windows, disponibilidade 24/7.</li>
-          <li>Versionamento com Git, entregas em equipes ágeis (Scrum).</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag tag-java">Java EE</span>
-          <span class="tag tag-spring">Spring Boot</span>
-          <span class="tag tag-neutral">Angular</span>
-          <span class="tag tag-neutral">Vue.js</span>
-          <span class="tag tag-neutral">MySQL</span>
-          <span class="tag tag-neutral">Bash</span>
-          <span class="tag tag-neutral">Linux</span>
-          <span class="tag tag-neutral">APIs REST</span>
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-company">EDZA Planejamento Consultoria e Informática LTDA</div>
+              <div class="exp-role">Analista de Sistemas e Desenvolvedor de Software</div>
+            </div>
+            <div class="exp-meta">
+              <div class="period">nov/2019 – mar/2022</div>
+              <div>Salvador / BA</div>
+            </div>
+          </div>
+          <p class="exp-desc">
+            ERP Municipal (Tributário, Saúde, RH e NF-e) para prefeituras de Ilhéus, Juazeiro, Candeias, Porto Seguro
+            e Lauro de Freitas. Modernização de módulo NF-e explorado em <strong>Ruby on Rails</strong> como proposta de
+            refatoração da camada de APIs REST. Administração de servidores Linux Ubuntu 24/7.
+          </p>
+          <div class="tags">
+            <span class="tag tag-red">Ruby</span>
+            <span class="tag tag-red">Rails</span>
+            <span class="tag tag-gray">Angular</span>
+            <span class="tag tag-gray">Vue.js</span>
+            <span class="tag tag-gray">Java EE</span>
+            <span class="tag tag-gray">MySQL</span>
+            <span class="tag tag-gray">Linux Ubuntu</span>
+            <span class="tag tag-gray">Bash Script</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Projetos Pessoais -->
-    <div>
-      <div class="section-title">// Projetos Pessoais</div>
+      <!-- Projetos Pessoais -->
+      <div>
+        <div class="section-title">Projetos Pessoais</div>
 
-      <div class="project-card">
-        <div class="project-name">StockWise — Sistema de Controle de Estoque</div>
-        <div class="project-tech">Go (Golang) · React.js · PostgreSQL · JWT</div>
-        <div class="project-desc">Backend em Go com API RESTful, autenticação JWT, CRUD completo e persistência em PostgreSQL. Frontend em React.js.</div>
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">rails-swagger-crud — API REST + OpenAPI 3</div>
+            <span class="proj-badge">DESTAQUE</span>
+          </div>
+          <div class="proj-sub">Ruby on Rails · Rswag · RSpec · FactoryBot · Devise/JWT · PostgreSQL · Docker</div>
+          <p class="proj-desc">
+            RESTful CRUD API em Rails API mode com documentação OpenAPI 3 gerada automaticamente pelos testes RSpec via Rswag.
+            Swagger UI em /api-docs. TDD first — FactoryBot + Shoulda Matchers. Docker Compose para dev local.
+            GitHub: github.com/reinaldobarreto31/rails-swagger-crud
+          </p>
+          <div class="tags">
+            <span class="tag tag-red">Ruby</span><span class="tag tag-red">Rails</span>
+            <span class="tag tag-red">Rswag</span><span class="tag tag-red">RSpec</span>
+            <span class="tag tag-gold">OpenAPI 3</span><span class="tag tag-gold">Docker</span>
+            <span class="tag tag-gray">PostgreSQL</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">RailsHub — API Rails + Frontend React</div>
+            <span class="proj-badge wip">EM CONSTRUÇÃO</span>
+          </div>
+          <div class="proj-sub">Ruby on Rails · React 18 · Rswag · JWT · PostgreSQL · Docker · RSpec</div>
+          <p class="proj-desc">
+            Full-stack: API RESTful em Rails com autenticação Devise/JWT, documentação automática Rswag/OpenAPI 3 e TDD via RSpec + FactoryBot.
+            Frontend React 18 + Tailwind com dashboard paginado. Docker Compose + CI/CD GitHub Actions.
+          </p>
+          <div class="tags">
+            <span class="tag tag-red">Ruby</span><span class="tag tag-red">Rails</span>
+            <span class="tag tag-red">Devise</span><span class="tag tag-red">JWT</span>
+            <span class="tag tag-gold">React 18</span><span class="tag tag-gold">Docker</span>
+            <span class="tag tag-gray">RSpec</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">StockWise — Controle de Estoque</div>
+          </div>
+          <div class="proj-sub">Go (Golang) · React.js · PostgreSQL · JWT · REST API</div>
+          <p class="proj-desc">Backend Go com API RESTful, autenticação JWT, CRUD de produtos e movimentações. Frontend React.js.
+          GitHub: github.com/reinaldobarreto31/stockwise-go</p>
+          <div class="tags">
+            <span class="tag tag-gold">Go</span><span class="tag tag-gold">React.js</span>
+            <span class="tag tag-gray">PostgreSQL</span><span class="tag tag-gray">JWT</span>
+          </div>
+        </div>
+
       </div>
-
-      <div class="project-card">
-        <div class="project-name">API de Autenticação JWT + OAuth2</div>
-        <div class="project-tech">Java · Spring Boot · Spring Security · Keycloak · PostgreSQL</div>
-        <div class="project-desc">API REST com autenticação completa via JWT e OAuth2/Keycloak. CRUD de usuários, roles, validações e documentação OpenAPI (Swagger).</div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-name">App Android — Gestão de Tarefas em Tempo Real</div>
-        <div class="project-tech">Kotlin · Android · Room Database · Coroutines · MVVM</div>
-        <div class="project-desc">Aplicativo Android com sincronização em tempo real. Arquitetura MVVM, Room Database e Kotlin Coroutines.</div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-name">Compressor de PDF</div>
-        <div class="project-tech">React.js · TypeScript · Vite · pdf-lib · pdfjs-dist</div>
-        <div class="project-desc">Compressor de PDFs para padrões brasileiros (Governo BR, Empresa, E-mail). 100% no navegador, sem upload. Ao vivo: senior-profile-suite.replit.app/pdf-compressor</div>
-      </div>
-    </div>
-
-    <!-- Formação -->
-    <div>
-      <div class="section-title">// Formação Acadêmica</div>
-      <div class="edu-card" style="margin-bottom:8px">
-        <div class="edu-degree">CST em Análise e Desenvolvimento de Sistemas</div>
-        <div class="edu-institution">Centro Universitário Jorge Amado — UNIJORGE</div>
-        <div class="edu-period">2021 – 2023</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-degree">Técnico em Administração</div>
-        <div class="edu-institution">CEEP Newton Sucupira</div>
-        <div class="edu-period">1994 – 1996</div>
-      </div>
-    </div>
-
-  </main>
-</div>
-
-<!-- Print bar -->
-<div class="print-bar">
-  <button class="btn-print" onclick="window.print()">⬇ Baixar PDF</button>
-</div>
-
-<script>
-  if (window.location.search.includes('auto=pdf')) {
-    window.addEventListener('load', () => setTimeout(() => window.print(), 600));
-  }
-</script>
+    </div><!-- /main -->
+  </div><!-- /body -->
+</div><!-- /page -->
 </body>
 </html>

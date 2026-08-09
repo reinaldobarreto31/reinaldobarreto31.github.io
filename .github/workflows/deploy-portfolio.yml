@@ -31,6 +31,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Sync Ruby curriculum to portfolio public
+        run: |
+          cp curriculo.pdf artifacts/portfolio/public/curriculo.pdf
+          cp curriculo.html artifacts/portfolio/public/curriculo.html
+
       - name: Build portfolio
         run: PORT=3000 BASE_PATH=/ pnpm --filter @workspace/portfolio run build
 

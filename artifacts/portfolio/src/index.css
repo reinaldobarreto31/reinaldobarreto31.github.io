@@ -3,7 +3,8 @@
 @plugin "@tailwindcss/typography";
 
 @keyframes shine-sweep { 0% { background-position: -300% center; } 100% { background-position: 300% center; } }
-@keyframes tracks-journey { 0%, 100% { transform: scale(1.04) translateY(0); } 50% { transform: scale(1.13) translateY(2.5%); } }
+@keyframes locomotive-run { 0% { offset-distance: 0%; opacity: 0; } 6% { opacity: 1; } 94% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+@keyframes smoke-puff { 0%, 100% { opacity: .25; transform: translateY(0); } 50% { opacity: .85; transform: translateY(-3px); } }
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -31,19 +32,40 @@
 }
 
 .rails-shine { background: linear-gradient(100deg, #8f1524, #ef5261, #ffd1d6, #ef5261, #8f1524); background-size: 250% auto; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine-sweep 3s linear infinite; }
-.hero-tracks { opacity: .27; background-image: url("./assets/tracks-bg.png"); background-size: cover; background-position: center 57%; animation: tracks-journey 14s ease-in-out infinite; }
-.hero-tracks-overlay { background: linear-gradient(90deg, hsl(var(--background)) 0%, hsl(var(--background) / .73) 40%, hsl(var(--background) / .52) 67%, hsl(var(--background) / .9) 100%), linear-gradient(0deg, hsl(var(--background)) 0%, transparent 34%, transparent 66%, hsl(var(--background) / .85) 100%); }
 .hero-aura { background: radial-gradient(ellipse 62% 52% at 50% 42%, rgba(204, 0, 0, .12), transparent 72%), radial-gradient(ellipse 34% 30% at 88% 24%, rgba(189,147,249,.1), transparent 78%); }
 .rails-badge, .rails-panel, .rails-project-card, .rails-experience-card, .rails-mini-card { background: linear-gradient(145deg, rgba(68,71,90,.86), rgba(40,42,54,.94)); border: 1px solid rgba(248,248,242,.1); box-shadow: 0 14px 34px rgba(20,21,28,.32), inset 0 1px rgba(255,255,255,.045); }
 .rails-button { color: white; background: linear-gradient(135deg, #b91f32, #e33446); box-shadow: 0 10px 26px rgba(211,43,60,.28), inset 0 1px rgba(255,255,255,.22); transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }.rails-button:hover { filter: brightness(1.1); box-shadow: 0 14px 34px rgba(211,43,60,.42), inset 0 1px rgba(255,255,255,.22); }
 .rails-pill { color: var(--tech-color, #ff5555); background: rgba(68,71,90,.7); border-color: color-mix(in srgb, var(--tech-color, #ff5555) 34%, rgba(248,248,242,.12)); box-shadow: inset 0 1px rgba(255,255,255,.055), 0 7px 16px rgba(20,21,28,.2); }
-.profile-frame { border: 4px solid hsl(var(--card)); box-shadow: 0 0 0 2px rgba(255,85,85,.6), 0 0 58px rgba(204,0,0,.3); }
+.profile-frame { border: 4px solid hsl(var(--card)); box-shadow: 0 0 0 2px rgba(255,85,85,.6), 0 0 58px rgba(204,0,0,.3); cursor: pointer; }
+.profile-photo { filter: grayscale(1) saturate(.4) brightness(.92); transition: filter .55s ease, transform .55s ease; }
+.profile-frame:hover .profile-photo, .profile-frame:focus-visible .profile-photo { filter: grayscale(0) saturate(1.12) contrast(1.04) brightness(1.02); transform: scale(1.02); }
+@media (hover: none) { .profile-photo { filter: grayscale(.35) saturate(.9) brightness(.96); } }
+.track-backdrop { opacity: .9; transform-style: preserve-3d; transform: translate(-50%, -50%) perspective(900px) rotateX(6deg) rotateY(-8deg) scale(.96); box-shadow: -18px 24px 44px rgba(20,21,28,.62), 0 0 48px rgba(204,0,0,.23); border: 1px solid rgba(255,85,85,.28); mask-image: radial-gradient(ellipse 78% 73% at 50% 52%, #000 45%, transparent 82%); }
+.track-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,85,85,.13), transparent 42%, rgba(40,42,54,.38)); box-shadow: inset 0 0 42px rgba(20,21,28,.7); pointer-events: none; }
+.track-train { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.track-locomotive { position: absolute; width: 2.75rem; height: 1.85rem; offset-path: path("M 36 392 C 108 318, 168 248, 248 178 S 360 92, 396 58"); offset-rotate: auto; animation: locomotive-run 11s linear infinite; filter: drop-shadow(0 4px 10px rgba(20,21,28,.65)); }
+.track-locomotive-trail { animation-delay: -.55s; opacity: .92; }
+.track-locomotive-svg { width: 100%; height: 100%; display: block; }
+.track-smoke { animation: smoke-puff 1.4s ease-in-out infinite; }
+.track-smoke-delay { animation-delay: .45s; }
+.track-car { position: absolute; display: block; height: .45rem; border-radius: 2px; background: linear-gradient(90deg, #6272a4, #44475a); border: 1px solid rgba(189,147,249,.35); top: 50%; transform: translateY(-50%); }
+.track-car-1 { width: .85rem; left: -.95rem; }
+.track-car-2 { width: .65rem; left: -1.85rem; opacity: .85; }
+@media (prefers-reduced-motion: reduce) { .track-locomotive { animation: none; offset-distance: 62%; opacity: .85; } .track-smoke, .track-smoke-delay { animation: none; } }
 .ruby-gem { display: grid; place-items: center; color: #ff5555; background: linear-gradient(145deg, rgba(255,85,85,.33), rgba(204,0,0,.15) 46%, rgba(40,42,54,.92)); border: 1px solid rgba(255,184,108,.42); box-shadow: 9px 12px 22px rgba(20,21,28,.46), inset 1px 1px rgba(255,255,255,.25), inset -3px -4px 10px rgba(110,0,10,.35); transform-style: preserve-3d; }
 .ruby-gem-large { width: 4.5rem; height: 4.5rem; clip-path: polygon(25% 5%, 75% 5%, 100% 35%, 50% 100%, 0 35%); }.ruby-gem-rails { width: 3.6rem; height: 3.6rem; border-radius: 1rem; }.ruby-gem-small { width: 2.7rem; height: 2.7rem; clip-path: polygon(25% 5%, 75% 5%, 100% 35%, 50% 100%, 0 35%); }
 .social-link { color: hsl(var(--muted-foreground)); transition: color .2s ease, transform .2s ease; font-weight: 800; font-size: 1.25rem; line-height: 1; }.social-link:hover { color: hsl(var(--primary)); transform: translateY(-2px); }
 .rails-grid { background-image: linear-gradient(rgba(189,147,249,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,85,85,.07) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent); }
 .rails-stack-card { position: relative; border: 1px solid rgba(248,248,242,.1); background: linear-gradient(145deg, rgba(68,71,90,.92), rgba(40,42,54,.98)); box-shadow: 0 8px 22px rgba(20,21,28,.3); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }.rails-stack-card:hover { transform: perspective(700px) rotateX(3deg) rotateY(-3deg) translateY(-7px); box-shadow: 14px 22px 34px rgba(20,21,28,.44); }
 .rails-icon, .rails-tool-card { background: rgba(40,42,54,.65); border: 1px solid rgba(248,248,242,.1); }.rails-tool-card { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }.rails-tool-card:hover { transform: translateY(-4px) rotateX(3deg); }
-.rails-project-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }.rails-project-card:hover { box-shadow: 10px 20px 34px rgba(20,21,28,.44); }.rails-project-head { background: linear-gradient(135deg, rgba(40,42,54,.78), rgba(68,71,90,.52)); border-bottom: 1px solid rgba(248,248,242,.1); }
-.tech-icon, .tech-label { color: var(--tech-color); }.tech-tag { color: var(--tech-color); background: color-mix(in srgb, var(--tech-color) 12%, transparent); border-color: color-mix(in srgb, var(--tech-color) 38%, transparent); }.tech-ruby { --tech-color: #cc342d; }.tech-rails { --tech-color: #cc0000; }.tech-postgres { --tech-color: #4169e1; }.tech-redis { --tech-color: #dc382d; }.tech-docker { --tech-color: #2496ed; }.tech-actions { --tech-color: #2088ff; }.rails-stack-card:hover, .rails-project-card:hover, .rails-tool-card:hover { border-color: color-mix(in srgb, var(--tech-color, #ff5555) 60%, transparent); }.rails-stack-card.tech-ruby { box-shadow: inset 3px 0 #cc342d, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-rails { box-shadow: inset 3px 0 #cc0000, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-postgres { box-shadow: inset 3px 0 #4169e1, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-docker { box-shadow: inset 3px 0 #2496ed, 0 8px 22px rgba(20,21,28,.3); }
+.rails-project-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }.rails-project-card:hover { box-shadow: 10px 20px 34px rgba(20,21,28,.44); }.rails-project-head { background: linear-gradient(135deg, rgba(40,42,54,.88), rgba(68,71,90,.58)); border-bottom: 1px solid rgba(248,248,242,.1); }
+.rails-project-card.tech-ruby .rails-project-head { background: linear-gradient(145deg, rgba(255,85,85,.14), rgba(40,42,54,.92)); }
+.rails-project-card.tech-rails .rails-project-head { background: linear-gradient(145deg, rgba(204,0,0,.2), rgba(40,42,54,.9)); }
+.rails-stack-card h3, .rails-project-card h3 { color: hsl(var(--foreground)); }
+.tech-icon, .tech-label { color: var(--tech-color); font-weight: 700; }
+.tech-label { text-shadow: 0 1px 2px rgba(20,21,28,.55); }
+.tech-tag { color: #f8f8f2; background: color-mix(in srgb, var(--tech-color) 32%, rgba(40,42,54,.96)); border-color: color-mix(in srgb, var(--tech-color) 58%, rgba(248,248,242,.12)); font-weight: 600; }
+.tech-ruby { --tech-color: #ff5555; }.tech-rails { --tech-color: #ff6e6e; }.tech-postgres { --tech-color: #8be9fd; }.tech-redis { --tech-color: #ff5555; }.tech-docker { --tech-color: #50fa7b; }.tech-actions { --tech-color: #bd93f9; }
+.rails-stack-card:hover, .rails-project-card:hover, .rails-tool-card:hover { border-color: color-mix(in srgb, var(--tech-color, #ff5555) 60%, transparent); }.rails-stack-card.tech-ruby { box-shadow: inset 3px 0 #ff5555, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-rails { box-shadow: inset 3px 0 #ff6e6e, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-postgres { box-shadow: inset 3px 0 #8be9fd, 0 8px 22px rgba(20,21,28,.3); }.rails-stack-card.tech-docker { box-shadow: inset 3px 0 #50fa7b, 0 8px 22px rgba(20,21,28,.3); }
+.rails-stack-card.tech-rails.is-active, .rails-stack-card.tech-ruby.is-active { border-color: color-mix(in srgb, var(--tech-color) 72%, rgba(248,248,242,.18)); box-shadow: inset 3px 0 var(--tech-color), 0 12px 28px rgba(20,21,28,.42), 0 0 24px color-mix(in srgb, var(--tech-color) 22%, transparent); }
 .footer-social { display: grid; place-items: center; width: 2.45rem; height: 2.45rem; border-radius: 999px; color: hsl(var(--muted-foreground)); background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); transition: all .2s ease; }.footer-social:hover { color: white; background: hsl(var(--primary)); transform: translateY(-2px); }

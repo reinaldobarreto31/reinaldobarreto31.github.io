@@ -32,7 +32,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#hero" className="flex items-center gap-2.5 group">
-          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(109,179,63,0.3)] group-hover:shadow-[0_0_20px_rgba(109,179,63,0.5)] transition-shadow">
+          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(255,85,85,0.28)] group-hover:shadow-[0_0_20px_rgba(255,85,85,0.45)] transition-shadow">
             <motion.div
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -65,7 +65,7 @@ export function Navbar() {
         <a
           href="/curriculo.pdf"
           download="Curriculo_Reinaldo_Barreto.pdf"
-          className="hidden md:flex items-center gap-1.5 text-xs font-semibold border border-primary/40 text-primary px-3 py-1.5 rounded-md hover:bg-primary/10 transition-colors shadow-[0_0_8px_rgba(109,179,63,0.15)]"
+          className="hidden md:flex items-center gap-1.5 text-xs font-semibold border border-primary/40 text-primary px-3 py-1.5 rounded-md hover:bg-primary/10 transition-colors shadow-[0_0_8px_rgba(255,85,85,0.18)]"
         >
           Baixar CV
         </a>
