@@ -17,12 +17,6 @@ export function AboutSection() {
         <p className="text-xs font-mono text-primary uppercase tracking-[0.24em] mb-3">Perfil profissional</p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Produtos web claros por fora. Estruturados por dentro.</h2>
         <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed max-w-2xl">
-          <div className="rails-mini-card rounded-xl p-5 border-primary/30 bg-primary/[.06] flex flex-col gap-3">
-            <p className="font-bold text-[15px] text-foreground flex items-center gap-2"><Workflow size={18} className="text-primary shrink-0" /> Software Engineer · <span className="text-primary">Full-Cycle</span></p>
-            <p className="text-[14px] leading-[1.75]">
-              Gerencio todo o ciclo de vida do desenvolvimento — de <strong className="text-primary/90 font-semibold">arquitetura Java/Spring</strong> e sistemas de back-end robustos, passando por <strong className="text-[#bd93f9]/90 font-semibold">UI/UX moderna com React e Angular</strong>, até a automação de qualidade com <strong className="text-[#50fa7b]/90 font-semibold">CI/CD</strong>.
-            </p>
-          </div>
           <p>Meu foco é construir aplicações com <strong className="text-primary">Ruby on Rails</strong> que sejam simples de usar, confiáveis para manter e preparadas para evoluir.</p>
           <p>Trabalho da modelagem do domínio e banco de dados à criação de APIs, autenticação, testes e publicação. A prioridade é sempre traduzir uma necessidade real em uma solução objetiva.</p>
         </div>
