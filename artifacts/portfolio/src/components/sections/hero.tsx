@@ -30,50 +30,18 @@ export function HeroSection() {
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
 
     <div className="track-cinema absolute inset-0 z-0">
-      <div className="track-cinema-scene absolute inset-0">
-        <div className="track-cinema-vanish" />
-        <div className="tracks-dream tracks-dream-bg" />
-        <div className="tracks-dream tracks-dream-fg" />
-        <div className="tracks-sleeper tracks-sleeper-bg" />
-        <div className="tracks-sleeper tracks-sleeper-fg" />
-        <div className="tracks-rails tracks-rails-outer-left" />
-        <div className="tracks-rails tracks-rails-outer-right" />
-        <div className="tracks-rails tracks-rails-left" />
-        <div className="tracks-rails tracks-rails-right" />
-        <div className="tracks-ballast tracks-ballast-far" />
-        <div className="tracks-ballast tracks-ballast-near" />
-        <div className="tracks-motion-blur tracks-motion-blur-left" />
-        <div className="tracks-motion-blur tracks-motion-blur-right" />
-        <div className="track-night-sky" />
-        <div className="track-night-vignette" />
-
-        <video
-          className="track-cinema-video"
-          poster={tracksBg}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          disablePictureInPicture
-          aria-hidden="true"
-        >
-          <source src="/train-window.mp4" type="video/mp4" />
-        </video>
-
-        <div className="track-cinema-image absolute inset-[-16%]">
-          <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-[center_45%] track-cinema-image-fx" />
-        </div>
-
-        <TrackLocomotive />
-
-      </div>
-      <div className="track-travel-label absolute left-4 bottom-4 z-30 pointer-events-none select-none font-mono text-[10px] uppercase tracking-[.2em] text-foreground/60 flex items-center gap-3">
-        <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-foreground/15 bg-background/60 backdrop-blur-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span>viajando nos trilhos <span className="text-primary">· movimento automático</span></span>
-        </span>
-      </div>
+      <video
+        className="track-cinema-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        disablePictureInPicture
+        aria-hidden="true"
+      >
+        <source src="/rails.mp4" type="video/mp4" />
+      </video>
     </div>
 
     <div className="container mx-auto px-4 z-20 grid md:grid-cols-2 gap-12 items-center">
