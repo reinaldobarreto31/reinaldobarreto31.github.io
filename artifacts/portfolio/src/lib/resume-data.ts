@@ -168,7 +168,7 @@ export const PERSONAL_PROJECTS: ResumeProject[] = [
     badge: "LIVE",
     stack: "React 18 · TypeScript · pdf-lib · pdf.js · GitHub Pages",
     description:
-      "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (≤2MB), Empresa (≤5MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. UI em tema Dracula + vermelho Rails.",
+      "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. Interface em tema Dracula + vermelho Ruby on Rails.",
     tags: ["React", "TypeScript", "pdf-lib", "Tailwind"],
     github: `${GITHUB}/pdf-compressor`,
     live: `${PAGES}/pdf-compressor/`,
