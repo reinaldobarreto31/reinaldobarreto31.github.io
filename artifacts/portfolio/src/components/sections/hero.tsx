@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import tracksBg from "@/assets/tracks-bg.png";
-import { TrackLocomotive } from "@/components/hero/track-locomotive";
 import { SiRuby, SiRubyonrails, SiPostgresql, SiDocker, SiGithub } from "react-icons/si";
 import { Mail, ArrowDownRight } from "lucide-react";
 
@@ -106,8 +105,6 @@ export function HeroSection() {
           <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-[center_45%] track-cinema-image-fx" />
         </div>
 
-        <TrackLocomotive />
-
         <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[46%] pointer-events-none" />
         <div className="track-top-mask absolute inset-x-0 top-0 h-[30%] pointer-events-none" />
       </div>
@@ -115,7 +112,7 @@ export function HeroSection() {
       <div className="track-travel-label absolute left-4 bottom-4 z-30 pointer-events-none select-none font-mono text-[10px] uppercase tracking-[.2em] text-foreground/60 flex items-center gap-3">
         <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-foreground/15 bg-background/60 backdrop-blur-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span>viajando nos trilhos <span className="text-primary">mova o mouse</span> · <span className="text-[#bd93f9]">scroll</span> para acelerar</span>
+          <span>viajando nos trilhos <span className="text-primary">mova o mouse</span> • <span className="text-[#bd93f9]">scroll</span> para acelerar</span>
         </span>
       </div>
     </div>
@@ -124,7 +121,7 @@ export function HeroSection() {
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .7 }} className="flex flex-col gap-6">
         <div className="rails-badge inline-flex items-center gap-3 px-4 py-2 rounded-full w-fit text-sm font-mono tracking-tight"><SiRubyonrails className="text-[#cc0000] text-lg shrink-0" /><span className="rails-shine font-bold">Ruby on Rails Developer</span></div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">Reinaldo<br /><span className="text-muted-foreground">Barreto</span></h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed" data-testid="text-hero-description">Desenvolvedor <span className="text-primary font-bold font-mono">Ruby on Rails</span> focado em produtos web bem estruturados, APIs REST, bancos de dados e entregas que transformam ideias em aplicacoes confiaveis.</p>
+        <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed" data-testid="text-hero-description">Desenvolvedor <span className="text-primary font-bold font-mono">Ruby on Rails</span> focado em produtos web bem estruturados, APIs REST, bancos de dados e entregas que transformam ideias em aplicações confiáveis.</p>
         <div className="flex flex-wrap gap-2">{STACK.map(({ label, icon, tone }, i) => <motion.span key={label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .35 + i * .08 }} whileHover={{ y: -3, scale: 1.04 }} className={`rails-pill ${tone} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-bold font-mono`}>{icon}{label}</motion.span>)}</div>
         <div className="flex flex-wrap items-center gap-3 mt-2"><motion.a href="#projects" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="rails-button px-6 py-3 rounded-lg font-semibold text-sm inline-flex items-center gap-2">Ver projetos <ArrowDownRight size={16} /></motion.a><motion.a href="#contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-border text-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary/60 hover:bg-primary/5 transition-all backdrop-blur-[2px]">Vamos conversar</motion.a><motion.a href="/curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-primary/45 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all backdrop-blur-[2px]">Curriculo PDF</motion.a></div>
         <div className="flex items-center gap-4 mt-1"><a href="https://github.com/reinaldobarreto31" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link"><SiGithub size={21} /></a><a href="https://linkedin.com/in/reinaldo-barreto-2a4ba2116" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link">in</a><a href="#contact" aria-label="Email" className="social-link"><Mail size={21} /></a></div>
