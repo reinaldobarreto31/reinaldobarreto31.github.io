@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import tracksBg from "@/assets/tracks-bg.png";
+import { TrackLocomotive } from "@/components/hero/track-locomotive";
 import { SiRuby, SiRubyonrails, SiPostgresql, SiDocker, SiGithub } from "react-icons/si";
-import { Mail, ArrowDownRight, Workflow } from "lucide-react";
+import { Mail, ArrowDownRight } from "lucide-react";
 
 const STACK = [
   { label: "Ruby", icon: <SiRuby size={13} />, tone: "tech-ruby" },
@@ -14,6 +15,56 @@ const STACK = [
 
 export function HeroSection() {
   const sceneRef = useRef<HTMLDivElement | null>(null);
+  const burstRef = useRef(0);
+  const burstRaf = useRef<number | null>(null);
+
+  const handleMouse = useCallback((e: MouseEvent) => {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const rect = scene.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+
+    const speedBase = 1;
+    const distanceToVanish = Math.hypot(nx * 0.9, (ny + 1) * 0.55);
+    const forwardBoost = Math.max(0, 1 - Math.min(1, distanceToVanish));
+    const burst = Math.min(1.8, burstRef.current);
+
+    const travelSpeed = speedBase + forwardBoost * 3.2 + burst * 2.4;
+    const travelSway = nx * 1;
+    const travelDive = -ny * 1;
+    const travelRoll = nx * -1;
+    const travelAccent = 0.6 + forwardBoost * 0.9 + burst * 0.7;
+
+    scene.style.setProperty("--travel-speed", travelSpeed.toFixed(3));
+    scene.style.setProperty("--travel-sway", travelSway.toFixed(3));
+    scene.style.setProperty("--travel-dive", travelDive.toFixed(3));
+    scene.style.setProperty("--travel-roll", travelRoll.toFixed(3));
+    scene.style.setProperty("--travel-accent", travelAccent.toFixed(3));
+  }, []);
+
+  const decayBurst = useCallback(() => {
+    burstRef.current = Math.max(0, burstRef.current - 0.018);
+    if (burstRef.current > 0) {
+      burstRaf.current = window.requestAnimationFrame(decayBurst);
+    } else {
+      burstRef.current = 0;
+      burstRaf.current = null;
+    }
+  }, []);
+
+  const handleWheel = useCallback((e: WheelEvent) => {
+    if (e.deltaY < -8 || Math.abs(e.deltaX) > 0) return;
+    e.preventDefault();
+    const add = Math.min(1.2, Math.max(0.05, e.deltaY) / 180);
+    burstRef.current = Math.min(2.1, burstRef.current + add);
+    if (!burstRaf.current) burstRaf.current = window.requestAnimationFrame(decayBurst);
+    const fakeEvent = new MouseEvent("mousemove", {
+      clientX: window.innerWidth / 2,
+      clientY: window.innerHeight * 0.32,
+    });
+    handleMouse(fakeEvent);
+  }, [handleMouse, decayBurst]);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -22,50 +73,56 @@ export function HeroSection() {
     scene.style.setProperty("--travel-sway", "0");
     scene.style.setProperty("--travel-dive", "0");
     scene.style.setProperty("--travel-roll", "0");
-    scene.style.setProperty("--travel-accent", "1");
-  }, []);
+    scene.style.setProperty("--travel-accent", "0.6");
+
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      window.removeEventListener("mousemove", handleMouse);
+      window.removeEventListener("wheel", handleWheel);
+      if (burstRaf.current) cancelAnimationFrame(burstRaf.current);
+    };
+  }, [handleMouse, handleWheel]);
 
   return <section id="hero" ref={sceneRef} className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
     <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-70 z-10" />
 
     <div className="track-cinema absolute inset-0 z-0">
-      <div className="track-cinema-letterbox-top absolute top-0 left-0 right-0 z-[20] pointer-events-none" />
-      <div className="track-cinema-letterbox-bottom absolute bottom-0 left-0 right-0 z-[20] pointer-events-none" />
-      <div className="track-cinema-frame absolute inset-0 z-[19] pointer-events-none" />
-
       <div className="track-cinema-scene absolute inset-0">
-        <div className="track-night-sky absolute inset-0" />
         <div className="track-cinema-vanish" />
         <div className="tracks-dream tracks-dream-bg" />
         <div className="tracks-dream tracks-dream-fg" />
-        <div className="tracks-ballast tracks-ballast-far" />
-        <div className="tracks-ballast tracks-ballast-near" />
         <div className="tracks-sleeper tracks-sleeper-bg" />
         <div className="tracks-sleeper tracks-sleeper-fg" />
         <div className="tracks-rails tracks-rails-left" />
         <div className="tracks-rails tracks-rails-right" />
-        <div className="track-horizon-bar absolute left-0 right-0 top-[22%]" />
+        <div className="tracks-ballast tracks-ballast-far" />
+        <div className="tracks-ballast tracks-ballast-near" />
+        <div className="track-night-sky" />
+        <div className="track-night-vignette" />
 
-        <div className="track-cinema-image absolute inset-[-16%] z-[5] opacity-[.32]">
+        <div className="track-cinema-image absolute inset-[-16%]">
           <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-[center_45%] track-cinema-image-fx" />
         </div>
 
-        <div className="track-night-vignette" />
-        <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[14%] pointer-events-none" />
-        <div className="track-top-mask absolute inset-x-0 top-0 h-[10%] pointer-events-none" />
+        <TrackLocomotive />
+
+        <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[46%] pointer-events-none" />
+        <div className="track-top-mask absolute inset-x-0 top-0 h-[30%] pointer-events-none" />
+      </div>
+      <div className="track-horizon-bar absolute top-[24%] left-0 right-0 pointer-events-none" />
+      <div className="track-travel-label absolute left-4 bottom-4 z-30 pointer-events-none select-none font-mono text-[10px] uppercase tracking-[.2em] text-foreground/60 flex items-center gap-3">
+        <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-foreground/15 bg-background/60 backdrop-blur-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <span>viajando nos trilhos <span className="text-primary">mova o mouse</span> · <span className="text-[#bd93f9]">scroll</span> para acelerar</span>
+        </span>
       </div>
     </div>
 
     <div className="container mx-auto px-4 z-20 grid md:grid-cols-2 gap-12 items-center">
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .7 }} className="flex flex-col gap-6">
         <div className="rails-badge inline-flex items-center gap-3 px-4 py-2 rounded-full w-fit text-sm font-mono tracking-tight"><SiRubyonrails className="text-[#cc0000] text-lg shrink-0" /><span className="rails-shine font-bold">Ruby on Rails Developer</span></div>
-        <div className="rails-mini-card rounded-lg p-4 flex flex-col gap-1.5 max-w-lg border-primary/35 bg-primary/5">
-          <p className="font-bold text-[15px] md:text-base text-foreground flex items-center gap-2"><Workflow size={17} className="text-primary shrink-0" /> Software Engineer <span className="text-primary">Full-Cycle</span></p>
-          <p className="text-[13.5px] md:text-sm text-muted-foreground leading-[1.7]">
-            Gerenciando todo o ciclo de desenvolvimento: da arquitetura com <strong className="text-primary/90 font-semibold">Java/Spring</strong> até UI/UX com <strong className="text-[#bd93f9]/90 font-semibold">React/Angular</strong> e qualidade automatizada em <strong className="text-[#50fa7b]/90 font-semibold">CI/CD</strong>.
-          </p>
-        </div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">Reinaldo<br /><span className="text-muted-foreground">Barreto</span></h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed" data-testid="text-hero-description">Desenvolvedor <span className="text-primary font-bold font-mono">Ruby on Rails</span> focado em produtos web bem estruturados, APIs REST, bancos de dados e entregas que transformam ideias em aplicacoes confiaveis.</p>
         <div className="flex flex-wrap gap-2">{STACK.map(({ label, icon, tone }, i) => <motion.span key={label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .35 + i * .08 }} whileHover={{ y: -3, scale: 1.04 }} className={`rails-pill ${tone} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-bold font-mono`}>{icon}{label}</motion.span>)}</div>
@@ -74,7 +131,6 @@ export function HeroSection() {
       </motion.div>
 
       <motion.div initial={{ opacity: 0, scale: .92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .9, delay: .15 }} className="relative flex min-h-[25rem] items-center justify-center md:justify-end">
-
         <div className="profile-frame group relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden z-10" tabIndex={0}>
           <img src={fotoRei} alt="Reinaldo Barreto" className="profile-photo w-full h-full object-cover object-center" data-testid="img-hero-profile" />
         </div>
