@@ -49,14 +49,11 @@ export function HeroSection() {
 
         <TrackLocomotive />
 
-        <div className="track-bottom-mask absolute inset-x-0 bottom-0 h-[46%] pointer-events-none" />
-        <div className="track-top-mask absolute inset-x-0 top-0 h-[30%] pointer-events-none" />
       </div>
-      <div className="track-horizon-bar absolute top-[24%] left-0 right-0 pointer-events-none" />
       <div className="track-travel-label absolute left-4 bottom-4 z-30 pointer-events-none select-none font-mono text-[10px] uppercase tracking-[.2em] text-foreground/60 flex items-center gap-3">
         <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-foreground/15 bg-background/60 backdrop-blur-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span>viajando nos trilhos <span className="text-primary">mova o mouse</span> · <span className="text-[#bd93f9]">scroll</span> para acelerar</span>
+          <span>viajando nos trilhos <span className="text-primary">· movimento automático</span></span>
         </span>
       </div>
     </div>
