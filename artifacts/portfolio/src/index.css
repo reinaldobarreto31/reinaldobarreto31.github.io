@@ -14,16 +14,17 @@
 @keyframes smoke-puff-vol-3 { 0%, 100% { opacity: .28; transform: translate(0,0) scale(1); } 60% { opacity: .68; transform: translate(-3px,-3px) scale(1.08); } }
 @keyframes spark-flicker { 0%, 100% { opacity: 0; transform: translate(0,0) scale(.4); } 10% { opacity: 1; transform: translate(1px,-1px) scale(1.05); } 30% { opacity: .8; transform: translate(4px,-5px) scale(.92); } 55% { opacity: .3; transform: translate(8px,-3px) scale(.55); } 70% { opacity: 0; transform: translate(11px,-6px) scale(.2); } }
 @keyframes headlight-pulse { 0%, 100% { opacity: .74; } 50% { opacity: 1; } }
-@keyframes sleepers-forever-fast { 0% { background-position-y: -260%; } 100% { background-position-y: 260%; } }
-@keyframes sleepers-forever-slow { 0% { background-position-y: -220%; } 100% { background-position-y: 220%; } }
-@keyframes dream-rush-fast { 0% { background-position-y: -320%, 320%, center; } 100% { background-position-y: 320%, -320%, center; } }
-@keyframes dream-rush-slow { 0% { background-position-y: -260%, 260%, center; } 100% { background-position-y: 260%, -260%, center; } }
-@keyframes ballast-surge-far { 0% { background-position-y: -240%; } 100% { background-position-y: 240%; } }
-@keyframes ballast-surge-near { 0% { background-position-y: -380%; } 100% { background-position-y: 380%; } }
+@keyframes sleepers-forever-fast { 0% { transform: translateY(-85%) scaleY(1.55); filter: blur(0.2px); } 100% { transform: translateY(110%) scaleY(2.25); filter: blur(0.2px); } }
+@keyframes sleepers-forever-slow { 0% { transform: translateY(-95%) scaleY(1.4); filter: blur(0.9px); opacity: .55; } 100% { transform: translateY(105%) scaleY(2.05); filter: blur(1.0px); opacity: .55; } }
+@keyframes dream-rush-fast { 0% { background-position-y: -360%, 360%, center; } 100% { background-position-y: 360%, -360%, center; } }
+@keyframes dream-rush-slow { 0% { background-position-y: -280%, 280%, center; } 100% { background-position-y: 280%, -280%, center; } }
+@keyframes ballast-surge-far { 0% { transform: translateY(-70%) scaleY(1.1); background-position-y: -180%, -180%, -180%; opacity: .5; } 100% { transform: translateY(110%) scaleY(2.0); background-position-y: 180%, 180%, 180%; opacity: .5; } }
+@keyframes ballast-surge-near { 0% { transform: translateY(-88%) scaleY(1.2); background-position-y: -320%, -320%, -320%; opacity: .72; } 100% { transform: translateY(115%) scaleY(2.4); background-position-y: 320%, 320%, 320%; opacity: .72; } }
+@keyframes rails-shine-pass { 0% { background-position-y: -200%; } 100% { background-position-y: 200%; } }
+@keyframes train-window-travel { 0% { transform: scale(1.28) translateY(44%) translateX(0); filter: saturate(1.2) contrast(1.1) brightness(.9) hue-rotate(-6deg); } 50% { transform: scale(1.38) translateY(-4%) translateX(.4%); filter: saturate(1.3) contrast(1.17) brightness(.98) hue-rotate(-5deg); } 100% { transform: scale(1.28) translateY(-52%) translateX(0); filter: saturate(1.2) contrast(1.1) brightness(.9) hue-rotate(-6deg); } }
 @keyframes rails-speed-line { 0% { transform: translateY(-60%) scaleY(0.1); opacity: 0; } 15% { opacity: .85; } 85% { opacity: .7; } 100% { transform: translateY(160%) scaleY(1); opacity: 0; } }
 @keyframes light-trail-fade { 0% { opacity: 0; } 8% { opacity: .68; } 92% { opacity: .52; } 100% { opacity: 0; } }
 @keyframes profile-tilt-intense { 0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); } 25% { transform: translateY(-6px) rotateX(3deg) rotateY(-4deg); } 75% { transform: translateY(4px) rotateX(-2deg) rotateY(3deg); } }
-@keyframes image-slow-rush { 0% { transform: scale(1.24) translateY(-1%) translateX(0); } 50% { transform: scale(1.38) translateY(-4.5%) translateX(.5%); } 100% { transform: scale(1.24) translateY(-1%) translateX(0); } }
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -70,7 +71,7 @@
 }
 .track-cinema-vanish { position: absolute; top: 22%; left: 50%; transform: translateX(-50%); width: 14rem; height: 14rem; border-radius: 999px; background: radial-gradient(circle at 50% 50%, rgba(255,107,107,.22) 0%, rgba(189,147,249,.1) 32%, transparent 70%); filter: blur(6px); opacity: calc(.75 + var(--travel-accent) * .25); pointer-events: none; }
 .track-cinema-image { position: absolute; inset: -16%; z-index: 1; pointer-events: none; }
-.track-cinema-image-fx { width: 100%; height: 100%; object-fit: cover; animation: image-slow-rush 13s ease-in-out infinite; transform-origin: 50% 30%; filter: saturate(1.22) contrast(1.12) brightness(calc(.88 + var(--travel-accent) * .14)) hue-rotate(-6deg); opacity: calc(.82 + var(--travel-accent) * .2); }
+.track-cinema-image-fx { width: 100%; height: 100%; object-fit: cover; animation: train-window-travel 10s ease-in-out infinite alternate; transform-origin: 50% 28%; }
 
 .tracks-dream { position: absolute; left: 50%; top: 0; bottom: -8%; width: 82%; transform: translateX(-50%) perspective(1400px) rotateX(66deg); transform-origin: 50% 22%; z-index: 2; pointer-events: none; }
 .tracks-dream-bg { background:
@@ -108,8 +109,22 @@
 .tracks-sleeper-fg { top: 18%; width: 56%; height: 86%; clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 16px, rgba(160,140,118,.42) 16px, rgba(160,140,118,.42) 22px, transparent 22px); background-size: 100% 200%; animation: sleepers-forever-fast calc(1.35s / var(--travel-speed)) linear infinite; filter: brightness(calc(.85 + var(--travel-accent) * .14)) saturate(.65); mix-blend-mode: multiply; opacity: calc(.82 + var(--travel-accent) * .14); }
 
 .tracks-rails { position: absolute; left: 50%; transform: translateX(-50%); top: 22%; width: 2px; height: 78%; transform-origin: 50% 0%; pointer-events: none; z-index: 4; }
-.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background: linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px)); transform: translateX(-50%) translateX(-23%) skewX(-16deg); filter: drop-shadow(-6px 0 10px rgba(204,0,0,.25)); animation: sleepers-forever-fast calc(1.25s / var(--travel-speed)) linear infinite; }
-.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background: linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px)); transform: translateX(-50%) translateX(23%) skewX(16deg); filter: drop-shadow(6px 0 10px rgba(204,0,0,.25)); animation: sleepers-forever-fast calc(1.25s / var(--travel-speed)) linear infinite; animation-delay: -.05s; }
+.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background:
+    repeating-linear-gradient(180deg,
+      rgba(255,180,150,0) 0, rgba(255,180,150,0) 14px,
+      rgba(255,170,120,.72) 14px, rgba(255,220,190,.95) 16.5px,
+      rgba(220,80,80,.55) 19px, rgba(255,180,150,0) 22px, rgba(255,180,150,0) 44px),
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+  background-size: 100% 220%, 100% 100%;
+  transform: translateX(-50%) translateX(-23%) skewX(-16deg); filter: drop-shadow(-6px 0 10px rgba(204,0,0,.25)); animation: rails-shine-pass calc(1.25s / var(--travel-speed)) linear infinite; }
+.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background:
+    repeating-linear-gradient(180deg,
+      rgba(255,180,150,0) 0, rgba(255,180,150,0) 14px,
+      rgba(255,170,120,.72) 14px, rgba(255,220,190,.95) 16.5px,
+      rgba(220,80,80,.55) 19px, rgba(255,180,150,0) 22px, rgba(255,180,150,0) 44px),
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+  background-size: 100% 220%, 100% 100%;
+  transform: translateX(-50%) translateX(23%) skewX(16deg); filter: drop-shadow(6px 0 10px rgba(204,0,0,.25)); animation: rails-shine-pass calc(1.25s / var(--travel-speed)) linear infinite; animation-delay: -.05s; }
 
 .tracks-ballast { position: absolute; left: 50%; top: 20%; transform: translateX(-50%); width: 72%; height: 80%; transform-origin: 50% 22%; pointer-events: none; z-index: 2; mix-blend-mode: overlay; }
 .tracks-ballast-far { clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 4px, rgba(80,60,50,.35) 4px, rgba(80,60,50,.35) 7px, transparent 7px), repeating-linear-gradient(45deg, transparent 0, transparent 5px, rgba(120,90,70,.22) 5px, rgba(120,90,70,.22) 8px, transparent 8px); background-size: 18px 18px, 22px 22px, 100% 200%; animation: ballast-surge-far calc(4.4s / var(--travel-speed)) linear infinite; opacity: calc(.45 + var(--travel-accent) * .25); }
