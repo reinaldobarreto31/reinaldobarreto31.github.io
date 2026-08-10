@@ -47,6 +47,20 @@ export function HeroSection() {
         <div className="track-night-sky" />
         <div className="track-night-vignette" />
 
+        <video
+          className="track-cinema-video"
+          poster={tracksBg}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          disablePictureInPicture
+          aria-hidden="true"
+        >
+          <source src="/train-window.mp4" type="video/mp4" />
+        </video>
+
         <div className="track-cinema-image absolute inset-[-16%]">
           <img src={tracksBg} alt="" aria-hidden="true" className="w-full h-full object-cover object-[center_45%] track-cinema-image-fx" />
         </div>
