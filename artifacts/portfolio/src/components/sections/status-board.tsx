@@ -1,52 +1,22 @@
+import { useGetServiceStatus, getGetServiceStatusQueryKey, useListIncidents, getListIncidentsQueryKey } from "@workspace/api-client-react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { Activity, AlertCircle, CheckCircle2, Clock, ServerCrash, AlertTriangle } from "lucide-react";
 
-const MOCK_STATUS = {
-  overall: "operational",
-  generatedAt: new Date().toISOString(),
-  services: [
-    { name: "Portfolio-Frontend", region: "sa-east-1", uptime: 99.98, latencyMs: 42, state: "operational" },
-    { name: "PDF-Compressor-API", region: "sa-east-1", uptime: 99.92, latencyMs: 138, state: "operational" },
-    { name: "Tasks-API-Rails", region: "us-east-1", uptime: 99.87, latencyMs: 212, state: "operational" },
-    { name: "PostgreSQL-Primary", region: "sa-east-1", uptime: 99.99, latencyMs: 8, state: "operational" },
-    { name: "Redis-Cache", region: "sa-east-1", uptime: 99.95, latencyMs: 2, state: "degraded" },
-    { name: "GitHub-Actions-Runners", region: "global", uptime: 99.76, latencyMs: 780, state: "operational" }
-  ]
-};
-
-const MOCK_INCIDENTS = [
-  {
-    id: "INC-2025-021",
-    severity: "info",
-    title: "Deploy bem-sucedido da release v3.2",
-    service: "Portfolio-Frontend",
-    startedAt: new Date(Date.now() - 1000 * 60 * 42).toISOString(),
-    summary: "Rollout completo das novas features: painel Ruby experience, 6 projetos selecionados e hero cinema-track scene."
-  },
-  {
-    id: "INC-2025-018",
-    severity: "low",
-    title: "Latência elevada no Redis (pico noturno)",
-    service: "Redis-Cache",
-    startedAt: new Date(Date.now() - 1000 * 60 * 60 * 8).toISOString(),
-    summary: "Aumento de 4x no p95 durante janela de backup automatizado. Resolvido com aumento de maxmemory-policy allkeys-lru."
-  },
-  {
-    id: "INC-2025-015",
-    severity: "medium",
-    title: "Certificate Renewal - monitorado",
-    service: "Tasks-API-Rails",
-    startedAt: new Date(Date.now() - 1000 * 60 * 60 * 36).toISOString(),
-    summary: "Certificado Let's Encrypt renovado automaticamente pelo cert-manager. Nenhum downtime registrado."
-  }
-];
-
 export function StatusBoardSection() {
-  const statusData = MOCK_STATUS;
-  const incidentsData = MOCK_INCIDENTS;
-  const isLoadingStatus = false;
-  const isLoadingIncidents = false;
+  const { data: statusData, isLoading: isLoadingStatus } = useGetServiceStatus({
+    query: {
+      refetchInterval: 5000,
+      queryKey: getGetServiceStatusQueryKey()
+    }
+  });
+
+  const { data: incidentsData, isLoading: isLoadingIncidents } = useListIncidents({
+    query: {
+      refetchInterval: 15000,
+      queryKey: getListIncidentsQueryKey()
+    }
+  });
 
   const getStatusColor = (state?: string) => {
     switch (state) {
