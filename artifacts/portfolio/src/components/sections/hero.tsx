@@ -15,15 +15,25 @@ const STACK = [
 
 export function HeroSection() {
   const sceneRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const scene = sceneRef.current;
-    if (!scene) return;
-    scene.style.setProperty("--travel-speed", "3.0");
-    scene.style.setProperty("--travel-sway", "0");
-    scene.style.setProperty("--travel-dive", "0");
-    scene.style.setProperty("--travel-roll", "0");
-    scene.style.setProperty("--travel-accent", "0.9");
+    const video = videoRef.current;
+    if (scene) {
+      scene.style.setProperty("--travel-speed", "2.4");
+      scene.style.setProperty("--travel-sway", "0");
+      scene.style.setProperty("--travel-dive", "0");
+      scene.style.setProperty("--travel-roll", "0");
+      scene.style.setProperty("--travel-accent", "0.9");
+    }
+    if (video) {
+      video.playbackRate = 2.4;
+      const playPromise = video.play();
+      if (playPromise && typeof (playPromise as Promise<void>).catch === "function") {
+        (playPromise as Promise<void>).catch(() => {});
+      }
+    }
   }, []);
 
   return <section id="hero" ref={sceneRef} className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
@@ -31,12 +41,13 @@ export function HeroSection() {
 
     <div className="track-cinema absolute inset-0 z-0">
       <video
+        ref={videoRef}
         className="track-cinema-video"
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         disablePictureInPicture
         aria-hidden="true"
       >
