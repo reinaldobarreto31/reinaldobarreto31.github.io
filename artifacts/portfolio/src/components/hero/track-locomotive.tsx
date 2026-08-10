@@ -1,6 +1,64 @@
 export function TrackLocomotive() {
   return (
     <>
+      <div className="track-infinite-loop block md:hidden" aria-hidden="true">
+        <svg viewBox="300 140 740 400" role="presentation" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="rail-steel-mobile" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#8a8a8a" />
+              <stop offset="60%" stopColor="#3a3a3a" />
+              <stop offset="100%" stopColor="#1a1a1a" />
+            </linearGradient>
+            <linearGradient id="sleeper-wood-mobile" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#7a3a20" />
+              <stop offset="100%" stopColor="#3a1508" />
+            </linearGradient>
+          </defs>
+          <g strokeLinecap="round" fill="none">
+            <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="url(#sleeper-wood-mobile)" stroke-width="11" stroke-dasharray="7 15" opacity="0.92" />
+            <g transform="translate(-8,0)">
+              <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="#1e1e1e" stroke-width="6.2" />
+              <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="url(#rail-steel-mobile)" stroke-width="4.2" />
+              <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="#dcdcdc" stroke-width="1.2" opacity="0.85" />
+            </g>
+            <g transform="translate(8,0)">
+              <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="#1e1e1e" stroke-width="6.2" />
+              <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="url(#rail-steel-mobile)" stroke-width="4.2" />
+              <path d="M 560 320 C 660 200, 880 200, 940 320 C 1000 440, 780 500, 700 440 C 620 380, 460 440, 400 320 C 340 200, 460 200, 560 320 Z" stroke="#dcdcdc" stroke-width="1.2" opacity="0.85" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div className="track-infinite-loop hidden md:block" aria-hidden="true">
+        <svg viewBox="680 120 1160 600" role="presentation" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="rail-steel-md" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#929292" />
+              <stop offset="60%" stopColor="#3d3d3d" />
+              <stop offset="100%" stopColor="#1c1c1c" />
+            </linearGradient>
+            <linearGradient id="sleeper-wood-md" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#844022" />
+              <stop offset="100%" stopColor="#3a1406" />
+            </linearGradient>
+          </defs>
+          <g strokeLinecap="round" fill="none">
+            <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="url(#sleeper-wood-md)" stroke-width="15" stroke-dasharray="9.5 20" opacity="0.93" />
+            <g transform="translate(-11,0)">
+              <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="#202020" stroke-width="8.5" />
+              <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="url(#rail-steel-md)" stroke-width="5.8" />
+              <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="#e0e0e0" stroke-width="1.6" opacity="0.88" />
+            </g>
+            <g transform="translate(11,0)">
+              <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="#202020" stroke-width="8.5" />
+              <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="url(#rail-steel-md)" stroke-width="5.8" />
+              <path d="M 1040 360 C 1200 170, 1560 170, 1660 360 C 1760 550, 1420 660, 1260 570 C 1100 480, 880 550, 800 360 C 720 170, 880 170, 1040 360 Z" stroke="#e0e0e0" stroke-width="1.6" opacity="0.88" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
       <div className="track-train track-train-main" aria-hidden="true">
         <svg viewBox="0 0 320 130" className="track-locomotive-svg" role="presentation">
           <defs>
