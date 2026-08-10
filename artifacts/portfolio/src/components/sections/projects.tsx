@@ -43,6 +43,7 @@ const FEATURED: Project[] = [
     icon: SiSwagger,
     tone: "tech-openapi",
     github: `${GITHUB}/rails-swagger-crud`,
+    live: `${PAGES}/rails-swagger-crud/`,
     badge: "DESTAQUE",
     featured: true,
   },
@@ -55,6 +56,7 @@ const FEATURED: Project[] = [
     icon: Rocket,
     tone: "tech-jwt",
     github: `${GITHUB}/railshub`,
+    live: `${PAGES}/railshub/`,
     badge: "EM CONSTRUÇÃO",
     featured: true,
   },
@@ -70,6 +72,7 @@ const SECONDARY: Project[] = [
     icon: Package,
     tone: "tech-golang",
     github: `${GITHUB}/stockwise-go`,
+    live: `${PAGES}/stockwise/`,
     badge: "FULL-STACK",
   },
   {

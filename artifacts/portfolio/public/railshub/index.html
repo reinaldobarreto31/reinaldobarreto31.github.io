@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RailsHub · Demonstração Live (localStorage)</title>
+<meta name="description" content="Demo RailsHub: login fake + dashboard com CRUD de usuários simulando API Rails Devise/JWT. Dados persistidos no localStorage." />
+<style>
+  :root{
+    --bg:#282a36; --bg-2:#1e1f29; --card:#21222c; --line:#44475a;
+    --fg:#f8f8f2; --muted:#6272a4; --cmt:#8be9fd;
+    --rails:#cc0000; --rails-2:#ff6e6e; --str:#f1fa8c; --num:#bd93f9; --key:#50fa7b; --warn:#ffb86c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,var(--bg-2),var(--bg));color:var(--fg);font:14px/1.55 system-ui,Segoe UI,Roboto,sans-serif;min-height:100vh}
+  a{color:var(--rails-2)}
+  header{padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(30,31,41,.7);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20}
+  .bar{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+  .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#1e3a8a,#bd93f9);display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 8px 22px rgba(189,147,249,.3);border:1px solid rgba(255,255,255,.08)}
+  .pill{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid rgba(189,147,249,.55);background:rgba(189,147,249,.12);color:#c4b5fd}
+  .pill-red{border-color:rgba(204,0,0,.55);background:rgba(204,0,0,.12);color:#ffb4b8}
+  .container{max-width:1200px;margin:0 auto;padding:22px}
+  h1{margin:0 0 4px;font-size:22px}
+  .sub{color:var(--muted);margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;box-shadow:0 10px 26px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.03)}
+  .card.left-ruby{border-left:3px solid var(--rails)}
+  .card.left-purple{border-left:3px solid var(--num)}
+  .card.left-green{border-left:3px solid var(--key)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  @media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#1e1f29;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .kpi .label{font-size:11px;color:var(--muted);font-family:ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin:0}
+  .kpi .value{font-size:22px;font-weight:800;margin:6px 0 0;color:#fff}
+  .kpi .hint{font-size:11px;color:var(--str);margin:2px 0 0}
+  .layout{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+  @media(max-width:960px){.layout{grid-template-columns:1fr}}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+  input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#191a21;color:var(--fg);font:inherit;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:rgba(189,147,249,.7);box-shadow:0 0 0 3px rgba(189,147,249,.18)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:640px){.row{grid-template-columns:1fr}}
+  button{cursor:pointer;border:1px solid var(--line);background:#2d2f3c;color:var(--fg);padding:9px 14px;border-radius:10px;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:8px}
+  button:hover{border-color:rgba(189,147,249,.55);background:rgba(189,147,249,.08)}
+  .primary{background:linear-gradient(135deg,#312e81,#6d28d9);color:#fff;border-color:rgba(255,255,255,.12);box-shadow:0 8px 22px rgba(109,40,217,.3)}
+  .primary:hover{filter:brightness(1.05)}
+  .ruby{background:linear-gradient(135deg,#a0172a,#cc0000);color:#fff;border-color:rgba(255,255,255,.12);box-shadow:0 8px 22px rgba(204,0,0,.32)}
+  .ghost{background:transparent}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  table{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;font-size:13px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;background:#191a21}
+  th:first-child{border-top-left-radius:10px}
+  th:last-child{border-top-right-radius:10px}
+  tr:last-child td{border-bottom:none}
+  .role{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10.5px;font-weight:700;font-family:ui-monospace,monospace}
+  .admin{background:rgba(204,0,0,.12);color:#ffb4b8;border:1px solid rgba(204,0,0,.4)}
+  .editor{background:rgba(255,184,108,.12);color:#ffd8a8;border:1px solid rgba(255,184,108,.45)}
+  .viewer{background:rgba(139,233,253,.12);color:#a5f3fc;border:1px solid rgba(139,233,253,.45)}
+  .empty{padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+  .log{padding:10px 12px;background:#0f1014;border:1px solid var(--line);border-radius:10px;font:12px ui-monospace,monospace;white-space:pre-wrap;min-height:54px;color:var(--fg)}
+  .log .t{color:var(--muted)} .log .ok{color:var(--key)} .log .err{color:#ff9ea5}
+  .auth-wrap{display:grid;place-items:center;min-height:calc(100vh - 120px);padding:20px}
+  .auth{max-width:420px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 24px 26px;box-shadow:0 22px 50px rgba(0,0,0,.35)}
+  .hint-auth{font-size:12px;color:var(--muted);margin:10px 0 14px}
+  .kbd{font-family:ui-monospace,monospace;background:#191a21;border:1px solid var(--line);padding:2px 7px;border-radius:6px;color:var(--str);font-size:12px}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:13px;margin-bottom:14px}
+  .back:hover{color:var(--rails-2)}
+  .topbtn{color:var(--fg);border:1px solid var(--line);padding:7px 11px;border-radius:10px;text-decoration:none;font-weight:600;font-size:12px;display:inline-flex;gap:8px;align-items:center}
+  .topbtn:hover{border-color:var(--rails-2);color:var(--rails-2)}
+  .chip{display:inline-flex;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid var(--line);background:#282a36;color:var(--cmt)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand">
+        <div class="logo">🗂</div>
+        <div>
+          <div style="font-size:15px">RailsHub · <span style="color:#c4b5fd">Demonstração Live</span></div>
+          <div style="font-size:11px;color:var(--muted);font-family:ui-monospace,monospace">API Rails + Frontend React · Rswag · JWT</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <span class="pill">Banco: localStorage</span>
+        <span class="pill-red" id="status-auth" style="display:none">Sessão: convidado@railshub.dev</span>
+        <a href="https://github.com/reinaldobarreto31/railshub" target="_blank" rel="noopener" class="topbtn">🗂 Repositório</a>
+        <a class="back" href="/" style="margin:0">← Voltar para o portfólio</a>
+      </div>
+    </div>
+  </header>
+
+  <div id="authScreen" class="auth-wrap">
+    <form class="auth card left-purple" id="authForm" onsubmit="event.preventDefault(); doLogin();">
+      <h1 style="font-size:20px;margin:0">Entrar no RailsHub</h1>
+      <p class="sub">Autenticação simulada (Devise/JWT). Token gravado no localStorage do navegador.</p>
+
+      <div style="margin-bottom:12px">
+        <label for="em">E-mail</label>
+        <input id="em" type="email" required placeholder="voce@exemplo.com" value="convidado@railshub.dev" />
+      </div>
+      <div style="margin-bottom:10px">
+        <label for="pw">Senha</label>
+        <input id="pw" type="password" required placeholder="••••••••" value="railshub123" />
+      </div>
+      <div class="hint-auth">
+        Qualquer e-mail e senha são aceitos nesta demo. Sugestão pronta:
+        <span class="kbd">convidado@railshub.dev</span> / <span class="kbd">railshub123</span>
+      </div>
+      <div class="btns" style="margin:0">
+        <button type="submit" class="primary">🔓 Entrar (auth/token)</button>
+        <button type="button" class="ghost" id="btnSeed">🌱 Carregar usuários exemplo</button>
+      </div>
+      <div id="log" class="log" style="margin-top:14px"><span class="t">[auth]</span> <span class="ok">Pronto. Clique em "Entrar" para abrir o dashboard.</span></div>
+    </form>
+  </div>
+
+  <div id="dashboardScreen" style="display:none">
+    <div class="container">
+      <h1>Dashboard · Usuários do Hub</h1>
+      <p class="sub">CRUD completo: criar, listar, editar e excluir usuários (simulando <code style="background:#191a21;border:1px solid var(--line);padding:2px 6px;border-radius:6px">/api/v1/users</code>). Tudo salvo em localStorage.</p>
+
+      <div class="kpis">
+        <div class="kpi"><p class="label">Usuários totais</p><p class="value" id="kpi-total">0</p><p class="hint">GET /api/v1/users</p></div>
+        <div class="kpi"><p class="label">Administradores</p><p class="value" id="kpi-admins">0</p><p class="hint">role = admin</p></div>
+        <div class="kpi"><p class="label">Editores</p><p class="value" id="kpi-editors">0</p><p class="hint">role = editor</p></div>
+        <div class="kpi"><p class="label">Sessão ativa</p><p class="value" style="font-size:15px;line-height:1.35" id="kpi-user">—</p><p class="hint">JWT · localStorage</p></div>
+      </div>
+
+      <div class="layout">
+        <section class="card left-ruby">
+          <h2 id="formTitle" style="margin:0 0 12px">Novo usuário · POST /api/v1/users</h2>
+          <div class="row">
+            <div><label for="u-name">Nome</label><input id="u-name" placeholder="Ex.: Maria Silva" /></div>
+            <div><label for="u-email">E-mail</label><input id="u-email" type="email" placeholder="maria@exemplo.com" /></div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <div><label for="u-role">Perfil (role)</label>
+              <select id="u-role">
+                <option value="admin">admin</option>
+                <option value="editor" selected>editor</option>
+                <option value="viewer">viewer</option>
+              </select>
+            </div>
+            <div><label for="u-dep">Departamento</label><input id="u-dep" placeholder="Ex.: Engenharia de Plataforma" /></div>
+          </div>
+          <div style="margin-top:12px">
+            <label for="u-bio">Bio (opcional)</label>
+            <textarea id="u-bio" placeholder="Resumo profissional do usuário..." style="min-height:80px"></textarea>
+          </div>
+          <div class="btns">
+            <button class="ruby" type="button" id="btnSave">💾 Salvar</button>
+            <button class="ghost" type="button" id="btnClear">✖ Limpar</button>
+            <span id="editTag" class="chip" style="display:none">Modo edição</span>
+          </div>
+          <div id="log2" class="log" style="margin-top:14px"><span class="t">[api/v1/users]</span> <span class="ok">Aguardando ações do dashboard...</span></div>
+        </section>
+
+        <section class="card left-green">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+            <h2 style="margin:0">Lista de usuários</h2>
+            <button class="ghost" type="button" id="btnLogout">🚪 Sair</button>
+          </div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr>
+                <th>Nome</th><th>E-mail</th><th>Perfil</th><th>Ações</th>
+              </tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+          <div id="emptyWrap" style="margin-top:10px"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const K_USERS = "rh.users.v1";
+  const K_AUTH = "rh.auth.v1";
+
+  const log = (text, kind="info", where="log") => {
+    const el = document.getElementById(where); if(!el) return;
+    const t = new Date().toLocaleTimeString("pt-BR");
+    const cls = kind==="ok"?"ok":kind==="err"?"err":"";
+    el.innerHTML = `<span class="t">[${t}]</span> <span class="${cls}">${text}</span>`;
+  };
+  const uid = () => (crypto?.randomUUID ? crypto.randomUUID() : ("u"+Math.random().toString(36).slice(2,10)));
+  const esc = (s) => String(s??"").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m]);
+
+  const loadU = () => { try { return JSON.parse(localStorage.getItem(K_USERS)) || []; } catch { return []; } };
+  const saveU = (a) => localStorage.setItem(K_USERS, JSON.stringify(a));
+  const getAuth = () => { try { return JSON.parse(localStorage.getItem(K_AUTH) || "null"); } catch { return null; } };
+  const setAuth = (x) => x ? localStorage.setItem(K_AUTH, JSON.stringify(x)) : localStorage.removeItem(K_AUTH);
+
+  const roleClass = (r) => r==="admin" ? "admin" : r==="editor" ? "editor" : "viewer";
+
+  function seedIfEmpty() {
+    if(loadU().length) return;
+    saveU([
+      { id: uid(), name: "Reinaldo Barreto", email: "reinaldo@railshub.dev", role: "admin", dep: "Engenharia", bio: "Criador do RailsHub — Ruby on Rails + React.", createdAt: Date.now()-86400000*5 },
+      { id: uid(), name: "Ana Souza", email: "ana@railshub.dev", role: "editor", dep: "Produto", bio: "Gerente de produto, foco em UX e documentação OpenAPI.", createdAt: Date.now()-86400000*3 },
+      { id: uid(), name: "Carlos Lima", email: "carlos@railshub.dev", role: "viewer", dep: "Suporte", bio: "Triagem e análise de tickets e relatórios.", createdAt: Date.now()-86400000*1 },
+    ]);
+  }
+
+  function refreshKpis(list) {
+    const a = list || loadU();
+    $("#kpi-total").textContent = a.length;
+    $("#kpi-admins").textContent = a.filter(u=>u.role==="admin").length;
+    $("#kpi-editors").textContent = a.filter(u=>u.role==="editor").length;
+    const s = getAuth();
+    $("#kpi-user").innerHTML = s ? `${esc(s.email.split("@")[0])}@…` : "—";
+    $("#status-auth").style.display = s ? "inline-flex" : "none";
+    if(s) $("#status-auth").textContent = `Sessão: ${s.email}`;
+  }
+
+  function renderList() {
+    const arr = loadU();
+    const tb = $("#tbody");
+    const empty = $("#emptyWrap");
+    if(!arr.length){
+      tb.innerHTML = "";
+      empty.innerHTML = `<div class="empty">Nenhum usuário. Use o formulário ao lado para cadastrar o primeiro.</div>`;
+    } else {
+      empty.innerHTML="";
+      tb.innerHTML = arr.map(u => `
+        <tr>
+          <td>${esc(u.name)}</td>
+          <td><span style="font-family:ui-monospace,monospace;font-size:12px">${esc(u.email)}</span></td>
+          <td><span class="role ${roleClass(u.role)}">${esc(u.role)}</span></td>
+          <td style="display:flex;gap:8px">
+            <button data-act="edit" data-id="${u.id}" class="ghost" type="button" style="padding:5px 9px;font-size:12px">✏️ Editar</button>
+            <button data-act="del" data-id="${u.id}" class="ghost" type="button" style="padding:5px 9px;font-size:12px;border-color:#dc262633;color:#ff9ea5">🗑 Excluir</button>
+          </td>
+        </tr>`).join("");
+      tb.querySelectorAll("button[data-act]").forEach(b=>b.addEventListener("click", ()=>{
+        const id = b.dataset.id;
+        if(b.dataset.act==="del") doDelete(id);
+        if(b.dataset.act==="edit") doEdit(id);
+      }));
+    }
+    refreshKpis(arr);
+  }
+
+  let editingId = null;
+
+  function clearForm(keepEditingId=true){
+    $("#u-name").value=""; $("#u-email").value=""; $("#u-dep").value=""; $("#u-bio").value="";
+    $("#u-role").value="editor";
+    if(!keepEditingId){ editingId=null; $("#editTag").style.display="none"; $("#formTitle").textContent="Novo usuário · POST /api/v1/users"; $("#btnSave").innerHTML="💾 Salvar"; }
+  }
+
+  function doSave() {
+    const name = $("#u-name").value.trim();
+    const email = $("#u-email").value.trim();
+    const role = $("#u-role").value;
+    const dep = $("#u-dep").value.trim();
+    const bio = $("#u-bio").value.trim();
+    if(!name || !email){ log("POST /api/v1/users → 422. Nome e e-mail são obrigatórios.", "err", "log2"); return; }
+    const arr = loadU();
+    if(editingId){
+      const idx = arr.findIndex(u=>u.id===editingId);
+      if(idx>=0){
+        arr[idx] = { ...arr[idx], name, email, role, dep, bio, updatedAt: Date.now() };
+        saveU(arr); renderList(); clearForm(false);
+        log(`PUT /api/v1/users/${esc(editingId.slice(0,6))} → 200 OK. Usuário atualizado.`, "ok", "log2");
+      }
+    } else {
+      const u = { id: uid(), name, email, role, dep, bio, createdAt: Date.now() };
+      arr.push(u); saveU(arr); renderList(); clearForm(false);
+      log(`POST /api/v1/users → 201 Created. id=${esc(u.id.slice(0,8))}`, "ok", "log2");
+    }
+  }
+
+  function doDelete(id) {
+    saveU(loadU().filter(u=>u.id!==id));
+    renderList();
+    if(editingId===id) clearForm(false);
+    log(`DELETE /api/v1/users/${esc(id.slice(0,6))} → 204 No Content.`, "ok", "log2");
+  }
+
+  function doEdit(id) {
+    const u = loadU().find(x=>x.id===id); if(!u) return;
+    editingId = id;
+    $("#u-name").value=u.name; $("#u-email").value=u.email; $("#u-role").value=u.role||"viewer";
+    $("#u-dep").value=u.dep||""; $("#u-bio").value=u.bio||"";
+    $("#editTag").style.display="inline-flex";
+    $("#formTitle").textContent="Editar usuário · PUT /api/v1/users/:id";
+    $("#btnSave").innerHTML="💾 Atualizar";
+    log(`GET /api/v1/users/${esc(id.slice(0,6))} → 200. Carregado no formulário.`, "ok", "log2");
+  }
+
+  function showDashboard(){
+    $("#authScreen").style.display="none";
+    $("#dashboardScreen").style.display="block";
+    renderList();
+  }
+  function showAuth(){
+    $("#authScreen").style.display="grid";
+    $("#dashboardScreen").style.display="none";
+    refreshKpis();
+  }
+
+  function doLogin(){
+    const email = $("#em").value.trim();
+    const pw = $("#pw").value;
+    if(!email || !pw){ log("POST /auth/login → 400. Informe e-mail e senha.", "err"); return; }
+    const token = "eyJhbGciOiJIUzI1NiJ9.demo-token." + Math.random().toString(36).slice(2,12);
+    setAuth({ email, token, at: Date.now() });
+    log(`POST /auth/login → 200 OK. Token JWT gravado (${esc(token.slice(0,22))}…).`, "ok");
+    seedIfEmpty();
+    setTimeout(showDashboard, 220);
+  }
+
+  $("#btnSave").addEventListener("click", doSave);
+  $("#btnClear").addEventListener("click", ()=>{ clearForm(false); log("Formulário limpo.", "info", "log2"); });
+  $("#btnSeed").addEventListener("click", ()=>{
+    saveU([
+      { id: uid(), name: "Luiza Prado", email: "luiza@railshub.dev", role: "editor", dep: "Marketing", bio: "Criação de conteúdo e campanhas.", createdAt: Date.now()-86400000*2 },
+      { id: uid(), name: "Pedro Arantes", email: "pedro@railshub.dev", role: "viewer", dep: "Financeiro", bio: "Acompanhamento de métricas.", createdAt: Date.now()-86400000 },
+    ]);
+    renderList();
+    log("Exemplos carregados: 2 usuários adicionados. ✔", "ok");
+  });
+  $("#btnLogout").addEventListener("click", ()=>{ setAuth(null); refreshKpis(); showAuth(); log("DELETE /auth/logout → 204. Sessão encerrada.", "ok"); });
+  $("#authForm").addEventListener("submit", (e)=>{ e.preventDefault(); doLogin(); });
+
+  // Init
+  refreshKpis();
+  if(getAuth()){ seedIfEmpty(); showDashboard(); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>rails-swagger-crud · Demonstração Live (localStorage)</title>
+<meta name="description" content="Demo RESTful CRUD de Posts — simula Rails API Mode + OpenAPI 3 (Rswag). Banco de dados no localStorage do navegador." />
+<style>
+  :root{
+    --bg:#282a36; --bg-2:#1e1f29; --card:#21222c; --line:#44475a;
+    --fg:#f8f8f2; --muted:#6272a4; --cmt:#8be9fd;
+    --rails:#cc0000; --rails-2:#ff6e6e; --str:#f1fa8c; --num:#bd93f9; --key:#50fa7b; --warn:#ffb86c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,var(--bg-2) 0%,var(--bg) 100%);color:var(--fg);font:14px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+  a{color:var(--rails-2)}
+  header{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:rgba(30,31,41,.6);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:-.01em}
+  .gem{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#a0172a,#cc0000,#e33446);display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 8px 22px rgba(204,0,0,.35);border:1px solid rgba(255,255,255,.08)}
+  .pill{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid rgba(204,0,0,.55);background:rgba(204,0,0,.12);color:#ff9ea5}
+  .container{max-width:1180px;margin:0 auto;padding:22px}
+  h1{margin:0 0 4px;font-size:22px}
+  h2{margin:0 0 14px;font-size:16px;color:var(--fg)}
+  .sub{color:var(--muted);margin:0 0 20px;font-size:13px}
+  .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;box-shadow:0 10px 26px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.03);border-left:3px solid var(--rails)}
+  .methods{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .method{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:6px;border:1px solid var(--line);color:#fff;background:#44475a}
+  .get{background:#14532d;color:#86efac;border-color:#16a34a}
+  .post{background:#78350f;color:#fcd34d;border-color:#d97706}
+  .put{background:#1e3a8a;color:#93c5fd;border-color:#3b82f6}
+  .del{background:#7f1d1d;color:#fecaca;border-color:#dc2626}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+  input,textarea,select{
+    width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#191a21;color:var(--fg);font:inherit;outline:none;transition:border-color .15s, box-shadow .15s
+  }
+  textarea{min-height:90px;resize:vertical}
+  input:focus,textarea:focus{border-color:rgba(204,0,0,.7);box-shadow:0 0 0 3px rgba(204,0,0,.18)}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  button{
+    cursor:pointer;border:1px solid var(--line);background:#2d2f3c;color:var(--fg);padding:9px 14px;border-radius:10px;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:8px;transition:all .15s
+  }
+  button:hover{border-color:rgba(204,0,0,.6);background:rgba(204,0,0,.1)}
+  .primary{background:linear-gradient(135deg,#a0172a,#cc0000);color:#fff;border-color:rgba(255,255,255,.14);box-shadow:0 8px 22px rgba(204,0,0,.32)}
+  .primary:hover{filter:brightness(1.05);background:linear-gradient(135deg,#b01a2e,#e01a1a)}
+  .ghost{background:transparent;border-color:var(--line)}
+  .ghost:hover{border-color:var(--warn);color:var(--warn);background:rgba(255,184,108,.07)}
+  .posts{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+  .post-item{padding:14px;border-radius:12px;background:#1e1f29;border:1px solid var(--line);border-left:3px solid var(--rails);transition:transform .12s,box-shadow .12s}
+  .post-item:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+  .post-title{font-weight:700;color:#fff;margin:0 0 4px}
+  .post-meta{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);margin:0 0 8px}
+  .post-body{margin:0 0 12px;color:#d9dae0;white-space:pre-wrap;word-break:break-word}
+  .post-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{display:inline-flex;padding:2px 8px;border-radius:999px;font-size:10.5px;font-weight:700;border:1px solid var(--line);background:#282a36;color:var(--cmt)}
+  .empty{padding:22px 16px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+  pre.swag{margin:0;background:#0f1014;padding:14px;border-radius:12px;border:1px solid var(--line);overflow:auto;font:12px/1.55 ui-monospace,monospace;max-height:620px}
+  .k{color:var(--cmt)} .s{color:var(--str)} .n{color:var(--num)} .y{color:var(--warn)} .g{color:var(--key)}
+  .log{margin-top:12px;padding:10px 12px;background:#0f1014;border:1px solid var(--line);border-radius:10px;font:12px ui-monospace,monospace;white-space:pre-wrap;min-height:54px;color:var(--fg)}
+  .log .t{color:var(--muted)} .log .ok{color:var(--key)} .log .err{color:#ff9ea5}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:13px;margin-bottom:14px}
+  .back:hover{color:var(--rails-2)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="gem">💎</div>
+      <div>
+        <div style="font-size:15px">rails-swagger-crud · <span style="color:var(--rails-2)">Demonstração Live</span></div>
+        <div style="font-size:11px;color:var(--muted);font-family:ui-monospace,monospace">CRUD RESTful · Rswag / OpenAPI 3 · RSpec · TDD</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="pill">Banco: localStorage do seu navegador</span>
+      <a href="https://github.com/reinaldobarreto31/rails-swagger-crud" target="_blank" rel="noopener" style="color:var(--fg);border:1px solid var(--line);padding:7px 11px;border-radius:10px;text-decoration:none;font-weight:600;font-size:12px;display:inline-flex;gap:8px;align-items:center">🗂 Repositório</a>
+      <a class="back" href="/" style="margin:0">← Voltar para o portfólio</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Demonstração: API REST de Posts (com Swagger simulado)</h1>
+    <p class="sub">Crie, liste, edite e exclua posts. Todos os dados ficam salvos no <code style="background:#191a21;border:1px solid var(--line);padding:2px 6px;border-radius:6px">localStorage</code> do seu navegador — nenhum servidor externo.</p>
+
+    <div class="grid">
+      <section class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+          <h2 style="margin:0">Formulário · POST / PUT /api/v1/posts</h2>
+          <div class="methods">
+            <span class="method get">GET</span>
+            <span class="method post">POST</span>
+            <span class="method put">PUT</span>
+            <span class="method del">DELETE</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="pt">Título</label>
+            <input id="pt" placeholder="Ex.: Como estruturar uma API Rails com OpenAPI 3" />
+          </div>
+          <div>
+            <label for="pa">Autor</label>
+            <input id="pa" placeholder="Ex.: Reinaldo Barreto" />
+          </div>
+        </div>
+        <div style="margin-bottom:12px">
+          <label for="pb">Conteúdo</label>
+          <textarea id="pb" placeholder="Escreva o conteúdo do post aqui. Markdown é aceito na demo :)"></textarea>
+        </div>
+
+        <div class="btns">
+          <button id="btnSave" class="primary" type="button">💾 Salvar (POST)</button>
+          <button id="btnClear" class="ghost" type="button">✖ Limpar formulário</button>
+          <button id="btnReset" class="ghost" type="button" title="Carrega posts exemplo">🗄 Carregar exemplos</button>
+          <span id="editInfo" class="badge" style="display:none">Modo edição · ID: <span id="editId"></span></span>
+        </div>
+
+        <div id="log" class="log" aria-live="polite"><span class="t">[api/v1]</span> <span class="ok">Pronto. Os posts são salvos em localStorage na chave "rsc.posts.v1".</span></div>
+
+        <h2 style="margin-top:22px;margin-bottom:10px">Listagem · GET /api/v1/posts</h2>
+        <div id="list" class="posts"></div>
+      </section>
+
+      <aside class="card" style="border-left-color:#bd93f9">
+        <h2>Swagger / OpenAPI 3 · spec simulada</h2>
+        <p class="sub" style="margin-bottom:12px">O Rswag gera isso automaticamente a partir dos testes RSpec. Aqui está a aparência do contrato:</p>
+<pre class="swag" id="swagger"><span class="k">openapi</span>: <span class="s">3.0.1</span>
+<span class="k">info</span>:
+  <span class="k">title</span>: <span class="s">rails-swagger-crud</span>
+  <span class="k">description</span>: <span class="s">Posts API RESTful · TDD com Rswag + RSpec</span>
+  <span class="k">version</span>: <span class="s">1.0.0</span>
+<span class="k">paths</span>:
+  <span class="g">/api/v1/posts</span>:
+    <span class="y">get</span>:
+      <span class="k">summary</span>: <span class="s">Lista todos os posts</span>
+      <span class="k">tags</span>: [<span class="s">Posts</span>]
+      <span class="k">responses</span>:
+        <span class="n">'200'</span>: { <span class="k">description</span>: <span class="s">OK</span> }
+    <span class="y">post</span>:
+      <span class="k">summary</span>: <span class="s">Cria novo post</span>
+      <span class="k">requestBody</span>:
+        <span class="k">content</span>:
+          <span class="s">application/json</span>:
+            <span class="k">schema</span>: { <span class="k">$ref</span>: <span class="s">'#/components/schemas/PostInput'</span> }
+      <span class="k">responses</span>:
+        <span class="n">'201'</span>: { <span class="k">description</span>: <span class="s">Criado</span> }
+        <span class="n">'422'</span>: { <span class="k">description</span>: <span class="s">Erro de validação</span> }
+  <span class="g">/api/v1/posts/</span>{<span class="k">id</span>}:
+    <span class="y">get</span>:   { <span class="k">summary</span>: <span class="s">Exibe um post</span> }
+    <span class="y">put</span>:   { <span class="k">summary</span>: <span class="s">Atualiza um post</span> }
+    <span class="y">delete</span>:{ <span class="k">summary</span>: <span class="s">Remove um post</span> }
+<span class="k">components</span>:
+  <span class="k">schemas</span>:
+    <span class="g">PostInput</span>:
+      <span class="k">type</span>: <span class="s">object</span>
+      <span class="k">required</span>: [<span class="s">title</span>, <span class="s">body</span>]
+      <span class="k">properties</span>:
+        <span class="k">title</span>:  { <span class="k">type</span>: <span class="s">string</span>,  <span class="k">example</span>: <span class="s">Hello Swagger</span> }
+        <span class="k">author</span>: { <span class="k">type</span>: <span class="s">string</span>,  <span class="k">example</span>: <span class="s">Reinaldo B.</span> }
+        <span class="k">body</span>:   { <span class="k">type</span>: <span class="s">string</span>,  <span class="k">example</span>: <span class="s">Conteudo do post...</span> }
+        <span class="k">published</span>: { <span class="k">type</span>: <span class="s">boolean</span>, <span class="k">example</span>: <span class="n">true</span> }
+</pre>
+      </aside>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const KEY = "rsc.posts.v1";
+  const $ = (s) => document.querySelector(s);
+  const log = (text, kind="info") => {
+    const el = $("#log");
+    const time = new Date().toLocaleTimeString("pt-BR");
+    const cls = kind === "ok" ? "ok" : kind === "err" ? "err" : "";
+    el.innerHTML = `<span class="t">[${time}]</span> <span class="${cls}">${text}</span>`;
+  };
+  const uid = () => (crypto && crypto.randomUUID ? crypto.randomUUID() : ("p"+Math.random().toString(36).slice(2,10)));
+  const load = () => {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; }
+  };
+  const save = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
+  const fmtId = (id) => id.slice(0,8);
+  const fmtDate = (d) => new Date(d).toLocaleString("pt-BR");
+
+  function seed() {
+    const arr = [
+      { id: uid(), title: "Como escrever specs com Rswag no Rails", author: "Reinaldo B.", body: "1) rails generate rspec:install\n2) Adicione gem 'rswag'\n3) rails generate rswag:spec Api\n4) Escreva a spec em spec/requests/api/v1/posts_spec.rb\n5) rake rswag:specs:swaggerize", createdAt: Date.now() - 86400000 * 2 },
+      { id: uid(), title: "TDD: primeiro o teste, depois o código", author: "Reinaldo B.", body: "Fazer o teste falhar (RED). Implementar o mínimo para passar (GREEN). Refatorar (REFACTOR). Ciclo clássico aplicado em APIs Rails.", createdAt: Date.now() - 86400000 * 1 },
+      { id: uid(), title: "Deploy do PDF Compressor no GitHub Pages", author: "Reinaldo B.", body: "Pipeline Actions: rodar build do Vite, publicar ./dist em gh-pages. Presets GOVERNO BR (≤2MB), EMPRESA (≤5MB) prontos.", createdAt: Date.now() },
+    ];
+    save(arr);
+    render();
+    log("Exemplos carregados. 3 posts escritos em localStorage. ✔", "ok");
+  }
+
+  function resetForm(clearId=true) {
+    $("#pt").value=""; $("#pa").value=""; $("#pb").value="";
+    if(clearId){ $("#editInfo").style.display="none"; $("#editId").textContent=""; editingId=null; $("#btnSave").textContent="💾 Salvar (POST)"; }
+  }
+
+  let editingId = null;
+
+  function render() {
+    const arr = load().sort((a,b)=>b.createdAt-a.createdAt);
+    const list = $("#list");
+    if(!arr.length){ list.innerHTML = `<div class="empty">Nenhum post ainda. Use o formulário ou clique em "🗄 Carregar exemplos".</div>`; return; }
+    list.innerHTML = arr.map(p => `
+      <article class="post-item" data-id="${p.id}">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap">
+          <h3 class="post-title">${escapeHtml(p.title)}</h3>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="badge">id: ${fmtId(p.id)}</span>
+            <span class="badge">created_at</span>
+          </div>
+        </div>
+        <p class="post-meta">Por ${escapeHtml(p.author || "anônimo")} · ${fmtDate(p.createdAt)}</p>
+        <p class="post-body">${escapeHtml(p.body)}</p>
+        <div class="post-actions">
+          <button data-action="edit" data-id="${p.id}" class="ghost" type="button">✏️ Editar (PUT)</button>
+          <button data-action="delete" data-id="${p.id}" class="ghost" type="button" style="border-color:#dc262633;color:#ff9ea5">🗑 Excluir (DELETE)</button>
+        </div>
+      </article>`).join("");
+    list.querySelectorAll("button[data-action]").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        const id = b.dataset.id;
+        if(b.dataset.action==="delete") doDelete(id);
+        if(b.dataset.action==="edit") doEdit(id);
+      });
+    });
+  }
+
+  function escapeHtml(s){
+    return String(s||"").replace(/[&<>"']/g,(m)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+  }
+
+  function doSave(){
+    const title = $("#pt").value.trim();
+    const author = $("#pa").value.trim();
+    const body = $("#pb").value.trim();
+    if(!title || !body){ log("POST /api/v1/posts → 422. Campos obrigatórios: title + body.", "err"); return; }
+    const arr = load();
+    if(editingId){
+      const idx = arr.findIndex(p=>p.id===editingId);
+      if(idx>=0){
+        arr[idx]={ ...arr[idx], title, author, body, updatedAt: Date.now() };
+        save(arr); render(); resetForm();
+        log(`PUT /api/v1/posts/${fmtId(editingId)} → 200 OK. Post atualizado.`, "ok");
+      }
+    } else {
+      const p = { id: uid(), title, author, body, createdAt: Date.now() };
+      arr.push(p); save(arr); render(); resetForm();
+      log(`POST /api/v1/posts → 201 Created. id=${fmtId(p.id)}`, "ok");
+    }
+  }
+
+  function doDelete(id){
+    const arr = load().filter(p=>p.id!==id);
+    save(arr); render();
+    log(`DELETE /api/v1/posts/${fmtId(id)} → 204 No Content.`, "ok");
+  }
+
+  function doEdit(id){
+    const p = load().find(x=>x.id===id); if(!p) return;
+    editingId = id;
+    $("#pt").value = p.title;
+    $("#pa").value = p.author || "";
+    $("#pb").value = p.body || "";
+    $("#editInfo").style.display="inline-flex";
+    $("#editId").textContent = fmtId(id);
+    $("#btnSave").textContent = "💾 Atualizar (PUT)";
+    log(`GET /api/v1/posts/${fmtId(id)} → 200. Carregado para edição.`, "ok");
+    document.querySelector("form, .card input, .card textarea")?.scrollIntoView?.({behavior:"smooth", block:"start"});
+  }
+
+  $("#btnSave").addEventListener("click", doSave);
+  $("#btnClear").addEventListener("click", ()=>{ resetForm(true); log("Formulário limpo."); });
+  $("#btnReset").addEventListener("click", seed);
+
+  if(!load().length) seed(); else render();
+})();
+</script>
+</body>
+</html>
