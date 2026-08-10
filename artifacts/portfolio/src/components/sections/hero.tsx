@@ -1,10 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import tracksBg from "@/assets/tracks-bg.png";
 import { TrackLocomotive } from "@/components/hero/track-locomotive";
 import { SiRuby, SiRubyonrails, SiPostgresql, SiDocker, SiGithub } from "react-icons/si";
-import { Mail, ArrowDownRight } from "lucide-react";
+import { Mail, ArrowDownRight, FileImage, FileDown, ChevronDown } from "lucide-react";
+import { ResumeExporter, type ResumeExporterHandle } from "./resume-exporter";
+import { toast } from "sonner";
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const STACK = [
   { label: "Ruby", icon: <SiRuby size={13} />, tone: "tech-ruby" },
@@ -16,6 +22,29 @@ const STACK = [
 export function HeroSection() {
   const sceneRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const resumeRef = useRef<ResumeExporterHandle | null>(null);
+  const [exportingImg, setExportingImg] = useState(false);
+
+  const handleExportImage = async () => {
+    if (exportingImg) return;
+    setExportingImg(true);
+    toast("Gerando imagem do currículo...", {
+      description: "Renderizando em PNG único em HD (2x). Aguarde 2-4 segundos.",
+      duration: 2800,
+    });
+    try {
+      await resumeRef.current?.exportAsImage();
+      toast.success("Currículo em PNG (imagem única) baixado com sucesso!", {
+        description: "Arquivo: Curriculo_Reinaldo_Barreto_da_Silva.png",
+        duration: 4200,
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error("Não foi possível gerar a imagem.");
+    } finally {
+      setExportingImg(false);
+    }
+  };
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -61,7 +90,24 @@ export function HeroSection() {
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight" data-testid="text-hero-name">Reinaldo<br /><span className="text-muted-foreground">Barreto</span></h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed" data-testid="text-hero-description">Desenvolvedor <span className="text-primary font-bold font-mono">Ruby on Rails</span> focado em produtos web bem estruturados, APIs REST, bancos de dados e entregas que transformam ideias em aplicacoes confiaveis.</p>
         <div className="flex flex-wrap gap-2">{STACK.map(({ label, icon, tone }, i) => <motion.span key={label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .35 + i * .08 }} whileHover={{ y: -3, scale: 1.04 }} className={`rails-pill ${tone} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-bold font-mono`}>{icon}{label}</motion.span>)}</div>
-        <div className="flex flex-wrap items-center gap-3 mt-2"><motion.a href="#projects" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="rails-button px-6 py-3 rounded-lg font-semibold text-sm inline-flex items-center gap-2">Ver projetos <ArrowDownRight size={16} /></motion.a><motion.a href="#contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-border text-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary/60 hover:bg-primary/5 transition-all backdrop-blur-[2px]">Vamos conversar</motion.a><motion.a href="/curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-primary/45 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all backdrop-blur-[2px]">Curriculo PDF</motion.a></div>
+        <div className="flex flex-wrap items-center gap-3 mt-2">
+          <motion.a href="#projects" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="rails-button px-6 py-3 rounded-lg font-semibold text-sm inline-flex items-center gap-2">Ver projetos <ArrowDownRight size={16} /></motion.a>
+          <motion.a href="#contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-border text-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary/60 hover:bg-primary/5 transition-all backdrop-blur-[2px]">Vamos conversar</motion.a>
+          <motion.a href="/curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf" whileHover={{ scale: 1.03 }} whileTap={{ scale: .97 }} className="border border-primary/45 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary/10 transition-all backdrop-blur-[2px] inline-flex items-center gap-2">
+            <FileDown size={15} />
+            Currículo PDF
+          </motion.a>
+          <motion.button
+            onClick={handleExportImage}
+            disabled={exportingImg}
+            whileHover={{ scale: exportingImg ? 1 : 1.03 }}
+            whileTap={{ scale: exportingImg ? 1 : 0.97 }}
+            className="border border-[#bd93f9]/55 text-[#bd93f9] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#bd93f9]/10 hover:border-[#bd93f9] transition-all backdrop-blur-[2px] inline-flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <FileImage size={15} className={exportingImg ? "animate-pulse" : ""} />
+            {exportingImg ? "Gerando imagem..." : "Currículo Imagem PNG"}
+          </motion.button>
+        </div>
         <div className="flex items-center gap-4 mt-1"><a href="https://github.com/reinaldobarreto31" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link"><SiGithub size={21} /></a><a href="https://linkedin.com/in/reinaldo-barreto-2a4ba2116" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link">in</a><a href="#contact" aria-label="Email" className="social-link"><Mail size={21} /></a></div>
       </motion.div>
 
@@ -75,5 +121,6 @@ export function HeroSection() {
         <div className="absolute bottom-3 right-0 bg-card/90 border border-border px-3 py-2 rounded-md shadow-lg flex items-center gap-2 z-20 backdrop-blur-sm"><span className="w-2 h-2 rounded-full bg-[#50fa7b] animate-pulse" /><span className="text-xs text-muted-foreground font-mono">rails.status: ready</span></div>
       </motion.div>
     </div>
+    <ResumeExporter ref={resumeRef} />
   </section>;
 }

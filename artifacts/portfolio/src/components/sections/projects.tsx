@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight, Globe, Rocket, TerminalSquare, Sparkles } from "lucide-react";
-import { SiRubyonrails, SiPostgresql, SiReact, SiSwagger } from "react-icons/si";
+import { Github, ExternalLink, ArrowUpRight, Globe, Rocket, TerminalSquare, Sparkles, Package } from "lucide-react";
+import { SiRubyonrails, SiPostgresql, SiReact, SiSwagger, SiGo } from "react-icons/si";
 
 const GITHUB = "https://github.com/reinaldobarreto31";
 const PAGES = "https://reinaldobarreto31.github.io";
 
-type Tone = "tech-ruby" | "tech-rails" | "tech-postgres" | "tech-docker" | "tech-actions" | "tech-react" | "tech-ts" | "tech-jwt" | "tech-openapi" | "tech-pdf";
+type Tone = "tech-ruby" | "tech-rails" | "tech-postgres" | "tech-docker" | "tech-actions" | "tech-react" | "tech-ts" | "tech-jwt" | "tech-openapi" | "tech-pdf" | "tech-golang";
 
 type Project = {
   title: string;
@@ -25,7 +25,7 @@ const FEATURED: Project[] = [
     title: "Compressor de PDF",
     subtitle: "Padrões Brasileiros · 100% navegador",
     description:
-      "Compressor de PDFs com presets prontos para o dia a dia brasileiro: Governo BR (2 MB), Empresa (5 MB), E-mail, Qualidade e Ultra-leve. Processamento 100% local no navegador via pdf-lib — SEM upload de arquivos, sem rastreamento. UI inspirada em terminal Ruby on Rails com logs ao vivo do processamento.",
+      "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (≤2MB), Empresa (≤5MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. UI em tema Dracula + vermelho Rails.",
     tech: ["React", "TypeScript", "pdf-lib", "Vite", "GitHub Pages"],
     icon: SiReact,
     tone: "tech-pdf",
@@ -38,7 +38,7 @@ const FEATURED: Project[] = [
     title: "rails-swagger-crud",
     subtitle: "API REST + OpenAPI 3 + TDD",
     description:
-      "CRUD RESTful completo em Rails API mode com documentação OpenAPI 3 (Swagger) gerada automaticamente pelos testes — via gem Rswag. TDD first com RSpec, FactoryBot, Shoulda Matchers e cobertura. Autenticação Devise/JWT, PostgreSQL estruturado e Docker Compose para dev local com um comando.",
+      "RESTful CRUD API em Rails API mode com documentação OpenAPI 3 (Swagger UI em /api-docs) gerada automaticamente pelos testes RSpec via Rswag. TDD first — FactoryBot + Shoulda Matchers. Autenticação Devise/JWT, PostgreSQL estruturado e Docker Compose para dev local com um comando.",
     tech: ["Ruby", "Rails API", "Rswag", "RSpec", "FactoryBot", "Devise/JWT", "PostgreSQL", "Docker"],
     icon: SiSwagger,
     tone: "tech-openapi",
@@ -61,6 +61,17 @@ const FEATURED: Project[] = [
 ];
 
 const SECONDARY: Project[] = [
+  {
+    title: "StockWise",
+    subtitle: "Controle de Estoque · Go + React.js",
+    description:
+      "Backend em Go com API RESTful, autenticação JWT, CRUD de produtos e controle de movimentações de estoque. Frontend React.js com dashboard, listagens paginadas e formulários tipados. GitHub: github.com/reinaldobarreto31/stockwise-go",
+    tech: ["Go", "React.js", "PostgreSQL", "JWT", "REST API"],
+    icon: Package,
+    tone: "tech-golang",
+    github: `${GITHUB}/stockwise-go`,
+    badge: "FULL-STACK",
+  },
   {
     title: "Rails Link Shortener",
     subtitle: "Encurtador de URLs",
