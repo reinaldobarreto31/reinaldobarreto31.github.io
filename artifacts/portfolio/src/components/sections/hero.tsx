@@ -25,16 +25,16 @@ export function HeroSection() {
     const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
 
-    const speedBase = 1;
+    const speedBase = 2.2;
     const distanceToVanish = Math.hypot(nx * 0.9, (ny + 1) * 0.55);
     const forwardBoost = Math.max(0, 1 - Math.min(1, distanceToVanish));
-    const burst = Math.min(1.8, burstRef.current);
+    const burst = Math.min(2.4, burstRef.current);
 
-    const travelSpeed = speedBase + forwardBoost * 3.2 + burst * 2.4;
+    const travelSpeed = speedBase + forwardBoost * 4.6 + burst * 3.2;
     const travelSway = nx * 1;
     const travelDive = -ny * 1;
     const travelRoll = nx * -1;
-    const travelAccent = 0.6 + forwardBoost * 0.9 + burst * 0.7;
+    const travelAccent = 0.6 + forwardBoost * 1.1 + burst * 0.85;
 
     scene.style.setProperty("--travel-speed", travelSpeed.toFixed(3));
     scene.style.setProperty("--travel-sway", travelSway.toFixed(3));
@@ -68,11 +68,13 @@ export function HeroSection() {
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
-    scene.style.setProperty("--travel-speed", "1");
+    burstRef.current = 0.45;
+    scene.style.setProperty("--travel-speed", (2.2 + 0.45 * 3.2).toFixed(3));
     scene.style.setProperty("--travel-sway", "0");
     scene.style.setProperty("--travel-dive", "0");
     scene.style.setProperty("--travel-roll", "0");
-    scene.style.setProperty("--travel-accent", "0.6");
+    scene.style.setProperty("--travel-accent", "0.9");
+    burstRaf.current = window.requestAnimationFrame(decayBurst);
 
     window.addEventListener("mousemove", handleMouse, { passive: true });
     window.addEventListener("wheel", handleWheel, { passive: true });
@@ -81,7 +83,7 @@ export function HeroSection() {
       window.removeEventListener("wheel", handleWheel);
       if (burstRaf.current) cancelAnimationFrame(burstRaf.current);
     };
-  }, [handleMouse, handleWheel]);
+  }, [handleMouse, handleWheel, decayBurst]);
 
   return <section id="hero" ref={sceneRef} className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
