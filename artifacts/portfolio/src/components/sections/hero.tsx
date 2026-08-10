@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import tracksBg from "@/assets/tracks-bg.png";
@@ -15,75 +15,16 @@ const STACK = [
 
 export function HeroSection() {
   const sceneRef = useRef<HTMLDivElement | null>(null);
-  const burstRef = useRef(0);
-  const burstRaf = useRef<number | null>(null);
-
-  const handleMouse = useCallback((e: MouseEvent) => {
-    const scene = sceneRef.current;
-    if (!scene) return;
-    const rect = scene.getBoundingClientRect();
-    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-
-    const speedBase = 2.2;
-    const distanceToVanish = Math.hypot(nx * 0.9, (ny + 1) * 0.55);
-    const forwardBoost = Math.max(0, 1 - Math.min(1, distanceToVanish));
-    const burst = Math.min(2.4, burstRef.current);
-
-    const travelSpeed = speedBase + forwardBoost * 4.6 + burst * 3.2;
-    const travelSway = nx * 1;
-    const travelDive = -ny * 1;
-    const travelRoll = nx * -1;
-    const travelAccent = 0.6 + forwardBoost * 1.1 + burst * 0.85;
-
-    scene.style.setProperty("--travel-speed", travelSpeed.toFixed(3));
-    scene.style.setProperty("--travel-sway", travelSway.toFixed(3));
-    scene.style.setProperty("--travel-dive", travelDive.toFixed(3));
-    scene.style.setProperty("--travel-roll", travelRoll.toFixed(3));
-    scene.style.setProperty("--travel-accent", travelAccent.toFixed(3));
-  }, []);
-
-  const decayBurst = useCallback(() => {
-    burstRef.current = Math.max(0, burstRef.current - 0.018);
-    if (burstRef.current > 0) {
-      burstRaf.current = window.requestAnimationFrame(decayBurst);
-    } else {
-      burstRef.current = 0;
-      burstRaf.current = null;
-    }
-  }, []);
-
-  const handleWheel = useCallback((e: WheelEvent) => {
-    if (e.deltaY < -8 || Math.abs(e.deltaX) > 0) return;
-    const add = Math.min(1.2, Math.max(0.05, e.deltaY) / 180);
-    burstRef.current = Math.min(2.1, burstRef.current + add);
-    if (!burstRaf.current) burstRaf.current = window.requestAnimationFrame(decayBurst);
-    const fakeEvent = new MouseEvent("mousemove", {
-      clientX: window.innerWidth / 2,
-      clientY: window.innerHeight * 0.32,
-    });
-    handleMouse(fakeEvent);
-  }, [handleMouse, decayBurst]);
 
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
-    burstRef.current = 0.45;
-    scene.style.setProperty("--travel-speed", (2.2 + 0.45 * 3.2).toFixed(3));
+    scene.style.setProperty("--travel-speed", "3.0");
     scene.style.setProperty("--travel-sway", "0");
     scene.style.setProperty("--travel-dive", "0");
     scene.style.setProperty("--travel-roll", "0");
     scene.style.setProperty("--travel-accent", "0.9");
-    burstRaf.current = window.requestAnimationFrame(decayBurst);
-
-    window.addEventListener("mousemove", handleMouse, { passive: true });
-    window.addEventListener("wheel", handleWheel, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", handleMouse);
-      window.removeEventListener("wheel", handleWheel);
-      if (burstRaf.current) cancelAnimationFrame(burstRaf.current);
-    };
-  }, [handleMouse, handleWheel, decayBurst]);
+  }, []);
 
   return <section id="hero" ref={sceneRef} className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
