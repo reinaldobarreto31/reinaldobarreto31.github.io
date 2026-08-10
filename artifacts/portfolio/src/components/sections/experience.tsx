@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BriefcaseBusiness, MapPin, CalendarDays, Code2, Copy, Check } from "lucide-react";
+import { Briefcase, MapPin, CalendarDays, Code2, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { SiJava, SiSpringboot, SiVueDotJs, SiPostgresql, SiLinux, SiAngular, SiReact, SiMysql } from "react-icons/si";
 
@@ -10,14 +10,13 @@ type Experience = {
   location: string;
   description: string;
   sector: string;
-  stack: { label: string; icon?: React.ReactNode; tone?: string }[];
+  stack: { label: string; icon?: import("react").ReactNode; tone?: string }[];
   tags: string[];
   highlights?: string[];
 };
 
 const SYNTAX = {
   comment: "#6272a4",
-  keyword: "#ff79c6",
   const: "#bd93f9",
   assign: "#f8f8f2",
   symbol: "#50fa7b",
@@ -347,7 +346,7 @@ ${experiences.map(e => `  {
 
               <div>
                 <div className="flex gap-3 flex-wrap">
-                  <BriefcaseBusiness className="text-primary shrink-0 mt-1" size={18} />
+                  <Briefcase className="text-primary shrink-0 mt-1" size={18} />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-lg">{item.role}</h3>
                     <p className="text-sm text-primary mt-1 font-semibold">{item.company}</p>
