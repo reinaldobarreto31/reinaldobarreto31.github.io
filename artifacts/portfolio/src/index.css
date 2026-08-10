@@ -20,8 +20,9 @@
 @keyframes dream-rush-slow { 0% { background-position-y: -280%, 280%, center; } 100% { background-position-y: 280%, -280%, center; } }
 @keyframes ballast-surge-far { 0% { transform: translateY(-70%) scaleY(1.1); background-position-y: -180%, -180%, -180%; opacity: .5; } 100% { transform: translateY(110%) scaleY(2.0); background-position-y: 180%, 180%, 180%; opacity: .5; } }
 @keyframes ballast-surge-near { 0% { transform: translateY(-88%) scaleY(1.2); background-position-y: -320%, -320%, -320%; opacity: .72; } 100% { transform: translateY(115%) scaleY(2.4); background-position-y: 320%, 320%, 320%; opacity: .72; } }
-@keyframes rails-shine-pass { 0% { background-position-y: -200%; } 100% { background-position-y: 200%; } }
-@keyframes train-window-travel { 0% { transform: scale(1.28) translateY(44%) translateX(0); filter: saturate(1.2) contrast(1.1) brightness(.9) hue-rotate(-6deg); } 50% { transform: scale(1.38) translateY(-4%) translateX(.4%); filter: saturate(1.3) contrast(1.17) brightness(.98) hue-rotate(-5deg); } 100% { transform: scale(1.28) translateY(-52%) translateX(0); filter: saturate(1.2) contrast(1.1) brightness(.9) hue-rotate(-6deg); } }
+@keyframes rails-shine-pass { 0% { background-position-y: -320%; } 100% { background-position-y: 320%; } }
+@keyframes train-window-travel { 0% { transform: scale(1.34) translateY(56%) translateX(0); filter: saturate(1.05) contrast(1.18) brightness(.92) hue-rotate(-4deg) blur(.2px); } 50% { transform: scale(1.52) translateY(-12%) translateX(.5%); filter: saturate(1.18) contrast(1.28) brightness(1.01) hue-rotate(-2deg) blur(.05px); } 100% { transform: scale(1.34) translateY(-80%) translateX(0); filter: saturate(1.05) contrast(1.18) brightness(.92) hue-rotate(-4deg) blur(.2px); } }
+@keyframes motion-blur-sides { 0% { background-position-x: -200%, 200%, center; } 100% { background-position-x: 200%, -200%, center; } }
 @keyframes rails-speed-line { 0% { transform: translateY(-60%) scaleY(0.1); opacity: 0; } 15% { opacity: .85; } 85% { opacity: .7; } 100% { transform: translateY(160%) scaleY(1); opacity: 0; } }
 @keyframes light-trail-fade { 0% { opacity: 0; } 8% { opacity: .68; } 92% { opacity: .52; } 100% { opacity: 0; } }
 @keyframes profile-tilt-intense { 0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); } 25% { transform: translateY(-6px) rotateX(3deg) rotateY(-4deg); } 75% { transform: translateY(4px) rotateX(-2deg) rotateY(3deg); } }
@@ -61,7 +62,7 @@
 .profile-frame:hover .profile-photo, .profile-frame:focus-visible .profile-photo { filter: grayscale(0) saturate(1.12) contrast(1.04) brightness(1.02); transform: scale(1.02); }
 @media (hover: none) { .profile-photo { filter: grayscale(.35) saturate(.9) brightness(.96); } }
 .track-cinema { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
-#hero { --travel-speed: 1.6; --travel-sway: 0; --travel-dive: 0; --travel-roll: 0; --travel-accent: 1.0; }
+#hero { --travel-speed: 2.4; --travel-sway: 0; --travel-dive: 0; --travel-roll: 0; --travel-accent: 1.0; }
 .track-cinema-scene { position: absolute; inset: 0; transform-origin: 50% 26%; perspective: 1500px; perspective-origin: 50% 24%; transform:
     rotateX(calc(var(--travel-dive) * 2deg))
     rotateY(calc(var(--travel-sway) * 3.2deg))
@@ -71,7 +72,7 @@
 }
 .track-cinema-vanish { position: absolute; top: 22%; left: 50%; transform: translateX(-50%); width: 14rem; height: 14rem; border-radius: 999px; background: radial-gradient(circle at 50% 50%, rgba(255,107,107,.22) 0%, rgba(189,147,249,.1) 32%, transparent 70%); filter: blur(6px); opacity: calc(.75 + var(--travel-accent) * .25); pointer-events: none; }
 .track-cinema-image { position: absolute; inset: -16%; z-index: 1; pointer-events: none; }
-.track-cinema-image-fx { width: 100%; height: 100%; object-fit: cover; animation: train-window-travel 10s ease-in-out infinite alternate; transform-origin: 50% 28%; }
+.track-cinema-image-fx { width: 100%; height: 100%; object-fit: cover; animation: train-window-travel 5s ease-in-out infinite alternate; transform-origin: 50% 26%; }
 
 .tracks-dream { position: absolute; left: 50%; top: 0; bottom: -8%; width: 82%; transform: translateX(-50%) perspective(1400px) rotateX(66deg); transform-origin: 50% 22%; z-index: 2; pointer-events: none; }
 .tracks-dream-bg { background:
@@ -108,27 +109,75 @@
 .tracks-sleeper-bg { top: 20%; width: 46%; height: 82%; clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 20px, rgba(140,120,100,.36) 20px, rgba(140,120,100,.36) 26px, transparent 26px); background-size: 100% 200%; animation: sleepers-forever-slow calc(2.9s / var(--travel-speed)) linear infinite; filter: brightness(calc(.78 + var(--travel-accent) * .12)) saturate(.6); mix-blend-mode: multiply; opacity: calc(.72 + var(--travel-accent) * .2); }
 .tracks-sleeper-fg { top: 18%; width: 56%; height: 86%; clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(180deg, transparent 0, transparent 16px, rgba(160,140,118,.42) 16px, rgba(160,140,118,.42) 22px, transparent 22px); background-size: 100% 200%; animation: sleepers-forever-fast calc(1.35s / var(--travel-speed)) linear infinite; filter: brightness(calc(.85 + var(--travel-accent) * .14)) saturate(.65); mix-blend-mode: multiply; opacity: calc(.82 + var(--travel-accent) * .14); }
 
-.tracks-rails { position: absolute; left: 50%; transform: translateX(-50%); top: 22%; width: 2px; height: 78%; transform-origin: 50% 0%; pointer-events: none; z-index: 4; }
-.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background:
+.tracks-rails { position: absolute; left: 50%; transform: translateX(-50%); top: 22%; width: 2px; height: 82%; transform-origin: 50% 0%; pointer-events: none; z-index: 4; }
+.tracks-rails-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 50%; height: 82%; background:
     repeating-linear-gradient(180deg,
-      rgba(255,180,150,0) 0, rgba(255,180,150,0) 14px,
-      rgba(255,170,120,.72) 14px, rgba(255,220,190,.95) 16.5px,
-      rgba(220,80,80,.55) 19px, rgba(255,180,150,0) 22px, rgba(255,180,150,0) 44px),
-    linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px));
-  background-size: 100% 220%, 100% 100%;
-  transform: translateX(-50%) translateX(-23%) skewX(-16deg); filter: drop-shadow(-6px 0 10px rgba(204,0,0,.25)); animation: rails-shine-pass calc(1.25s / var(--travel-speed)) linear infinite; }
-.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 46%; height: 78%; background:
+      rgba(180,180,180,0) 0, rgba(180,180,180,0) 8px,
+      rgba(255,255,255,.95) 8px, rgba(230,230,230,1) 10.5px,
+      rgba(120,120,120,.7) 13px, rgba(180,180,180,0) 16px, rgba(180,180,180,0) 30px),
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 2.5px), rgba(90,90,90,.92) calc(50% - 2.5px), rgba(200,200,200,.95) 50%, rgba(90,90,90,.75) calc(50% + 2.5px), transparent calc(50% + 2.5px));
+  background-size: 100% 280%, 100% 100%;
+  transform: translateX(-50%) translateX(-24%) skewX(-18deg); filter: drop-shadow(-6px 0 10px rgba(20,20,20,.32)); animation: rails-shine-pass calc(.85s / var(--travel-speed)) linear infinite; }
+.tracks-rails-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 50%; height: 82%; background:
     repeating-linear-gradient(180deg,
-      rgba(255,180,150,0) 0, rgba(255,180,150,0) 14px,
-      rgba(255,170,120,.72) 14px, rgba(255,220,190,.95) 16.5px,
-      rgba(220,80,80,.55) 19px, rgba(255,180,150,0) 22px, rgba(255,180,150,0) 44px),
-    linear-gradient(90deg, transparent 0, transparent calc(50% - 1.5px), rgba(220,80,80,.78) calc(50% - 1.5px), rgba(255,170,120,.82) 50%, rgba(220,80,80,.5) calc(50% + 1.5px), transparent calc(50% + 1.5px));
-  background-size: 100% 220%, 100% 100%;
-  transform: translateX(-50%) translateX(23%) skewX(16deg); filter: drop-shadow(6px 0 10px rgba(204,0,0,.25)); animation: rails-shine-pass calc(1.25s / var(--travel-speed)) linear infinite; animation-delay: -.05s; }
-
-.tracks-ballast { position: absolute; left: 50%; top: 20%; transform: translateX(-50%); width: 72%; height: 80%; transform-origin: 50% 22%; pointer-events: none; z-index: 2; mix-blend-mode: overlay; }
-.tracks-ballast-far { clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 4px, rgba(80,60,50,.35) 4px, rgba(80,60,50,.35) 7px, transparent 7px), repeating-linear-gradient(45deg, transparent 0, transparent 5px, rgba(120,90,70,.22) 5px, rgba(120,90,70,.22) 8px, transparent 8px); background-size: 18px 18px, 22px 22px, 100% 200%; animation: ballast-surge-far calc(4.4s / var(--travel-speed)) linear infinite; opacity: calc(.45 + var(--travel-accent) * .25); }
-.tracks-ballast-near { clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); background: repeating-linear-gradient(135deg, transparent 0, transparent 3px, rgba(100,75,60,.4) 3px, rgba(100,75,60,.4) 6px, transparent 6px), repeating-linear-gradient(45deg, transparent 0, transparent 4px, rgba(140,110,80,.25) 4px, rgba(140,110,80,.25) 7px, transparent 7px); background-size: 14px 14px, 16px 16px, 100% 200%; animation: ballast-surge-near calc(2.1s / var(--travel-speed)) linear infinite; opacity: calc(.62 + var(--travel-accent) * .22); }
+      rgba(180,180,180,0) 0, rgba(180,180,180,0) 8px,
+      rgba(255,255,255,.95) 8px, rgba(230,230,230,1) 10.5px,
+      rgba(120,120,120,.7) 13px, rgba(180,180,180,0) 16px, rgba(180,180,180,0) 30px),
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 2.5px), rgba(90,90,90,.92) calc(50% - 2.5px), rgba(200,200,200,.95) 50%, rgba(90,90,90,.75) calc(50% + 2.5px), transparent calc(50% + 2.5px));
+  background-size: 100% 280%, 100% 100%;
+  transform: translateX(-50%) translateX(24%) skewX(18deg); filter: drop-shadow(6px 0 10px rgba(20,20,20,.32)); animation: rails-shine-pass calc(.85s / var(--travel-speed)) linear infinite; animation-delay: -.04s; }
+.tracks-rails-outer-left { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 70%; height: 82%; background:
+    repeating-linear-gradient(180deg,
+      rgba(160,160,160,0) 0, rgba(160,160,160,0) 10px,
+      rgba(230,230,230,.85) 10px, rgba(210,210,210,.9) 12.5px,
+      rgba(100,100,100,.6) 15px, rgba(160,160,160,0) 18px, rgba(160,160,160,0) 36px),
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1.8px), rgba(75,75,75,.78) calc(50% - 1.8px), rgba(180,180,180,.82) 50%, rgba(75,75,75,.55) calc(50% + 1.8px), transparent calc(50% + 1.8px));
+  background-size: 100% 280%, 100% 100%;
+  transform: translateX(-50%) translateX(-56%) skewX(-24deg); filter: drop-shadow(-5px 0 8px rgba(20,20,20,.22)) blur(.18px); animation: rails-shine-pass calc(1.5s / var(--travel-speed)) linear infinite; opacity: .78; }
+.tracks-rails-outer-right { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); width: 70%; height: 82%; background:
+    repeating-linear-gradient(180deg,
+      rgba(160,160,160,0) 0, rgba(160,160,160,0) 10px,
+      rgba(230,230,230,.85) 10px, rgba(210,210,210,.9) 12.5px,
+      rgba(100,100,100,.6) 15px, rgba(160,160,160,0) 18px, rgba(160,160,160,0) 36px),
+    linear-gradient(90deg, transparent 0, transparent calc(50% - 1.8px), rgba(75,75,75,.78) calc(50% - 1.8px), rgba(180,180,180,.82) 50%, rgba(75,75,75,.55) calc(50% + 1.8px), transparent calc(50% + 1.8px));
+  background-size: 100% 280%, 100% 100%;
+  transform: translateX(-50%) translateX(56%) skewX(24deg); filter: drop-shadow(5px 0 8px rgba(20,20,20,.22)) blur(.18px); animation: rails-shine-pass calc(1.5s / var(--travel-speed)) linear infinite; animation-delay: -.075s; opacity: .78; }
+.tracks-sleeper { background-image: repeating-linear-gradient(180deg, transparent 0, transparent 12px, rgba(105,88,70,.44) 12px, rgba(105,88,70,.44) 19px, transparent 19px); }
+.tracks-sleeper-fg { background-image: repeating-linear-gradient(180deg, transparent 0, transparent 9px, rgba(125,105,84,.5) 9px, rgba(125,105,84,.5) 16px, transparent 16px); }
+.tracks-motion-blur { position: absolute; inset: 0; z-index: 3; pointer-events: none; mix-blend-mode: overlay; }
+.tracks-motion-blur-left { left: -16%; top: 16%; width: 42%; height: 76%; background:
+    repeating-linear-gradient(90deg,
+      transparent 0, transparent 14px,
+      rgba(140,120,96,.26) 14px, rgba(100,82,62,.18) 18px,
+      transparent 18px, transparent 34px),
+    repeating-linear-gradient(90deg,
+      transparent 0, transparent 22px,
+      rgba(200,180,150,.18) 22px, rgba(180,158,128,.13) 26px,
+      transparent 26px);
+  background-size: 200% 100%, 200% 100%;
+  filter: blur(7px) saturate(.55);
+  transform: skewX(3deg) perspective(1500px) rotateY(22deg) rotateX(62deg);
+  transform-origin: 100% 22%;
+  animation: motion-blur-sides calc(.75s / var(--travel-speed)) linear infinite;
+  opacity: calc(.58 + var(--travel-accent) * .3); }
+.tracks-motion-blur-right { right: -16%; top: 16%; width: 42%; height: 76%; background:
+    repeating-linear-gradient(90deg,
+      transparent 0, transparent 14px,
+      rgba(140,120,96,.26) 14px, rgba(100,82,62,.18) 18px,
+      transparent 18px, transparent 34px),
+    repeating-linear-gradient(90deg,
+      transparent 0, transparent 22px,
+      rgba(200,180,150,.18) 22px, rgba(180,158,128,.13) 26px,
+      transparent 26px);
+  background-size: 200% 100%, 200% 100%;
+  filter: blur(7px) saturate(.55);
+  transform: skewX(-3deg) perspective(1500px) rotateY(-22deg) rotateX(62deg);
+  transform-origin: 0% 22%;
+  animation: motion-blur-sides calc(.75s / var(--travel-speed)) linear infinite;
+  animation-delay: -.375s;
+  opacity: calc(.58 + var(--travel-accent) * .3); }
+.tracks-ballast-far { background: repeating-linear-gradient(135deg, transparent 0, transparent 3px, rgba(100,82,62,.42) 3px, rgba(100,82,62,.42) 5.5px, transparent 5.5px), repeating-linear-gradient(45deg, transparent 0, transparent 4px, rgba(140,115,85,.28) 4px, rgba(140,115,85,.28) 7px, transparent 7px); background-size: 14px 14px, 17px 17px, 100% 200%; }
+.tracks-ballast-near { background: repeating-linear-gradient(135deg, transparent 0, transparent 2px, rgba(120,98,75,.48) 2px, rgba(120,98,75,.48) 4.5px, transparent 4.5px), repeating-linear-gradient(45deg, transparent 0, transparent 3px, rgba(160,130,95,.3) 3px, rgba(160,130,95,.3) 6px, transparent 6px); background-size: 10px 10px, 12px 12px, 100% 200%; }
 
 .track-night-sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; background:
     radial-gradient(ellipse 72% 46% at 50% 18%, rgba(40,10,30,.6) 0%, rgba(10,8,20,.75) 42%, rgba(0,0,0,.92) 80%),

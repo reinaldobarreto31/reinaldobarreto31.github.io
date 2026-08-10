@@ -36,10 +36,14 @@ export function HeroSection() {
         <div className="tracks-dream tracks-dream-fg" />
         <div className="tracks-sleeper tracks-sleeper-bg" />
         <div className="tracks-sleeper tracks-sleeper-fg" />
+        <div className="tracks-rails tracks-rails-outer-left" />
+        <div className="tracks-rails tracks-rails-outer-right" />
         <div className="tracks-rails tracks-rails-left" />
         <div className="tracks-rails tracks-rails-right" />
         <div className="tracks-ballast tracks-ballast-far" />
         <div className="tracks-ballast tracks-ballast-near" />
+        <div className="tracks-motion-blur tracks-motion-blur-left" />
+        <div className="tracks-motion-blur tracks-motion-blur-right" />
         <div className="track-night-sky" />
         <div className="track-night-vignette" />
 
