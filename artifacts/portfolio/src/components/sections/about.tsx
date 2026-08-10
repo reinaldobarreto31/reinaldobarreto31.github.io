@@ -154,14 +154,14 @@ export function AboutSection() {
             </div>
 
             <div className="mt-8">
-              <h3 className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-3">
+              <h3 className="font-mono text-xs uppercase tracking-wider text-[#ff5555] mb-3">
                 Práticas de engenharia
               </h3>
               <div className="flex flex-wrap gap-2">
                 {PRACTICES.map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1.5 rounded-full border border-primary/25 bg-primary/5 text-primary text-xs font-mono"
+                    className="px-3 py-1.5 rounded-full border border-[#cc0000]/55 bg-[#cc0000]/10 text-[#ff5555] text-xs font-mono font-semibold shadow-[inset_0_0_0_1px_rgba(255,85,85,.18)]"
                   >
                     {item}
                   </span>

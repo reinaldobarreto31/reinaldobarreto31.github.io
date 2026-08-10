@@ -53,8 +53,8 @@ const FEATURED: Project[] = [
     description:
       "Hub full-stack: API REST em Rails com autenticação Devise/JWT, documentação OpenAPI 3 automática via Rswag e TDD com RSpec + FactoryBot. Frontend React 18 + Tailwind com dashboard paginado, filtros e CRUD visual. Docker Compose + pipeline CI/CD em GitHub Actions para deploy automatizado.",
     tech: ["Ruby", "Rails", "React 18", "Docker", "RSpec"],
-    icon: Rocket,
-    tone: "tech-jwt",
+    icon: SiRubyonrails,
+    tone: "tech-rails",
     github: `${GITHUB}/railshub`,
     live: `${PAGES}/railshub/`,
     badge: "EM CONSTRUÇÃO",
