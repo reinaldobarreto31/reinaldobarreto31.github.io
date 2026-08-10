@@ -1,116 +1,48 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink, ArrowUpRight, Globe, Rocket, TerminalSquare, Sparkles, Package } from "lucide-react";
-import { SiRubyonrails, SiPostgresql, SiReact, SiSwagger, SiGo } from "react-icons/si";
+import {
+  SiRubyonrails, SiRuby, SiPostgresql, SiDocker, SiGithubactions, SiReact,
+  SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs, SiMysql, SiMongodb,
+  SiRedis, SiLinux, SiGnubash, SiGit, SiAngular, SiVuedotjs, SiSpringboot,
+  SiKubernetes, SiTailwindcss, SiVite,
+} from "react-icons/si";
+import type { AdminProject, ProjectTone, ProjectBadge } from "@/lib/default-data";
 
 const GITHUB = "https://github.com/reinaldobarreto31";
-const PAGES = "https://reinaldobarreto31.github.io";
 
-type Tone = "tech-ruby" | "tech-rails" | "tech-postgres" | "tech-docker" | "tech-actions" | "tech-react" | "tech-ts" | "tech-jwt" | "tech-openapi" | "tech-pdf" | "tech-golang";
-
-type Project = {
-  title: string;
-  subtitle: string;
-  description: string;
-  tech: string[];
-  icon: React.ComponentType<{ className?: string }>;
-  tone: Tone;
-  github: string;
-  live?: string;
-  badge?: "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "API" | "FULL-STACK";
-  featured?: boolean;
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+  sparkles: Sparkles,
+  swagger: SiSwagger,
+  rails: SiRubyonrails,
+  ruby: SiRuby,
+  package: Package,
+  postgres: SiPostgresql,
+  docker: SiDocker,
+  actions: SiGithubactions,
+  react: SiReact,
+  ts: SiTypescript,
+  go: SiGo,
+  js: SiJavascript,
+  node: SiNodedotjs,
+  mysql: SiMysql,
+  mongo: SiMongodb,
+  redis: SiRedis,
+  linux: SiLinux,
+  bash: SiGnubash,
+  git: SiGit,
+  angular: SiAngular,
+  vue: SiVuedotjs,
+  spring: SiSpringboot,
+  k8s: SiKubernetes,
+  tailwind: SiTailwindcss,
+  vite: SiVite,
+  rocket: Rocket,
+  terminal: TerminalSquare,
+  github: Github,
+  globe: Globe,
 };
 
-const FEATURED: Project[] = [
-  {
-    title: "Compressor de PDF",
-    subtitle: "Padrões Brasileiros · 100% navegador",
-    description:
-      "Compressor de PDFs 100% no navegador com presentes brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. Interface em tema Dracula + vermelho Ruby on Rails.",
-    tech: ["React", "TypeScript", "pdf-lib", "Tailwind"],
-    icon: Sparkles,
-    tone: "tech-pdf",
-    github: `${GITHUB}/pdf-compressor`,
-    live: `${PAGES}/pdf-compressor/`,
-    badge: "LIVE",
-    featured: true,
-  },
-  {
-    title: "rails-swagger-crud",
-    subtitle: "API REST + OpenAPI 3 + TDD",
-    description:
-      "RESTful CRUD API em Rails API mode com documentação OpenAPI 3 (Swagger UI em /api-docs) gerada automaticamente pelos testes RSpec via Rswag. TDD first — FactoryBot + Shoulda Matchers. Autenticação Devise/JWT, PostgreSQL estruturado e Docker Compose para dev local com um comando.",
-    tech: ["Ruby", "Rails", "Rswag", "RSpec", "OpenAPI 3", "Docker", "PostgreSQL"],
-    icon: SiSwagger,
-    tone: "tech-openapi",
-    github: `${GITHUB}/rails-swagger-crud`,
-    live: `${PAGES}/rails-swagger-crud/`,
-    badge: "DESTAQUE",
-    featured: true,
-  },
-  {
-    title: "RailsHub",
-    subtitle: "Full-stack · API Rails + React 18",
-    description:
-      "Hub full-stack: API REST em Rails com autenticação Devise/JWT, documentação OpenAPI 3 automática via Rswag e TDD com RSpec + FactoryBot. Frontend React 18 + Tailwind com dashboard paginado, filtros e CRUD visual. Docker Compose + pipeline CI/CD em GitHub Actions para deploy automatizado.",
-    tech: ["Ruby", "Rails", "React 18", "Docker", "RSpec"],
-    icon: SiRubyonrails,
-    tone: "tech-rails",
-    github: `${GITHUB}/railshub`,
-    live: `${PAGES}/railshub/`,
-    badge: "EM CONSTRUÇÃO",
-    featured: true,
-  },
-];
-
-const SECONDARY: Project[] = [
-  {
-    title: "StockWise",
-    subtitle: "Controle de Estoque · Go + React.js",
-    description:
-      "Backend em Go com API RESTful, autenticação JWT, CRUD de produtos e controle de movimentações de estoque. Frontend React.js com dashboard, listagens paginadas e formulários tipados. GitHub: github.com/reinaldobarreto31/stockwise-go",
-    tech: ["Go", "React.js", "PostgreSQL", "JWT", "REST"],
-    icon: Package,
-    tone: "tech-golang",
-    github: `${GITHUB}/stockwise-go`,
-    live: `${PAGES}/stockwise/`,
-    badge: "FULL-STACK",
-  },
-  {
-    title: "Rails Link Shortener",
-    subtitle: "Encurtador de URLs",
-    description:
-      "Aplicação Ruby on Rails para criar, organizar e redirecionar links curtos com contagem de acessos. Projeto enxuto que demonstra modelagem limpa, rotas RESTful e o ciclo completo de uma aplicação Rails MVC.",
-    tech: ["Ruby", "Rails", "PostgreSQL", "MVC"],
-    icon: SiRubyonrails,
-    tone: "tech-rails",
-    github: `${GITHUB}/rails-link-shortener`,
-    badge: "API",
-  },
-  {
-    title: "Rails Tasks API",
-    subtitle: "API de tarefas",
-    description:
-      "API REST para gestão de tarefas (todo list) estruturada com convenções Rails, endpoints claros, paginação e persistência em banco de dados relacional.",
-    tech: ["Ruby", "Rails API", "PostgreSQL", "REST"],
-    icon: TerminalSquare,
-    tone: "tech-ruby",
-    github: `${GITHUB}/rails-tasks-api`,
-    badge: "API",
-  },
-  {
-    title: "Ruby Expense Tracker",
-    subtitle: "Controle financeiro",
-    description:
-      "Projeto em Ruby puro voltado ao controle de despesas e exploração da lógica de negócio — com classes de domínio limpas e legíveis, prontas para evoluir em uma aplicação Rails completa.",
-    tech: ["Ruby", "Domínio", "CLI", "Testes"],
-    icon: SiPostgresql,
-    tone: "tech-postgres",
-    github: `${GITHUB}/ruby-expense-tracker`,
-    badge: "API",
-  },
-];
-
-const badgeStyle: Record<NonNullable<Project["badge"]>, string> = {
+const badgeStyle: Record<NonNullable<ProjectBadge>, string> = {
   DESTAQUE: "bg-[#b91f32]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.08),0_8px_22px_rgba(185,31,50,.35)]",
   "EM CONSTRUÇÃO": "bg-[#bd93f9]/85 text-[#161720] shadow-[0_0_0_1px_rgba(255,255,255,.08),0_8px_22px_rgba(189,147,249,.35)]",
   LIVE: "bg-[#50fa7b]/90 text-[#161720] shadow-[0_0_0_1px_rgba(255,255,255,.1),0_8px_22px_rgba(80,250,123,.35)]",
@@ -118,14 +50,18 @@ const badgeStyle: Record<NonNullable<Project["badge"]>, string> = {
   "FULL-STACK": "bg-[#ffb86c]/85 text-[#161720] shadow-[0_0_0_1px_rgba(255,255,255,.08)]",
 };
 
-function ProjectCard({ project, index, size = "normal" }: { project: Project; index: number; size?: "featured" | "normal" }) {
-  const Icon = project.icon;
+type Props = { projects: AdminProject[] };
+
+function ProjectCard({
+  project, index, size = "normal",
+}: { project: AdminProject; index: number; size?: "featured" | "normal" }) {
+  const Icon = ICON_MAP[project.icon] ?? Sparkles;
   const onOpen = () => window.open(project.live ?? project.github, "_blank", "noopener,noreferrer");
   const isFeatured = size === "featured";
 
   return (
     <motion.article
-      key={project.title}
+      key={project.id}
       initial={{ opacity: 0, y: isFeatured ? 28 : 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -203,7 +139,10 @@ function ProjectCard({ project, index, size = "normal" }: { project: Project; in
   );
 }
 
-export function ProjectsSection() {
+export function ProjectsSection({ projects }: Props) {
+  const featured = projects.filter((p) => p.featured);
+  const secondary = projects.filter((p) => !p.featured);
+
   return (
     <section id="projects" className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -230,8 +169,8 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-7">
-          {FEATURED.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} size="featured" />
+          {featured.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} size="featured" />
           ))}
         </div>
 
@@ -258,8 +197,8 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-5">
-          {SECONDARY.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} size="normal" />
+          {secondary.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} size="normal" />
           ))}
         </div>
 

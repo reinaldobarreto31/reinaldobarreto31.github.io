@@ -1,65 +1,43 @@
 import { motion } from "framer-motion";
 import { BriefcaseBusiness, MapPin, CalendarDays } from "lucide-react";
 import {
-  SiJava, SiJavascript, SiVueDotJs, SiPostgresql, SiGit, SiRuby,
-  SiRubyonrails, SiAngular, SiReact, SiLinux, SiMysql, SiGnubash
+  SiJava, SiJavascript, SiVuedotjs, SiPostgresql, SiGit, SiRuby,
+  SiRubyonrails, SiAngular, SiReact, SiLinux, SiMysql, SiGnubash,
+  SiRedis, SiDocker, SiSwagger, SiGo, SiSpringboot, SiTailwindcss,
+  SiGithubactions, SiTypescript,
 } from "react-icons/si";
+import type { AdminExperience, ProjectTone } from "@/lib/default-data";
 
-const experiences = [
-  {
-    company: "PRODEB — Companhia de Processamento de Dados da Bahia",
-    role: "Analista de Sistemas e Desenvolvedor · Consultor IV",
-    period: "mar/2024 – set/2024",
-    location: "Salvador / BA",
-    description:
-      "Desenvolvimento e manutenção de APIs REST e soluções web para órgãos públicos do Governo da Bahia. Arquitetura RESTful escalável com separação de camadas (controller / service / repository) — padrões diretamente alinhados ao desenvolvimento em Ruby on Rails. Frontend em Vue.js. Entregas em Scrum.",
-    tags: [
-      { name: "Java", icon: SiJava, tone: "tech-java" },
-      { name: "APIs REST", icon: SiJavascript, tone: "tech-api" },
-      { name: "Vue.js", icon: SiVueDotJs, tone: "tech-vue" },
-      { name: "PostgreSQL", icon: SiPostgresql, tone: "tech-postgres" },
-      { name: "Git", icon: SiGit, tone: "tech-git" },
-      { name: "Scrum", icon: SiRubyonrails, tone: "tech-rails" },
-    ],
-  },
-  {
-    company: "LAMPP IT Solutions",
-    role: "Analista de Sistemas e Desenvolvedor de Software",
-    period: "mar/2022 – mai/2022",
-    location: "Salvador / BA",
-    description:
-      "APIs REST seguras para sistemas críticos da SSP BA e PM BA. Módulo de controle de acesso do Sistema de Auditoria Interna prototipado em Ruby on Rails, demonstrando viabilidade da stack para sistemas de alta criticidade. Autenticação OAuth2. Frontend em Angular e React.js.",
-    tags: [
-      { name: "Ruby", icon: SiRuby, tone: "tech-ruby" },
-      { name: "Rails", icon: SiRubyonrails, tone: "tech-rails" },
-      { name: "OAuth2", icon: SiJavascript, tone: "tech-jwt" },
-      { name: "Angular", icon: SiAngular, tone: "tech-angular" },
-      { name: "React.js", icon: SiReact, tone: "tech-react" },
-      { name: "PostgreSQL", icon: SiPostgresql, tone: "tech-postgres" },
-      { name: "Linux Ubuntu", icon: SiLinux, tone: "tech-linux" },
-    ],
-  },
-  {
-    company: "EDZA Planejamento Consultoria e Informática LTDA",
-    role: "Analista de Sistemas e Desenvolvedor de Software",
-    period: "nov/2019 – mar/2022",
-    location: "Salvador / BA",
-    description:
-      "ERP Municipal (Tributário, Saúde, RH e NF-e) para prefeituras de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas. Modernização de módulo NF-e explorado em Ruby on Rails como proposta de refatoração da camada de APIs REST. Administração de servidores Linux Ubuntu 24/7.",
-    tags: [
-      { name: "Ruby", icon: SiRuby, tone: "tech-ruby" },
-      { name: "Rails", icon: SiRubyonrails, tone: "tech-rails" },
-      { name: "Angular", icon: SiAngular, tone: "tech-angular" },
-      { name: "Vue.js", icon: SiVueDotJs, tone: "tech-vue" },
-      { name: "Java EE", icon: SiJava, tone: "tech-java" },
-      { name: "MySQL", icon: SiMysql, tone: "tech-mysql" },
-      { name: "Linux Ubuntu", icon: SiLinux, tone: "tech-linux" },
-      { name: "Bash Script", icon: SiGnubash, tone: "tech-bash" },
-    ],
-  },
-];
+const ICON_FALLBACKS: Record<ProjectTone, React.ComponentType<{ size?: number; className?: string }>> = {
+  "tech-ruby": SiRuby,
+  "tech-rails": SiRubyonrails,
+  "tech-postgres": SiPostgresql,
+  "tech-docker": SiDocker,
+  "tech-actions": SiGithubactions,
+  "tech-react": SiReact,
+  "tech-ts": SiTypescript,
+  "tech-jwt": SiJavascript,
+  "tech-openapi": SiSwagger,
+  "tech-pdf": SiJavascript,
+  "tech-golang": SiGo,
+  "tech-java": SiJava,
+  "tech-api": SiJavascript,
+  "tech-vue": SiVuedotjs,
+  "tech-git": SiGit,
+  "tech-angular": SiAngular,
+  "tech-linux": SiLinux,
+  "tech-mysql": SiMysql,
+  "tech-bash": SiGnubash,
+};
 
-export function ExperienceSection() {
+function TagIcon({ tone }: { tone: ProjectTone }) {
+  const Cmp = ICON_FALLBACKS[tone] ?? SiRuby;
+  return <Cmp size={11} />;
+}
+
+type Props = { experiences: AdminExperience[] };
+
+export function ExperienceSection({ experiences }: Props) {
   return (
     <section id="experience" className="py-24 relative border-y border-border overflow-hidden">
       <div className="absolute inset-0 rails-grid opacity-20 pointer-events-none" />
@@ -74,7 +52,7 @@ export function ExperienceSection() {
         <div className="mt-10 max-w-4xl space-y-5">
           {experiences.map((item, index) => (
             <motion.article
-              key={item.company}
+              key={item.id}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -99,16 +77,16 @@ export function ExperienceSection() {
                     <p className="text-sm text-primary mt-1">{item.company}</p>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-4">
+                <p className="text-sm text-muted-foreground leading-relaxed mt-4 whitespace-pre-wrap">
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  {item.tags.map((t) => (
+                  {item.tags.map((t, i) => (
                     <span
-                      key={t.name}
+                      key={`${t.name}-${i}`}
                       className={`tech-tag ${t.tone} inline-flex items-center gap-1.5 font-mono px-2.5 py-1 rounded border text-[10.5px]`}
                     >
-                      <t.icon size={11} />
+                      <TagIcon tone={t.tone} />
                       {t.name}
                     </span>
                   ))}

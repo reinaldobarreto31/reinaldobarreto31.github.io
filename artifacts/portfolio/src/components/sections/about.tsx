@@ -6,41 +6,59 @@ import {
 import {
   SiRuby, SiRubyonrails, SiPostgresql, SiRedis, SiDocker, SiGithubactions,
   SiReact, SiTypescript, SiJava, SiSpringboot, SiVuedotjs, SiAngular,
+  SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
+  SiKubernetes, SiTailwindcss, SiVite, SiMongodb, SiNodedotjs,
 } from "react-icons/si";
+import type { AdminAbout, AdminSkill, ProjectTone } from "@/lib/default-data";
 
-const SKILLS = [
-  { name: "Ruby", icon: SiRuby, tone: "tech-ruby" },
-  { name: "Rails", icon: SiRubyonrails, tone: "tech-rails" },
-  { name: "PostgreSQL", icon: SiPostgresql, tone: "tech-postgres" },
-  { name: "Redis", icon: SiRedis, tone: "tech-redis" },
-  { name: "Docker", icon: SiDocker, tone: "tech-docker" },
-  { name: "GitHub Actions", icon: SiGithubactions, tone: "tech-actions" },
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+  ruby: SiRuby,
+  rails: SiRubyonrails,
+  postgres: SiPostgresql,
+  redis: SiRedis,
+  docker: SiDocker,
+  actions: SiGithubactions,
+  react: SiReact,
+  ts: SiTypescript,
+  java: SiJava,
+  spring: SiSpringboot,
+  vue: SiVuedotjs,
+  angular: SiAngular,
+  go: SiGo,
+  swagger: SiSwagger,
+  js: SiJavascript,
+  mysql: SiMysql,
+  linux: SiLinux,
+  bash: SiGnubash,
+  git: SiGit,
+  k8s: SiKubernetes,
+  tailwind: SiTailwindcss,
+  vite: SiVite,
+  mongo: SiMongodb,
+  node: SiNodedotjs,
+  sparkles: Sparkles,
+};
+
+const TONE_MAP: Record<ProjectTone, true> = {
+  "tech-ruby": true, "tech-rails": true, "tech-postgres": true, "tech-redis": true,
+  "tech-docker": true, "tech-actions": true, "tech-react": true, "tech-ts": true,
+  "tech-jwt": true, "tech-openapi": true, "tech-pdf": true, "tech-golang": true,
+  "tech-java": true, "tech-api": true, "tech-vue": true, "tech-git": true,
+  "tech-angular": true, "tech-linux": true, "tech-mysql": true, "tech-bash": true,
+};
+
+function isTone(v: string): v is ProjectTone {
+  return Object.prototype.hasOwnProperty.call(TONE_MAP, v);
+}
+
+const DEFAULT_TOOL_CARDS: { name: string; iconKey: string; tone: ProjectTone }[] = [
+  { name: "Ruby", iconKey: "ruby", tone: "tech-ruby" },
+  { name: "Rails", iconKey: "rails", tone: "tech-rails" },
+  { name: "PostgreSQL", iconKey: "postgres", tone: "tech-postgres" },
+  { name: "Redis", iconKey: "redis", tone: "tech-redis" },
+  { name: "Docker", iconKey: "docker", tone: "tech-docker" },
+  { name: "GitHub Actions", iconKey: "actions", tone: "tech-actions" },
 ];
-
-const HARD_SKILLS = [
-  { name: "Ruby on Rails", level: 95, color: "#cc0000" },
-  { name: "RSpec · TDD", level: 98, color: "#cc0000" },
-  { name: "APIs RESTful · OpenAPI 3", level: 92, color: "#cc0000" },
-  { name: "PostgreSQL", level: 85, color: "#cc0000" },
-  { name: "React · TypeScript", level: 88, color: "#bd93f9" },
-  { name: "Docker · CI/CD", level: 78, color: "#bd93f9" },
-  { name: "Java · Spring Boot", level: 75, color: "#f1fa8c" },
-  { name: "Vue.js · Angular", level: 78, color: "#f1fa8c" },
-];
-
-const METHODOLOGIES = [
-  "Convention over Config",
-  "TDD / RSpec",
-  "Service Objects",
-  "Clean Code",
-  "Scrum · Kanban",
-  "CI/CD",
-  "OpenAPI / Swagger",
-  "FactoryBot",
-  "Clean Architecture",
-];
-
-const PRACTICES = ["MVC", "REST APIs", "Active Record", "RSpec", "TDD", "SOLID", "Clean Code", "CI/CD"];
 
 const EDUCATION = [
   {
@@ -67,9 +85,9 @@ const COURSES = [
 ];
 
 const LANGUAGES = [
-  { name: "Português", level: "Fluente", percent: 100, tone: "tech-rails" },
-  { name: "Inglês", level: "Intermediário", percent: 55, tone: "tech-docker" },
-  { name: "Espanhol", level: "Básico", percent: 30, tone: "tech-api" },
+  { name: "Português", level: "Fluente", percent: 100, tone: "tech-rails" as ProjectTone },
+  { name: "Inglês", level: "Intermediário", percent: 55, tone: "tech-docker" as ProjectTone },
+  { name: "Espanhol", level: "Básico", percent: 30, tone: "tech-api" as ProjectTone },
 ];
 
 function SkillBar({ name, level, color }: { name: string; level: number; color: string }) {
@@ -95,7 +113,38 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
   );
 }
 
-export function AboutSection() {
+type Props = { about: AdminAbout };
+
+export function AboutSection({ about }: Props) {
+  const toolCards = about.skills.length > 0
+    ? about.skills.map<{ name: string; iconKey: string; tone: ProjectTone }>((s: AdminSkill) => {
+        const name = s.name;
+        const iconKey = ICON_MAP[s.icon] ? s.icon : "rails";
+        const colorTone =
+          /rails/i.test(name) ? "tech-rails" :
+          /ruby/i.test(name) ? "tech-ruby" :
+          /postgres|pg|sql/i.test(name) ? "tech-postgres" :
+          /docker|kube|k8s/i.test(name) ? "tech-docker" :
+          /action|ci.?cd|deploy/i.test(name) ? "tech-actions" :
+          /react|vite|tailwind/i.test(name) ? "tech-react" :
+          /ts|type/i.test(name) ? "tech-ts" :
+          /go/i.test(name) ? "tech-golang" :
+          /java|spring/i.test(name) ? "tech-java" :
+          /vue/i.test(name) ? "tech-vue" :
+          /angular/i.test(name) ? "tech-angular" :
+          /git/i.test(name) ? "tech-git" :
+          /linux|bash|ubuntu/i.test(name) ? "tech-linux" :
+          /swagger|openapi/i.test(name) ? "tech-openapi" :
+          /api|rest/i.test(name) ? "tech-api" :
+          "tech-rails";
+        const tone = isTone(colorTone) ? colorTone : "tech-rails";
+        return { name, iconKey, tone };
+      })
+    : DEFAULT_TOOL_CARDS;
+
+  const practices = about.practices.length > 0 ? about.practices : ["MVC", "REST APIs", "Active Record", "RSpec", "TDD", "SOLID", "Clean Code", "CI/CD"];
+  const methodologies = about.methodologies.length > 0 ? about.methodologies : ["Convention over Config", "TDD / RSpec", "Service Objects", "Clean Code", "Scrum · Kanban", "CI/CD", "OpenAPI / Swagger", "FactoryBot", "Clean Architecture"];
+
   return (
     <section id="about" className="py-24 relative bg-card/30">
       <div className="container mx-auto px-4 space-y-14">
@@ -113,17 +162,8 @@ export function AboutSection() {
                 <div className="inline-flex items-center gap-2 mb-2 font-mono text-[11px] text-primary uppercase tracking-wider">
                   <Briefcase size={12} /> Resumo profissional
                 </div>
-                <p className="text-[14.5px] leading-[1.75]">
-                  Engenheiro de Software com trajetória sólida em{" "}
-                  <strong className="text-primary">Ruby on Rails</strong> e background enterprise em{" "}
-                  <strong className="text-primary">Java / Spring Boot</strong>. Especialista em{" "}
-                  <strong className="text-foreground">APIs RESTful</strong> para o setor público
-                  (estadual, municipal), segurança pública. Domínio de{" "}
-                  <strong className="text-foreground">TDD com RSpec</strong>, documentação automática
-                  via <strong className="text-primary">Rswag / OpenAPI 3</strong> e entrega com{" "}
-                  <strong className="text-primary">CI/CD (GitHub Actions)</strong>.{" "}
-                  <em className="text-primary/90">Convention over Configuration</em> como filosofia de
-                  trabalho.
+                <p className="text-[14.5px] leading-[1.75] whitespace-pre-wrap">
+                  {about.summary}
                 </p>
               </div>
 
@@ -131,10 +171,8 @@ export function AboutSection() {
                 <div className="inline-flex items-center gap-2 mb-2 font-mono text-[11px] uppercase tracking-wider text-[#bd93f9]">
                   <Target size={12} /> Objetivo profissional
                 </div>
-                <p className="text-[14.5px] leading-[1.75] text-foreground/92">
-                  Atuar como <strong className="text-primary">Engenheiro de Software Ruby on Rails</strong>{" "}
-                  em produto de alto impacto — contribuindo com arquitetura de APIs RESTful, TDD rigoroso,
-                  documentação OpenAPI 3 e entrega contínua em produção.
+                <p className="text-[14.5px] leading-[1.75] text-foreground/92 whitespace-pre-wrap">
+                  {about.objective}
                 </p>
               </div>
             </div>
@@ -158,7 +196,7 @@ export function AboutSection() {
                 Práticas de engenharia
               </h3>
               <div className="flex flex-wrap gap-2">
-                {PRACTICES.map((item) => (
+                {practices.map((item: string) => (
                   <span
                     key={item}
                     className="px-3 py-1.5 rounded-full border border-[#cc0000]/55 bg-[#cc0000]/10 text-[#ff5555] text-xs font-mono font-semibold shadow-[inset_0_0_0_1px_rgba(255,85,85,.18)]"
@@ -181,13 +219,16 @@ export function AboutSection() {
               <div className="flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider">
                 <Sparkles size={14} /> Ferramentas do dia a dia
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-6">
-                {SKILLS.map(({ name, icon: Icon, tone }) => (
-                  <div key={name} className={`rails-tool-card ${tone} rounded-lg p-4 text-center`}>
-                    <Icon className="tech-icon text-3xl mx-auto mb-3" />
-                    <span className="text-xs font-mono text-muted-foreground">{name}</span>
-                  </div>
-                ))}
+              <div className={`grid ${toolCards.length >= 6 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2"} gap-3 mt-6`}>
+                {toolCards.map((t) => {
+                  const Icon = ICON_MAP[t.iconKey] ?? SiRubyonrails;
+                  return (
+                    <div key={`${t.name}-${t.iconKey}`} className={`rails-tool-card ${t.tone} rounded-lg p-4 text-center`}>
+                      <Icon className="tech-icon text-3xl mx-auto mb-3" />
+                      <span className="text-xs font-mono text-muted-foreground">{t.name}</span>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="mt-7 pt-6 border-t border-border">
@@ -195,9 +236,21 @@ export function AboutSection() {
                   <ShieldCheck size={13} /> Habilidades técnicas
                 </div>
                 <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4">
-                  {HARD_SKILLS.map((s) => (
+                  {about.skills.map((s) => (
                     <SkillBar key={s.name} name={s.name} level={s.level} color={s.color} />
                   ))}
+                  {about.skills.length === 0 && (
+                    <>
+                      <SkillBar name="Ruby on Rails" level={95} color="#cc0000" />
+                      <SkillBar name="RSpec · TDD" level={98} color="#cc0000" />
+                      <SkillBar name="APIs RESTful · OpenAPI 3" level={92} color="#cc0000" />
+                      <SkillBar name="PostgreSQL" level={85} color="#cc0000" />
+                      <SkillBar name="React · TypeScript" level={88} color="#bd93f9" />
+                      <SkillBar name="Docker · CI/CD" level={78} color="#bd93f9" />
+                      <SkillBar name="Java · Spring Boot" level={75} color="#f1fa8c" />
+                      <SkillBar name="Vue.js · Angular" level={78} color="#f1fa8c" />
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -222,7 +275,7 @@ export function AboutSection() {
                 <Workflow size={12} /> Metodologias
               </div>
               <div className="flex flex-wrap gap-2">
-                {METHODOLOGIES.map((m) => (
+                {methodologies.map((m: string) => (
                   <span
                     key={m}
                     className="px-3 py-1.5 rounded-lg border border-[#6272a4]/35 bg-[#44475a]/50 text-[12px] font-medium text-foreground/90"
@@ -321,23 +374,26 @@ export function AboutSection() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { name: "React", icon: SiReact, tone: "tech-react" },
-                    { name: "TypeScript", icon: SiTypescript, tone: "tech-ts" },
-                    { name: "Java", icon: SiJava, tone: "tech-java" },
-                    { name: "Spring", icon: SiSpringboot, tone: "tech-java" },
-                    { name: "Vue.js", icon: SiVuedotjs, tone: "tech-vue" },
-                    { name: "Angular", icon: SiAngular, tone: "tech-angular" },
-                    { name: "Docker", icon: SiDocker, tone: "tech-docker" },
-                    { name: "Actions", icon: SiGithubactions, tone: "tech-actions" },
-                  ].map(({ name, icon: Icon, tone }) => (
-                    <div
-                      key={name}
-                      className={`rails-tool-card ${tone} rounded-lg p-3 text-center grid place-items-center gap-1.5`}
-                    >
-                      <Icon className="tech-icon text-2xl" />
-                      <span className="text-[10.5px] font-mono text-muted-foreground">{name}</span>
-                    </div>
-                  ))}
+                    { name: "React", iconKey: "react", tone: "tech-react" as ProjectTone },
+                    { name: "TypeScript", iconKey: "ts", tone: "tech-ts" as ProjectTone },
+                    { name: "Java", iconKey: "java", tone: "tech-java" as ProjectTone },
+                    { name: "Spring", iconKey: "spring", tone: "tech-java" as ProjectTone },
+                    { name: "Vue.js", iconKey: "vue", tone: "tech-vue" as ProjectTone },
+                    { name: "Angular", iconKey: "angular", tone: "tech-angular" as ProjectTone },
+                    { name: "Docker", iconKey: "docker", tone: "tech-docker" as ProjectTone },
+                    { name: "Actions", iconKey: "actions", tone: "tech-actions" as ProjectTone },
+                  ].map(({ name, iconKey, tone }) => {
+                    const Icon = ICON_MAP[iconKey] ?? SiReact;
+                    return (
+                      <div
+                        key={name}
+                        className={`rails-tool-card ${tone} rounded-lg p-3 text-center grid place-items-center gap-1.5`}
+                      >
+                        <Icon className="tech-icon text-2xl" />
+                        <span className="text-[10.5px] font-mono text-muted-foreground">{name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
