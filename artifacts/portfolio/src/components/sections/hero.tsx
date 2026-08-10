@@ -55,7 +55,6 @@ export function HeroSection() {
 
   const handleWheel = useCallback((e: WheelEvent) => {
     if (e.deltaY < -8 || Math.abs(e.deltaX) > 0) return;
-    e.preventDefault();
     const add = Math.min(1.2, Math.max(0.05, e.deltaY) / 180);
     burstRef.current = Math.min(2.1, burstRef.current + add);
     if (!burstRaf.current) burstRaf.current = window.requestAnimationFrame(decayBurst);
@@ -76,7 +75,7 @@ export function HeroSection() {
     scene.style.setProperty("--travel-accent", "0.6");
 
     window.addEventListener("mousemove", handleMouse, { passive: true });
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("wheel", handleWheel, { passive: true });
     return () => {
       window.removeEventListener("mousemove", handleMouse);
       window.removeEventListener("wheel", handleWheel);
