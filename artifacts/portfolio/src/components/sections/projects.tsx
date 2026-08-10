@@ -25,9 +25,9 @@ const FEATURED: Project[] = [
     title: "Compressor de PDF",
     subtitle: "Padrões Brasileiros · 100% navegador",
     description:
-      "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. Interface em tema Dracula + vermelho Ruby on Rails.",
-    tech: ["React", "TypeScript", "pdf-lib", "Vite", "GitHub Pages"],
-    icon: SiReact,
+      "Compressor de PDFs 100% no navegador com presentes brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. Interface em tema Dracula + vermelho Ruby on Rails.",
+    tech: ["React", "TypeScript", "pdf-lib", "Tailwind"],
+    icon: Sparkles,
     tone: "tech-pdf",
     github: `${GITHUB}/pdf-compressor`,
     live: `${PAGES}/pdf-compressor/`,
@@ -39,7 +39,7 @@ const FEATURED: Project[] = [
     subtitle: "API REST + OpenAPI 3 + TDD",
     description:
       "RESTful CRUD API em Rails API mode com documentação OpenAPI 3 (Swagger UI em /api-docs) gerada automaticamente pelos testes RSpec via Rswag. TDD first — FactoryBot + Shoulda Matchers. Autenticação Devise/JWT, PostgreSQL estruturado e Docker Compose para dev local com um comando.",
-    tech: ["Ruby", "Rails API", "Rswag", "RSpec", "FactoryBot", "Devise/JWT", "PostgreSQL", "Docker"],
+    tech: ["Ruby", "Rails", "Rswag", "RSpec", "OpenAPI 3", "Docker", "PostgreSQL"],
     icon: SiSwagger,
     tone: "tech-openapi",
     github: `${GITHUB}/rails-swagger-crud`,
@@ -51,7 +51,7 @@ const FEATURED: Project[] = [
     subtitle: "Full-stack · API Rails + React 18",
     description:
       "Hub full-stack: API REST em Rails com autenticação Devise/JWT, documentação OpenAPI 3 automática via Rswag e TDD com RSpec + FactoryBot. Frontend React 18 + Tailwind com dashboard paginado, filtros e CRUD visual. Docker Compose + pipeline CI/CD em GitHub Actions para deploy automatizado.",
-    tech: ["Ruby on Rails", "React 18", "Rswag", "JWT", "PostgreSQL", "Docker", "RSpec", "GitHub Actions"],
+    tech: ["Ruby", "Rails", "React 18", "Docker", "RSpec"],
     icon: Rocket,
     tone: "tech-jwt",
     github: `${GITHUB}/railshub`,
@@ -66,7 +66,7 @@ const SECONDARY: Project[] = [
     subtitle: "Controle de Estoque · Go + React.js",
     description:
       "Backend em Go com API RESTful, autenticação JWT, CRUD de produtos e controle de movimentações de estoque. Frontend React.js com dashboard, listagens paginadas e formulários tipados. GitHub: github.com/reinaldobarreto31/stockwise-go",
-    tech: ["Go", "React.js", "PostgreSQL", "JWT", "REST API"],
+    tech: ["Go", "React.js", "PostgreSQL", "JWT", "REST"],
     icon: Package,
     tone: "tech-golang",
     github: `${GITHUB}/stockwise-go`,
