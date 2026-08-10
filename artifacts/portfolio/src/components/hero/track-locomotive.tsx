@@ -526,15 +526,6 @@ export function TrackLocomotive() {
         </svg>
       </div>
 
-      <div className="track-ghost trio-ghost-a" aria-hidden="true">
-        <div className="ghost-orb orb-primary" />
-      </div>
-      <div className="track-ghost trio-ghost-b" aria-hidden="true">
-        <div className="ghost-orb orb-secondary" />
-      </div>
-      <div className="track-ghost trio-ghost-c" aria-hidden="true">
-        <div className="ghost-orb orb-accent" />
-      </div>
     </>
   );
 }

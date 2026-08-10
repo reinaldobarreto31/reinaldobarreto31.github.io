@@ -85,7 +85,6 @@ export function HeroSection() {
 
   return <section id="hero" ref={sceneRef} className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden">
     <div className="absolute inset-0 z-0 pointer-events-none hero-aura" />
-    <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-70 z-10" />
 
     <div className="track-cinema absolute inset-0 z-0">
       <div className="track-cinema-scene absolute inset-0">
