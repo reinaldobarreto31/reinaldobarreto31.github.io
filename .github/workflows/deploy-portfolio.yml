@@ -1,4 +1,4 @@
-name: Deploy Portfolio to GitHub Pages
+name: Deploy Portfolio to GitHub Pages (Run 141 DEFINITIVA Container Node 22)
 
 on:
   push:
@@ -12,42 +12,66 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-24.04
+    container:
+      image: node:22-bookworm-slim
+      env:
+        DEBIAN_FRONTEND: noninteractive
 
     steps:
-      - name: Checkout
+      - name: (1/7) Instalar dependencias de sistema (bash, git, ca-certificates)
+        run: |
+          set -e
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends \
+            bash \
+            git \
+            ca-certificates \
+            curl
+          git --version
+          node --version
+          npm --version
+
+      - name: (2/7) Checkout codigo (actions/checkout@v5)
         uses: actions/checkout@v5
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Sync Currículo PDF/HTML to portfolio public
+      - name: (3/7) Instalar pnpm 10.34.5 via npm (bash puro, SEM ACTIONS)
         run: |
+          set -e
+          npm install -g pnpm@10.34.5 --unsafe-perm
+          pnpm --version
+          pnpm config set prefer-symlinked-executables true
+          pnpm config set shamefully-hoist true
+          pnpm config set node-linker hoisted
+          pnpm config set strict-peer-dependencies false
+
+      - name: (4/7) Instalar dependencias do workspace (pnpm install no-frozen)
+        run: |
+          set -e
+          cd "$GITHUB_WORKSPACE"
+          pnpm install --no-frozen-lockfile
+
+      - name: (5/7) Sync Curriculo PDF/HTML para portfolio public
+        run: |
+          set -e
+          cd "$GITHUB_WORKSPACE"
           [ -f curriculo.pdf ]  && cp curriculo.pdf  artifacts/portfolio/public/curriculo.pdf  || echo "[warn] curriculo.pdf não existe, pulando"
           [ -f curriculo.html ] && cp curriculo.html artifacts/portfolio/public/curriculo.html || echo "[warn] curriculo.html não existe, pulando"
 
-      - name: Build portfolio
+      - name: (6/7) Build portfolio Vite (PORT=3000 BASE_PATH=/)
         run: |
           set -e
-          cd artifacts/portfolio
+          cd "$GITHUB_WORKSPACE/artifacts/portfolio"
           export PORT=3000
           export BASE_PATH=/
           pnpm exec vite build --config vite.config.ts
-          echo "=== ls -la dist/public:"
+          echo "=== ls -la dist/public (build gerado):"
           ls -la dist/public
+          echo "=== CONTEÚDO index.html (head primeiros 4KB):"
+          head -c 4096 dist/public/index.html || true
+          echo ""
           echo "=== FIM BUILD OK ==="
 
-      - name: Publish to gh-pages (shell script puro, sem actions Node)
+      - name: (7/7) DEPLOY para gh-pages (shell script bash puro git push --force SEM ACTIONS)
         run: |
           set -e
           DIST_DIR="$GITHUB_WORKSPACE/artifacts/portfolio/dist/public"
@@ -61,7 +85,6 @@ jobs:
           fi
           echo "=== Iniciando deploy da pasta $DIST_DIR para branch gh-pages ==="
           cd "$DIST_DIR"
-          echo "user.name=GitHub Actions" > $HOME/.gitconfig-ghpages
           git init -q
           git checkout -q -b gh-pages
           git add -A
@@ -72,7 +95,7 @@ jobs:
           export GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL GIT_COMMITTER_NAME GIT_COMMITTER_EMAIL
           git -c user.name="$GIT_AUTHOR_NAME" -c user.email="$GIT_AUTHOR_EMAIL" commit -q -m "Deploy GitHub Pages (commit ${{ github.sha }})
 
-  Trabalho: ${{ github.workflow }}
+  Workflow: ${{ github.workflow }}
   Disparado por: ${{ github.event_name }}
   SHA: ${{ github.sha }}"
           REMOTE_URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
