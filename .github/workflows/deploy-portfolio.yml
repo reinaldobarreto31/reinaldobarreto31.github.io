@@ -38,52 +38,20 @@ jobs:
 
       - name: Build portfolio
         run: |
+          set -e
+          echo "Listando node_modules/.bin do root:"
+          ls -la node_modules/.bin/ 2>/dev/null | head -20 || echo "não tem node_modules/.bin root"
+          echo "Listando node_modules/.bin do portfolio:"
+          ls -la artifacts/portfolio/node_modules/.bin/ 2>/dev/null | head -20 || echo "não tem node_modules/.bin portfolio"
+          echo "---"
+          echo "Iniciando build do portfolio: cd artifacts/portfolio + PORT=3000 BASE_PATH=/ pnpm exec vite build --config vite.config.ts"
+          cd artifacts/portfolio
           export PORT=3000
           export BASE_PATH=/
-          VITE_SHIM="artifacts/portfolio/node_modules/.bin/vite"
-          VITE_ENTRY="node_modules/vite/bin/vite.js"
-          if [ -x "$VITE_SHIM" ] || [ -f "$VITE_SHIM" ]; then
-            echo "Usando shim do vite em $VITE_SHIM"
-            pnpm --filter @workspace/portfolio run build > /tmp/build.log 2>&1
-            BUILD_EXIT=$?
-          else
-            echo "[warn] Shim $VITE_SHIM não encontrado, invocando Vite diretamente via Node"
-            if [ ! -f "$VITE_ENTRY" ]; then
-              echo "[error] Entry point do Vite não encontrado em $VITE_ENTRY, tentando localizar via pnpm..."
-              VITE_ENTRY=$(pnpm exec --shamefully-hoist --silent node -e "console.log(require.resolve('vite/bin/vite.js'))" 2>/dev/null || echo "")
-              if [ -z "$VITE_ENTRY" ]; then
-                echo "[fatal] Não foi possível localizar o entry point do Vite"
-                exit 1
-              fi
-              echo "Entry point localizado em: $VITE_ENTRY"
-            fi
-            node "$VITE_ENTRY" build --config artifacts/portfolio/vite.config.ts > /tmp/build.log 2>&1
-            BUILD_EXIT=$?
-          fi
-          echo "Build exit code: ${BUILD_EXIT}"
-          echo "::group::BUILD LOG (tail 300 lines)"
-          tail -300 /tmp/build.log
-          echo "::endgroup::"
-          echo "::group::Find CSS-related snippets (first 50 matches ERR/WARN/error/warn/parse)"
-          grep -iE "error|warn|parse|fail|css|transform|keyframes|animation|syntax" /tmp/build.log | head -50 || true
-          echo "::endgroup::"
-          if [ "${BUILD_EXIT}" != "0" ]; then
-            echo "[FALLBACK 3/3]: Build falhou (exit=${BUILD_EXIT}). Tentando INSTALAR vite TEMPORARIAMENTE no root via pnpm add e rodar build outra vez..."
-            pnpm add -Dw vite@^7.3.2 @vitejs/plugin-react@^5.0.4 @tailwindcss/vite@^4.1.14 tailwindcss@^4.1.14 @replit/vite-plugin-cartographer@^0.5.1 @replit/vite-plugin-dev-banner@^0.1.1 @replit/vite-plugin-runtime-error-modal@^0.0.6 --ignore-scripts 2>&1 | tail -10
-            FALLBACK_VITE=$(pnpm exec --shamefully-hoist --silent node -e "console.log(require.resolve('vite/bin/vite.js'))" 2>/dev/null || echo "")
-            if [ -n "$FALLBACK_VITE" ] && [ -f "$FALLBACK_VITE" ]; then
-              echo "Vite temporario em: $FALLBACK_VITE. Tentando build novamente..."
-              node "$FALLBACK_VITE" build --config artifacts/portfolio/vite.config.ts > /tmp/build_fallback3.log 2>&1
-              BUILD_EXIT=$?
-              echo "::group::FALLBACK 3 BUILD LOG"
-              tail -200 /tmp/build_fallback3.log
-              echo "::endgroup::"
-            else
-              echo "[fatal] Nao conseguiu localizar vite mesmo apos instalar temporariamente."
-            fi
-          fi
-          echo "Build exit code FINAL: ${BUILD_EXIT}"
-          if [ "${BUILD_EXIT}" != "0" ]; then exit ${BUILD_EXIT}; fi
+          pnpm exec vite build --config vite.config.ts 2>&1 | tee /tmp/build.log
+          echo "---"
+          echo "Fim do build. Verificando outDir artifacts/portfolio/dist/public:"
+          ls -la dist/public 2>/dev/null || echo "[AVISO] dist/public não criado!"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
