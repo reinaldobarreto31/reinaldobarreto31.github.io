@@ -7,7 +7,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -53,7 +59,7 @@ jobs:
           echo "Fim do build. Verificando outDir artifacts/portfolio/dist/public:"
           ls -la dist/public 2>/dev/null || echo "[AVISO] dist/public não criado!"
 
-      - name: Verify dist/public contents (pre-deploy debug)
+      - name: Verify dist/public contents (pre-upload debug)
         run: |
           echo "=== CWD atual: ==="
           pwd
@@ -66,10 +72,25 @@ jobs:
           echo "=== find -name index.html (root level): ==="
           find . -maxdepth 5 -name "index.html" -type f 2>/dev/null
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: artifacts/portfolio/dist/public
-          publish_branch: gh-pages
-          force_orphan: true
+          path: artifacts/portfolio/dist/public
+
+  deploy-pages:
+    needs: build-and-deploy
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
