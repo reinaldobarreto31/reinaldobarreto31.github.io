@@ -4,10 +4,11 @@ import {
   Sparkles, Package, TerminalSquare, Rocket, Globe, Github
 } from "lucide-react";
 import {
-  SiRubyonrails, SiRuby, SiPostgresql, SiDocker, SiGithubactions,
+  SiPostgresql, SiDocker, SiGithubactions,
   SiReact, SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs,
   SiMysql, SiMongodb, SiRedis, SiLinux, SiGnubash, SiGit, SiAngular,
   SiVuedotjs, SiSpringboot, SiKubernetes, SiTailwindcss, SiVite,
+  SiKotlin, SiFlutter, SiJava,
 } from "react-icons/si";
 import { useAdminData, useAuth } from "@/lib/admin-store";
 import type { AdminProject, AdminExperience, AdminAbout, AdminStackItem, ProjectTone, ProjectBadge } from "@/lib/default-data";
@@ -17,39 +18,42 @@ import { toast } from "sonner";
 type Props = { open: boolean; onClose: () => void };
 
 const TONES: ProjectTone[] = [
-  "tech-ruby", "tech-rails", "tech-postgres", "tech-docker", "tech-actions",
-  "tech-react", "tech-ts", "tech-jwt", "tech-openapi", "tech-pdf", "tech-golang",
-  "tech-java", "tech-api", "tech-vue", "tech-git", "tech-angular", "tech-linux",
-  "tech-mysql", "tech-bash",
+  "tech-java", "tech-spring", "tech-kotlin", "tech-flutter",
+  "tech-node", "tech-next", "tech-js", "tech-vue", "tech-angular", "tech-react", "tech-ts",
+  "tech-postgres", "tech-mysql", "tech-redis", "tech-mongo", "tech-docker", "tech-actions",
+  "tech-openapi", "tech-pdf", "tech-api", "tech-git", "tech-linux", "tech-bash", "tech-tailwind", "tech-vite",
+  "tech-jwt", "tech-golang",
 ];
 const BADGES: (ProjectBadge | "")[] = ["", "DESTAQUE", "EM CONSTRUÇÃO", "LIVE", "API", "FULL-STACK"];
 
 const ICON_OPTIONS = [
+  { key: "java", label: "Java", icon: SiJava },
+  { key: "spring", label: "Spring Boot", icon: SiSpringboot },
+  { key: "kotlin", label: "Kotlin", icon: SiKotlin },
+  { key: "flutter", label: "Flutter", icon: SiFlutter },
+  { key: "node", label: "Node.js", icon: SiNodedotjs },
+  { key: "next", label: "Next.js", icon: SiNodedotjs },
+  { key: "js", label: "JavaScript", icon: SiJavascript },
+  { key: "ts", label: "TypeScript", icon: SiTypescript },
+  { key: "vue", label: "Vue.js", icon: SiVuedotjs },
+  { key: "angular", label: "Angular", icon: SiAngular },
+  { key: "react", label: "React", icon: SiReact },
   { key: "sparkles", label: "Sparkles (PDF)", icon: Sparkles },
   { key: "swagger", label: "Swagger", icon: SiSwagger },
-  { key: "rails", label: "Rails", icon: SiRubyonrails },
-  { key: "ruby", label: "Ruby", icon: SiRuby },
-  { key: "package", label: "Package (Stock)", icon: Package },
   { key: "postgres", label: "PostgreSQL", icon: SiPostgresql },
-  { key: "docker", label: "Docker", icon: SiDocker },
-  { key: "actions", label: "Actions", icon: SiGithubactions },
-  { key: "react", label: "React", icon: SiReact },
-  { key: "ts", label: "TypeScript", icon: SiTypescript },
-  { key: "go", label: "Go", icon: SiGo },
-  { key: "js", label: "JavaScript", icon: SiJavascript },
-  { key: "node", label: "Node.js", icon: SiNodedotjs },
   { key: "mysql", label: "MySQL", icon: SiMysql },
-  { key: "mongo", label: "Mongo", icon: SiMongodb },
   { key: "redis", label: "Redis", icon: SiRedis },
+  { key: "mongo", label: "MongoDB", icon: SiMongodb },
+  { key: "docker", label: "Docker", icon: SiDocker },
+  { key: "k8s", label: "K8s", icon: SiKubernetes },
+  { key: "actions", label: "GitHub Actions", icon: SiGithubactions },
+  { key: "tailwind", label: "Tailwind", icon: SiTailwindcss },
+  { key: "vite", label: "Vite", icon: SiVite },
   { key: "linux", label: "Linux", icon: SiLinux },
   { key: "bash", label: "Bash", icon: SiGnubash },
   { key: "git", label: "Git", icon: SiGit },
-  { key: "angular", label: "Angular", icon: SiAngular },
-  { key: "vue", label: "Vue", icon: SiVuedotjs },
-  { key: "spring", label: "Spring Boot", icon: SiSpringboot },
-  { key: "k8s", label: "K8s", icon: SiKubernetes },
-  { key: "tailwind", label: "Tailwind", icon: SiTailwindcss },
-  { key: "vite", label: "Vite", icon: SiVite },
+  { key: "go", label: "Go", icon: SiGo },
+  { key: "package", label: "Package (Stock)", icon: Package },
   { key: "rocket", label: "Rocket", icon: Rocket },
   { key: "terminal", label: "Terminal", icon: TerminalSquare },
   { key: "github", label: "GitHub", icon: Github },
@@ -100,10 +104,10 @@ export function AdminPanel({ open, onClose }: Props) {
     <div className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm p-2 sm:p-6 md:p-10 overflow-y-auto">
       <div className="relative mx-auto w-full max-w-6xl bg-[#16171e] border border-[#44475a]/70 rounded-2xl shadow-[0_30px_90px_rgba(0,0,0,.6)] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between gap-3 p-4 md:p-5 border-b border-[#44475a]/50 bg-[linear-gradient(135deg,rgba(204,0,0,.16),rgba(40,42,54,.6))]">
+        <div className="flex items-center justify-between gap-3 p-4 md:p-5 border-b border-[#44475a]/50 bg-[linear-gradient(135deg,rgba(109,179,63,.16),rgba(40,42,54,.6))]">
           <div>
-            <div className="flex items-center gap-2 text-[#ff5555] font-bold font-mono text-xs uppercase tracking-wider">
-              <Save size={15} /> Painel Administrativo — Portfolio Rails
+            <div className="flex items-center gap-2 text-[#50fa7b] font-bold font-mono text-xs uppercase tracking-wider">
+              <Save size={15} /> Painel Administrativo — Portfolio Java · Spring · Kotlin · Flutter
             </div>
             <h2 className="text-white text-lg md:text-xl font-bold mt-1">Editar portfólio sem mexer no código</h2>
             <p className="text-muted-foreground text-xs md:text-sm mt-0.5">
@@ -131,14 +135,14 @@ export function AdminPanel({ open, onClose }: Props) {
             <button
               type="button"
               onClick={jsonExport}
-              className="flex items-center gap-1.5 text-[11px] font-semibold rounded-lg px-2.5 py-1.5 border border-[#6272a4]/70 text-[#bd93f9] hover:text-white hover:border-[#bd93f9]"
+              className="flex items-center gap-1.5 text-[11px] font-semibold rounded-lg px-2.5 py-1.5 border border-[#007396]/60 text-[#42a5f5] hover:text-white hover:border-[#42a5f5]"
             >
               <FileJson size={13} /> Exportar JSON
             </button>
             <button
               type="button"
               onClick={logout}
-              className="flex items-center gap-1.5 text-[11px] font-semibold rounded-lg px-2.5 py-1.5 border border-[#cc0000]/45 text-[#ff9ea5] hover:bg-[#cc0000]/10"
+              className="flex items-center gap-1.5 text-[11px] font-semibold rounded-lg px-2.5 py-1.5 border border-[#7f52ff]/55 text-[#b497ff] hover:bg-[#7f52ff]/12"
             >
               Sair Admin
             </button>
@@ -162,7 +166,7 @@ export function AdminPanel({ open, onClose }: Props) {
               onClick={() => setTab(t)}
               className={`shrink-0 px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold border transition-colors ${
                 tab === t
-                  ? "bg-[#cc0000] text-white border-transparent shadow-[0_6px_18px_rgba(204,0,0,.35)]"
+                  ? "bg-[#6db33f] text-white border-transparent shadow-[0_6px_18px_rgba(109,179,63,.38)]"
                   : "border-transparent text-muted-foreground hover:text-white hover:bg-white/5"
               }`}
             >
@@ -200,7 +204,7 @@ function ProjectsTab({
     const p: AdminProject = {
       id: uid(), title: "Novo Projeto", subtitle: "Breve subtítulo",
       description: "Descreva o projeto aqui.",
-      tech: ["Ruby", "Rails"], icon: "rails", tone: "tech-rails",
+      tech: ["Java 17", "Spring Boot 3"], icon: "spring", tone: "tech-spring",
       github: "https://github.com/reinaldobarreto31/",
       badge: "API", featured: isFeatured,
     };
@@ -290,7 +294,7 @@ function GroupBlock({
     <div>
       <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
         <div className="flex items-center gap-2">
-          <span className="px-2 py-0.5 rounded-md bg-[#cc0000]/12 border border-[#cc0000]/35 text-[10px] font-mono font-bold tracking-wider text-[#ff5555]">{badge}</span>
+          <span className="px-2 py-0.5 rounded-md bg-[#6db33f]/12 border border-[#6db33f]/40 text-[10px] font-mono font-bold tracking-wider text-[#9ed866]">{badge}</span>
           <h3 className="text-white font-bold">{title}</h3>
         </div>
         <button
@@ -342,8 +346,8 @@ function ProjectRow({
         <div className="flex items-center gap-1.5 shrink-0">
           <button type="button" onClick={moveUp} disabled={index === 0} title="Mover para cima" className="w-7 h-7 grid place-items-center rounded-md text-muted-foreground hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent"><ArrowUp size={14} /></button>
           <button type="button" onClick={moveDown} disabled={index === total - 1} title="Mover para baixo" className="w-7 h-7 grid place-items-center rounded-md text-muted-foreground hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent"><ArrowDown size={14} /></button>
-          <button type="button" onClick={startEdit} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold border border-[#6272a4]/60 text-[#bd93f9] hover:bg-[#bd93f9]/10">Editar</button>
-          <button type="button" onClick={remove} className="w-7 h-7 grid place-items-center rounded-md text-[#ff6e6e] hover:bg-[#cc0000]/10"><Trash2 size={14} /></button>
+          <button type="button" onClick={startEdit} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold border border-[#007396]/60 text-[#42a5f5] hover:bg-[#007396]/12">Editar</button>
+          <button type="button" onClick={remove} className="w-7 h-7 grid place-items-center rounded-md text-[#e44857] hover:bg-[#7f52ff]/10"><Trash2 size={14} /></button>
         </div>
       </div>
       {editing && draft ? (
@@ -361,8 +365,8 @@ function ProjectRow({
           <div>
             <div className="text-[10.5px] font-mono text-muted-foreground uppercase mb-0.5">Links</div>
             <div className="space-y-1 text-[11.5px]">
-              <a href={p.github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-[#bd93f9] hover:underline"><Github size={12} /> GitHub</a>
-              {p.live && <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-[#50fa7b] hover:underline"><Globe size={12} /> Demonstração LIVE</a>}
+              <a href={p.github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-[#007396] hover:underline"><Github size={12} /> GitHub</a>
+              {p.live && <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-[#6db33f] hover:underline"><Globe size={12} /> Demonstração LIVE</a>}
             </div>
           </div>
           <div>
@@ -370,7 +374,7 @@ function ProjectRow({
             <div className="flex flex-wrap gap-1.5 mt-0.5">
               <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono">Tone: {p.tone}</span>
               <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono">Ícone: {p.icon}</span>
-              {p.badge && <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono bg-[#cc0000]/10 text-[#ff9ea5]">{p.badge}</span>}
+              {p.badge && <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono bg-[#6db33f]/10 text-[#9ed866]">{p.badge}</span>}
               {p.featured && <span className="px-1.5 py-0.5 rounded border border-[#ffb86c]/50 text-[10.5px] font-mono bg-[#ffb86c]/10 text-[#ffd8a8]">★ DESTAQUE</span>}
             </div>
           </div>
@@ -443,7 +447,7 @@ function ProjectForm({
             <div className="text-white text-sm font-bold">{draft.title}</div>
             <div className="text-[10.5px] font-mono" style={{ color: "var(--tech-color,#fff)" }}>{draft.subtitle}</div>
           </div>
-          {draft.badge && <span className="ml-3 px-2 py-0.5 rounded-md bg-[#cc0000]/15 border border-[#cc0000]/35 text-[10px] font-bold text-[#ff9ea5]">{draft.badge}</span>}
+          {draft.badge && <span className="ml-3 px-2 py-0.5 rounded-md bg-[#6db33f]/15 border border-[#6db33f]/40 text-[10px] font-bold text-[#9ed866]">{draft.badge}</span>}
         </div>
       </Field>
 
@@ -461,7 +465,7 @@ function Field({ label, children, span = 1 }: { label: string; children: React.R
   return (
     <div className={span === 2 ? "md:col-span-2" : ""}>
       <label className="block text-[10.5px] uppercase tracking-wider font-mono text-muted-foreground mb-1">{label}</label>
-      <style>{`.inp{width:100%;padding:8px 10px;border-radius:.5rem;background:#101117;border:1px solid #44475a80;color:#f8f8f2;font:inherit;outline:none}.inp:focus{border-color:rgba(204,0,0,.7);box-shadow:0 0 0 3px rgba(204,0,0,.18)}.inp::placeholder{color:#6272a4}`}</style>
+      <style>{`.inp{width:100%;padding:8px 10px;border-radius:.5rem;background:#101117;border:1px solid #44475a80;color:#f8f8f2;font:inherit;outline:none}.inp:focus{border-color:rgba(109,179,63,.7);box-shadow:0 0 0 3px rgba(109,179,63,.18)}.inp::placeholder{color:#6272a4}`}</style>
       {children}
     </div>
   );
@@ -478,7 +482,7 @@ function ExperiencesTab({ done, data, update }: { done: (m: string) => void; dat
       id: uid(), company: "Nova Empresa", role: "Cargo / Função",
       period: "jan/2024 – atual", location: "Cidade / UF",
       description: "Descreva o que você fez nesta empresa...",
-      tags: [{ name: "Ruby", tone: "tech-ruby" }, { name: "Rails", tone: "tech-rails" }],
+      tags: [{ name: "Java", tone: "tech-java" }, { name: "Spring Boot", tone: "tech-spring" }, { name: "Kotlin", tone: "tech-kotlin" }],
     };
     setEditingId(e.id); setDraft(e);
   }
@@ -530,13 +534,13 @@ function ExperiencesTab({ done, data, update }: { done: (m: string) => void; dat
                 <span className="text-[10.5px] font-mono text-muted-foreground mr-2">#{String(idx + 1).padStart(2, "0")}</span>
                 {e.role}
               </div>
-              <div className="text-[11.5px] text-[#ff5555] truncate">{e.company} · <span className="text-muted-foreground">{e.period} · {e.location}</span></div>
+              <div className="text-[11.5px] text-[#9ed866] truncate">{e.company} · <span className="text-muted-foreground">{e.period} · {e.location}</span></div>
             </div>
             <div className="flex items-center gap-1.5 shrink-0">
               <button type="button" onClick={() => move(e.id, -1)} disabled={idx === 0} className="w-7 h-7 grid place-items-center rounded-md text-muted-foreground hover:text-white hover:bg-white/5 disabled:opacity-30"><ArrowUp size={14} /></button>
               <button type="button" onClick={() => move(e.id, +1)} disabled={idx === data.experiences.length - 1} className="w-7 h-7 grid place-items-center rounded-md text-muted-foreground hover:text-white hover:bg-white/5 disabled:opacity-30"><ArrowDown size={14} /></button>
-              <button type="button" onClick={() => startEdit(e)} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold border border-[#6272a4]/60 text-[#bd93f9] hover:bg-[#bd93f9]/10">Editar</button>
-              <button type="button" onClick={() => remove(e.id)} className="w-7 h-7 grid place-items-center rounded-md text-[#ff6e6e] hover:bg-[#cc0000]/10"><Trash2 size={14} /></button>
+              <button type="button" onClick={() => startEdit(e)} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold border border-[#007396]/60 text-[#42a5f5] hover:bg-[#007396]/12">Editar</button>
+              <button type="button" onClick={() => remove(e.id)} className="w-7 h-7 grid place-items-center rounded-md text-[#e44857] hover:bg-[#7f52ff]/10"><Trash2 size={14} /></button>
             </div>
           </div>
           {editingId === e.id && draft ? (
@@ -568,7 +572,7 @@ function ExperienceForm({
     setDraft({ ...draft, tags });
   }
   function removeTag(i: number) { setDraft({ ...draft, tags: draft.tags.filter((_, k) => k !== i) }); }
-  function addTag() { setDraft({ ...draft, tags: [...draft.tags, { name: "Nova tech", tone: "tech-rails" }] }); }
+  function addTag() { setDraft({ ...draft, tags: [...draft.tags, { name: "Nova tech", tone: "tech-spring" }] }); }
 
   return (
     <div className="grid md:grid-cols-2 gap-3">
@@ -587,7 +591,7 @@ function ExperienceForm({
               <select className="inp" style={{ maxWidth: "35%" }} value={t.tone} onChange={(e) => setTag(i, { tone: e.target.value as ProjectTone })}>
                 {TONES.map((x) => <option key={x} value={x}>{x.replace("tech-", "")}</option>)}
               </select>
-              <button type="button" onClick={() => removeTag(i)} className="w-9 h-9 shrink-0 grid place-items-center rounded-lg text-[#ff6e6e] hover:bg-[#cc0000]/10 border border-[#cc0000]/30"><Trash2 size={14} /></button>
+              <button type="button" onClick={() => removeTag(i)} className="w-9 h-9 shrink-0 grid place-items-center rounded-lg text-[#e44857] hover:bg-[#7f52ff]/10 border border-[#7f52ff]/35"><Trash2 size={14} /></button>
             </div>
           ))}
           <button type="button" onClick={addTag} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-[#44475a]/70 text-xs font-semibold text-muted-foreground hover:text-white hover:border-white/40"><Plus size={12} /> Adicionar tag de tecnologia</button>
@@ -620,8 +624,8 @@ function AboutTab({ done, data, update }: { done: (m: string) => void; data: any
         return {
           name: name || "Skill",
           level,
-          color: color || "#cc0000",
-          icon: icon || "rails",
+          color: color || "#6db33f",
+          icon: icon || "spring",
         };
       });
     const methodologies = methodsText.split(",").map((s) => s.trim()).filter(Boolean);
@@ -642,7 +646,7 @@ function AboutTab({ done, data, update }: { done: (m: string) => void; data: any
         <textarea rows={10} className="inp font-mono text-[11.5px]" spellCheck={false}
           value={skillsCsv} onChange={(e) => setSkillsCsv(e.target.value)} />
         <p className="mt-1 text-[11px] text-muted-foreground">
-          Um por linha. Exemplos de ícone válido: rails, postgres, react, docker, java, vue, swagger, go, spring, etc.
+          Um por linha. Exemplos de ícone válido: java, spring, kotlin, flutter, postgres, react, docker, mysql, redis, openapi, etc.
         </p>
       </Field>
       <Field label="Metodologias (separadas por vírgula)">
@@ -666,7 +670,7 @@ function StackTab({ done, data, update }: { done: (m: string) => void; data: any
   const [draft, setDraft] = useState<AdminStackItem | null>(null);
 
   function startAdd() {
-    const s: AdminStackItem = { id: uid(), name: "Nova Tecnologia", icon: "rails", tone: "tech-rails", level: 80 };
+    const s: AdminStackItem = { id: uid(), name: "Nova Tecnologia", icon: "spring", tone: "tech-spring", level: 80 };
     setEditingId(s.id); setDraft(s);
   }
   function startEdit(s: AdminStackItem) { setEditingId(s.id); setDraft({ ...s }); }
@@ -704,12 +708,12 @@ function StackTab({ done, data, update }: { done: (m: string) => void; data: any
                 <div className="text-white font-semibold truncate">#{String(i + 1).padStart(2, "0")} {s.name}</div>
                 <div className="text-[11px] text-muted-foreground font-mono">{s.tone.replace("tech-", "")} · ícone {s.icon} · nível {s.level}%</div>
                 <div className="mt-2 h-1.5 rounded-full bg-[#101117] overflow-hidden">
-                  <div className="h-full rounded-full" style={{ width: `${s.level}%`, background: "var(--tech-color,#cc0000)" }} />
+                  <div className="h-full rounded-full" style={{ width: `${s.level}%`, background: "var(--tech-color,#6db33f)" }} />
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <button type="button" onClick={() => startEdit(s)} className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold border border-[#6272a4]/60 text-[#bd93f9] hover:bg-[#bd93f9]/10">Editar</button>
-                <button type="button" onClick={() => remove(s.id)} className="w-full grid place-items-center py-1 rounded-md text-[#ff6e6e] text-[11px] font-semibold hover:bg-[#cc0000]/10 border border-transparent hover:border-[#cc0000]/30">Remover</button>
+                <button type="button" onClick={() => startEdit(s)} className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold border border-[#007396]/60 text-[#42a5f5] hover:bg-[#007396]/12">Editar</button>
+                <button type="button" onClick={() => remove(s.id)} className="w-full grid place-items-center py-1 rounded-md text-[#e44857] text-[11px] font-semibold hover:bg-[#7f52ff]/10 border border-transparent hover:border-[#7f52ff]/35">Remover</button>
               </div>
             </div>
             {editingId === s.id && draft && (

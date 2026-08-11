@@ -4,47 +4,51 @@ import {
   Award, Languages, Target, Briefcase,
 } from "lucide-react";
 import {
-  SiRuby, SiRubyonrails, SiPostgresql, SiRedis, SiDocker, SiGithubactions,
+  SiPostgresql, SiRedis, SiDocker, SiGithubactions,
   SiReact, SiTypescript, SiJava, SiSpringboot, SiVuedotjs, SiAngular,
   SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
   SiKubernetes, SiTailwindcss, SiVite, SiMongodb, SiNodedotjs,
+  SiKotlin, SiFlutter,
 } from "react-icons/si";
 import type { AdminAbout, AdminSkill, ProjectTone } from "@/lib/default-data";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  ruby: SiRuby,
-  rails: SiRubyonrails,
+  java: SiJava,
+  spring: SiSpringboot,
+  kotlin: SiKotlin,
+  flutter: SiFlutter,
+  node: SiNodedotjs,
+  js: SiJavascript,
+  next: SiNodedotjs,
   postgres: SiPostgresql,
+  mysql: SiMysql,
   redis: SiRedis,
   docker: SiDocker,
+  k8s: SiKubernetes,
   actions: SiGithubactions,
   react: SiReact,
   ts: SiTypescript,
-  java: SiJava,
-  spring: SiSpringboot,
   vue: SiVuedotjs,
   angular: SiAngular,
+  mongo: SiMongodb,
+  tailwind: SiTailwindcss,
+  vite: SiVite,
   go: SiGo,
   swagger: SiSwagger,
-  js: SiJavascript,
-  mysql: SiMysql,
   linux: SiLinux,
   bash: SiGnubash,
   git: SiGit,
-  k8s: SiKubernetes,
-  tailwind: SiTailwindcss,
-  vite: SiVite,
-  mongo: SiMongodb,
-  node: SiNodedotjs,
   sparkles: Sparkles,
 };
 
 const TONE_MAP: Record<ProjectTone, true> = {
-  "tech-ruby": true, "tech-rails": true, "tech-postgres": true, "tech-redis": true,
+  "tech-java": true, "tech-spring": true, "tech-kotlin": true, "tech-flutter": true,
+  "tech-node": true, "tech-next": true, "tech-js": true, "tech-mongo": true, "tech-tailwind": true, "tech-vite": true,
+  "tech-postgres": true, "tech-mysql": true, "tech-redis": true,
   "tech-docker": true, "tech-actions": true, "tech-react": true, "tech-ts": true,
   "tech-jwt": true, "tech-openapi": true, "tech-pdf": true, "tech-golang": true,
-  "tech-java": true, "tech-api": true, "tech-vue": true, "tech-git": true,
-  "tech-angular": true, "tech-linux": true, "tech-mysql": true, "tech-bash": true,
+  "tech-api": true, "tech-vue": true, "tech-git": true,
+  "tech-angular": true, "tech-linux": true, "tech-bash": true,
 };
 
 function isTone(v: string): v is ProjectTone {
@@ -52,12 +56,16 @@ function isTone(v: string): v is ProjectTone {
 }
 
 const DEFAULT_TOOL_CARDS: { name: string; iconKey: string; tone: ProjectTone }[] = [
-  { name: "Ruby", iconKey: "ruby", tone: "tech-ruby" },
-  { name: "Rails", iconKey: "rails", tone: "tech-rails" },
+  { name: "Java 17+", iconKey: "java", tone: "tech-java" },
+  { name: "Spring Boot 3", iconKey: "spring", tone: "tech-spring" },
+  { name: "Kotlin (Mobile · Web)", iconKey: "kotlin", tone: "tech-kotlin" },
+  { name: "Flutter · Dart", iconKey: "flutter", tone: "tech-flutter" },
+  { name: "Node.js · NestJS", iconKey: "node", tone: "tech-node" },
+  { name: "Next.js · React", iconKey: "next", tone: "tech-next" },
+  { name: "Vue.js 3", iconKey: "vue", tone: "tech-vue" },
+  { name: "Angular 18", iconKey: "angular", tone: "tech-angular" },
   { name: "PostgreSQL", iconKey: "postgres", tone: "tech-postgres" },
-  { name: "Redis", iconKey: "redis", tone: "tech-redis" },
   { name: "Docker", iconKey: "docker", tone: "tech-docker" },
-  { name: "GitHub Actions", iconKey: "actions", tone: "tech-actions" },
 ];
 
 const EDUCATION = [
@@ -76,18 +84,18 @@ const EDUCATION = [
 ];
 
 const COURSES = [
-  "Ruby on Rails — API Mode completo · Udemy",
+  "Java com Spring Boot — APIs RESTful, Microsserviços e JWT · Udemy",
+  "Android Nativo com Kotlin + Jetpack Compose · Udemy · 2024",
+  "Flutter / Dart — Apps Multiplataforma iOS & Android · Udemy · 2024",
   "Docker e Kubernetes na prática · Udemy",
-  "Go (Golang) — APIs e Microsserviços · Udemy",
-  "APIs RESTful com Spring Boot e Java · Udemy · 2022",
-  "Full Stack com Node.js e Vue.js · Udemy · 2023",
-  "React.js Completo · Udemy · 2023",
+  "Microsserviços Java com Kafka, Eureka e Keycloak · Udemy",
+  "Testes com JUnit 5, Mockito e TDD · Udemy",
 ];
 
 const LANGUAGES = [
-  { name: "Português", level: "Fluente", percent: 100, tone: "tech-rails" as ProjectTone },
-  { name: "Inglês", level: "Intermediário", percent: 55, tone: "tech-docker" as ProjectTone },
-  { name: "Espanhol", level: "Básico", percent: 30, tone: "tech-api" as ProjectTone },
+  { name: "Português", level: "Fluente", percent: 100, tone: "tech-spring" as ProjectTone },
+  { name: "Inglês", level: "Intermediário", percent: 55, tone: "tech-java" as ProjectTone },
+  { name: "Espanhol", level: "Básico", percent: 30, tone: "tech-kotlin" as ProjectTone },
 ];
 
 function SkillBar({ name, level, color }: { name: string; level: number; color: string }) {
@@ -97,7 +105,7 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
         <span className="text-foreground font-semibold">{name}</span>
         <span style={{ color }}>{level}%</span>
       </div>
-      <div className="h-[6px] w-full rounded-full bg-[#44475a] overflow-hidden">
+      <div className="h-[6px] w-full rounded-full bg-[#1e293b] overflow-hidden border border-white/5">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
@@ -105,7 +113,22 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.05 }}
           className="h-full rounded-full"
           style={{
-            background: `linear-gradient(to right, ${color}, ${color === "#cc0000" ? "#ff6e6e" : color === "#bd93f9" ? "#8be9fd" : "#ffb86c"})`,
+            background: (() => {
+              if (color.toLowerCase() === "#6db33f" || color.toLowerCase() === "#50fa7b" || color.includes("6db") || color.includes("50fa")) {
+                return "linear-gradient(to right,#3d7a27,#6db33f,#9ed866)";
+              }
+              if (color.toLowerCase() === "#007396" || color.toLowerCase() === "#f89820" || color.includes("007396") || color.includes("f898")) {
+                return "linear-gradient(to right,#005d7c,#007396,#2fa4c8)";
+              }
+              if (color.toLowerCase() === "#7f52ff" || color.includes("7f52") || color.includes("9333ea")) {
+                return "linear-gradient(to right,#5a3ad1,#7f52ff,#a78bfa)";
+              }
+              if (color.toLowerCase() === "#02569b" || color.toLowerCase() === "#42a5f5" || color.includes("02569b") || color.includes("42a5")) {
+                return "linear-gradient(to right,#013f73,#02569b,#42a5f5)";
+              }
+              return `linear-gradient(to right, ${color}, ${color})`;
+            })(),
+            boxShadow: `0 0 12px ${color}55`,
           }}
         />
       </div>
@@ -119,31 +142,39 @@ export function AboutSection({ about }: Props) {
   const toolCards = about.skills.length > 0
     ? about.skills.map<{ name: string; iconKey: string; tone: ProjectTone }>((s: AdminSkill) => {
         const name = s.name;
-        const iconKey = ICON_MAP[s.icon] ? s.icon : "rails";
+        const iconKey = ICON_MAP[s.icon] ? s.icon : "spring";
         const colorTone =
-          /rails/i.test(name) ? "tech-rails" :
-          /ruby/i.test(name) ? "tech-ruby" :
+          /spring|spring.?boot/i.test(name) ? "tech-spring" :
+          /kotlin|compose|android/i.test(name) ? "tech-kotlin" :
+          /flutter|dart/i.test(name) ? "tech-flutter" :
+          /java|jvm|jpa|hibernate|jakarta/i.test(name) ? "tech-java" :
           /postgres|pg|sql/i.test(name) ? "tech-postgres" :
+          /mysql|maria/i.test(name) ? "tech-mysql" :
+          /redis/i.test(name) ? "tech-redis" :
           /docker|kube|k8s/i.test(name) ? "tech-docker" :
           /action|ci.?cd|deploy/i.test(name) ? "tech-actions" :
           /react|vite|tailwind/i.test(name) ? "tech-react" :
           /ts|type/i.test(name) ? "tech-ts" :
           /go/i.test(name) ? "tech-golang" :
-          /java|spring/i.test(name) ? "tech-java" :
           /vue/i.test(name) ? "tech-vue" :
           /angular/i.test(name) ? "tech-angular" :
           /git/i.test(name) ? "tech-git" :
           /linux|bash|ubuntu/i.test(name) ? "tech-linux" :
           /swagger|openapi/i.test(name) ? "tech-openapi" :
           /api|rest/i.test(name) ? "tech-api" :
-          "tech-rails";
-        const tone = isTone(colorTone) ? colorTone : "tech-rails";
+          /node|nest/i.test(name) ? "tech-node" :
+          /next|vercel/i.test(name) ? "tech-next" :
+          /mongo|mongodb/i.test(name) ? "tech-mongo" :
+          /tailwind/i.test(name) ? "tech-tailwind" :
+          /vite/i.test(name) ? "tech-vite" :
+          "tech-spring";
+        const tone = isTone(colorTone) ? colorTone : "tech-spring";
         return { name, iconKey, tone };
       })
     : DEFAULT_TOOL_CARDS;
 
-  const practices = about.practices.length > 0 ? about.practices : ["MVC", "REST APIs", "Active Record", "RSpec", "TDD", "SOLID", "Clean Code", "CI/CD"];
-  const methodologies = about.methodologies.length > 0 ? about.methodologies : ["Convention over Config", "TDD / RSpec", "Service Objects", "Clean Code", "Scrum · Kanban", "CI/CD", "OpenAPI / Swagger", "FactoryBot", "Clean Architecture"];
+  const practices = about.practices.length > 0 ? about.practices : ["Clean Architecture", "Hexagonal / Ports & Adapters", "DDD", "TDD · JUnit 5", "SOLID", "Clean Code", "Microserviços", "CI/CD"];
+  const methodologies = about.methodologies.length > 0 ? about.methodologies : ["Clean Architecture", "DDD", "Hexagonal Architecture", "TDD / JUnit 5 · Mockito", "Repository · Service Layer", "Scrum · Kanban", "OpenAPI 3 · Swagger", "12-Factor Apps", "CQRS"];
 
   return (
     <section id="about" className="py-24 relative bg-card/30">
@@ -192,14 +223,20 @@ export function AboutSection({ about }: Props) {
             </div>
 
             <div className="mt-8">
-              <h3 className="font-mono text-xs uppercase tracking-wider text-[#ff5555] mb-3">
+              <h3 className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: "#6db33f" }}>
                 Práticas de engenharia
               </h3>
               <div className="flex flex-wrap gap-2">
                 {practices.map((item: string) => (
                   <span
                     key={item}
-                    className="px-3 py-1.5 rounded-full border border-[#cc0000]/55 bg-[#cc0000]/10 text-[#ff5555] text-xs font-mono font-semibold shadow-[inset_0_0_0_1px_rgba(255,85,85,.18)]"
+                    className="px-3 py-1.5 rounded-full border text-xs font-mono font-semibold"
+                    style={{
+                      borderColor: "rgba(109,179,63,.55)",
+                      backgroundColor: "rgba(109,179,63,.10)",
+                      color: "#9ed866",
+                      boxShadow: "inset 0 0 0 1px rgba(109,179,63,.18)",
+                    }}
                   >
                     {item}
                   </span>
@@ -221,7 +258,7 @@ export function AboutSection({ about }: Props) {
               </div>
               <div className={`grid ${toolCards.length >= 6 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2"} gap-3 mt-6`}>
                 {toolCards.map((t) => {
-                  const Icon = ICON_MAP[t.iconKey] ?? SiRubyonrails;
+                  const Icon = ICON_MAP[t.iconKey] ?? SiSpringboot;
                   return (
                     <div key={`${t.name}-${t.iconKey}`} className={`rails-tool-card ${t.tone} rounded-lg p-4 text-center`}>
                       <Icon className="tech-icon text-3xl mx-auto mb-3" />
@@ -241,14 +278,14 @@ export function AboutSection({ about }: Props) {
                   ))}
                   {about.skills.length === 0 && (
                     <>
-                      <SkillBar name="Ruby on Rails" level={95} color="#cc0000" />
-                      <SkillBar name="RSpec · TDD" level={98} color="#cc0000" />
-                      <SkillBar name="APIs RESTful · OpenAPI 3" level={92} color="#cc0000" />
-                      <SkillBar name="PostgreSQL" level={85} color="#cc0000" />
-                      <SkillBar name="React · TypeScript" level={88} color="#bd93f9" />
-                      <SkillBar name="Docker · CI/CD" level={78} color="#bd93f9" />
-                      <SkillBar name="Java · Spring Boot" level={75} color="#f1fa8c" />
-                      <SkillBar name="Vue.js · Angular" level={78} color="#f1fa8c" />
+                      <SkillBar name="Java 17 LTS" level={95} color="#007396" />
+                      <SkillBar name="Spring Boot 3 · Spring Security" level={93} color="#6db33f" />
+                      <SkillBar name="Kotlin · Jetpack Compose (Android)" level={86} color="#7f52ff" />
+                      <SkillBar name="Flutter / Dart (Cross-platform)" level={78} color="#02569b" />
+                      <SkillBar name="APIs RESTful · OpenAPI 3 · JWT" level={92} color="#007396" />
+                      <SkillBar name="PostgreSQL · MySQL · Redis" level={85} color="#336791" />
+                      <SkillBar name="JUnit 5 · Mockito · TDD" level={88} color="#6db33f" />
+                      <SkillBar name="Docker · Kubernetes · CI/CD" level={80} color="#2496ed" />
                     </>
                   )}
                 </div>
@@ -256,7 +293,7 @@ export function AboutSection({ about }: Props) {
 
               <div className="mt-6 pt-5 border-t border-border">
                 <p className="font-mono text-xs text-muted-foreground">
-                  <span className="text-primary">$</span> rails new produto --database=postgresql
+                  <span className="text-primary">$</span> spring init --type=maven-project --dependencies=web,data-jpa,security,postgresql produto
                 </p>
               </div>
             </div>
@@ -356,11 +393,11 @@ export function AboutSection({ about }: Props) {
                         className="h-full rounded-full"
                         style={{
                           background:
-                            lang.tone === "tech-rails"
-                              ? "linear-gradient(90deg,#cc0000,#ff6e6e)"
-                              : lang.tone === "tech-docker"
-                              ? "linear-gradient(90deg,#50fa7b,#8be9fd)"
-                              : "linear-gradient(90deg,#6272a4,#bd93f9)",
+                            lang.tone === "tech-spring"
+                              ? "linear-gradient(90deg,#6db33f,#9ed866)"
+                              : lang.tone === "tech-java"
+                              ? "linear-gradient(90deg,#007396,#f89820)"
+                              : "linear-gradient(90deg,#7f52ff,#b497ff)",
                         }}
                       />
                     </div>
@@ -369,7 +406,7 @@ export function AboutSection({ about }: Props) {
               </div>
 
               <div className="mt-10 pt-6 border-t border-border/70">
-                <div className="flex items-center gap-2 mb-4 font-mono text-[11px] uppercase tracking-widest text-[#bd93f9]">
+                <div className="flex items-center gap-2 mb-4 font-mono text-[11px] uppercase tracking-widest text-[#6db33f]">
                   <SiReact size={12} /> Techs complementares
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">

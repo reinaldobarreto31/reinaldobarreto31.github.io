@@ -17,8 +17,8 @@ export type AdminData = {
 
 const STORAGE_KEY = "portfolio_admin_data_v1";
 const AUTH_KEY = "portfolio_admin_auth_v1";
-const VALID_USER = "admin";
-const VALID_PASS = "railshub123";
+const VALID_USER = "reinaldobarretosilva@gmail.com";
+const VALID_PASS = "javaOracle1234";
 
 function loadRaw(): AdminData {
   try {
@@ -103,4 +103,4 @@ export function useAdminData() {
   return { data, update, resetAll };
 }
 
-export const VALID_CREDS = { user: VALID_USER, passHint: "railshub***" };
+export const VALID_CREDS = { user: VALID_USER, passHint: "javaOracle****" };

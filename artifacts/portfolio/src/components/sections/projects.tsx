@@ -1,38 +1,40 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink, ArrowUpRight, Globe, Rocket, TerminalSquare, Sparkles, Package } from "lucide-react";
 import {
-  SiRubyonrails, SiRuby, SiPostgresql, SiDocker, SiGithubactions, SiReact,
+  SiPostgresql, SiDocker, SiGithubactions, SiReact,
   SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs, SiMysql, SiMongodb,
   SiRedis, SiLinux, SiGnubash, SiGit, SiAngular, SiVuedotjs, SiSpringboot,
-  SiKubernetes, SiTailwindcss, SiVite,
+  SiKubernetes, SiTailwindcss, SiVite, SiKotlin, SiFlutter, SiJava,
 } from "react-icons/si";
 import type { AdminProject, ProjectTone, ProjectBadge } from "@/lib/default-data";
 
 const GITHUB = "https://github.com/reinaldobarreto31";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+  java: SiJava,
+  spring: SiSpringboot,
+  kotlin: SiKotlin,
+  flutter: SiFlutter,
+  next: SiNodedotjs,
+  node: SiNodedotjs,
+  js: SiJavascript,
+  ts: SiTypescript,
   sparkles: Sparkles,
   swagger: SiSwagger,
-  rails: SiRubyonrails,
-  ruby: SiRuby,
   package: Package,
   postgres: SiPostgresql,
   docker: SiDocker,
+  redis: SiRedis,
   actions: SiGithubactions,
   react: SiReact,
-  ts: SiTypescript,
   go: SiGo,
-  js: SiJavascript,
-  node: SiNodedotjs,
   mysql: SiMysql,
   mongo: SiMongodb,
-  redis: SiRedis,
   linux: SiLinux,
   bash: SiGnubash,
   git: SiGit,
   angular: SiAngular,
   vue: SiVuedotjs,
-  spring: SiSpringboot,
   k8s: SiKubernetes,
   tailwind: SiTailwindcss,
   vite: SiVite,
@@ -149,13 +151,13 @@ export function ProjectsSection({ projects }: Props) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
           <div>
             <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">
-              Portfolio Rails
+              Portfolio Java · Spring · Kotlin · Flutter
             </p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
               Projetos principais.
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl text-base">
-              Estes são os trabalhos mais representativos do portfólio — APIs completas, frontends publicados no GitHub Pages e arquitetura full-stack bem estruturada.
+              Trabalhos mais representativos — APIs Spring Boot escaláveis, apps Android nativos com Kotlin · Jetpack Compose, apps cross-platform Flutter/Dart e microsserviços Java publicados no GitHub.
             </p>
           </div>
           <a
@@ -183,7 +185,7 @@ export function ProjectsSection({ projects }: Props) {
               Projetos mais enxutos.
             </h3>
             <p className="text-muted-foreground mt-2 text-sm max-w-lg">
-              Aplicações menores que consolidam a base sólida em Ruby e Rails: MVC, APIs REST, modelagem de dados e lógica de domínio.
+              Aplicações menores que consolidam a base sólida em Java · Spring · Kotlin — Clean Architecture, REST APIs, JPA/Hibernate, testes JUnit/Mockito e arquitetura de domínio.
             </p>
           </div>
           <a

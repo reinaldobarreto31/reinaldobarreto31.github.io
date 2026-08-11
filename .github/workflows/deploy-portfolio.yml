@@ -31,10 +31,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Sync Ruby curriculum to portfolio public
+      - name: Sync Currículo PDF/HTML to portfolio public
         run: |
-          cp curriculo.pdf artifacts/portfolio/public/curriculo.pdf
-          cp curriculo.html artifacts/portfolio/public/curriculo.html
+          [ -f curriculo.pdf ]  && cp curriculo.pdf  artifacts/portfolio/public/curriculo.pdf  || echo "[warn] curriculo.pdf não existe, pulando"
+          [ -f curriculo.html ] && cp curriculo.html artifacts/portfolio/public/curriculo.html || echo "[warn] curriculo.html não existe, pulando"
 
       - name: Build portfolio
         run: |

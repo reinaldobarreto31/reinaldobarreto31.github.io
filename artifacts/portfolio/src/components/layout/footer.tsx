@@ -53,15 +53,15 @@ export function Footer({ onOpenAdmin }: FooterProps) {
           >
             reinaldo.barreto
           </span>
-          <p className="text-sm text-muted-foreground mt-1">Ruby on Rails Developer</p>
+          <p className="text-sm text-muted-foreground mt-1">Java · Spring Boot · Kotlin · Flutter Dev</p>
 
           {showLogin && !logged && (
             <form
               onSubmit={tryLogin}
-              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#191a21] border border-[#44475a]/70 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
+              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#1e3a8a]/50 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
             >
               <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#ff5555] font-mono uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#6db33f" }}>
                   <Lock size={14} /> Painel Admin — Login
                 </div>
                 <button
@@ -81,7 +81,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                   onChange={(e) => setUser(e.target.value)}
                   type="text"
                   placeholder="usuário"
-                  className="rounded-lg px-2 py-1.5 text-sm bg-[#101117] border border-[#44475a]/80 text-foreground outline-none focus:border-primary"
+                  className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
                   autoComplete="username"
                 />
                 <input
@@ -89,13 +89,13 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                   onChange={(e) => setPass(e.target.value)}
                   type="password"
                   placeholder="senha"
-                  className="rounded-lg px-2 py-1.5 text-sm bg-[#101117] border border-[#44475a]/80 text-foreground outline-none focus:border-primary"
+                  className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
                   autoComplete="current-password"
                 />
               </div>
               <div className="flex items-center justify-between gap-2 flex-wrap">
                 <span className="text-[10.5px] font-mono text-muted-foreground">
-                  dica: <span className="text-[#f1fa8c]">admin</span> / <span className="text-[#f1fa8c]">railshub123</span>
+                  dica: <span className="text-[#9ed866]">reinaldobarretosilva@gmail.com</span> / <span className="text-[#9ed866]">javaOracle1234</span>
                 </span>
                 <button
                   type="submit"
@@ -104,7 +104,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                   Entrar
                 </button>
               </div>
-              {err && <div className="text-[11px] text-[#ff6e6e] mt-1.5 font-mono">{err}</div>}
+              {err && <div className="text-[11px] text-[#e44857] mt-1.5 font-mono">{err}</div>}
             </form>
           )}
         </div>
@@ -127,7 +127,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
             <button
               type="button"
               onClick={logout}
-              className="rounded-full px-3 py-1.5 text-[11px] font-bold font-mono bg-[#101117] border border-[#cc0000]/40 text-[#ff9ea5] hover:bg-[#cc0000]/15 transition-colors"
+              className="rounded-full px-3 py-1.5 text-[11px] font-bold font-mono bg-[#101117] border border-[#7f52ff]/40 text-[#b497ff] hover:bg-[#7f52ff]/15 transition-colors"
             >
               Sair do Admin
             </button>
@@ -158,7 +158,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
       </div>
 
       <span className="block text-center text-xs font-mono text-muted-foreground mt-5">
-        Construído com foco em produtos Rails.
+        Construído com Java · Spring Boot · Kotlin · Flutter.
       </span>
     </footer>
   );

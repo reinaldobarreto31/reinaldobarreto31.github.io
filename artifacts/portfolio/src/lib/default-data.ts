@@ -1,8 +1,7 @@
 export type ProjectBadge = "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "API" | "FULL-STACK";
 export type ProjectTone =
-  | "tech-ruby"
-  | "tech-rails"
   | "tech-postgres"
+  | "tech-redis"
   | "tech-docker"
   | "tech-actions"
   | "tech-react"
@@ -12,13 +11,22 @@ export type ProjectTone =
   | "tech-pdf"
   | "tech-golang"
   | "tech-java"
+  | "tech-spring"
+  | "tech-kotlin"
+  | "tech-flutter"
   | "tech-api"
   | "tech-vue"
   | "tech-git"
   | "tech-angular"
   | "tech-linux"
   | "tech-mysql"
-  | "tech-bash";
+  | "tech-bash"
+  | "tech-node"
+  | "tech-next"
+  | "tech-js"
+  | "tech-mongo"
+  | "tech-tailwind"
+  | "tech-vite";
 
 export type AdminProject = {
   id: string;
@@ -26,7 +34,7 @@ export type AdminProject = {
   subtitle: string;
   description: string;
   tech: string[];
-  icon: string; // key of ICONS_MAP
+  icon: string;
   tone: ProjectTone;
   github: string;
   live?: string;
@@ -58,7 +66,7 @@ export type AdminStackItem = {
   name: string;
   icon: string;
   tone: ProjectTone;
-  level: number; // 0-100
+  level: number;
 };
 
 const GITHUB = "https://github.com/reinaldobarreto31";
@@ -72,95 +80,128 @@ export const DEFAULTS: {
 } = {
   projects: [
     {
+      id: "proj-spring-crud",
+      title: "Spring Boot CRUD API",
+      subtitle: "REST · JPA · PostgreSQL · Swagger",
+      description:
+        "API RESTful completa em Java 17 + Spring Boot 3 com Spring Data JPA, PostgreSQL, autenticação JWT e documentação OpenAPI 3 (Swagger UI / springdoc-openapi). Testes unitários com JUnit 5 + Mockito, DTOs com MapStruct e validação Bean Validation. Docker Compose para subir banco + app em um comando.",
+      tech: ["Java 17", "Spring Boot 3", "Spring Data JPA", "PostgreSQL", "JWT", "Swagger / OpenAPI 3", "Docker", "JUnit 5"],
+      icon: "spring",
+      tone: "tech-spring",
+      github: `${GITHUB}/spring-boot-crud`,
+      badge: "DESTAQUE",
+      featured: true,
+    },
+    {
+      id: "proj-kotlin-mobile",
+      title: "Kotlin Android App",
+      subtitle: "Mobile · Jetpack Compose · MVVM",
+      description:
+        "Aplicativo Android nativo em Kotlin com Jetpack Compose, arquitetura MVVM + Clean Architecture, Room para persistência local, Retrofit para consumo de APIs REST e injeção de dependência com Hilt. Corrotinas + Flow para reatividade, Material 3 e testes com MockK + Turbine.",
+      tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room", "Retrofit", "Hilt", "Coroutines", "Flow"],
+      icon: "kotlin",
+      tone: "tech-kotlin",
+      github: `${GITHUB}/kotlin-android-app`,
+      badge: "DESTAQUE",
+      featured: true,
+    },
+    {
+      id: "proj-spring-micros",
+      title: "Spring Microservices",
+      subtitle: "Microsserviços · Kafka · Eureka · Gateway",
+      description:
+        "Arquitetura de microsserviços em Java Spring Boot: Service Discovery (Eureka), API Gateway com Spring Cloud Gateway, comunicação assíncrona via Apache Kafka, resiliência com Resilience4j (Circuit Breaker) e autenticação centralizada em Keycloak / OAuth2. Observabilidade com Micrometer + Prometheus + Grafana.",
+      tech: ["Java", "Spring Boot 3", "Spring Cloud", "Apache Kafka", "Eureka", "Keycloak", "Docker", "PostgreSQL"],
+      icon: "java",
+      tone: "tech-java",
+      github: `${GITHUB}/spring-microservices`,
+      badge: "DESTAQUE",
+      featured: true,
+    },
+    {
+      id: "proj-flutter-app",
+      title: "Flutter / Dart Mobile App",
+      subtitle: "Cross-Platform · iOS + Android · Firebase",
+      description:
+        "Aplicação multiplataforma em Flutter / Dart com autenticação Firebase (e-mail + Google), Firestore para dados em tempo real, Cloud Storage para uploads, Provider para gerenciamento de estado e padrão Repository. Material 3 responsivo, CI/CD com GitHub Actions e integração nativa.",
+      tech: ["Flutter", "Dart", "Firebase", "Firestore", "Provider", "Material 3", "REST APIs"],
+      icon: "flutter",
+      tone: "tech-flutter",
+      github: `${GITHUB}/flutter-app`,
+      badge: "FULL-STACK",
+    },
+    {
       id: "proj-pdf",
       title: "Compressor de PDF",
       subtitle: "Padrões Brasileiros · 100% navegador",
       description:
-        "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar. Interface em tema Dracula + vermelho Ruby on Rails.",
+        "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar.",
       tech: ["React", "TypeScript", "pdf-lib", "Tailwind"],
       icon: "sparkles",
       tone: "tech-pdf",
       github: `${GITHUB}/pdf-compressor`,
       live: `${PAGES}/pdf-compressor/`,
       badge: "LIVE",
-      featured: true,
     },
     {
-      id: "proj-swagger",
-      title: "rails-swagger-crud",
-      subtitle: "API REST + OpenAPI 3 + TDD",
+      id: "proj-spring-auth",
+      title: "Spring Auth & Security",
+      subtitle: "OAuth2 · JWT · Keycloak · RBAC",
       description:
-        "RESTful CRUD API em Rails API mode com documentação OpenAPI 3 (Swagger UI em /api-docs) gerada automaticamente pelos testes RSpec via Rswag. TDD first — FactoryBot + Shoulda Matchers. Autenticação Devise/JWT, PostgreSQL estruturado e Docker Compose para dev local com um comando.",
-      tech: ["Ruby", "Rails", "Rswag", "RSpec", "OpenAPI 3", "Docker", "PostgreSQL"],
-      icon: "swagger",
-      tone: "tech-openapi",
-      github: `${GITHUB}/rails-swagger-crud`,
-      live: `${PAGES}/rails-swagger-crud/`,
-      badge: "DESTAQUE",
-      featured: true,
+        "Projeto Spring Security completo: autenticação JWT stateless, integração com Keycloak via OAuth2 / OIDC, controle de acesso baseado em Roles e Permissões (RBAC + ABAC), refresh token e endpoints protegidos. Criptografia com BCrypt e auditoria via Spring Data Envers.",
+      tech: ["Java", "Spring Boot 3", "Spring Security", "JWT", "OAuth2", "Keycloak", "BCrypt"],
+      icon: "spring",
+      tone: "tech-spring",
+      github: `${GITHUB}/spring-auth-security`,
+      badge: "API",
     },
     {
-      id: "proj-railshub",
-      title: "RailsHub",
-      subtitle: "Full-stack · API Rails + React 18",
+      id: "proj-flutter-chat",
+      title: "Flutter Realtime Chat",
+      subtitle: "WebSocket · Riverpod · Supabase",
       description:
-        "Hub full-stack: API REST em Rails com autenticação Devise/JWT, documentação OpenAPI 3 automática via Rswag e TDD com RSpec + FactoryBot. Frontend React 18 + Tailwind com dashboard paginado, filtros e CRUD visual. Docker Compose + pipeline CI/CD em GitHub Actions para deploy automatizado.",
-      tech: ["Ruby", "Rails", "React 18", "Docker", "RSpec"],
-      icon: "rails",
-      tone: "tech-rails",
-      github: `${GITHUB}/railshub`,
-      live: `${PAGES}/railshub/`,
+        "Aplicativo de chat em tempo real com Flutter + Dart: backend Supabase com PostgreSQL e Realtime Broadcast, gerenciamento de estado Riverpod, notificações push via Firebase Cloud Messaging e upload de mídia com compressão nativa.",
+      tech: ["Flutter", "Dart", "Supabase", "Riverpod", "WebSocket", "FCM"],
+      icon: "flutter",
+      tone: "tech-flutter",
+      github: `${GITHUB}/flutter-realtime-chat`,
       badge: "EM CONSTRUÇÃO",
-      featured: true,
     },
     {
-      id: "proj-stockwise",
-      title: "StockWise",
-      subtitle: "Controle de Estoque · Go + React.js",
+      id: "proj-nextjs-hub",
+      title: "Next.js Full-Stack Hub",
+      subtitle: "App Router · tRPC · NextAuth · Prisma",
       description:
-        "Backend em Go com API RESTful, autenticação JWT, CRUD de produtos e controle de movimentações de estoque. Frontend React.js com dashboard, listagens paginadas e formulários tipados. GitHub: github.com/reinaldobarreto31/stockwise-go",
-      tech: ["Go", "React.js", "PostgreSQL", "JWT", "REST"],
-      icon: "package",
-      tone: "tech-golang",
-      github: `${GITHUB}/stockwise-go`,
-      live: `${PAGES}/stockwise/`,
+        "Aplicação full-stack com Next.js 14 (App Router + Server Components + Server Actions), autenticação NextAuth (Credentials + GitHub), tRPC para endpoints end-to-end tipados, ORM Prisma com PostgreSQL e deploy em Vercel. Dashboard administrativo com Tailwind UI e upload de arquivos via Server Actions.",
+      tech: ["Next.js 14", "React 18", "TypeScript", "tRPC", "NextAuth", "Prisma", "PostgreSQL", "Tailwind"],
+      icon: "next",
+      tone: "tech-next",
+      github: `${GITHUB}/nextjs-fullstack-hub`,
       badge: "FULL-STACK",
     },
     {
-      id: "proj-short",
-      title: "Rails Link Shortener",
-      subtitle: "Encurtador de URLs",
+      id: "proj-vue-dash",
+      title: "Vue.js 3 Dashboards",
+      subtitle: "Composition API · Pinia · Nuxt · Axios",
       description:
-        "Aplicação Ruby on Rails para criar, organizar e redirecionar links curtos com contagem de acessos. Projeto enxuto que demonstra modelagem limpa, rotas RESTful e o ciclo completo de uma aplicação Rails MVC.",
-      tech: ["Ruby", "Rails", "PostgreSQL", "MVC"],
-      icon: "rails",
-      tone: "tech-rails",
-      github: `${GITHUB}/rails-link-shortener`,
-      badge: "API",
+        "Painéis administrativos em Vue 3 com Composition API + <script setup>, gerenciamento de estado Pinia, roteamento Vue Router com guards, gráficos ECharts, integração REST via Axios e SSR com Nuxt 3. Prototipagem rápida, responsividade e theming escuro claro integrados.",
+      tech: ["Vue.js 3", "Nuxt 3", "Pinia", "TypeScript", "Tailwind", "Axios"],
+      icon: "vue",
+      tone: "tech-vue",
+      github: `${GITHUB}/vue3-dashboards`,
+      badge: "FULL-STACK",
     },
     {
-      id: "proj-tasks",
-      title: "Rails Tasks API",
-      subtitle: "API de tarefas",
+      id: "proj-angular-corp",
+      title: "Angular 18 Enterprise SPA",
+      subtitle: "Signals · Standalone · NgRx · RxJS",
       description:
-        "API REST para gestão de tarefas (todo list) estruturada com convenções Rails, endpoints claros, paginação e persistência em banco de dados relacional.",
-      tech: ["Ruby", "Rails API", "PostgreSQL", "REST"],
-      icon: "terminal",
-      tone: "tech-ruby",
-      github: `${GITHUB}/rails-tasks-api`,
-      badge: "API",
-    },
-    {
-      id: "proj-expense",
-      title: "Ruby Expense Tracker",
-      subtitle: "Controle financeiro",
-      description:
-        "Projeto em Ruby puro voltado ao controle de despesas e exploração da lógica de negócio — com classes de domínio limpas e legíveis, prontas para evoluir em uma aplicação Rails completa.",
-      tech: ["Ruby", "Domínio", "CLI", "Testes"],
-      icon: "postgres",
-      tone: "tech-postgres",
-      github: `${GITHUB}/ruby-expense-tracker`,
-      badge: "API",
+        "Single Page Application corporativa em Angular 18 com Standalone Components, gerenciamento de estado global NgRx, reatividade com RxJS + Signals, interceptors HTTP com refresh token JWT, lazy loading de rotas e modularidade por domínio. Publicação em pipeline CI/CD GitHub Actions.",
+      tech: ["Angular 18", "TypeScript", "RxJS", "NgRx", "Angular Material", "JWT"],
+      icon: "angular",
+      tone: "tech-angular",
+      github: `${GITHUB}/angular-enterprise-spa`,
+      badge: "FULL-STACK",
     },
   ],
 
@@ -172,14 +213,15 @@ export const DEFAULTS: {
       period: "mar/2024 – set/2024",
       location: "Salvador / BA",
       description:
-        "Desenvolvimento e manutenção de APIs REST e soluções web para órgãos públicos do Governo da Bahia. Arquitetura RESTful escalável com separação de camadas (controller / service / repository) — padrões diretamente alinhados ao desenvolvimento em Ruby on Rails. Frontend em Vue.js. Entregas em Scrum.",
+        "Desenvolvimento e manutenção de APIs REST enterprise em Java / Spring Boot e integração de sistemas para órgãos públicos do Governo da Bahia. Arquitetura em camadas (controller / service / repository), transações ACID em PostgreSQL e frontends Vue.js. Entregas contínuas em Scrum com Git Flow.",
       tags: [
         { name: "Java", tone: "tech-java" },
+        { name: "Spring Boot", tone: "tech-spring" },
         { name: "APIs REST", tone: "tech-api" },
-        { name: "Vue.js", tone: "tech-vue" },
         { name: "PostgreSQL", tone: "tech-postgres" },
+        { name: "Vue.js", tone: "tech-vue" },
         { name: "Git", tone: "tech-git" },
-        { name: "Scrum", tone: "tech-rails" },
+        { name: "Scrum", tone: "tech-spring" },
       ],
     },
     {
@@ -189,10 +231,10 @@ export const DEFAULTS: {
       period: "mar/2022 – mai/2022",
       location: "Salvador / BA",
       description:
-        "Implementação de APIs REST em Ruby on Rails, integração de sistemas via OAuth2 com provedores externos e frontends interativos em Angular e React.js. Configuração de ambientes Linux Ubuntu e bancos PostgreSQL performáticos.",
+        "Integração de sistemas Java EE / Spring com provedores OAuth2 externos, construção de APIs REST e frontends interativos Angular e React.js. Ambientes Linux Ubuntu com deploy em contêineres e bancos PostgreSQL performáticos.",
       tags: [
-        { name: "Ruby", tone: "tech-ruby" },
-        { name: "Rails", tone: "tech-rails" },
+        { name: "Java EE", tone: "tech-java" },
+        { name: "Spring", tone: "tech-spring" },
         { name: "OAuth2", tone: "tech-api" },
         { name: "Angular", tone: "tech-angular" },
         { name: "React.js", tone: "tech-react" },
@@ -207,13 +249,13 @@ export const DEFAULTS: {
       period: "nov/2019 – mar/2022",
       location: "Salvador / BA",
       description:
-        "Desenvolvimento full stack em Ruby on Rails e Java EE para plataforma de planejamento empresarial. Dashboards em Angular e Vue.js, automações com Bash Script e administração de servidores Linux e bancos MySQL.",
+        "Desenvolvimento de plataforma enterprise em Java EE e Spring Boot com dashboards em Angular / Vue.js. Automações e rotinas batch com Bash Script, administração de servidores Linux e bancos relacionais MySQL.",
       tags: [
-        { name: "Ruby", tone: "tech-ruby" },
-        { name: "Rails", tone: "tech-rails" },
+        { name: "Java EE", tone: "tech-java" },
+        { name: "Spring Boot", tone: "tech-spring" },
         { name: "Angular", tone: "tech-angular" },
         { name: "Vue.js", tone: "tech-vue" },
-        { name: "Java EE", tone: "tech-java" },
+        { name: "Kotlin", tone: "tech-kotlin" },
         { name: "MySQL", tone: "tech-mysql" },
         { name: "Linux Ubuntu", tone: "tech-linux" },
         { name: "Bash Script", tone: "tech-bash" },
@@ -223,39 +265,54 @@ export const DEFAULTS: {
 
   about: {
     summary:
-      "Engenheiro de Software com trajetória sólida em Ruby on Rails e background enterprise em Java / Spring Boot. Especialista em APIs RESTful para o setor público (estadual, municipal) e segurança pública. Domínio de TDD com RSpec, documentação automática via Rswag / OpenAPI 3 e entrega com CI/CD (GitHub Actions). Convention over Configuration como filosofia de trabalho.",
+      "Engenheiro de Software com foco principal em Java & Spring Boot e background sólido no setor público (estadual, municipal) e segurança pública. Segundo pilar em Kotlin para desenvolvimento Android nativo, e em terceiro lugar Flutter / Dart para aplicações mobile cross-platform iOS + Android. Entrega também front-ends modernos com Next.js, React, Vue.js 3 e Angular 18 para consumir as APIs Spring. Experiência com APIs RESTful escaláveis, arquitetura em microsserviços, autenticação OAuth2 / JWT / Keycloak e entrega contínua com CI/CD e Docker.",
     objective:
-      "Atuar como Engenheiro de Software Ruby on Rails em produto de alto impacto — contribuindo com arquitetura de APIs RESTful, TDD rigoroso, documentação OpenAPI 3 e entrega contínua em produção.",
+      "Atuar como Engenheiro de Software Java / Spring Boot em produto de alto impacto — com atenção também a oportunidades em Kotlin (mobile Android nativo) e Flutter / Dart (multiplataforma). Aproveitar também a vivência front-end com Next.js, React, Vue e Angular para entregar soluções FULL-STACK.",
     skills: [
-      { name: "Ruby on Rails", level: 95, color: "#cc0000", icon: "rails" },
-      { name: "RSpec · TDD", level: 98, color: "#cc0000", icon: "rails" },
-      { name: "APIs RESTful · OpenAPI 3", level: 92, color: "#cc0000", icon: "swagger" },
-      { name: "PostgreSQL", level: 85, color: "#cc0000", icon: "postgres" },
-      { name: "React · TypeScript", level: 88, color: "#bd93f9", icon: "react" },
-      { name: "Docker · CI/CD", level: 78, color: "#bd93f9", icon: "docker" },
-      { name: "Java · Spring Boot", level: 75, color: "#f1fa8c", icon: "java" },
-      { name: "Vue.js · Angular", level: 78, color: "#f1fa8c", icon: "vue" },
+      { name: "Java", level: 95, color: "#007396", icon: "java" },
+      { name: "Spring Boot 3", level: 95, color: "#6db33f", icon: "spring" },
+      { name: "Kotlin · Android", level: 88, color: "#7f52ff", icon: "kotlin" },
+      { name: "Flutter / Dart", level: 82, color: "#02569b", icon: "flutter" },
+      { name: "Next.js 14 · React", level: 85, color: "#ffffff", icon: "next" },
+      { name: "Node.js · NestJS", level: 82, color: "#339933", icon: "node" },
+      { name: "Vue.js 3 · Nuxt", level: 80, color: "#42b883", icon: "vue" },
+      { name: "Angular 18 · RxJS", level: 78, color: "#dd0031", icon: "angular" },
+      { name: "TypeScript · JavaScript", level: 90, color: "#3178c6", icon: "ts" },
+      { name: "APIs REST · OpenAPI 3", level: 90, color: "#6db33f", icon: "swagger" },
+      { name: "PostgreSQL · MySQL", level: 85, color: "#336791", icon: "postgres" },
+      { name: "Docker · CI/CD", level: 80, color: "#2496ed", icon: "docker" },
+      { name: "Spring Security · JWT", level: 88, color: "#6db33f", icon: "spring" },
     ],
     methodologies: [
-      "Convention over Config",
-      "TDD / RSpec",
-      "Service Objects",
+      "Clean Architecture",
+      "TDD · JUnit 5",
+      "Domain-Driven Design",
       "Clean Code",
       "Scrum · Kanban",
-      "CI/CD",
+      "CI/CD · GitHub Actions",
       "OpenAPI / Swagger",
-      "FactoryBot",
-      "Clean Architecture",
+      "Hexagonal (Ports & Adapters)",
+      "Arquitetura em Camadas",
     ],
-    practices: ["MVC", "REST APIs", "Active Record", "RSpec", "TDD", "SOLID", "Clean Code", "CI/CD"],
+    practices: ["SOLID", "REST APIs", "MVC / MVVM", "JUnit + Mockito", "TDD", "Clean Code", "CI/CD", "Microsserviços"],
   },
 
   stack: [
-    { id: "s-ruby", name: "Ruby", icon: "ruby", tone: "tech-ruby", level: 95 },
-    { id: "s-rails", name: "Rails", icon: "rails", tone: "tech-rails", level: 95 },
+    { id: "s-java", name: "Java", icon: "java", tone: "tech-java", level: 95 },
+    { id: "s-spring", name: "Spring Boot", icon: "spring", tone: "tech-spring", level: 95 },
+    { id: "s-kotlin", name: "Kotlin", icon: "kotlin", tone: "tech-kotlin", level: 88 },
+    { id: "s-flutter", name: "Flutter / Dart", icon: "flutter", tone: "tech-flutter", level: 82 },
+    { id: "s-next", name: "Next.js", icon: "next", tone: "tech-next", level: 85 },
+    { id: "s-node", name: "Node.js · NestJS", icon: "node", tone: "tech-node", level: 80 },
+    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 78 },
+    { id: "s-angular", name: "Angular 18", icon: "angular", tone: "tech-angular", level: 75 },
+    { id: "s-ts", name: "TypeScript", icon: "ts", tone: "tech-ts", level: 90 },
+    { id: "s-js", name: "JavaScript", icon: "js", tone: "tech-js", level: 92 },
+    { id: "s-react", name: "React 18", icon: "react", tone: "tech-react", level: 86 },
     { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 85 },
-    { id: "s-redis", name: "Redis", icon: "redis", tone: "tech-ruby", level: 70 },
+    { id: "s-mysql", name: "MySQL", icon: "mysql", tone: "tech-mysql", level: 82 },
     { id: "s-docker", name: "Docker", icon: "docker", tone: "tech-docker", level: 78 },
-    { id: "s-actions", name: "GitHub Actions", icon: "actions", tone: "tech-actions", level: 80 },
+    { id: "s-redis", name: "Redis", icon: "redis", tone: "tech-redis", level: 72 },
+    { id: "s-mongo", name: "MongoDB", icon: "mongo", tone: "tech-mongo", level: 70 },
   ],
 };

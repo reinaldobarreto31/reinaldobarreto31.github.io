@@ -1,113 +1,118 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  SiRuby, SiRubyonrails, SiPostgresql, SiRedis, SiDocker, SiGithubactions,
+  SiPostgresql, SiRedis, SiDocker, SiGithubactions,
 } from "react-icons/si";
 import { TestTube, Clock, Shield, Layers, Zap, Satellite, Cpu, Activity, ExternalLink } from "lucide-react";
 import type { AdminStackItem, ProjectTone } from "@/lib/default-data";
 import {
   SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
   SiAngular, SiVuedotjs, SiSpringboot, SiKubernetes, SiTailwindcss, SiVite,
-  SiMongodb, SiNodedotjs, SiReact, SiTypescript, SiJava,
+  SiMongodb, SiNodedotjs, SiReact, SiTypescript, SiJava, SiKotlin, SiFlutter,
 } from "react-icons/si";
 
 const ADMIN_ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  ruby: SiRuby, rails: SiRubyonrails, postgres: SiPostgresql, redis: SiRedis,
-  docker: SiDocker, actions: SiGithubactions, react: SiReact, ts: SiTypescript,
-  java: SiJava, spring: SiSpringboot, vue: SiVuedotjs, angular: SiAngular,
-  go: SiGo, swagger: SiSwagger, js: SiJavascript, mysql: SiMysql,
-  linux: SiLinux, bash: SiGnubash, git: SiGit, k8s: SiKubernetes,
-  tailwind: SiTailwindcss, vite: SiVite, mongo: SiMongodb, node: SiNodedotjs,
+  java: SiJava, spring: SiSpringboot, kotlin: SiKotlin, flutter: SiFlutter,
+  node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
+  vue: SiVuedotjs, angular: SiAngular, react: SiReact,
+  postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
+  docker: SiDocker, k8s: SiKubernetes, actions: SiGithubactions,
+  swagger: SiSwagger, git: SiGit, linux: SiLinux, bash: SiGnubash,
+  tailwind: SiTailwindcss, vite: SiVite, go: SiGo,
 };
 
 const GEMS_BY_KEY: Record<string, string[]> = {
-  ruby: ["Bundler", "Rake", "IRB", "RubyGems", "Dry-rb"],
-  rails: ["Active Record", "Active Job", "Action Cable", "Active Storage", "Action Mailer"],
-  postgres: ["Active Record", "Scenic", "PgSearch", "Foreigner", "Strong Migrations"],
-  redis: ["Redis", "Rails Cache", "Dalli", "Rack::Attack", "Bullet"],
-  docker: ["docker-compose.yml", "alpine", "Dockerfile multi-stage", "assets:precompile", "entrypoint.sh"],
-  actions: ["checkout", "ruby/setup-ruby", "bundle install", "rspec", "deploy gh-pages"],
+  java: ["Java 17 · LTS", "JPA Hibernate", "Stream API", "Records · Patterns", "Virtual Threads"],
+  spring: ["Spring Boot Starter", "Spring Data JPA", "Spring Security 6", "Spring Cloud Gateway", "JUnit 5 · Mockito"],
+  kotlin: ["Kotlin 2.0", "Jetpack Compose", "Coroutines · Flow", "Hilt DI", "Room DB"],
+  flutter: ["Flutter 3.x", "Dart 3", "Riverpod · Provider", "Firebase", "Go Router"],
+  node: ["Node.js 20 LTS", "Express · NestJS", "Prisma · Mongoose", "Jest · Supertest", "npm · pnpm"],
+  next: ["Next.js 14 App Router", "RSC · Server Actions", "tRPC", "NextAuth", "Vercel"],
+  js: ["ES2024", "ESLint + Prettier", "npm / pnpm", "Husky hooks", "ESM Modules"],
+  ts: ["TypeScript 5", "Zod", "tsc strict", "esbuild", "Vite"],
+  vue: ["Vue 3 · Composition API", "Pinia", "Nuxt 3", "Vue Router", "Axios"],
+  angular: ["Angular 18", "RxJS + Signals", "NgRx", "Standalone", "Angular CLI"],
   react: ["React 18", "Vite", "Tailwind", "Radix UI", "shadcn/ui"],
-  ts: ["TypeScript", "zod", "tsc", "esbuild", "Vite"],
-  java: ["Spring Boot Starter", "Spring Security", "JPA Hibernate", "Maven", "JUnit"],
-  spring: ["Spring Boot Starter", "Spring Data JPA", "Spring Security", "Maven", "JUnit 5"],
-  vue: ["Vue 3", "Pinia", "Vite", "Vue Router", "Axios"],
-  angular: ["Angular 17", "RxJS", "NgRx", "HttpClient", "Standalone Components"],
+  postgres: ["PostgreSQL 16", "JPA Indexes", "PgSearch", "JSONB", "Window Functions"],
+  mysql: ["MySQL 8", "InnoDB FULLTEXT", "Replication", "Stored Procs", "Flyway"],
+  redis: ["Redis 7", "Spring Cache + Lettuce", "Rate Limit", "Pub/Sub", "Bloom Filter"],
+  mongo: ["MongoDB Atlas", "Aggregation Pipeline", "Atlas Search", "Replica Set", "Change Streams"],
+  docker: ["docker-compose.yml", "alpine", "Dockerfile multi-stage", "Docker BuildKit", "entrypoint.sh"],
+  k8s: ["kubectl", "Helm Charts", "Ingress NGINX", "ConfigMap / Secret", "HPA"],
+  actions: ["checkout", "setup-java", "maven build", "testes", "deploy gh-pages"],
+  swagger: ["Springdoc OpenAPI", "Swagger UI", "OpenAPI 3", "Security Schemes JWT", "Redoc"],
+  git: ["Git Flow", "Conventional Commits", "Rebase · Cherry-pick", "Husky", "Semantic Release"],
+  linux: ["Ubuntu 24.04", "systemd units", "ufw + fail2ban", "cron · journalctl", "SSH hardening"],
+  bash: ["Bash 5", "funções · getopts", "awk · sed · jq", "cronjobs", "trap EXIT"],
+  tailwind: ["Tailwind CSS 3", "JIT compiler", "@apply + variants", "Typography Prose", "shadcn themes"],
+  vite: ["Vite 5", "Rollup plugins", "HMR", "esbuild", "Library Mode"],
   go: ["net/http", "gin-gonic", "gorm", "jwt-go", "viper"],
-  swagger: ["Rswag", "OpenAPI 3", "rswag-ui", "rswag-specs", "rswag-api"],
-  js: ["ES2023+", "ESLint", "Prettier", "npm / pnpm", "Husky hooks"],
-  mysql: ["Active Record MySQL", "mysql2", "índices FULLTEXT", "Replication", "Views"],
-  linux: ["Ubuntu Server", "systemd", "ufw / iptables", "cron", "journalctl"],
-  bash: ["Shell Script", "awk / sed", "xargs", "cronjobs", "expect"],
-  git: ["Git Flow", "rebase -i", "cherry-pick", "bisect", "pre-commit hooks"],
-  k8s: ["kubectl", "Helm", "ConfigMap / Secret", "Liveness Probe", "Ingress"],
-  tailwind: ["@tailwindcss", "Tailwind CLI", "@apply", "JIT compiler", "variants"],
-  vite: ["vite build", "plugins", "rollup", "HMR", "esbuild"],
-  mongo: ["Mongoid", "Aggregation Pipeline", "Atlas Search", "Replica Set", "Mongosh"],
-  node: ["Express", "Koa", "Nest.js", "Nodemon", "dotenv-safe"],
 };
 
 const PATTERNS_BY_KEY: Record<string, string[]> = {
-  ruby: ["POO", "Duck Typing", "Blocks", "Metaprogramação", "Modules"],
-  rails: ["MVC", "Convenção sobre Config", "Filters", "Concerns", "Engines"],
-  postgres: ["JSONB / Hstore", "Índices GIN/GiST", "CTE e Window Fns", "Advisory Locks", "Materialized Views"],
-  redis: ["Fragment cache", "Russian doll", "Low-level cache", "Etags", "Counter cache"],
-  docker: ["Camadas otimizadas", "Multi-stage", "Volumes", "Network", ".dockerignore"],
-  actions: ["Workflow files", "Matrix strategy", "Cache @actions/cache", "Artifacts", "Environments"],
-  react: ["Components", "Hooks", "Context", "Error Boundary", "Lazy / Suspense"],
-  ts: ["strict mode", "Generics", "Utility Types", "Discriminated Unions", "as const"],
-  java: ["Spring Boot", "JPA Repository", "DTOs", "Beans Validation", "Swagger OpenAPI"],
-  spring: ["Spring Boot auto config", "Spring Security", "Transactional", "DTO Projections", "Profiles"],
+  java: ["Clean Architecture", "Hexagonal", "Repository", "Service Layer", "CQRS"],
+  spring: ["@Transactional", "AOP", "DTO Projections", "Spring Profiles", "Auto-config"],
+  kotlin: ["MVVM + Clean", "Sealed Classes", "Extension Fns", "Delegates", "Reactive Flow"],
+  flutter: ["Repository", "BLoC / Provider", "Isolates", "Lazy Lists", "Custom Paint"],
+  node: ["Middleware pipeline", "Error handlers", "NestJS Modules", "Factory + DI", "BullMQ queues"],
+  next: ["RSC · SSR", "Server Actions", "Edge Runtime", "tRPC routers", "ISR revalidation"],
+  js: ["ESM modules", "Event Loop", "Promises / async-await", "Web APIs", "Event Delegation"],
+  ts: ["strict mode", "Generics", "Utility Types", "Discriminated Unions", "infer const"],
   vue: ["Composition API", "Script Setup", "Pinia stores", "Router guards", "Teleport"],
   angular: ["Signals", "Standalone", "Dependency Injection", "RxJS pipes", "Async pipe"],
-  go: ["goroutines / channels", "interfaces implícitas", "context.Context", "struct tags", "go mod"],
-  swagger: ["OpenAPI 3", "rswag specs", "Swagger UI /api-docs", "Security Schemes JWT", "Examples"],
-  js: ["ESM modules", "Event Loop", "Promises / async-await", "Web APIs", "Event Delegation"],
-  mysql: ["Stored Procedures", "Triggers", "Replication", "Explain analyze", "Partitioning"],
-  linux: ["SSH hardening", "systemd units", "fail2ban", "logrotate", "bashrc aliases"],
-  bash: ["funções", "getopts", "trap EXIT", "IFS / arrays", "pipefail"],
+  react: ["Components", "Custom Hooks", "Context + Reducer", "Error Boundary", "Lazy / Suspense"],
+  postgres: ["CTE e Window Fns", "Índices GIN/GiST", "Advisory Locks", "JSONB", "Views"],
+  mysql: ["Stored Procedures", "Triggers", "Replication", "Explain Analyze", "Partitioning"],
+  redis: ["Fragment cache", "Rate Limiting", "Semaphores", "Bloom Filter", "Counter cache"],
+  mongo: ["Aggregation", "Indexes TTL / Text", "Replica Set", "Change Streams", "Atlas Search"],
+  docker: ["Camadas otimizadas", "Multi-stage", "Volumes nomeados", "Networks", ".dockerignore"],
+  k8s: ["Deployments", "Services", "PV / PVC", "Ingress Controller", "HPA"],
+  actions: ["Workflows reusable", "Matrix strategy", "Cache @cache", "Artifacts", "Environments"],
+  swagger: ["OpenAPI 3", "Springdoc", "Swagger UI", "Security Schemes JWT", "Examples"],
   git: ["Feature branches", "Squash / Rebase", "Stash", "Bisect", "Husky pre-commit"],
-  k8s: ["Deployments", "Services ClusterIP / NodePort / LB", "PV / PVC", "Ingress Controller", "HPA"],
+  linux: ["SSH hardening", "systemd units", "fail2ban", "logrotate", "bashrc aliases"],
+  bash: ["funções + trap", "getopts", "xargs", "IFS / arrays", "pipefail"],
   tailwind: ["Arbitrary values", "@apply", "variants", "plugins", "design tokens"],
   vite: ["Config define", "plugins", "build.target", "optimizeDeps", "server proxy"],
-  mongo: ["Aggregation", "Indexes", "Replica Set", "Change Streams", "Atlas Search"],
-  node: ["Middlewares", "Error handlers", "Routing", "ORM (Prisma / Mongoose)", "Env validation"],
+  go: ["goroutines / channels", "interfaces implícitas", "context.Context", "struct tags", "go mod"],
 };
 
 const TAGLINE_BY_KEY: Record<string, string> = {
-  ruby: "Linguagem expressiva",
-  rails: "Framework principal",
-  postgres: "Dados consistentes",
-  redis: "Cache & performance",
-  docker: "Ambientes reproduzíveis",
-  actions: "CI / CD automatizado",
-  react: "Interfaces reativas",
-  ts: "Código seguro por padrão",
-  java: "Enterprise & Spring",
-  spring: "Produtividade Java",
-  vue: "SPA leve e rápido",
-  angular: "App estruturada",
-  go: "Performático e simples",
-  swagger: "Documentação OpenAPI",
+  java: "Engenharia & Spring",
+  spring: "Produtividade Java Enterprise",
+  kotlin: "Android nativo · Moderno",
+  flutter: "Híbrido iOS · Android",
+  node: "Runtime JS server-side",
+  next: "SSR · App Router React",
   js: "Fundamentos Web modernos",
+  ts: "Código seguro por padrão",
+  vue: "SPA leve · Composition API",
+  angular: "App escalável · Signals",
+  react: "Interfaces reativas 18",
+  postgres: "Dados consistentes ACID",
   mysql: "Banco SQL popular",
+  redis: "Cache & performance",
+  mongo: "NoSQL orientado a docs",
+  docker: "Ambientes reproduzíveis",
+  k8s: "Orquestração containers",
+  actions: "CI / CD automatizado",
+  swagger: "Documentação OpenAPI 3",
+  git: "Controle de versão",
   linux: "Servidores Unix",
   bash: "Automação Shell",
-  git: "Controle de versão",
-  k8s: "Orquestração de containers",
   tailwind: "Utility-first CSS",
   vite: "Build & dev server rápido",
-  mongo: "NoSQL orientado a docs",
-  node: "Runtime JS server-side",
+  go: "Performático e simples",
 };
 
 const FRONTICON_BY_KEY: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  ruby: SiRuby, rails: SiRubyonrails, postgres: SiPostgresql, redis: SiRedis,
-  docker: SiDocker, actions: SiGithubactions, react: SiReact, ts: SiTypescript,
-  java: SiJava, spring: SiSpringboot, vue: SiVuedotjs, angular: SiAngular,
-  go: SiGo, swagger: SiSwagger, js: SiJavascript, mysql: SiMysql,
-  linux: SiLinux, bash: SiGnubash, git: SiGit, k8s: SiKubernetes,
-  tailwind: SiTailwindcss, vite: SiVite, mongo: SiMongodb, node: SiNodedotjs,
+  java: SiJava, spring: SiSpringboot, kotlin: SiKotlin, flutter: SiFlutter,
+  node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
+  vue: SiVuedotjs, angular: SiAngular, react: SiReact,
+  postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
+  docker: SiDocker, k8s: SiKubernetes, actions: SiGithubactions,
+  swagger: SiSwagger, git: SiGit, linux: SiLinux, bash: SiGnubash,
+  tailwind: SiTailwindcss, vite: SiVite, go: SiGo,
 };
 
 type Props = { stack: AdminStackItem[] };
@@ -118,16 +123,16 @@ export function StackShowcaseSection({ stack }: Props) {
 
   const cards = stack.length > 0
     ? stack.map((item) => {
-        const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "rails";
-        const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiRuby;
-        const gems = GEMS_BY_KEY[iconKey] ?? ["Gemas / libs", "Config", "Padrões", "Setup", "Deploy"];
+        const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "spring";
+        const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiJava;
+        const gems = GEMS_BY_KEY[iconKey] ?? ["Libs", "Config", "Padrões", "Setup", "Deploy"];
         const patterns = PATTERNS_BY_KEY[iconKey] ?? ["Boas práticas", "Padrões", "Qualidade", "Documentação", "Testes"];
         const tagline = TAGLINE_BY_KEY[iconKey] ?? item.name;
         return {
           id: item.id,
           name: item.name,
           tagline,
-          tone: (item.tone || "tech-rails") as ProjectTone,
+          tone: (item.tone || "tech-spring") as ProjectTone,
           frontDetail: `Experiência com ${item.name}. Nível de domínio ~${item.level}%. Aplicado em projetos e processos do dia a dia.`,
           backTitle: `${item.name} — Aplicação prática`,
           backSubtitle: `Recursos e padrões em ${item.name}`,
@@ -183,7 +188,7 @@ export function StackShowcaseSection({ stack }: Props) {
                         <div className="h-1.5 rounded-full bg-[#44475a]/80 overflow-hidden">
                           <div
                             className="h-full rounded-full"
-                            style={{ width: `${item.level}%`, background: "var(--tech-color,#cc0000)", boxShadow: "0 0 8px color-mix(in srgb, var(--tech-color,#cc0000) 55%, transparent)" }}
+                            style={{ width: `${item.level}%`, background: "var(--tech-color,#6db33f)", boxShadow: "0 0 8px color-mix(in srgb, var(--tech-color,#6db33f) 55%, transparent)" }}
                           />
                         </div>
                         <span className="text-[10.5px] font-mono text-muted-foreground mt-1 inline-block">domínio ~{item.level}%</span>
@@ -235,7 +240,7 @@ export function StackShowcaseSection({ stack }: Props) {
         </div>
 
         <a href="#projects" className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-          Explorar projetos Rails <ExternalLink size={15} />
+          Explorar projetos Java · Spring · Kotlin · Flutter <ExternalLink size={15} />
         </a>
       </div>
     </section>
@@ -244,23 +249,27 @@ export function StackShowcaseSection({ stack }: Props) {
 
 const DEFAULT_CARDS = (() => {
   const FALLBACK_STACK: AdminStackItem[] = [
-    { id: "s-ruby", name: "Ruby", icon: "ruby", tone: "tech-ruby", level: 96 },
-    { id: "s-rails", name: "Ruby on Rails", icon: "rails", tone: "tech-rails", level: 98 },
-    { id: "s-rspec", name: "RSpec · Qualidade", icon: "swagger", tone: "tech-ruby", level: 95 },
-    { id: "s-jobs", name: "Background Jobs", icon: "rails", tone: "tech-postgres", level: 86 },
-    { id: "s-auth", name: "Autenticação", icon: "docker", tone: "tech-docker", level: 90 },
-    { id: "s-pundit", name: "Autorização", icon: "actions", tone: "tech-actions", level: 85 },
-    { id: "s-hotwire", name: "Hotwire", icon: "vite", tone: "tech-rails", level: 80 },
-    { id: "s-redis", name: "Cache & Redis", icon: "redis", tone: "tech-redis", level: 82 },
-    { id: "s-pg", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 88 },
-    { id: "s-api", name: "API & Microserviços", icon: "swagger", tone: "tech-openapi", level: 92 },
-    { id: "s-ev", name: "Mensageria & Eventos", icon: "redis", tone: "tech-redis", level: 78 },
-    { id: "s-obs", name: "Observabilidade", icon: "docker", tone: "tech-docker", level: 80 },
+    { id: "s-java", name: "Java 17 LTS", icon: "java", tone: "tech-java", level: 95 },
+    { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 95 },
+    { id: "s-security", name: "Spring Security · JWT", icon: "spring", tone: "tech-spring", level: 90 },
+    { id: "s-jpa", name: "JPA · Hibernate", icon: "postgres", tone: "tech-spring", level: 92 },
+    { id: "s-kotlin", name: "Kotlin · Android", icon: "kotlin", tone: "tech-kotlin", level: 88 },
+    { id: "s-compose", name: "Jetpack Compose", icon: "kotlin", tone: "tech-kotlin", level: 85 },
+    { id: "s-flutter", name: "Flutter · Dart", icon: "flutter", tone: "tech-flutter", level: 82 },
+    { id: "s-node", name: "Node.js · NestJS", icon: "node", tone: "tech-node", level: 80 },
+    { id: "s-next", name: "Next.js 14", icon: "next", tone: "tech-next", level: 82 },
+    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 78 },
+    { id: "s-angular", name: "Angular 18", icon: "angular", tone: "tech-angular", level: 75 },
+    { id: "s-micros", name: "Microserviços · Kafka", icon: "docker", tone: "tech-docker", level: 85 },
+    { id: "s-pg", name: "PostgreSQL · MySQL", icon: "postgres", tone: "tech-postgres", level: 88 },
+    { id: "s-swagger", name: "OpenAPI 3 · Swagger", icon: "swagger", tone: "tech-openapi", level: 92 },
+    { id: "s-tests", name: "JUnit · Mockito", icon: "vite", tone: "tech-spring", level: 90 },
+    { id: "s-obs", name: "Observabilidade · Docker", icon: "actions", tone: "tech-actions", level: 80 },
   ];
   return FALLBACK_STACK.map((item) => {
-    const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "rails";
-    const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiRuby;
-    const gems = GEMS_BY_KEY[iconKey] ?? ["Gemas / libs", "Config", "Padrões", "Setup", "Deploy"];
+    const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "spring";
+    const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiJava;
+    const gems = GEMS_BY_KEY[iconKey] ?? ["Libs", "Config", "Padrões", "Setup", "Deploy"];
     const patterns = PATTERNS_BY_KEY[iconKey] ?? ["Boas práticas", "Padrões", "Qualidade", "Documentação", "Testes"];
     const tagline = TAGLINE_BY_KEY[iconKey] ?? item.name;
     return {

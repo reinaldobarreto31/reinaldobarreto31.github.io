@@ -1,61 +1,75 @@
-# 🌆 Reinaldo Barreto — Software Engineer | Full-Stack
+# 👋 Olá, eu sou Reinaldo Barreto da Silva
 
-> **Perfil profissional focado em Java 17+ / Spring Boot 3, Kotlin Android nativo, Flutter híbrido e soluções front-end modernas com Next.js 14, React 18, Vue 3 e Angular 18.**
-> Portfólio publicado em **[reinaldobarreto31.github.io](https://reinaldobarreto31.github.io)** · Painel Admin CRUD incluso (login próprio).
-
----
-
-## 🛠️ Tech Stack Principal (Prioridade Oficial)
-
-### 🏆 Back-end (Foco 1)
-| Tecnologia | Versão | Badge |
-|---|---|---|
-| **Java** | 17+ LTS | ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) |
-| **Spring Boot** | 3.x | ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white) |
-| **Spring Security** | 6.x (JWT) | ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring&logoColor=white) |
-| **Spring Data JPA** | Hibernate | ![JPA](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white) |
-| **Spring Cloud Gateway** | Microserviços | ![Spring Cloud](https://img.shields.io/badge/Spring_Cloud-6DB33F?style=for-the-badge&logo=spring&logoColor=white) |
-| **JUnit 5 · Mockito** | TDD | ![JUnit 5](https://img.shields.io/badge/JUnit_5-25A162?style=for-the-badge&logo=junit5&logoColor=white) |
-
-### 📱 Mobile (Foco 2)
-| Tecnologia | Versão | Badge |
-|---|---|---|
-| **Kotlin** | 2.0 (Android + Web) | ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) |
-| **Jetpack Compose** | UI moderna | ![Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpack-compose&logoColor=white) |
-| **Flutter / Dart** | 3.x Híbrido | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white) |
-
-### ⚡ Front-end Full-Stack (Obrigatório · 4º Pilar)
-| Tecnologia | Versão | Badge |
-|---|---|---|
-| **Next.js** | 14 · App Router | ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white) |
-| **Node.js** | 20 LTS · NestJS | ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) |
-| **Vue.js** | 3 · Composition API | ![Vue.js](https://img.shields.io/badge/Vue.js-42B883?style=for-the-badge&logo=vuedotjs&logoColor=white) |
-| **Angular** | 18 · Signals | ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white) |
-| **React** | 18 | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) |
-| **TypeScript** | 5.x | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) |
-| **JavaScript** | ES2024 | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) |
-| **Tailwind CSS** | 3.x | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) |
-| **Vite** | 5.x | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) |
-
-### 🗄️ Bancos · DevOps · Infra
-| Categoria | Tecnologias | Badges |
-|---|---|---|
-| **SQL / NoSQL** | PostgreSQL · MySQL · MongoDB · Redis | ![PG](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![Mongo](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) |
-| **DevOps** | Docker · GitHub Actions · Kubernetes | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white) ![K8s](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white) |
-| **Documentação API** | OpenAPI 3 · Swagger / Springdoc | ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black) |
-| **Versionamento** | Git · Git Flow · Conventional Commits | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) |
+> **Software Engineer · Full-Stack Java 8+ / Spring Boot 3 · Mobile Kotlin & Flutter · Front-ends Next.js | Vue 3 | Angular 18**
 
 ---
 
-## 💻 Amostras de Código (Stack em Ação — Java 17 & Kotlin 2.0)
+## 🚀 Sobre Mim
+
+- 🏢 **Analista de Sistemas / Desenvolvedor de Software** com foco em soluções escaláveis
+- 🎯 **Especialidade:** Java 8+ LTS, Spring Boot 3 (Security / Data JPA / Cloud Gateway / OpenAPI 3)
+- 📱 **Mobile:** Kotlin 2.0 · Jetpack Compose (Android Nativo) · Flutter 3.x (iOS + Android)
+- ⚡ **Full-Stack Front-ends:** Next.js 14 · Node.js 20 LTS · React 18 · Vue.js 3 · Angular 18 · TypeScript 5 · JavaScript (ES2024)
+- 🛠️ **Infra:** PostgreSQL · MySQL · MongoDB · Redis · Docker · Kubernetes · GitHub Actions CI/CD
+- 📐 **Padrões:** Clean Architecture · Hexagonal (Ports & Adapters) · DDD · SOLID · CQRS · TDD (JUnit 5 · Mockito)
+
+---
+
+## 🏆 Stack Principal — Prioridade Oficial
+
+> ### 1️⃣ Back-end (Foco #1)
+>
+> ![Java](https://img.shields.io/badge/Java%2026+-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+> ![Spring Boot](https://img.shields.io/badge/Spring_Boot%203-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+> ![Spring Security](https://img.shields.io/badge/Spring_Security%206-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+> ![Hibernate](https://img.shields.io/badge/JPA%20Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
+> ![JUnit 5](https://img.shields.io/badge/JUnit%205-25A162?style=for-the-badge&logo=junit5&logoColor=white)
+> ![Mockito](https://img.shields.io/badge/Mockito-C22D40?style=for-the-badge&logo=mockito&logoColor=white)
+
+> ### 2️⃣ Mobile (Híbrido + Nativo)
+>
+> ![Kotlin](https://img.shields.io/badge/Kotlin%202.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+> ![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpack-compose&logoColor=white)
+> ![Flutter](https://img.shields.io/badge/Flutter%203.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+> ![Dart](https://img.shields.io/badge/Dart%203-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+
+> ### 3️⃣ Front-end Full-Stack (NUNCA omitir)
+>
+> ![Next.js](https://img.shields.io/badge/Next.js%2014-000000?style=for-the-badge&logo=next.js&logoColor=white)
+> ![Node.js](https://img.shields.io/badge/Node.js%2020%20LTS-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+> ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+> ![Vue.js](https://img.shields.io/badge/Vue.js%203-42B883?style=for-the-badge&logo=vuedotjs&logoColor=white)
+> ![Angular](https://img.shields.io/badge/Angular%2018-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+> ![React](https://img.shields.io/badge/React%2018-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+> ![TypeScript](https://img.shields.io/badge/TypeScript%205-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+> ![JavaScript](https://img.shields.io/badge/JavaScript%20ES2024-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+> ![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+> ![Vite](https://img.shields.io/badge/Vite%205-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
+> ### 4️⃣ Bancos · DevOps · Infra
+>
+> ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+> ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+> ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+> ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+> ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+> ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+> ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+> ![Swagger](https://img.shields.io/badge/OpenAPI%203-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+> ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+> ![Linux](https://img.shields.io/badge/Linux%20Ubuntu-2496ED?style=for-the-badge&logo=linux&logoColor=white)
+
+---
+
+## � Amostras de Código (Stack em Ação — Java & Kotlin 2.0)
 
 > Trechos reais da stack que trabalho diariamente: **Spring Boot 3 REST + JPA** e **Jetpack Compose Android com Coroutines Flow**.
 
-### 🟦 Java 17 LTS · Spring Boot 3 · (Controller · Repository · Record DTO)
+### 🟦 Java LTS · Spring Boot 3 · (Controller · Repository · Record DTO)
 
 ```java
 // ==============================
-// ClienteResponse.java — RECORD (Java 16+)
+// ClienteResponse.java — RECORD (Java 8+)
 // ==============================
 package br.com.reinaldobarreto.clientehub.dto;
 
@@ -356,91 +370,60 @@ private fun SeletorMes(mesStr: String, onAnterior: () -> Unit, onProximo: () -> 
 
 ---
 
-## 📦 Repositórios Principais (Projetos Reais GitHub)
+## �📦 Projetos Principais (Repositórios Reais)
 
-> 4 projetos públicos já publicados na conta `reinaldobarreto31`:
-
-| # | Projeto | Repositório | Stack Chave |
+| # | 🌟 Projeto | Link | Principais Stacks |
 |---|---|---|---|
-| 1 | **Portal Cliente + Contrato Spring** (Full-Stack) | `reinaldobarreto31/clientehub` | Java 17 · Spring Boot 3 · PostgreSQL · Next.js 14 · TS |
-| 2 | **StockWise — Gestão de Estoque & Financeiro** | `reinaldobarreto31/stockwise` | Spring Boot 3 · Spring Data JPA · Thymeleaf · Bootstrap · MySQL |
-| 3 | **Portfólio Pessoal (este repo)** | `reinaldobarreto31/reinaldobarreto31.github.io` | React 18 · TypeScript 5 · Vite · Tailwind · shadcn/ui |
-| 4 | **PDF Compressor Web** (embedded no portfólio) | `artifacts/pdf-compressor` | Vite · React · TS · Service Worker · Canvas |
+| 1 | **Portal Cliente + Contrato Spring Full-Stack** | [clientehub](https://github.com/reinaldobarreto31/clientehub) | Java 8+ · Spring Boot 3 · PostgreSQL · Next.js 14 · TypeScript |
+| 2 | **StockWise — Gestão de Estoque & Financeiro** | [stockwise](https://github.com/reinaldobarreto31/stockwise) | Spring Boot 3 · Spring Data JPA · Thymeleaf · Bootstrap · MySQL |
+| 3 | **Portfólio Pessoal (Publicado)** | [reinaldobarreto31.github.io](https://reinaldobarreto31.github.io) | React 18 · TypeScript 5 · Vite 5 · Tailwind · shadcn/ui · Admin CRUD |
+| 4 | **PDF Compressor Web (Offline-first)** | [→ dentro do portfolio](https://reinaldobarreto31.github.io/pdf-compressor/) | Vite · React · TS · Service Worker · Canvas Compress |
 
 ---
 
-## 📂 Estrutura do Repositório
+## 📊 GitHub Stats
 
-```bash
-reinaldobarreto31.github.io/
-├── artifacts/
-│   ├── portfolio/           # App React 18 + Vite 5 (portfólio principal)
-│   │   └── src/
-│   │       ├── components/sections/   # hero, about, projects, experience, stack-showcase, admin-panel, resume-exporter
-│   │       └── lib/                   # default-data.ts, resume-data.ts, admin-store.ts
-│   ├── pdf-compressor/      # App Vite compactador de PDF
-│   ├── api-server/          # Server Node.js + rotas contact / health
-│   └── mockup-sandbox/      # Sandbox componentes shadcn
-├── public/ (gerado build Vite)
-├── assets/ (builds estáticos publicados no Pages)
-├── .github/workflows/deploy-portfolio.yml   # CI/CD Pages
-└── README.md
-```
+<div align="center">
+  <img width="49%" src="https://github-readme-stats.vercel.app/api?username=reinaldobarreto31&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&rank_icon=github" />
+  <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=reinaldobarreto31&layout=compact&theme=tokyonight&hide_border=true&langs_count=12" />
+</div>
+
+<div align="center">
+  <img width="75%" src="https://github-readme-streak-stats.herokuapp.com/?user=reinaldobarreto31&theme=tokyonight&hide_border=true" />
+</div>
 
 ---
 
-## 🔐 Painel Admin CRUD
+## 🎯 Perfil Técnico Completo
 
-Painel administrativo integrado **dentro do próprio portfólio** que permite editar (via `localStorage`) e JSON export/import:
-
-- 🔑 **Login:** `reinaldobarretosilva@gmail.com`
-- 🔑 **Senha:** `javaOracle1234`
-- ✏️ **Entidades editáveis:** Projetos / Experiências profissionais / Sobre-mim / Stack Showcase
-- 💾 **Export/Import JSON** completo (backup de configuração)
-- 🖨️ **Export Currículo PNG** (`ResumeExporter` — html2canvas, 2x escala)
-
----
-
-## 🚀 Rodar Localmente
-
-```bash
-# 1. Entrar no app do portfólio
-cd artifacts/portfolio
-
-# 2. Instalar deps
-npm.cmd install
-
-# 3. Dev server
-npm.cmd run dev
-
-# 4. Build produção (gera index.html estático)
-npm.cmd run build
-```
-
----
-
-## ⚙️ CI/CD — GitHub Pages
-
-O workflow em `.github/workflows/deploy-portfolio.yml` já está configurado:
-- **Trigger:** push na `main`
-- **Passos:** `setup-node` → `npm install` → `npm run build` → deploy para Pages branch `gh-pages`
-
----
-
-## 📧 Contato
-
-| Canal | Link |
+| Categoria | Detalhes |
 |---|---|
-| 📧 Email | reinaldobarretosilva@gmail.com |
-| 🐙 GitHub | [github.com/reinaldobarreto31](https://github.com/reinaldobarreto31) |
-| 💼 LinkedIn | Reinaldo Barreto da Silva |
+| **Arquitetura** | Clean Architecture · Hexagonal (Ports & Adapters) · DDD · CQRS · Event Sourcing · Microserviços |
+| **Back-end** | Java 8+ Records · Virtual Threads · Spring Boot 3 Starters · Spring Security 6 JWT · Spring Cloud Gateway · JPA Hibernate · Migrations Flyway / Liquibase |
+| **Testes** | TDD · JUnit 5 · Mockito · TestContainers · Spring Boot Test · Jest · Vitest · Cypress |
+| **Mobile** | Kotlin 2.0 · Coroutines Flow · Hilt DI · Room DB · Jetpack Compose. Flutter Riverpod · Provider · Go Router · Firebase · SQLite |
+| **Front-end SSR/SSG** | Next.js 14 App Router · RSC · Server Actions · tRPC · NextAuth · ISR · Edge Runtime. Nuxt 3 · Angular Universal · SSR Vite |
+| **Front-end SPA** | Vue 3 Composition API · Pinia · Nuxt 3 · Angular 18 Standalone · Signals · NgRx · RxJS. React 18 hooks · Context Reducer · Radix · shadcn/ui |
+| **Bancos SQL** | PostgreSQL 16 (JSONB · Window Fns · GIN/GiST indexes). MySQL 8 (InnoDB FULLTEXT · Replication · Flyway) |
+| **NoSQL / Cache** | MongoDB Atlas Aggregation · Atlas Search · Change Streams. Redis 7 Cache · Rate Limit · Pub/Sub · Bloom Filters |
+| **DevOps & Infra** | Docker multi-stage. Docker Compose. Kubernetes Deploy Ingress Helm HPA. GitHub Actions (reusable, matrix, cache, artifacts). Linux Ubuntu · systemd · SSH hardening · ufw · fail2ban · bash scripting |
+| **API & Docs** | OpenAPI 3.0 Spec. Springdoc OpenAPI + Swagger UI + Redoc. JWT (Access + Refresh). API Gateway · Rate Limit · Circuit Breaker · Resilience4j |
+| **Versionamento** | Git Flow · Conventional Commits · Rebase · Cherry-pick · Husky pre-commit · Semantic Release |
 
 ---
 
-## 🎯 Padrões Arquiteturais Adotados
+## 📞 Contato
 
-> Clean Architecture · Hexagonal (Ports & Adapters) · DDD · SOLID · CQRS
-> Repository Pattern · Service Layer · TDD (JUnit 5 · Mockito)
-> Next.js 14 RSC · Server Actions · SSR · ISR
-> Vue 3 Composition API · Angular 18 Standalone + Signals
-> Docker multi-stage · 12-Factor Apps · OpenAPI 3 / Swagger
+| 📧 Email | 🐙 GitHub | 💼 LinkedIn |
+|---|---|---|
+| **reinaldobarretosilva@gmail.com** | [github.com/reinaldobarreto31](https://github.com/reinaldobarreto31) | [linkedin.com/in/reinaldobarreto](https://www.linkedin.com/in/reinaldobarreto) |
+
+---
+
+<div align="center">
+
+### 🔑 Portfólio Online · Painel Admin Incluso
+
+👉 **[reinaldobarreto31.github.io](https://reinaldobarreto31.github.io)** · Painel CRUD · Export Currículo PNG
+
+</div>

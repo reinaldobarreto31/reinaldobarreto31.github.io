@@ -1,37 +1,45 @@
 import { motion } from "framer-motion";
 import { BriefcaseBusiness, MapPin, CalendarDays } from "lucide-react";
 import {
-  SiJava, SiJavascript, SiVuedotjs, SiPostgresql, SiGit, SiRuby,
-  SiRubyonrails, SiAngular, SiReact, SiLinux, SiMysql, SiGnubash,
+  SiJava, SiJavascript, SiVuedotjs, SiPostgresql, SiGit,
+  SiAngular, SiReact, SiLinux, SiMysql, SiGnubash,
   SiRedis, SiDocker, SiSwagger, SiGo, SiSpringboot, SiTailwindcss,
-  SiGithubactions, SiTypescript,
+  SiGithubactions, SiTypescript, SiKotlin, SiFlutter, SiNodedotjs, SiMongodb, SiVite,
 } from "react-icons/si";
 import type { AdminExperience, ProjectTone } from "@/lib/default-data";
 
 const ICON_FALLBACKS: Record<ProjectTone, React.ComponentType<{ size?: number; className?: string }>> = {
-  "tech-ruby": SiRuby,
-  "tech-rails": SiRubyonrails,
+  "tech-java": SiJava,
+  "tech-spring": SiSpringboot,
+  "tech-kotlin": SiKotlin,
+  "tech-flutter": SiFlutter,
+  "tech-node": SiNodedotjs,
+  "tech-next": SiNodedotjs,
+  "tech-js": SiJavascript,
   "tech-postgres": SiPostgresql,
+  "tech-mysql": SiMysql,
+  "tech-redis": SiRedis,
+  "tech-mongo": SiMongodb,
   "tech-docker": SiDocker,
   "tech-actions": SiGithubactions,
   "tech-react": SiReact,
   "tech-ts": SiTypescript,
+  "tech-vue": SiVuedotjs,
+  "tech-angular": SiAngular,
   "tech-jwt": SiJavascript,
   "tech-openapi": SiSwagger,
   "tech-pdf": SiJavascript,
   "tech-golang": SiGo,
-  "tech-java": SiJava,
   "tech-api": SiJavascript,
-  "tech-vue": SiVuedotjs,
+  "tech-tailwind": SiTailwindcss,
+  "tech-vite": SiVite,
   "tech-git": SiGit,
-  "tech-angular": SiAngular,
   "tech-linux": SiLinux,
-  "tech-mysql": SiMysql,
   "tech-bash": SiGnubash,
 };
 
 function TagIcon({ tone }: { tone: ProjectTone }) {
-  const Cmp = ICON_FALLBACKS[tone] ?? SiRuby;
+  const Cmp = ICON_FALLBACKS[tone] ?? SiJava;
   return <Cmp size={11} />;
 }
 
