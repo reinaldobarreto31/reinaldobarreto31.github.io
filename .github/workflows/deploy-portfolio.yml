@@ -1,4 +1,4 @@
-name: Deploy Portfolio to GitHub Pages (Run 143 FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true)
+name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
@@ -6,54 +6,76 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-24.04
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    defaults:
+      run:
+        working-directory: _deploy_standalone
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '22'
-          cache: 'pnpm'
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: _deploy_standalone/package-lock.json
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: npm ci
 
-      - name: Sync Currículo PDF/HTML
+      - name: Copy public assets from portfolio artifacts (curriculo, mini-sites)
         run: |
-          [ -f curriculo.pdf ]  && cp curriculo.pdf  artifacts/portfolio/public/curriculo.pdf  || echo "[warn] skip"
-          [ -f curriculo.html ] && cp curriculo.html artifacts/portfolio/public/curriculo.html || echo "[warn] skip"
+          set -x
+          SRC_PUBLIC="../artifacts/portfolio/public"
+          DST_PUBLIC="./public"
+          if [ -d "$SRC_PUBLIC" ]; then
+            cp -vrf "$SRC_PUBLIC"/* "$DST_PUBLIC"/ 2>/dev/null || true
+            ls -la "$DST_PUBLIC"
+          else
+            echo "[skip] artifacts/portfolio/public not found"
+          fi
 
-      - name: Build portfolio
+      - name: Build portfolio (BASE_PATH=/ for user GitHub Pages)
+        env:
+          BASE_PATH: /
+          PORT: 4173
+          NODE_OPTIONS: --max-old-space-size=4096
         run: |
-          set -e
-          cd artifacts/portfolio
-          export PORT=3000
-          export BASE_PATH=/
-          pnpm exec vite build --config vite.config.ts
-          echo "=== ls -la dist/public:"
+          set -x
+          npx vite build --config vite.config.ts 2>&1 | tail -80
+          echo "=== Listing output ==="
           ls -la dist/public
+          echo "=== HTML head check ==="
+          head -c 600 dist/public/index.html || true
 
-      - name: Deploy gh-pages (peaceiris v5 + FORCE_JAVASCRIPT_ACTIONS_TO_NODE24)
-        uses: peaceiris/actions-gh-pages@v5
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./artifacts/portfolio/dist/public
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+          path: _deploy_standalone/dist/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,23 @@
+[33m../../../../../../../C:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/src/components/ui/tooltip.tsx (2:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.[39m
+[31mÔ£ù[39m Build failed in 37.40s
+[31merror during build:
+[31m../../../../../../../C:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/src/components/sections/hero.tsx (6:43): "SiJava" is not exported by "../../../../../../../C:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/react-icons/si/index.mjs", imported by "../../../../../../../C:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/src/components/sections/hero.tsx".[31m
+file: [36mC:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/src/components/sections/hero.tsx:6:43[31m
+[33m
+4: import tracksBg from "@/assets/tracks-bg.png";
+5: import { TrackLocomotive } from "@/components/hero/track-locomotive";
+6: import { SiPostgresql, SiDocker, SiGithub, SiJava, SiSpringboot, SiKotlin, SiFlutter } from "react-icons/si";
+                                              ^
+7: import { Mail, ArrowDownRight, FileImage, FileDown, ChevronDown } from "lucide-react";
+8: import { ResumeExporter, type ResumeExporterHandle } from "./resume-exporter";
+[31m
+    at getRollupError (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/parseAst.js:317:41)
+    at error (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/parseAst.js:313:42)
+    at Module.error (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:17154:16)
+    at Module.traceVariable (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:17587:29)
+    at ModuleScope.findVariable (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:15177:39)
+    at Identifier.bind (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:5164:40)
+    at CallExpression.bind (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:2542:28)
+    at CallExpression.bind (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:12286:15)
+    at Property.bind (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:2546:23)
+    at ObjectExpression.bind (file:///c:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entry.js:2542:28)[39m

@@ -1,0 +1,58 @@
+﻿[36mvite v7.3.6 [32mbuilding client environment for production...[36m[39m
+transforming...
+vite.cmd : [33msrc/components/ui/tooltip.tsx (2:0): Error when using 
+sourcemap for reporting an error: Can't resolve original location of 
+error.[39m
+No linha:1 caractere:326
++ ... AllOutput = & ".\node_modules\.bin\vite.cmd" build --config vite.conf ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([33msrc/compon... of error.[39m 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[32mÔ£ô[39m 2191 modules transformed.
+[31mÔ£ù[39m Build failed in 3.23s
+[31merror during build:
+[31msrc/components/sections/experience.tsx (4:2): "DiJavascript" is not 
+exported by "node_modules/react-icons/si/index.mjs", imported by 
+"src/components/sections/experience.tsx".[31m
+file: [36mC:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.github.io/_d
+eploy_standalone/src/components/sections/experience.tsx:4:2[31m
+[33m
+2: import { BriefcaseBusiness, MapPin, CalendarDays } from "lucide-react";
+3: import {
+4:   DiJavascript, SiVuedotjs, SiPostgresql, SiGit,
+     ^
+5:   SiAngular, SiReact, SiLinux, SiMysql, SiGnubash,
+6:   SiRedis, SiDocker, SiSwagger, SiGo, SiSpringboot, SiTailwindcss,
+[31m
+    at getRollupError (file:///C:/Users/reinaldo/Documents/Workspace/reinaldoba
+rreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/parseAs
+t.js:317:41)
+    at error (file:///C:/Users/reinaldo/Documents/Workspace/reinaldobarreto31.g
+ithub.io/_deploy_standalone/node_modules/rollup/dist/es/shared/parseAst.js:313:
+42)
+    at Module.error (file:///C:/Users/reinaldo/Documents/Workspace/reinaldobarr
+eto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-entr
+y.js:17154:16)
+    at Module.traceVariable (file:///C:/Users/reinaldo/Documents/Workspace/rein
+aldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/n
+ode-entry.js:17587:29)
+    at ModuleScope.findVariable (file:///C:/Users/reinaldo/Documents/Workspace/
+reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shar
+ed/node-entry.js:15177:39)
+    at Identifier.bind (file:///C:/Users/reinaldo/Documents/Workspace/reinaldob
+arreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-e
+ntry.js:5164:40)
+    at Property.bind (file:///C:/Users/reinaldo/Documents/Workspace/reinaldobar
+reto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/node-ent
+ry.js:2546:23)
+    at ObjectExpression.bind (file:///C:/Users/reinaldo/Documents/Workspace/rei
+naldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shared/
+node-entry.js:2542:28)
+    at VariableDeclarator.bind (file:///C:/Users/reinaldo/Documents/Workspace/r
+einaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/share
+d/node-entry.js:2546:23)
+    at VariableDeclaration.bind (file:///C:/Users/reinaldo/Documents/Workspace/
+reinaldobarreto31.github.io/_deploy_standalone/node_modules/rollup/dist/es/shar
+ed/node-entry.js:2542:28)[39m

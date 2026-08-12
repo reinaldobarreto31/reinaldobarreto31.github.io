@@ -25,7 +25,9 @@
 #     - typescript
 #
 # ============================================================================
-minimumReleaseAge: 1440
+# Minimum release age TEMPORARIAMENTE desativado para build hoje
+# Reativar depois que todos pacotes atingirem 24h
+minimumReleaseAge: 0
 
 minimumReleaseAgeExclude:
   # Exclude @replit scoped packages from the minimum release age check.

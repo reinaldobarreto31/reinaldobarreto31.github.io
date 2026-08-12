@@ -1,0 +1,21 @@
+{
+  "name": "Reinaldo Barreto - Portfólio",
+  "short_name": "Reinaldo",
+  "description": "Portfólio de Engenharia de Software, DevOps e SRE.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#14171f",
+  "theme_color": "#14171f",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

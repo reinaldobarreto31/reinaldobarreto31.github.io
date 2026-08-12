@@ -1,0 +1,23 @@
+Para implementar a compressão de PDF na sua stack com Ruby on Rails (backend) e React (frontend), você pode processar o arquivo diretamente no navegador (cliente) para economizar banda ou enviá-lo para o servidor Rails processar.Opção 1: No React (Compressão no Cliente)Comprimir no frontend evita o upload de arquivos pesados para o servidor, economizando custos de nuvem e acelerando a resposta para o usuário.A melhor biblioteca de mercado para isso é a pdf-lib. Como ela não diminui imagens nativamente de forma automática, a estratégia padrão de mercado para baixar o peso de um PDF no React é reconstruir o PDF reduzindo a escala e a qualidade das imagens embutidas.Instale a biblioteca:bashnpm install pdf-lib
+Use o código com cuidado.Código base para reduzir a qualidade de imagens no PDF:javascriptimport { PDFDocument } from 'pdf-lib';
+
+async function compressPDF(fileBuffer) {
+  const pdfDoc = await PDFDocument.load(fileBuffer);
+  // Lógica para varrer o documento, extrair imagens,
+  // reduzir a resolução/qualidade e re-injetar no PDF.
+  const compressedPdfBytes = await pdfDoc.save({ useObjectStreams: false });
+  return compressedPdfBytes;
+}
+Use o código com cuidado.Opção 2: No Ruby on Rails (Compressão no Servidor)Se o processamento precisar de ferramentas mais robustas e controle total sobre o tamanho final em MB, o ideal é fazer o upload do arquivo original via API (React) e processar no Rails usando ferramentas de sistema através de Gems.A abordagem padrão da indústria para Ruby é envelopar ferramentas nativas do Linux, como o Ghostscript, que é o motor por trás dos grandes compressores online.Garanta que o Ghostscript está instalado no seu servidor/máquina de desenvolvimento:bashsudo apt-get install ghostscript # Ubuntu/Debian
+brew install ghostscript         # macOS
+Use o código com cuidado.No seu Model ou Service do Rails, utilize o comando do Ghostscript via terminal (system ou Open3) para aplicar os perfis de compressão padrão de mercado:rubydef compress_pdf(input_path, output_path)
+  # Perfis de qualidade do Ghostscript:
+  # '/screen'  = Baixa qualidade (72 dpi) -> Foca em atingir a meta de ~1MB
+  # '/ebook'   = Qualidade média (150 dpi) -> Ideal para o padrão de mercado corporativo
+  # '/printer' = Alta qualidade (300 dpi)
+
+  command = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=#{output_path} #{input_path}"
+
+  system(command)
+end
+Use o código com cuidado.
