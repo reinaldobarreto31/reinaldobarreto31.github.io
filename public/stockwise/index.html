@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>StockWise · Controle de Estoque · Demonstração Live (localStorage)</title>
+<meta name="description" content="Demo StockWise: CRUD de produtos e movimentações (entrada/saída) inspirado no backend Go + React.js. Dados salvos no localStorage do navegador." />
+<style>
+  :root{
+    --bg:#282a36; --bg-2:#1e1f29; --card:#21222c; --line:#44475a;
+    --fg:#f8f8f2; --muted:#6272a4; --cmt:#8be9fd;
+    --go:#00add8; --go-2:#5ce1ff; --rails:#cc0000; --warn:#ffb86c;
+    --str:#f1fa8c; --key:#50fa7b; --danger:#ff6e6e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,var(--bg-2),var(--bg));color:var(--fg);font:14px/1.55 system-ui,Segoe UI,Roboto,sans-serif;min-height:100vh}
+  a{color:var(--go-2)}
+  header{padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(30,31,41,.7);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20}
+  .bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+  .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#003d4f,#00add8);display:grid;place-items:center;color:#0a0e14;font-size:19px;font-weight:900;box-shadow:0 8px 22px rgba(0,173,216,.32);border:1px solid rgba(255,255,255,.08)}
+  .pill{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+  .go{border:1px solid rgba(0,173,216,.55);background:rgba(0,173,216,.12);color:#78e2ff}
+  .orange{border:1px solid rgba(255,184,108,.55);background:rgba(255,184,108,.12);color:#ffd7a6}
+  .container{max-width:1240px;margin:0 auto;padding:22px}
+  h1{margin:0 0 4px;font-size:22px}
+  .sub{color:var(--muted);margin:0 0 16px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  @media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#1e1f29;border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .15s,transform .15s}
+  .kpi:hover{border-color:rgba(0,173,216,.45);transform:translateY(-1px)}
+  .kpi .label{font-size:11px;color:var(--muted);font-family:ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin:0}
+  .kpi .value{font-size:22px;font-weight:800;margin:6px 0 0;color:#fff}
+  .kpi .hint{font-size:11px;color:var(--go-2);margin:2px 0 0}
+  .kpi.pos .value{color:var(--key)}
+  .kpi.neg .value{color:var(--warn)}
+  .kpi.stock .value{color:var(--go-2)}
+  .layout{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+  @media(max-width:960px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;box-shadow:0 10px 26px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.03)}
+  .card.left-go{border-left:3px solid var(--go)}
+  .card.left-orange{border-left:3px solid var(--warn)}
+  .card.left-green{border-left:3px solid var(--key)}
+  .card.left-red{border-left:3px solid var(--danger)}
+  h2{margin:0 0 12px;font-size:16px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  @media(max-width:640px){.row{grid-template-columns:1fr}}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+  input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#191a21;color:var(--fg);font:inherit;outline:none;transition:all .15s}
+  input:focus,select:focus,textarea:focus{border-color:rgba(0,173,216,.7);box-shadow:0 0 0 3px rgba(0,173,216,.15)}
+  button{cursor:pointer;border:1px solid var(--line);background:#2d2f3c;color:var(--fg);padding:9px 14px;border-radius:10px;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:8px}
+  button:hover{border-color:rgba(0,173,216,.5);background:rgba(0,173,216,.07)}
+  .primary{background:linear-gradient(135deg,#003d4f,#00add8);color:#03131a;border-color:rgba(255,255,255,.12);box-shadow:0 8px 22px rgba(0,173,216,.28)}
+  .primary:hover{filter:brightness(1.06);color:#03131a;border-color:rgba(255,255,255,.2)}
+  .in{background:rgba(80,250,123,.13);color:#b7f7cc;border:1px solid rgba(80,250,123,.4)}
+  .in:hover{background:rgba(80,250,123,.22);border-color:rgba(80,250,123,.65)}
+  .out{background:rgba(255,110,110,.12);color:#ffc9cc;border:1px solid rgba(255,110,110,.45)}
+  .out:hover{background:rgba(255,110,110,.22);border-color:rgba(255,110,110,.7)}
+  .ghost{background:transparent}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .chip{display:inline-flex;padding:2px 8px;border-radius:999px;font-size:10.5px;font-weight:700;border:1px solid var(--line);background:#282a36;color:var(--cmt)}
+  .chip-in{color:#b7f7cc;border-color:rgba(80,250,123,.45);background:rgba(80,250,123,.08)}
+  .chip-out{color:#ffc9cc;border-color:rgba(255,110,110,.5);background:rgba(255,110,110,.08)}
+  table{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;font-size:13px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;background:#191a21}
+  th:first-child{border-top-left-radius:10px}
+  th:last-child{border-top-right-radius:10px}
+  tr:last-child td{border-bottom:none}
+  .num{font-family:ui-monospace,monospace;font-weight:700}
+  .stock{min-width:120px}
+  .stock-wrap{display:flex;align-items:center;gap:8px}
+  .bar{position:relative;height:8px;border-radius:999px;background:#44475a;overflow:hidden;flex:1}
+  .bar-fill{position:absolute;inset:0;width:0%;background:linear-gradient(90deg,#00add8,#5ce1ff);border-radius:999px;transition:width .25s}
+  .bar-fill.low{background:linear-gradient(90deg,#b45309,#ffb86c)}
+  .bar-fill.empty{background:linear-gradient(90deg,#7f1d1d,#ff6e6e)}
+  .mono{font-family:ui-monospace,monospace}
+  .log{padding:10px 12px;background:#0f1014;border:1px solid var(--line);border-radius:10px;font:12px ui-monospace,monospace;white-space:pre-wrap;min-height:54px;color:var(--fg);margin-top:12px}
+  .log .t{color:var(--muted)} .log .ok{color:var(--key)} .log .err{color:#ffb4b8} .log .warn{color:var(--warn)}
+  .empty{padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .tab{padding:6px 12px;border-radius:10px;border:1px solid var(--line);font-size:12px;font-weight:600;background:#282a36;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .tab.active{background:linear-gradient(135deg,#003d4f,#00add8);color:#03131a;border-color:transparent;box-shadow:0 6px 18px rgba(0,173,216,.3)}
+  .topbtn{color:var(--fg);border:1px solid var(--line);padding:7px 11px;border-radius:10px;text-decoration:none;font-weight:600;font-size:12px;display:inline-flex;gap:8px;align-items:center}
+  .topbtn:hover{border-color:var(--go-2);color:var(--go-2)}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:13px;margin-bottom:14px}
+  .back:hover{color:var(--go-2)}
+  select.opt-in option:first-child, select.opt-out option:first-child{font-weight:700}
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand">
+        <div class="logo">Go</div>
+        <div>
+          <div style="font-size:15px">StockWise · <span style="color:#78e2ff">Controle de Estoque</span> · Demo</div>
+          <div style="font-size:11px;color:var(--muted);font-family:ui-monospace,monospace">Inspirado em Go + React.js · Backend simulado em localStorage</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <span class="pill go">Backend: Go (REST · JWT)</span>
+        <span class="pill orange">Full-stack demo</span>
+        <a href="https://github.com/reinaldobarreto31/stockwise-go" target="_blank" rel="noopener" class="topbtn">🗂 Repositório</a>
+        <a class="back" href="/" style="margin:0">← Voltar para o portfólio</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Painel de estoque — Demo</h1>
+    <p class="sub">Cadastre produtos, registre <strong style="color:#b7f7cc">ENTRADAS</strong> e <strong style="color:#ffc9cc">SAÍDAS</strong>, tudo salvo no localStorage do seu navegador. Tabelas e KPIs atualizam em tempo real.</p>
+
+    <div class="kpis">
+      <div class="kpi stock"><p class="label">SKUs cadastrados</p><p class="value" id="kpi-sku">0</p><p class="hint">/api/v1/products</p></div>
+      <div class="kpi pos"><p class="label">Qtd. total em estoque</p><p class="value" id="kpi-qty">0</p><p class="hint">soma dos estoques</p></div>
+      <div class="kpi neg"><p class="label">Abaixo do mínimo</p><p class="value" id="kpi-low">0</p><p class="hint">precisam de reposição</p></div>
+      <div class="kpi"><p class="label">Movimentações (30 dias)</p><p class="value" id="kpi-mov">0</p><p class="hint">entradas + saídas</p></div>
+    </div>
+
+    <div class="layout">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section class="card left-go">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+            <h2 id="formTitle" style="margin:0">Produto · Cadastrar / Editar</h2>
+            <span id="editTag" class="chip" style="display:none">Modo edição</span>
+          </div>
+
+          <div class="row">
+            <div><label for="p-name">Nome do produto</label><input id="p-name" placeholder="Ex.: Notebook Dell Inspiron 15" /></div>
+            <div><label for="p-sku">Código SKU</label><input id="p-sku" class="mono" placeholder="Ex.: SKU-00123" /></div>
+          </div>
+          <div class="row">
+            <div><label for="p-cat">Categoria</label>
+              <select id="p-cat">
+                <option>Informática</option><option>Escritório</option><option>Eletrônicos</option><option>Alimentos</option><option>Limpeza</option><option>Outros</option>
+              </select>
+            </div>
+            <div><label for="p-price">Preço de custo (R$)</label><input id="p-price" type="number" min="0" step="0.01" value="0" /></div>
+          </div>
+          <div class="row">
+            <div><label for="p-qty">Estoque inicial</label><input id="p-qty" type="number" min="0" value="0" /></div>
+            <div><label for="p-min">Estoque mínimo</label><input id="p-min" type="number" min="0" value="5" /></div>
+          </div>
+          <div style="margin-bottom:4px">
+            <label for="p-loc">Localização (opcional)</label>
+            <input id="p-loc" placeholder="Ex.: A3 · Estante 4 · Prateleira 2" />
+          </div>
+
+          <div class="btns">
+            <button type="button" class="primary" id="btnSaveProd">💾 Salvar produto</button>
+            <button type="button" class="ghost" id="btnClearProd">✖ Limpar</button>
+            <button type="button" class="ghost" id="btnSeedProd">🌱 Carregar exemplos</button>
+          </div>
+          <div id="logProd" class="log"><span class="t">[/api/v1/products]</span> <span class="ok">Pronto. Dados gravados em localStorage (chave "sw.products.v1").</span></div>
+        </section>
+
+        <section class="card left-orange">
+          <h2 style="margin:0 0 10px">📦 Registrar movimentação</h2>
+          <div class="row">
+            <div><label for="m-type">Tipo</label>
+              <select id="m-type" class="opt-in">
+                <option value="in" selected>✅ Entrada (compra / devolução)</option>
+                <option value="out">❌ Saída (venda / consumo)</option>
+              </select>
+            </div>
+            <div><label for="m-prod">Produto</label>
+              <select id="m-prod"><option value="">— Selecione um produto —</option></select>
+            </div>
+          </div>
+          <div class="row">
+            <div><label for="m-qty">Quantidade</label><input id="m-qty" type="number" min="1" value="1" /></div>
+            <div><label for="m-doc">Documento / Nota (opcional)</label><input id="m-doc" placeholder="NF-e 123 / OS 45 / Venda 99" /></div>
+          </div>
+          <div style="margin-bottom:4px">
+            <label for="m-note">Observação (opcional)</label>
+            <textarea id="m-note" placeholder="Ex.: Fornecedor X, validade 12/2026" style="min-height:64px"></textarea>
+          </div>
+          <div class="btns">
+            <button type="button" id="btnMovIn" class="in">📥 Entrada</button>
+            <button type="button" id="btnMovOut" class="out">📤 Saída</button>
+            <button type="button" class="ghost" id="btnClearMov">✖ Limpar</button>
+          </div>
+          <div id="logMov" class="log"><span class="t">[/api/v1/movements]</span> <span class="ok">Escolha um produto e registre entradas ou saídas.</span></div>
+        </section>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section class="card left-green">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+            <h2 style="margin:0">Lista de Produtos</h2>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="chip">Ordenado por nome</span>
+              <button type="button" class="ghost" id="btnZeroProd" style="padding:5px 9px;font-size:12px;color:#ffb4b8;border-color:#dc262633">🗑 Limpar produtos</button>
+            </div>
+          </div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr>
+                <th>SKU</th><th>Produto</th><th class="stock">Estoque</th><th>R$</th><th style="width:150px">Ações</th>
+              </tr></thead>
+              <tbody id="tbody-prod"></tbody>
+            </table>
+          </div>
+          <div id="emptyProd" style="margin-top:10px"></div>
+        </section>
+
+        <section class="card left-red">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+            <h2 style="margin:0">Movimentações recentes</h2>
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-f="all" type="button">Todas</button>
+              <button class="tab" data-f="in" type="button">Entradas</button>
+              <button class="tab" data-f="out" type="button">Saídas</button>
+              <button type="button" class="ghost" id="btnClearMovs" style="margin-left:auto;padding:6px 10px;font-size:12px;color:#ffb4b8;border-color:#dc262633">🗑 Limpar histórico</button>
+            </div>
+          </div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr>
+                <th>Data</th><th>Tipo</th><th>Produto</th><th>Qtd.</th><th>Documento</th>
+              </tr></thead>
+              <tbody id="tbody-mov"></tbody>
+            </table>
+          </div>
+          <div id="emptyMov" style="margin-top:10px"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const K_P = "sw.products.v1";
+  const K_M = "sw.movements.v1";
+  const esc = (s) => String(s??"").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m]);
+  const uid = () => (crypto?.randomUUID ? crypto.randomUUID() : ("x"+Math.random().toString(36).slice(2,12)));
+  const money = (n) => Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  const fmtDate = (t) => new Date(t).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"});
+
+  const logP = (t,kind) => logEl("logProd","/api/v1/products",t,kind);
+  const logM = (t,kind) => logEl("logMov","/api/v1/movements",t,kind);
+  function logEl(id,prefix,t,kind){
+    const el = document.getElementById(id); if(!el) return;
+    const ts = new Date().toLocaleTimeString("pt-BR");
+    const cls = kind==="ok"?"ok":kind==="warn"?"warn":kind==="err"?"err":"";
+    el.innerHTML = `<span class="t">[${ts}] [${prefix}]</span> <span class="${cls}">${t}</span>`;
+  }
+
+  const loadP = () => { try { return JSON.parse(localStorage.getItem(K_P)) || []; } catch { return []; } };
+  const saveP = (a) => localStorage.setItem(K_P, JSON.stringify(a));
+  const loadM = () => { try { return JSON.parse(localStorage.getItem(K_M)) || []; } catch { return []; } };
+  const saveM = (a) => localStorage.setItem(K_M, JSON.stringify(a));
+
+  let editingProductId = null;
+  let filterMov = "all";
+
+  function seedProds(force=false){
+    const list = loadP();
+    if(!force && list.length) return;
+    const base = [
+      { id: uid(), name: "Notebook Dell Inspiron 15", sku: "SKU-10001", category:"Informática", price: 3899.9, qty: 12, min: 4, location:"A3 · Est 4 · P2" },
+      { id: uid(), name: "Monitor Full HD 24\"", sku: "SKU-10002", category:"Informática", price: 899.0, qty: 24, min: 6, location:"A2 · Est 2 · P1" },
+      { id: uid(), name: "Teclado Mecânico ABNT2", sku: "SKU-10003", category:"Informática", price: 329.5, qty: 3, min: 8, location:"A1 · Est 1 · P3" },
+      { id: uid(), name: "Papel Sulfite A4 (500 f.)", sku: "SKU-20010", category:"Escritório", price: 23.9, qty: 80, min: 20, location:"B1 · Est 1 · P1" },
+      { id: uid(), name: "Fone de Ouvido Bluetooth", sku: "SKU-10055", category:"Eletrônicos", price: 219.0, qty: 0, min: 5, location:"A4 · Est 5 · P2" },
+      { id: uid(), name: "Kit Limpeza de Tela", sku: "SKU-30001", category:"Limpeza", price: 19.9, qty: 60, min: 15, location:"C1 · Est 1 · P1" },
+    ];
+    saveP(base);
+    logP("6 produtos carregados como demonstração. ✔", "ok");
+  }
+
+  function refreshSelectProduct(){
+    const sel = $("#m-prod");
+    const prods = loadP().sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));
+    sel.innerHTML = '<option value="">— Selecione um produto —</option>' + prods.map(p => `<option value="${esc(p.id)}">${esc(p.name)} · <span class="mono">${esc(p.sku)}</span> · <span class="mono">qtd ${p.qty}</span></option>`).join("");
+  }
+
+  function clearPForm(keepEditing=true){
+    $("#p-name").value=""; $("#p-sku").value=""; $("#p-price").value=0; $("#p-qty").value=0;
+    $("#p-cat").value="Informática"; $("#p-min").value=5; $("#p-loc").value="";
+    if(!keepEditing){ editingProductId=null; $("#editTag").style.display="none"; $("#formTitle").textContent="Produto · Cadastrar / Editar"; $("#btnSaveProd").innerHTML="💾 Salvar produto"; }
+  }
+
+  function doSaveProduct(){
+    const name = $("#p-name").value.trim();
+    const sku  = $("#p-sku").value.trim();
+    if(!name || !sku){ logP("422. Campos obrigatórios: Nome + SKU.", "err"); return; }
+    const data = {
+      name, sku,
+      category: $("#p-cat").value,
+      price: Number($("#p-price").value||0),
+      qty: Number($("#p-qty").value||0),
+      min: Number($("#p-min").value||0),
+      location: $("#p-loc").value.trim(),
+    };
+    const arr = loadP();
+    if(editingProductId){
+      const i = arr.findIndex(x=>x.id===editingProductId);
+      if(i>=0){
+        const beforeQty = arr[i].qty;
+        arr[i] = { ...arr[i], ...data, updatedAt: Date.now() };
+        saveP(arr);
+        if(data.qty !== beforeQty){
+          const mov = {
+            id: uid(), productId: arr[i].id, productName: arr[i].name, productSku: arr[i].sku,
+            type: data.qty >= beforeQty ? "in" : "out",
+            qty: Math.abs(data.qty - beforeQty),
+            document: "Ajuste manual", note: `Ajuste via formulário. Estoque ${beforeQty} → ${data.qty}`,
+            at: Date.now(),
+          };
+          if(mov.qty>0) saveM([mov, ...loadM()]);
+        }
+        renderAll();
+        logP(`PUT /products/${esc(editingProductId.slice(0,6))} → 200. Produto atualizado.`, "ok");
+        clearPForm(false);
+      }
+    } else {
+      if(arr.some(p=>p.sku.toLowerCase()===sku.toLowerCase())){ logP(`409. Já existe produto com SKU ${esc(sku)}.`, "err"); return; }
+      const prod = { id: uid(), createdAt: Date.now(), ...data };
+      saveP([prod, ...arr]);
+      if(prod.qty>0){
+        saveM([{ id: uid(), productId: prod.id, productName: prod.name, productSku: prod.sku, type:"in", qty: prod.qty, document:"Estoque inicial", note:"Cadastro do produto", at: prod.createdAt }, ...loadM()]);
+      }
+      renderAll();
+      logP(`POST /products → 201 Created. SKU ${esc(prod.sku)} adicionado. ✔`, "ok");
+      clearPForm(false);
+    }
+  }
+
+  function doEditProduct(id){
+    const p = loadP().find(x=>x.id===id); if(!p) return;
+    editingProductId = id;
+    $("#p-name").value=p.name; $("#p-sku").value=p.sku; $("#p-cat").value=p.category||"Informática";
+    $("#p-price").value=p.price||0; $("#p-qty").value=p.qty||0; $("#p-min").value=p.min||0; $("#p-loc").value=p.location||"";
+    $("#editTag").style.display="inline-flex";
+    $("#formTitle").textContent="Produto · Editar dados";
+    $("#btnSaveProd").innerHTML="💾 Atualizar produto";
+    logP(`GET /products/${esc(id.slice(0,6))} → 200. Carregado no formulário.`, "ok");
+  }
+
+  function doDeleteProduct(id){
+    const p = loadP().find(x=>x.id===id); if(!p) return;
+    if(!confirm(`Deseja mesmo excluir "${p.name}" (${p.sku})? Esta ação apaga também as movimentações dele.`)) return;
+    saveP(loadP().filter(x=>x.id!==id));
+    saveM(loadM().filter(m=>m.productId!==id));
+    if(editingProductId===id) clearPForm(false);
+    renderAll();
+    logP(`DELETE /products/${esc(id.slice(0,6))} → 204. Produto removido.`, "warn");
+  }
+
+  function doMovement(type){
+    const pid = $("#m-prod").value;
+    const qty = Number($("#m-qty").value||0);
+    if(!pid){ logM("400. Escolha um produto.", "err"); return; }
+    if(qty<=0){ logM("400. Quantidade precisa ser maior que zero.", "err"); return; }
+    const arr = loadP();
+    const i = arr.findIndex(x=>x.id===pid); if(i<0){ logM("404. Produto não encontrado.", "err"); return; }
+    const p = arr[i];
+    if(type==="out" && p.qty < qty){ logM(`422. Estoque insuficiente em "${esc(p.name)}": tem ${p.qty}, pediu ${qty}.`, "err"); return; }
+    arr[i] = { ...p, qty: type==="in" ? p.qty+qty : p.qty-qty, updatedAt: Date.now() };
+    saveP(arr);
+    const mov = {
+      id: uid(), productId: p.id, productName: p.name, productSku: p.sku,
+      type, qty,
+      document: $("#m-doc").value.trim() || (type==="in" ? "Entrada manual" : "Saída manual"),
+      note: $("#m-note").value.trim(),
+      at: Date.now(),
+    };
+    saveM([mov, ...loadM()]);
+    renderAll();
+    $("#m-qty").value=1; $("#m-doc").value=""; $("#m-note").value="";
+    logM(`POST /movements → 201 · ${type==="in"?"ENTRADA":"SAÍDA"} de ${qty} un. em "${esc(p.name)}".`, "ok");
+  }
+
+  function renderProducts(){
+    const arr = loadP().sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));
+    const tb = $("#tbody-prod");
+    const empty = $("#emptyProd");
+    if(!arr.length){ tb.innerHTML=""; empty.innerHTML=`<div class="empty">Nenhum produto cadastrado. Use o formulário ao lado ou "🌱 Carregar exemplos".</div>`; }
+    else {
+      empty.innerHTML="";
+      tb.innerHTML = arr.map(p => {
+        const max = Math.max(p.qty*1.2, p.min*1.5, 10);
+        const w = Math.min(100, Math.round((p.qty/max)*100));
+        const cls = p.qty===0 ? "empty" : p.qty<p.min ? "low" : "";
+        return `<tr>
+          <td class="mono">${esc(p.sku)}</td>
+          <td>
+            <div style="font-weight:700">${esc(p.name)}</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">${esc(p.category||"")}${p.location?` · ${esc(p.location)}`:""}</div>
+            ${p.qty < p.min ? `<div style="margin-top:4px"><span class="chip ${p.qty===0?"chip-out":"chip-in"}" style="${p.qty===0?'':'background:rgba(255,184,108,.08);border-color:rgba(255,184,108,.45);color:#ffd7a6'}">${p.qty===0?"ESTOQUE ZERADO":"⚠️ Abaixo do mínimo ("+p.min+")"}</span></div>` : ""}
+          </td>
+          <td>
+            <div class="stock-wrap">
+              <span class="num ${p.qty===0?'':p.qty<p.min?'':'stock'}" style="color:${p.qty===0?'#ff9ea5':p.qty<p.min?'#ffd7a6':'#78e2ff'};min-width:44px;text-align:right">${p.qty}</span>
+              <span class="bar"><span class="bar-fill ${cls}" style="width:${w}%"></span></span>
+            </div>
+          </td>
+          <td class="num" style="color:#b7f7cc">${money(p.price)}</td>
+          <td style="display:flex;gap:6px;flex-wrap:wrap">
+            <button type="button" class="ghost" style="padding:5px 9px;font-size:12px" data-pact="edit" data-pid="${esc(p.id)}">✏️ Editar</button>
+            <button type="button" class="ghost" style="padding:5px 9px;font-size:12px;color:#ffb4b8;border-color:#dc262633" data-pact="del" data-pid="${esc(p.id)}">🗑 Excluir</button>
+          </td>
+        </tr>`;
+      }).join("");
+      tb.querySelectorAll("button[data-pact]").forEach(b => b.addEventListener("click", () => {
+        const id = b.dataset.pid;
+        if(b.dataset.pact==="edit") doEditProduct(id);
+        if(b.dataset.pact==="del") doDeleteProduct(id);
+      }));
+    }
+
+    // KPIs
+    $("#kpi-sku").textContent = arr.length;
+    $("#kpi-qty").textContent = arr.reduce((s,p)=>s+(Number(p.qty)||0),0).toLocaleString("pt-BR");
+    $("#kpi-low").textContent = arr.filter(p => p.qty < (p.min||0) || p.qty===0).length;
+    const trinta = Date.now() - 30*24*60*60*1000;
+    $("#kpi-mov").textContent = loadM().filter(m=>m.at>=trinta).length.toLocaleString("pt-BR");
+  }
+
+  function renderMovements(){
+    const all = loadM().sort((a,b)=>b.at-a.at);
+    const list = filterMov==="all" ? all : all.filter(m=>m.type===filterMov);
+    const tb = $("#tbody-mov");
+    const empty = $("#emptyMov");
+    if(!list.length){ tb.innerHTML=""; empty.innerHTML=`<div class="empty">${all.length?`Sem ${filterMov==="in"?"entradas":"saídas"} ainda.`:"Nenhuma movimentação registrada."}</div>`; }
+    else {
+      empty.innerHTML="";
+      tb.innerHTML = list.slice(0, 50).map(m => `<tr>
+        <td class="mono">${fmtDate(m.at)}</td>
+        <td><span class="chip ${m.type==='in'?'chip-in':'chip-out'}">${m.type==='in'?'✅ ENTRADA':'❌ SAÍDA'}</span></td>
+        <td>
+          <div style="font-weight:700">${esc(m.productName||"(produto removido)")}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;font-family:ui-monospace,monospace">${esc(m.productSku||"")}${m.note?` · ${esc(m.note)}`:""}</div>
+        </td>
+        <td class="num" style="color:${m.type==='in'?'#b7f7cc':'#ffc9cc'}">${m.type==='in'?'+':'-'}${m.qty.toLocaleString("pt-BR")}</td>
+        <td class="mono" style="font-size:12px">${esc(m.document||"—")}</td>
+      </tr>`).join("");
+    }
+  }
+
+  function renderAll(){
+    renderProducts();
+    renderMovements();
+    refreshSelectProduct();
+  }
+
+  // Bindings
+  $("#btnSaveProd").addEventListener("click", doSaveProduct);
+  $("#btnClearProd").addEventListener("click", ()=>{ clearPForm(false); logP("Formulário de produto limpo."); });
+  $("#btnSeedProd").addEventListener("click", ()=>{ seedProds(true); renderAll(); });
+  $("#btnZeroProd").addEventListener("click", ()=>{
+    if(!confirm("Apagar TODOS os produtos e movimentações?")) return;
+    saveP([]); saveM([]); renderAll(); logP("Todos os produtos e movimentações foram apagados.", "warn");
+  });
+
+  $("#btnMovIn").addEventListener("click", ()=>doMovement("in"));
+  $("#btnMovOut").addEventListener("click", ()=>doMovement("out"));
+  $("#btnClearMov").addEventListener("click", ()=>{ $("#m-qty").value=1; $("#m-doc").value=""; $("#m-note").value=""; logM("Formulário de movimentação limpo."); });
+  $("#btnClearMovs").addEventListener("click", ()=>{
+    if(!confirm("Apagar TODO o histórico de movimentações?")) return;
+    saveM([]); renderAll(); logM("Histórico de movimentações apagado.", "warn");
+  });
+  $("#m-type").addEventListener("change", ()=>{
+    const t = $("#m-type").value;
+    $("#btnMovIn").style.display = t==="in"?"inline-flex":"none";
+    $("#btnMovOut").style.display = t==="out"?"inline-flex":"none";
+  });
+  document.querySelectorAll(".tab[data-f]").forEach(tab => tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab[data-f]").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    filterMov = tab.dataset.f;
+    renderMovements();
+  }));
+
+  // init
+  $("#m-type").dispatchEvent(new Event("change"));
+  seedProds();
+  renderAll();
+})();
+</script>
+</body>
+</html>

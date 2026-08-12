@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio Reinaldo Barreto",
+  "description": "Portfólio interativo no estilo Metro Square com design Neumorfismo para o Engenheiro Full-Cycle Reinaldo Barreto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

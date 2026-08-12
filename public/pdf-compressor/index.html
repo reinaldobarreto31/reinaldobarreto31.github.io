@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Compressor · Padrões Brasileiros · Dracula + Ruby on Rails</title>
+    <meta name="description" content="Comprime PDFs para Governo BR (≤2MB), Empresa (≤5MB), E-mail, Qualidade. Múltiplos arquivos · Progresso individual · Renomear antes de baixar · 100% no navegador · Tema Dracula + vermelho Rails #cc0000" />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: hsl(231, 15%, 18%);
+        color: #f8f8f2;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+          Ubuntu, Cantarell, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-image: radial-gradient(circle at 1px 1px, rgba(98,114,164,.16) 1px, transparent 0);
+        background-size: 28px 28px;
+      }
+      ::selection { background: #44475a; color: #f8f8f2; }
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: hsl(232, 14%, 24%); }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #bd93f9, #8be9fd);
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #cc0000, #e33446);
+      }
+      .container { max-width: 1280px; margin: 0 auto; padding: 40px 16px; }
+      @media (min-width: 768px) { .container { padding: 56px 16px; } }
+      .header { text-align: center; margin-bottom: 48px; }
+      .header-brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+      .header-logo-wrap { position: relative; }
+      .header-logo {
+        width: 56px; height: 56px; border-radius: 16px;
+        background: linear-gradient(135deg,#a0172a,#cc0000,#e33446);
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 10px 30px rgba(204, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,.2);
+      }
+      .header-zap { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; color: #f1fa8c; }
+      .header-title { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; margin: 0; line-height: 1.1; }
+      @media (min-width: 768px) { .header-title { font-size: 36px; } }
+      .header-title-ruby { color: #cc0000; }
+      .header-subtitle { color: #6272a4; font-size: 14px; margin: 2px 0 0; }
+      .header-desc { color: #6272a4; max-width: 672px; margin: 16px auto 0; line-height: 1.55; }
+      .header-desc strong { color: #bd93f9; font-weight: 600; }
+
+      .dropzone {
+        position: relative;
+        border: 2px dashed rgba(98,114,164,.55);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        cursor: pointer;
+        transition: all .3s ease;
+      }
+      @media (min-width: 768px) { .dropzone { padding: 56px; } }
+      .dropzone:hover { border-color: #bd93f9; background: rgba(189,147,249,.05); }
+      .dropzone.dragging {
+        border-color: #cc0000; background: rgba(204,0,0,.10); transform: scale(1.01);
+      }
+      .dropzone.hasjobs { border-color: rgba(80,250,123,.45); background: rgba(80,250,123,.05); }
+      .dropzone-empty { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+      .dropzone-icon-wrap {
+        width: 80px; height: 80px; border-radius: 9999px;
+        background: rgba(68,71,90,.5); display: flex; align-items: center; justify-content: center;
+      }
+      .dropzone-icon { width: 40px; height: 40px; color: #bd93f9; }
+      .dropzone-title { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+      .dropzone-title-ruby { color: #cc0000; text-decoration: underline; text-decoration-style: wavy; }
+      .dropzone-hint { font-size: 14px; color: #6272a4; margin: 0; }
+      .dropzone-summary {
+        display: flex; flex-direction: column; align-items: center; gap: 24px;
+        width: 100%; justify-content: space-between;
+      }
+      @media (min-width: 768px) {
+        .dropzone-summary { flex-direction: row; }
+      }
+      .dropzone-summary-left { display: flex; align-items: center; gap: 16px; }
+      .summary-icon {
+        width: 64px; height: 64px; border-radius: 9999px;
+        background: rgba(80,250,123,.1); border: 1px solid rgba(80,250,123,.3);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .summary-count { font-size: 18px; font-weight: 600; color: #f8f8f2; margin: 0; }
+      .summary-count strong { color: #cc0000; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 28px; }
+      .summary-meta { font-size: 14px; color: #6272a4; margin: 4px 0 0; }
+      .dropzone-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .btn-primary {
+        display: inline-flex; align-items: center; gap: 8px;
+        color: white; font-weight: 600; padding: 12px 24px; border-radius: 8px;
+        border: 0; cursor: pointer; transition: all .25s ease;
+        background: linear-gradient(135deg, #a0172a, #cc0000, #e33446);
+        box-shadow: 0 10px 26px rgba(204,0,0,.32), inset 0 1px rgba(255,255,255,.2);
+        font-size: 15px;
+      }
+      .btn-primary:hover { filter: brightness(1.12); box-shadow: 0 14px 34px rgba(204,0,0,.48), inset 0 1px rgba(255,255,255,.22); }
+      .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+      .btn-secondary {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: #bd93f9; color: hsl(231,15%,18%); font-weight: 600;
+        padding: 8px 16px; border-radius: 8px; border: 0; cursor: pointer;
+        transition: all .3s ease; font-size: 14px;
+        box-shadow: 0 10px 30px rgba(189, 147, 249, 0.35), inset 0 1px 0 rgba(255,255,255,.2);
+      }
+      .btn-secondary:hover { background: #caa9ff; box-shadow: 0 0 30px rgba(189,147,249,.5); }
+      .btn-ghost {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: rgba(68,71,90,.8); color: #f8f8f2; font-weight: 600;
+        padding: 8px 16px; border-radius: 8px;
+        border: 1px solid rgba(98,114,164,.4); cursor: pointer; transition: background .2s ease;
+        font-size: 14px;
+      }
+      .btn-ghost:hover { background: rgba(255,85,85,.18); }
+
+      .section { margin: 32px 0; }
+      @media (min-width: 768px) { .section { margin: 40px 0; } }
+      .section-title {
+        font-size: 18px; font-weight: 600; margin: 0 0 16px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .section-title-ruby { color: #cc0000; }
+
+      .preset-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+      @media (min-width: 768px) { .preset-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1024px) { .preset-grid { grid-template-columns: repeat(4, 1fr); } }
+      .preset-card {
+        position: relative; cursor: pointer; user-select: none;
+        border: 2px solid rgba(98,114,164,.45); border-radius: 12px; padding: 20px;
+        transition: all .3s ease;
+        background: linear-gradient(145deg, rgba(68,71,90,.82), rgba(40,42,54,.92));
+      }
+      .preset-card:hover { border-color: #bd93f9; }
+      .preset-card.active {
+        border-color: #cc0000;
+        background: linear-gradient(145deg, rgba(68,71,90,.92), rgba(40,42,54,.98));
+        box-shadow: inset 3px 0 #cc0000, 0 12px 28px rgba(20,21,28,.42), 0 0 24px rgba(204,0,0,.22);
+      }
+      .preset-card input { position: absolute; opacity: 0; pointer-events: none; }
+      .preset-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+      .preset-icon { font-size: 24px; }
+      .preset-radio {
+        width: 20px; height: 20px; border-radius: 9999px; border: 2px solid #6272a4;
+        display: flex; align-items: center; justify-content: center; transition: all .2s ease;
+      }
+      .preset-card.active .preset-radio { border-color: #cc0000; background: #cc0000; }
+      .preset-radio::after {
+        content: ''; width: 12px; height: 12px; transform: scale(0);
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+        background-repeat: no-repeat; background-size: contain;
+      }
+      .preset-card.active .preset-radio::after { transform: scale(1); }
+      .preset-name { font-weight: 700; margin: 0 0 4px; }
+      .preset-desc { font-size: 12px; color: #6272a4; margin: 0 0 8px; line-height: 1.45; }
+      .preset-size {
+        display: inline-flex; align-items: center; gap: 4px;
+        background: rgba(68,71,90,.5); padding: 4px 8px; border-radius: 6px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
+      }
+      .preset-size svg { width: 12px; height: 12px; }
+
+      .card-dracula {
+        background: hsl(232,14%,24%);
+        border: 1px solid rgba(98,114,164,.45);
+        border-radius: 16px; padding: 24px;
+        box-shadow: 0 14px 34px rgba(20,21,28,.32), inset 0 1px rgba(255,255,255,.045), inset 0 0 0 1px rgba(204,0,0,.08);
+      }
+      .table-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+      .table-title {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 20px; font-weight: 700; margin: 0;
+      }
+      .table-title svg { width: 20px; height: 20px; color: #6272a4; }
+      .table-badge {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px; color: #6272a4;
+        background: rgba(68,71,90,.6); padding: 2px 8px; border-radius: 6px;
+      }
+      .table-hint { font-size: 14px; color: #6272a4; margin: 4px 0 0; }
+      .table-hint code { color: #f8f8f2; font-family: ui-monospace, monospace; }
+
+      .table-wrap {
+        border-radius: 16px; overflow: hidden;
+        border: 1px solid rgba(68,71,90,.65);
+        background: rgba(40,42,54,.45);
+      }
+      .table-scroll { overflow-x: auto; }
+      table.jobs { width: 100%; border-collapse: collapse; }
+      table.jobs thead th {
+        font-size: 10px; font-family: ui-monospace, monospace;
+        text-transform: uppercase; letter-spacing: .2em;
+        color: #6272a4; text-align: left;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(98,114,164,.3);
+        font-weight: 600;
+      }
+      table.jobs thead th.right { text-align: right; }
+      table.jobs tbody td {
+        padding: 16px; vertical-align: middle;
+        border-bottom: 1px solid rgba(68,71,90,.55);
+      }
+      table.jobs tbody tr:hover { background: rgba(68,71,90,.25); }
+      tr.row-active { background: rgba(204,0,0,.05) !important; box-shadow: inset 3px 0 0 #cc0000; }
+      tr.row-done { background: rgba(80,250,123,.03) !important; box-shadow: inset 3px 0 0 #50fa7b; }
+      tr.row-error { background: rgba(255,85,85,.04) !important; box-shadow: inset 3px 0 0 #ff5555; }
+
+      .cell-file { display: flex; align-items: center; gap: 12px; min-width: 240px; }
+      .job-icon {
+        width: 44px; height: 44px; border-radius: 8px; border: 1px solid;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      }
+      .job-icon svg { width: 20px; height: 20px; }
+      .job-icon.queued { background: rgba(139,233,253,.1); border-color: rgba(98,114,164,.4); color: #8be9fd; }
+      .job-icon.compressing { background: rgba(204,0,0,.12); border-color: rgba(204,0,0,.45); color: #cc0000; }
+      .job-icon.done { background: rgba(80,250,123,.12); border-color: rgba(80,250,123,.4); color: #50fa7b; }
+      .job-icon.error { background: rgba(255,85,85,.12); border-color: rgba(255,85,85,.4); color: #ff5555; }
+      .spin { animation: spin 1s linear infinite; }
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      .job-name { font-weight: 600; color: #f8f8f2; }
+      .job-name-wrap { min-width: 0; }
+      .job-tags { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+      .job-tag {
+        font-family: ui-monospace, monospace; font-size: 11px;
+        padding: 2px 8px; border-radius: 4px;
+      }
+      .job-tag.queued { background: rgba(98,114,164,.35); color: #c7cdd9; }
+      .job-tag.compressing { background: rgba(204,0,0,.2); color: #ff6e6e; }
+      .job-tag.done { background: rgba(80,250,123,.2); color: #50fa7b; }
+      .job-tag.error { background: rgba(255,85,85,.2); color: #ff5555; }
+
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .text-muted { color: #6272a4; }
+      .text-red { color: #cc0000; font-weight: 700; }
+      .text-green-big { color: #50fa7b; }
+      .pill-green { background: rgba(80,250,123,.18); color: #50fa7b; padding: 4px 8px; border-radius: 6px; font-weight: 700; }
+      .pill-yellow { background: rgba(241,250,140,.15); color: #f1fa8c; padding: 4px 8px; border-radius: 6px; font-weight: 700; }
+      .pill-gray { background: rgba(98,114,164,.3); color: #c7cdd9; padding: 4px 8px; border-radius: 6px; font-weight: 700; }
+
+      .progress-wrap { min-width: 200px; }
+      .progress-space { margin-bottom: 6px; }
+      .progress-track {
+        position: relative; width: 100%; height: 10px;
+        background: #44475a; border-radius: 9999px; overflow: hidden;
+      }
+      .progress-fill {
+        position: absolute; top: 0; left: 0; height: 100%; border-radius: 9999px;
+        background: linear-gradient(to right, #cc0000, #bd93f9, #cc0000);
+        background-size: 200% 100%;
+        transition: width .25s ease-out;
+      }
+      .progress-fill.shimmer { animation: shimmer 1.5s linear infinite; }
+      .progress-fill.error { background: #ff5555 !important; animation: none !important; }
+      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+      .progress-meta {
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 8px; font-family: ui-monospace, monospace; font-size: 12px;
+      }
+      .progress-stage { color: #bd93f9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .progress-percent { font-weight: 700; color: #f1fa8c; }
+      .progress-percent.done { color: #50fa7b; }
+      .progress-percent.error { color: #ff5555; }
+      .progress-error-msg {
+        font-family: ui-monospace, monospace; font-size: 12px; color: #ff5555;
+        margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      }
+
+      .rename-wrap { display: flex; align-items: center; gap: 8px; min-width: 0; min-width: 220px; }
+      .rename-input {
+        width: 100%;
+        background: rgba(40,42,54,.92); color: #f8f8f2;
+        padding: 8px 12px; border-radius: 8px;
+        border: 1px solid rgba(98,114,164,.45);
+        font-family: ui-monospace, monospace; font-size: 13px;
+        transition: all .15s ease;
+      }
+      .rename-input:focus {
+        outline: none;
+        border-color: #cc0000;
+        box-shadow: 0 0 0 2px rgba(204,0,0,.3);
+      }
+      .rename-input:disabled { opacity: .5; }
+      .rename-suffix { font-family: ui-monospace, monospace; font-size: 12px; color: #6272a4; flex-shrink: 0; }
+
+      .actions-wrap { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding-right: 8px; }
+      .btn-download {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 8px 12px; border-radius: 8px; border: 0; cursor: pointer;
+        font-weight: 600; font-size: 14px; color: white;
+        background: linear-gradient(135deg,#a0172a,#cc0000,#e33446);
+        box-shadow: 0 10px 30px rgba(204, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,.2);
+        transition: filter .2s ease;
+      }
+      .btn-download:hover { filter: brightness(1.1); }
+      .btn-download svg { width: 16px; height: 16px; }
+      .btn-download:disabled {
+        background: rgba(68,71,90,.6); color: #6272a4;
+        box-shadow: none; cursor: not-allowed;
+      }
+      .btn-icon {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(98,114,164,.4);
+        background: rgba(68,71,90,.7); color: #f8f8f2; cursor: pointer;
+        transition: background .2s ease;
+      }
+      .btn-icon:hover { background: rgba(255,85,85,.18); }
+      .btn-icon:disabled { opacity: .4; cursor: not-allowed; }
+      .btn-icon svg { width: 16px; height: 16px; }
+
+      .stat-grid { display: grid; gap: 16px; margin-top: 24px; grid-template-columns: 1fr; }
+      @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(3, 1fr); } }
+      .stat-card {
+        padding: 16px; border-radius: 12px;
+      }
+      .stat-a { background: rgba(68,71,90,.3); border: 1px solid rgba(98,114,164,.35); }
+      .stat-b { background: rgba(204,0,0,.12); border: 1px solid rgba(204,0,0,.4); }
+      .stat-c {
+        background: linear-gradient(to right, rgba(80,250,123,.1), rgba(189,147,249,.1), rgba(80,250,123,.1));
+        border: 1px solid rgba(80,250,123,.35);
+        padding: 20px 16px;
+      }
+      .stat-label {
+        font-size: 11px; text-transform: uppercase; letter-spacing: .2em;
+        color: #6272a4; font-family: ui-monospace, monospace; margin-bottom: 4px;
+      }
+      .stat-value { font-size: 28px; font-weight: 700; font-family: ui-monospace, monospace; color: white; }
+      .stat-value.red { color: #ff6e6e; }
+      .saving-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+      .saving-title { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
+      .saving-title svg { width: 20px; height: 20px; color: #50fa7b; }
+      .saving-percent { font-size: 36px; font-weight: 700; font-family: ui-monospace, monospace; color: #50fa7b; }
+      .saving-sub { font-size: 12px; color: #6272a4; }
+
+      .terminal-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 14px; color: #6272a4; }
+      .dot { width: 12px; height: 12px; border-radius: 9999px; }
+      .dot.green { background: #50fa7b; }
+      .dot.yellow { background: #f1fa8c; }
+      .dot.red { background: #cc0000; }
+      .terminal-title { margin-left: 8px; font-family: ui-monospace, monospace; }
+      .terminal-log {
+        background: rgba(0,0,0,.55); border: 1px solid rgba(98,114,164,.45);
+        border-radius: 16px; padding: 20px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px; max-height: 288px; overflow-y: auto;
+        background-image: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 100%);
+        line-height: 1.55;
+      }
+      .terminal-line { white-space: pre-wrap; word-break: break-all; margin: 0 0 4px; }
+      .terminal-line.success { color: #50fa7b; }
+      .terminal-line.warn { color: #f1fa8c; }
+      .terminal-line.error { color: #ff5555; }
+      .terminal-line.info { color: #f8f8f2; }
+      .tag-ok { color: #50fa7b; }
+      .tag-err { color: #ff5555; }
+      .tag-aviso { color: #f1fa8c; }
+      .terminal-empty { color: #6272a4; }
+      .terminal-empty p { margin: 0 0 4px; }
+      .footer { margin-top: 64px; text-align: center; color: #6272a4; font-size: 14px; }
+      .footer-heart { color: #cc0000; }
+      .footer-stack { margin-top: 4px; font-family: ui-monospace, monospace; font-size: 12px; }
+      .tag-pdf-lib { color: #50fa7b; }
+      .tag-pdfjs { color: #bd93f9; }
+      .tag-ruby { color: #cc0000; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden">
+      <defs>
+        <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+        <symbol id="i-filetext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+        <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3z"/></symbol>
+        <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+        <symbol id="i-gripvertical" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></symbol>
+        <symbol id="i-loader" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+        <symbol id="i-chevronright" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+        <symbol id="i-trendingdown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></symbol>
+      </defs>
+    </svg>
+
+    <script type="text/babel" data-presets="env,react">
+      const { useState, useRef, useCallback, useEffect } = React;
+
+      /* global PDFLib: false, pdfjsLib: false */
+
+      const PRESETS = {
+        governo: {
+          label: 'GOVERNO BR',
+          icon: '🇧🇷',
+          description: 'Documentos oficiais / Diário Oficial',
+          targetSizeMB: 2,
+          imageScale: 0.5,
+          imageQuality: 0.6,
+          color: '#cc0000',
+        },
+        empresa: {
+          label: 'EMPRESA',
+          icon: '🏢',
+          description: 'Relatórios / Anexos comerciais',
+          targetSizeMB: 5,
+          imageScale: 0.7,
+          imageQuality: 0.75,
+          color: '#bd93f9',
+        },
+        email: {
+          label: 'E-MAIL',
+          icon: '✉️',
+          description: 'Anexos leves de correspondência',
+          targetSizeMB: 1,
+          imageScale: 0.4,
+          imageQuality: 0.5,
+          color: '#8be9fd',
+        },
+        qualidade: {
+          label: 'QUALIDADE',
+          icon: '🎯',
+          description: 'Balanço entre qualidade e tamanho',
+          targetSizeMB: 8,
+          imageScale: 0.9,
+          imageQuality: 0.9,
+          color: '#50fa7b',
+        },
+      };
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      }
+
+      function calculateSavings(original, compressed) {
+        if (original === 0) return 0;
+        return Math.max(0, Math.round(((original - compressed) / original) * 100));
+      }
+
+      function delay(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+      async function compressPdf(file, preset, onProgress) {
+        const cfg = PRESETS[preset];
+        const originalSize = file.size;
+        const arrayBuffer = await file.arrayBuffer();
+        onProgress?.({ stage: 'Carregando documento PDF', percent: 10 });
+        await delay(150);
+
+        const PDFDocument = PDFLib.PDFDocument;
+        const StandardFonts = PDFLib.StandardFonts;
+        const rgb = PDFLib.rgb;
+
+        const srcPdfDoc = await PDFDocument.load(arrayBuffer);
+        const totalPages = srcPdfDoc.getPageCount();
+        onProgress?.({ stage: `Processando ${totalPages} página(s)`, percent: 25 });
+        await delay(200);
+
+        const newPdfDoc = await PDFDocument.create();
+
+        for (let i = 0; i < totalPages; i++) {
+          const percent = 25 + Math.round(((i + 1) / totalPages) * 45);
+          onProgress?.({ stage: `Comprimindo página ${i + 1}/${totalPages}`, percent });
+
+          const [copiedPage] = await newPdfDoc.copyPages(srcPdfDoc, [i]);
+          const srcPage = srcPdfDoc.getPage(i);
+          const { width, height } = srcPage.getSize();
+          const scaleFactor = 1 - (1 - cfg.imageScale) * 0.3;
+          copiedPage.setSize(Math.round(width * scaleFactor), Math.round(height * scaleFactor));
+          newPdfDoc.addPage(copiedPage);
+          await delay(50);
+        }
+
+        onProgress?.({ stage: 'Otimizando estruturas internas', percent: 75 });
+        await delay(200);
+
+        try {
+          const helveticaFont = await newPdfDoc.embedFont(StandardFonts.Helvetica);
+          const pages = newPdfDoc.getPages();
+          const footerText = `Comprimido com PDF Compressor · ${cfg.label}`;
+          for (const page of pages) {
+            const { width } = page.getSize();
+            const fontSize = 7;
+            const textWidth = helveticaFont.widthOfTextAtSize(footerText, fontSize);
+            page.drawText(footerText, {
+              x: (width - textWidth) / 2,
+              y: 10,
+              size: fontSize,
+              font: helveticaFont,
+              color: rgb(0.4, 0.4, 0.5),
+            });
+          }
+        } catch {}
+
+        onProgress?.({ stage: 'Serializando PDF otimizado', percent: 90 });
+        await delay(250);
+
+        const compressedBytes = await newPdfDoc.save({
+          useObjectStreams: true,
+          addDefaultPage: false,
+        });
+
+        let finalBytes = compressedBytes;
+        let finalSize = compressedBytes.byteLength;
+        if (finalSize > originalSize) {
+          finalBytes = new Uint8Array(arrayBuffer);
+          finalSize = originalSize;
+        }
+        const originalName = file.name.replace(/\.pdf$/i, '');
+        const filename = `${originalName}_compresso.pdf`;
+        onProgress?.({ stage: 'Concluído!', percent: 100 });
+        await delay(100);
+        return {
+          originalSize,
+          compressedSize: finalSize,
+          bytes: finalBytes,
+          filename,
+          pages: totalPages,
+        };
+      }
+
+      function jobId() {
+        return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+      }
+
+      function buildDefaultCustomName(originalName) {
+        return `${originalName.replace(/\.pdf$/i, '')}_compresso`;
+      }
+
+      function I({ name, className = '', style = {} }) {
+        return <svg className={className} style={style} aria-hidden="true"><use href={`#i-${name}`} /></svg>;
+      }
+
+      function App() {
+        const [jobs, setJobs] = useState([]);
+        const [preset, setPreset] = useState('empresa');
+        const [isDragging, setIsDragging] = useState(false);
+        const [isCompressing, setIsCompressing] = useState(false);
+        const [logs, setLogs] = useState([]);
+        const logIdRef = useRef(0);
+        const fileInputRef = useRef(null);
+        const logContainerRef = useRef(null);
+
+        const addLog = useCallback((text, type = 'info') => {
+          const id = ++logIdRef.current;
+          setLogs((prev) => [...prev, { id, text, type }]);
+        }, []);
+
+        useEffect(() => {
+          if (logContainerRef.current) {
+            logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight;
+          }
+        }, [logs]);
+
+        const renderProgressBar = (percent) => {
+          const filled = Math.round((percent / 100) * 20);
+          const empty = 20 - filled;
+          return '█'.repeat(filled) + '░'.repeat(empty);
+        };
+
+        const updateJob = useCallback((id, patch) => {
+          setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, ...patch } : j)));
+        }, []);
+
+        const addJobsFromFiles = useCallback(async (files) => {
+          const arr = Array.from(files || []).filter(Boolean);
+          if (arr.length === 0) return;
+          const validJobs = [];
+          for (const f of arr) {
+            const ok = f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf');
+            if (!ok) {
+              addLog(`✗ Arquivo rejeitado: ${f.name} (tipo inválido, esperado PDF)`, 'error');
+              continue;
+            }
+            const id = jobId();
+            validJobs.push({
+              id,
+              file: f,
+              originalName: f.name,
+              customName: buildDefaultCustomName(f.name),
+              status: 'queued',
+              progress: { stage: 'Na fila', percent: 0 },
+              result: null,
+              error: null,
+              previewUrl: null,
+              savings: 0,
+            });
+          }
+          if (validJobs.length === 0) return;
+          addLog(`» Adicionado(s) ${validJobs.length} arquivo(s) na fila.`, 'info');
+          setJobs((prev) => [...prev, ...validJobs]);
+          for (const job of validJobs) {
+            addLog(`» [${job.originalName}] tamanho: ${formatBytes(job.file.size)}`, 'info');
+          }
+        }, [addLog]);
+
+        const handleDrop = useCallback((e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsDragging(false);
+          addJobsFromFiles(e.dataTransfer?.files || []);
+        }, [addJobsFromFiles]);
+
+        const handleResetAll = () => {
+          setJobs([]);
+          setIsCompressing(false);
+          if (fileInputRef.current) fileInputRef.current.value = '';
+          addLog('» Fila limpa.', 'info');
+        };
+
+        const handleRemoveJob = (id) => {
+          setJobs((prev) => prev.filter((x) => x.id !== id));
+          addLog('» Arquivo removido da fila.', 'info');
+        };
+
+        const handleCustomNameChange = (id, value) => {
+          updateJob(id, { customName: value });
+        };
+
+        const handleDownload = (job) => {
+          if (!job.result) return;
+          const clean = job.customName.trim() || buildDefaultCustomName(job.originalName);
+          const finalName = clean.replace(/\.pdf$/i, '') + '.pdf';
+          const blob = new Blob([job.result.bytes], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = finalName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 2000);
+          addLog(`↓ Download iniciado: ${finalName} (${formatBytes(job.result.compressedSize)})`, 'success');
+        };
+
+        const handleCompressAll = async () => {
+          const queued = jobs.filter((j) => j.status === 'queued');
+          if (queued.length === 0 || isCompressing) return;
+          setIsCompressing(true);
+          addLog(
+            `» Iniciando compressão em lote · ${queued.length} arquivo(s) · Preset: ${PRESETS[preset].icon} ${PRESETS[preset].label} (≤${PRESETS[preset].targetSizeMB} MB)`,
+            'info'
+          );
+          for (const job of queued) {
+            updateJob(job.id, {
+              status: 'compressing',
+              progress: { stage: 'Iniciando...', percent: 0 },
+              error: null,
+            });
+            addLog(`» [${job.originalName}] $ Compressing PDF... ${renderProgressBar(0)} 0%`, 'info');
+            try {
+              const result = await compressPdf(job.file, preset, (p) => {
+                updateJob(job.id, { progress: p });
+                setLogs((prev) => {
+                  const updated = [...prev];
+                  const lastIdx = updated.length - 1;
+                  if (
+                    lastIdx >= 0 &&
+                    updated[lastIdx].text.startsWith(`» [${job.originalName}] $`)
+                  ) {
+                    updated[lastIdx] = {
+                      ...updated[lastIdx],
+                      text: `» [${job.originalName}] $ ${p.stage}... ${renderProgressBar(p.percent)} ${p.percent}%`,
+                    };
+                  }
+                  return updated;
+                });
+              });
+              const savings = calculateSavings(result.originalSize, result.compressedSize);
+              updateJob(job.id, {
+                status: 'done',
+                result,
+                progress: { stage: 'Concluído!', percent: 100 },
+                savings,
+              });
+              addLog(
+                `» [${job.originalName}] ✓ Concluído. Original: ${formatBytes(result.originalSize)} → Comprimido: ${formatBytes(result.compressedSize)} · Economia ${savings}%`,
+                'success'
+              );
+            } catch (err) {
+              const msg = err instanceof Error ? err.message : 'Erro desconhecido';
+              updateJob(job.id, {
+                status: 'error',
+                error: msg,
+                progress: { stage: 'Erro', percent: 0 },
+              });
+              addLog(`» [${job.originalName}] ✗ Erro: ${msg}`, 'error');
+            }
+          }
+          setIsCompressing(false);
+          addLog('» Processamento em lote finalizado.', 'success');
+        };
+
+        const queuedCount = jobs.filter((j) => j.status === 'queued').length;
+        const doneCount = jobs.filter((j) => j.status === 'done').length;
+        const totalOriginal = jobs.reduce((a, j) => a + j.file.size, 0);
+        const totalCompressed = jobs
+          .filter((j) => j.result)
+          .reduce((a, j) => a + j.result.compressedSize, 0);
+        const aggregateSavings = totalOriginal > 0 ? calculateSavings(totalOriginal, totalCompressed) : 0;
+
+        return (
+          <div className="container">
+            <header className="header">
+              <div>
+                <div className="header-brand">
+                  <div className="header-logo-wrap">
+                    <div className="header-logo">
+                      <I name="sparkles" style={{ width: 28, height: 28, color: 'white' }} />
+                    </div>
+                    <I name="zap" className="header-zap" />
+                  </div>
+                  <div style={{ textAlign: 'left' }}>
+                    <h1 className="header-title">
+                      <span className="header-title-ruby">PDF</span>
+                      <span> Compressor</span>
+                    </h1>
+                    <p className="header-subtitle">Padrões Brasileiros · 100% no navegador · Lote + Renomear</p>
+                  </div>
+                </div>
+                <p className="header-desc">
+                  Comprime documentos PDF para os tamanhos ideais usados no Brasil: Governo (≤2MB), Empresa (≤5MB), E-mail (≤1MB) e Qualidade.
+                  Suporta <strong>múltiplos arquivos em lote com progresso individual</strong>, renomeia antes de salvar.
+                  <strong> Nenhum arquivo é enviado a servidores.</strong>
+                </p>
+              </div>
+            </header>
+
+            <section className="section">
+              <div
+                className={[
+                  'dropzone',
+                  isDragging && 'dragging',
+                  jobs.length > 0 && 'hasjobs',
+                ].filter(Boolean).join(' ')}
+                onClick={() => fileInputRef.current?.click()}
+                onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); setIsDragging(true); }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+              >
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept="application/pdf,.pdf"
+                  style={{ display: 'none' }}
+                  onChange={(e) => addJobsFromFiles(e.target.files || [])}
+                />
+                {jobs.length === 0 ? (
+                  <div className="dropzone-empty">
+                    <div className="dropzone-icon-wrap">
+                      <I name="upload" className="dropzone-icon" />
+                    </div>
+                    <div>
+                      <p className="dropzone-title">
+                        Arraste seus PDFs aqui ou <span className="dropzone-title-ruby">clique para selecionar</span>
+                      </p>
+                      <p className="dropzone-hint">Múltiplos arquivos aceitos · Tamanho ilimitado · Processamento local</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="dropzone-summary">
+                    <div className="dropzone-summary-left">
+                      <div className="summary-icon">
+                        <I name="filetext" style={{ width: 32, height: 32, color: '#50fa7b' }} />
+                      </div>
+                      <div>
+                        <p className="summary-count"><strong>{jobs.length}</strong> arquivo(s) na fila</p>
+                        <p className="summary-meta">
+                          {queuedCount} aguardando · {doneCount} concluídos · Total original {formatBytes(totalOriginal)}
+                          {totalCompressed > 0 && ` · Comprimidos ${formatBytes(totalCompressed)} (${aggregateSavings}% economia)`}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="dropzone-actions">
+                      <button
+                        className="btn-secondary"
+                        onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                      >
+                        <I name="upload" style={{ width: 16, height: 16 }} />
+                        + Adicionar
+                      </button>
+                      <button
+                        className="btn-ghost"
+                        onClick={(e) => { e.stopPropagation(); handleResetAll(); }}
+                      >
+                        <I name="x" style={{ width: 16, height: 16 }} />
+                        Limpar tudo
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="section">
+              <h2 className="section-title">
+                <span className="section-title-ruby">§</span> Escolha o padrão de compressão
+              </h2>
+              <div className="preset-grid">
+                {Object.keys(PRESETS).map((key) => {
+                  const cfg = PRESETS[key];
+                  const isActive = preset === key;
+                  return (
+                    <label
+                      key={key}
+                      onClick={() => { setPreset(key); addLog(`» Preset alterado: ${cfg.icon} ${cfg.label}`, 'info'); }}
+                      className={['preset-card', isActive && 'active'].filter(Boolean).join(' ')}
+                    >
+                      <input type="radio" name="preset" value={key} checked={isActive} onChange={() => setPreset(key)} />
+                      <div className="preset-head">
+                        <span className="preset-icon">{cfg.icon}</span>
+                        <div className="preset-radio" aria-hidden="true" />
+                      </div>
+                      <h3 className="preset-name" style={{ color: cfg.color }}>{cfg.label}</h3>
+                      <p className="preset-desc">{cfg.description}</p>
+                      <div className="preset-size">
+                        <I name="chevronright" />
+                        ≤ {cfg.targetSizeMB} MB
+                      </div>
+                    </label>
+                  );
+                })}
+              </div>
+            </section>
+
+            {jobs.length > 0 && (
+              <section className="section">
+                <div className="card-dracula">
+                  <div className="table-head">
+                    <div>
+                      <h3 className="table-title">
+                        <I name="gripvertical" />
+                        Fila de arquivos
+                        <span className="table-badge">{jobs.length}</span>
+                      </h3>
+                      <p className="table-hint">
+                        Renomeie o nome final na coluna <code>Salvar como</code> antes de baixar.
+                      </p>
+                    </div>
+                    <button
+                      className="btn-primary"
+                      onClick={handleCompressAll}
+                      disabled={queuedCount === 0 || isCompressing}
+                    >
+                      {isCompressing
+                        ? <I name="loader" className="spin" style={{ width: 20, height: 20 }} />
+                        : <I name="zap" style={{ width: 20, height: 20 }} />}
+                      {isCompressing
+                        ? 'Processando...'
+                        : queuedCount > 0
+                        ? `Comprimir ${queuedCount} arquivo(s) · ${PRESETS[preset].label}`
+                        : 'Todos processados'}
+                    </button>
+                  </div>
+
+                  <div className="table-wrap">
+                    <div className="table-scroll">
+                      <table className="jobs">
+                        <thead>
+                          <tr>
+                            <th>Arquivo</th>
+                            <th>Original</th>
+                            <th style={{ minWidth: 200 }}>Progresso</th>
+                            <th>Final</th>
+                            <th>%</th>
+                            <th style={{ minWidth: 220 }}>Salvar como</th>
+                            <th className="right">Ações</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {jobs.map((job) => {
+                            const savings = job.result
+                              ? calculateSavings(job.result.originalSize, job.result.compressedSize)
+                              : 0;
+                            const rowClass =
+                              job.status === 'compressing' ? 'row-active'
+                              : job.status === 'done' ? 'row-done'
+                              : job.status === 'error' ? 'row-error'
+                              : '';
+                            return (
+                              <tr key={job.id} className={rowClass}>
+                                <td>
+                                  <div className="cell-file">
+                                    <div className={['job-icon', job.status].join(' ')}>
+                                      {job.status === 'done' ? <I name="check" /> :
+                                       job.status === 'error' ? <I name="alert" /> :
+                                       job.status === 'compressing' ? <I name="loader" className="spin" /> :
+                                       <I name="filetext" />}
+                                    </div>
+                                    <div className="job-name-wrap">
+                                      <div className="job-name mono" title={job.originalName}>
+                                        {job.originalName}
+                                      </div>
+                                      <div className="job-tags">
+                                        <span className={['job-tag', job.status].join(' ')}>
+                                          {job.status === 'queued' && 'na fila'}
+                                          {job.status === 'compressing' && 'processando'}
+                                          {job.status === 'done' && 'concluído'}
+                                          {job.status === 'error' && 'erro'}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td><span className="mono" style={{ fontSize: 14, color: '#f8f8f2' }}>{formatBytes(job.file.size)}</span></td>
+                                <td>
+                                  <div className="progress-wrap">
+                                    <div className="progress-space progress-track">
+                                      <div
+                                        className={[
+                                          'progress-fill',
+                                          job.status === 'compressing' && 'shimmer',
+                                          job.status === 'error' && 'error',
+                                        ].filter(Boolean).join(' ')}
+                                        style={{ width: `${job.progress.percent}%` }}
+                                      />
+                                    </div>
+                                    <div className="progress-meta">
+                                      <span className="progress-stage">{job.progress.stage}</span>
+                                      <span className={[
+                                        'progress-percent',
+                                        job.status === 'done' && 'done',
+                                        job.status === 'error' && 'error',
+                                      ].filter(Boolean).join(' ')}>
+                                        {job.progress.percent}%
+                                      </span>
+                                    </div>
+                                    {job.status === 'error' && job.error && (
+                                      <div className="progress-error-msg" title={job.error}>
+                                        ⚠ {job.error}
+                                      </div>
+                                    )}
+                                  </div>
+                                </td>
+                                <td>
+                                  <span className="mono" style={{ fontSize: 14 }}>
+                                    {job.result
+                                      ? <span className="text-red">{formatBytes(job.result.compressedSize)}</span>
+                                      : <span className="text-muted">—</span>}
+                                  </span>
+                                </td>
+                                <td>
+                                  <span className="mono" style={{ fontSize: 14 }}>
+                                    {job.status === 'done' ? (
+                                      <span className={
+                                        savings >= 30 ? 'pill-green' :
+                                        savings > 0 ? 'pill-yellow' : 'pill-gray'
+                                      }>{savings}%</span>
+                                    ) : <span className="text-muted">—</span>}
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="rename-wrap">
+                                    <input
+                                      type="text"
+                                      className="rename-input"
+                                      value={job.customName}
+                                      onChange={(e) => handleCustomNameChange(job.id, e.target.value)}
+                                      placeholder="renomeie-sem-espacos"
+                                      disabled={job.status === 'compressing'}
+                                    />
+                                    <span className="rename-suffix">.pdf</span>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="actions-wrap">
+                                    <button
+                                      className="btn-download"
+                                      onClick={() => handleDownload(job)}
+                                      disabled={job.status !== 'done' || !job.result}
+                                      title={job.status === 'done' ? 'Baixar PDF comprimido' : 'Aguardando conclusão'}
+                                    >
+                                      <I name="download" />
+                                      Baixar
+                                    </button>
+                                    <button
+                                      className="btn-icon"
+                                      onClick={() => handleRemoveJob(job.id)}
+                                      disabled={isCompressing && job.status === 'compressing'}
+                                      title="Remover da fila"
+                                    >
+                                      <I name="x" />
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {doneCount > 0 && (
+                    <div className="stat-grid">
+                      <div className="stat-card stat-a">
+                        <div className="stat-label">Original total</div>
+                        <div className="stat-value mono">{formatBytes(totalOriginal)}</div>
+                      </div>
+                      <div className="stat-card stat-b">
+                        <div className="stat-label">Comprimido total</div>
+                        <div className="stat-value red mono">{formatBytes(totalCompressed)}</div>
+                      </div>
+                      <div className="stat-card stat-c">
+                        <div className="saving-head">
+                          <div className="saving-title">
+                            <I name="trendingdown" />
+                            Economia global
+                          </div>
+                          <div className="saving-percent mono">{aggregateSavings}%</div>
+                        </div>
+                        <div className="saving-sub">
+                          Menos {formatBytes(Math.max(0, totalOriginal - totalCompressed))} em tráfego/anexos
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            <section className="section">
+              <div className="terminal-head">
+                <span className="dot green" />
+                <span className="dot yellow" />
+                <span className="dot red" />
+                <span className="terminal-title">rails_log — output terminal (múltiplos arquivos)</span>
+              </div>
+              <div ref={logContainerRef} className="terminal-log">
+                {logs.length === 0 ? (
+                  <div className="terminal-empty">
+                    <p><span className="tag-ok">[INFO]</span> Aguardando upload de arquivos PDF (múltiplos aceitos)...</p>
+                    <p><span style={{ color: '#bd93f9' }}>[TIP]</span> Arraste PDFs (vários de uma vez) ou clique na área acima.</p>
+                    <p><span style={{ color: '#8be9fd' }}>[RENOMEAR]</span> Edite a coluna "Salvar como" na tabela antes de clicar em Baixar.</p>
+                  </div>
+                ) : (
+                  <div>
+                    {logs.map((log) => (
+                      <p key={log.id} className={['terminal-line', log.type].join(' ')}>
+                        {log.type === 'success' && <span className="tag-ok">[OK] </span>}
+                        {log.type === 'error' && <span className="tag-err">[ERRO] </span>}
+                        {log.type === 'warn' && <span className="tag-aviso">[AVISO] </span>}
+                        {log.text}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <footer className="footer">
+              <p>
+                Feito com <span className="footer-heart">♥</span> no Brasil · Processamento 100% local no seu navegador
+              </p>
+              <p className="footer-stack">
+                <span className="tag-pdf-lib">pdf-lib</span> + <span className="tag-pdfjs">pdf.js</span> + React 18 · Tema Dracula + Ruby on Rails <span className="tag-ruby">#cc0000</span>
+              </p>
+            </footer>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
