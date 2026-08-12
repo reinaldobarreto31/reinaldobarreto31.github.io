@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007396" />
+      <stop offset="100%" stop-color="#2f855a" />
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#bg)" />
+  <!-- Java Coffee Steam / Code Symbol -->
+  <path d="M35 68 C35 68, 38 52, 50 52 C62 52, 65 68, 65 68 M40 45 C40 45, 43 33, 50 33 C57 33, 60 45, 60 45 M45 25 C45 25, 47 18, 50 18 C53 18, 55 25, 55 25" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M30 74 L70 74" stroke="#50fa7b" stroke-width="6" stroke-linecap="round"/>
+</svg>
