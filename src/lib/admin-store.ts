@@ -31,12 +31,7 @@ function isPassValid(p: string) {
     trimmed === "rubyRails1234#" ||
     trimmed === "rubyRails1234" ||
     trimmed.toLowerCase() === "rubyrails1234#" ||
-    trimmed.toLowerCase() === "rubyrails1234" ||
-    trimmed === "JavaOracle1234#" ||
-    trimmed === "javaOracle1234#" ||
-    trimmed === "javaOracle1234" ||
-    trimmed.toLowerCase() === "javaoracle1234#" ||
-    trimmed.toLowerCase() === "javaoracle1234"
+    trimmed.toLowerCase() === "rubyrails1234"
   );
 }
 

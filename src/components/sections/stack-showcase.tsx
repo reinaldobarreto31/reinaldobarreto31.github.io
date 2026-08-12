@@ -3,102 +3,87 @@ import { motion } from "framer-motion";
 import {
   SiPostgresql, SiRedis, SiDocker, SiGithubactions,
 } from "react-icons/si";
-import { TestTube, Clock, Shield, Layers, Zap, Satellite, Cpu, Activity, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import type { AdminStackItem, ProjectTone } from "@/lib/default-data";
 import {
-  SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
-  SiAngular, SiVuedotjs, SiSpringboot, SiKubernetes, SiTailwindcss, SiVite,
-  SiMongodb, SiNodedotjs, SiReact, SiTypescript, SiKotlin, SiFlutter, SiQuarkus
+  SiRubyonrails, SiRuby, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
+  SiAngular, SiVuedotjs, SiTailwindcss, SiVite,
+  SiMongodb, SiNodedotjs, SiReact, SiTypescript
 } from "react-icons/si";
-import { FaJava as SiJava } from "react-icons/fa6";
 
 const ADMIN_ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  java: SiJava, spring: SiSpringboot, quarkus: SiQuarkus, kotlin: SiKotlin, flutter: SiFlutter,
+  rails: SiRubyonrails, ruby: SiRuby,
   node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
   vue: SiVuedotjs, angular: SiAngular, react: SiReact,
   postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
-  docker: SiDocker, k8s: SiKubernetes, actions: SiGithubactions,
+  docker: SiDocker, actions: SiGithubactions,
   swagger: SiSwagger, git: SiGit, linux: SiLinux, bash: SiGnubash,
-  tailwind: SiTailwindcss, vite: SiVite, go: SiGo,
+  tailwind: SiTailwindcss, vite: SiVite,
 };
 
 const GEMS_BY_KEY: Record<string, string[]> = {
-  java: ["Java 8+ a 17 / 21", "JSP · Struts · Java EE", "Spring Boot · Quarkus", "JPA Hibernate", "Virtual Threads · GraalVM"],
-  spring: ["Spring Boot Starter", "Spring Data JPA", "Spring Security 6", "Spring Cloud Gateway", "JUnit 5 · Mockito"],
-  quarkus: ["Quarkus 3.x", "Mutiny Reactive", "Hibernate Panache", "GraalVM Native", "SmallRye OpenAPI"],
-  kotlin: ["Kotlin 2.0", "Jetpack Compose", "Coroutines · Flow", "Hilt DI", "Room DB"],
-  flutter: ["Flutter 3.x", "Dart 3", "Riverpod · Provider", "Firebase", "Go Router"],
-  node: ["Node.js 20 LTS", "Express · NestJS", "Prisma · Mongoose", "Jest · Supertest", "npm · pnpm"],
+  rails: ["Ruby on Rails 7.x/8.x", "ActiveRecord", "ActionCable", "Sidekiq Jobs", "Devise Auth"],
+  ruby: ["Ruby 3.x", "RSpec", "FactoryBot", "RuboCop", "Puma Server"],
+  node: ["Node.js 20 LTS", "Express", "Prisma", "Jest", "npm"],
   next: ["Next.js 14 App Router", "RSC · Server Actions", "tRPC", "NextAuth", "Vercel"],
   js: ["ES2024", "ESLint + Prettier", "npm / pnpm", "Husky hooks", "ESM Modules"],
   ts: ["TypeScript 5", "Zod", "tsc strict", "esbuild", "Vite"],
   vue: ["Vue 3 · Composition API", "Pinia", "Nuxt 3", "Vue Router", "Axios"],
-  angular: ["Angular 18", "RxJS + Signals", "NgRx", "Standalone", "Angular CLI"],
-  react: ["React 18", "Vite", "Tailwind", "Radix UI", "shadcn/ui"],
-  postgres: ["PostgreSQL 16", "JPA Indexes", "PgSearch", "JSONB", "Window Functions"],
-  mysql: ["MySQL 8", "InnoDB FULLTEXT", "Replication", "Stored Procs", "Flyway"],
-  redis: ["Redis 7", "Spring Cache + Lettuce", "Rate Limit", "Pub/Sub", "Bloom Filter"],
-  mongo: ["MongoDB Atlas", "Aggregation Pipeline", "Atlas Search", "Replica Set", "Change Streams"],
-  docker: ["docker-compose.yml", "alpine", "Dockerfile multi-stage", "Docker BuildKit", "entrypoint.sh"],
-  k8s: ["kubectl", "Helm Charts", "Ingress NGINX", "ConfigMap / Secret", "HPA"],
-  actions: ["checkout", "setup-java", "maven build", "testes", "deploy gh-pages"],
-  swagger: ["Springdoc OpenAPI", "Swagger UI", "OpenAPI 3", "Security Schemes JWT", "Redoc"],
-  git: ["Git Flow", "Conventional Commits", "Rebase · Cherry-pick", "Husky", "Semantic Release"],
+  angular: ["Angular 18", "RxJS", "Standalone", "Angular CLI"],
+  react: ["React 18", "Vite", "Tailwind CSS", "Radix UI", "Framer Motion"],
+  postgres: ["PostgreSQL 16", "ActiveRecord Queries", "PgSearch", "JSONB", "Transactions ACID"],
+  mysql: ["MySQL 8", "InnoDB", "Replication", "Flyway"],
+  redis: ["Redis 7", "Sidekiq Queues", "Caching", "Pub/Sub", "Rate Limit"],
+  mongo: ["MongoDB", "Mongoose", "Aggregation Pipeline"],
+  docker: ["docker-compose.yml", "alpine", "Dockerfile multi-stage", "Docker BuildKit"],
+  actions: ["checkout", "setup-ruby", "bundle exec rspec", "deploy gh-pages"],
+  swagger: ["rswag", "Swagger UI", "OpenAPI 3", "Security Schemes JWT", "Redoc"],
+  git: ["Git Flow", "Conventional Commits", "Rebase · Cherry-pick", "Husky"],
   linux: ["Ubuntu 24.04", "systemd units", "ufw + fail2ban", "cron · journalctl", "SSH hardening"],
-  bash: ["Bash 5", "funções · getopts", "awk · sed · jq", "cronjobs", "trap EXIT"],
-  tailwind: ["Tailwind CSS 3", "JIT compiler", "@apply + variants", "Typography Prose", "shadcn themes"],
-  vite: ["Vite 5", "Rollup plugins", "HMR", "esbuild", "Library Mode"],
-  go: ["net/http", "gin-gonic", "gorm", "jwt-go", "viper"],
+  bash: ["Bash 5", "funções · getopts", "awk · sed · jq", "cronjobs"],
+  tailwind: ["Tailwind CSS 3/4", "JIT compiler", "@apply + variants", "Typography Prose"],
+  vite: ["Vite 5", "Rollup plugins", "HMR", "esbuild"],
 };
 
 const PATTERNS_BY_KEY: Record<string, string[]> = {
-  java: ["Clean Architecture", "Hexagonal", "Repository", "Service Layer", "CQRS"],
-  spring: ["@Transactional", "AOP", "DTO Projections", "Spring Profiles", "Auto-config"],
-  quarkus: ["Reactive Stream", "Non-blocking I/O", "Build-time Boot", "Native Image", "CDI @ApplicationScoped"],
-  kotlin: ["MVVM + Clean", "Sealed Classes", "Extension Fns", "Delegates", "Reactive Flow"],
-  flutter: ["Repository", "BLoC / Provider", "Isolates", "Lazy Lists", "Custom Paint"],
-  node: ["Middleware pipeline", "Error handlers", "NestJS Modules", "Factory + DI", "BullMQ queues"],
-  next: ["RSC · SSR", "Server Actions", "Edge Runtime", "tRPC routers", "ISR revalidation"],
-  js: ["ESM modules", "Event Loop", "Promises / async-await", "Web APIs", "Event Delegation"],
-  ts: ["strict mode", "Generics", "Utility Types", "Discriminated Unions", "infer const"],
-  vue: ["Composition API", "Script Setup", "Pinia stores", "Router guards", "Teleport"],
-  angular: ["Signals", "Standalone", "Dependency Injection", "RxJS pipes", "Async pipe"],
-  react: ["Components", "Custom Hooks", "Context + Reducer", "Error Boundary", "Lazy / Suspense"],
-  postgres: ["CTE e Window Fns", "Índices GIN/GiST", "Advisory Locks", "JSONB", "Views"],
-  mysql: ["Stored Procedures", "Triggers", "Replication", "Explain Analyze", "Partitioning"],
-  redis: ["Fragment cache", "Rate Limiting", "Semaphores", "Bloom Filter", "Counter cache"],
-  mongo: ["Aggregation", "Indexes TTL / Text", "Replica Set", "Change Streams", "Atlas Search"],
-  docker: ["Camadas otimizadas", "Multi-stage", "Volumes nomeados", "Networks", ".dockerignore"],
-  k8s: ["Deployments", "Services", "PV / PVC", "Ingress Controller", "HPA"],
-  actions: ["Workflows reusable", "Matrix strategy", "Cache @cache", "Artifacts", "Environments"],
-  swagger: ["OpenAPI 3", "Springdoc", "Swagger UI", "Security Schemes JWT", "Examples"],
-  git: ["Feature branches", "Squash / Rebase", "Stash", "Bisect", "Husky pre-commit"],
-  linux: ["SSH hardening", "systemd units", "fail2ban", "logrotate", "bashrc aliases"],
-  bash: ["funções + trap", "getopts", "xargs", "IFS / arrays", "pipefail"],
-  tailwind: ["Arbitrary values", "@apply", "variants", "plugins", "design tokens"],
-  vite: ["Config define", "plugins", "build.target", "optimizeDeps", "server proxy"],
-  go: ["goroutines / channels", "interfaces implícitas", "context.Context", "struct tags", "go mod"],
+  rails: ["Convention over Configuration", "MVC / REST API", "ActiveRecord Patterns", "Service Objects", "Background Jobs"],
+  ruby: ["OOP Limpo", "Metaprogramação", "TDD com RSpec", "SOLID", "DRY"],
+  node: ["Middleware pipeline", "Error handlers", "Factory + DI", "BullMQ queues"],
+  next: ["RSC · SSR", "Server Actions", "Edge Runtime", "tRPC routers"],
+  js: ["ESM modules", "Event Loop", "Promises / async-await", "Web APIs"],
+  ts: ["strict mode", "Generics", "Utility Types", "Discriminated Unions"],
+  vue: ["Composition API", "Script Setup", "Pinia stores", "Router guards"],
+  angular: ["Standalone", "Dependency Injection", "RxJS pipes"],
+  react: ["Components", "Custom Hooks", "Context + Reducer", "Error Boundary"],
+  postgres: ["CTE e Window Fns", "Índices GIN/GiST", "Advisory Locks", "JSONB"],
+  mysql: ["Stored Procedures", "Triggers", "Explain Analyze"],
+  redis: ["Fragment cache", "Rate Limiting", "Sidekiq Queues", "Counter cache"],
+  mongo: ["Aggregation", "Indexes TTL / Text", "Replica Set"],
+  docker: ["Camadas otimizadas", "Multi-stage", "Volumes nomeados", "Networks"],
+  actions: ["Workflows reusable", "Matrix strategy", "Cache @cache", "Artifacts"],
+  swagger: ["OpenAPI 3", "rswag", "Swagger UI", "Security Schemes JWT"],
+  git: ["Feature branches", "Squash / Rebase", "Stash", "Husky pre-commit"],
+  linux: ["SSH hardening", "systemd units", "fail2ban", "logrotate"],
+  bash: ["funções + trap", "getopts", "xargs", "IFS / arrays"],
+  tailwind: ["Arbitrary values", "@apply", "variants", "design tokens"],
+  vite: ["Config define", "plugins", "build.target", "optimizeDeps"],
 };
 
 const TAGLINE_BY_KEY: Record<string, string> = {
-  java: "Engenharia & Spring",
-  spring: "Produtividade Java Enterprise",
-  quarkus: "Supersonic Subatomic Java",
-  kotlin: "Android nativo · Moderno",
-  flutter: "Híbrido iOS · Android",
+  rails: "Framework Web Produtivo",
+  ruby: "Linguagem Elegante",
   node: "Runtime JS server-side",
   next: "SSR · App Router React",
   js: "Fundamentos Web modernos",
   ts: "Código seguro por padrão",
   vue: "SPA leve · Composition API",
-  angular: "App escalável · Signals",
+  angular: "App escalável",
   react: "Interfaces reativas 18",
   postgres: "Dados consistentes ACID",
   mysql: "Banco SQL popular",
-  redis: "Cache & performance",
+  redis: "Cache & Jobs com Sidekiq",
   mongo: "NoSQL orientado a docs",
   docker: "Ambientes reproduzíveis",
-  k8s: "Orquestração containers",
   actions: "CI / CD automatizado",
   swagger: "Documentação OpenAPI 3",
   git: "Controle de versão",
@@ -106,17 +91,16 @@ const TAGLINE_BY_KEY: Record<string, string> = {
   bash: "Automação Shell",
   tailwind: "Utility-first CSS",
   vite: "Build & dev server rápido",
-  go: "Performático e simples",
 };
 
 const FRONTICON_BY_KEY: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  java: SiJava, spring: SiSpringboot, quarkus: SiQuarkus, kotlin: SiKotlin, flutter: SiFlutter,
+  rails: SiRubyonrails, ruby: SiRuby,
   node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
   vue: SiVuedotjs, angular: SiAngular, react: SiReact,
   postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
-  docker: SiDocker, k8s: SiKubernetes, actions: SiGithubactions,
+  docker: SiDocker, actions: SiGithubactions,
   swagger: SiSwagger, git: SiGit, linux: SiLinux, bash: SiGnubash,
-  tailwind: SiTailwindcss, vite: SiVite, go: SiGo,
+  tailwind: SiTailwindcss, vite: SiVite,
 };
 
 type StackCard = {
@@ -142,16 +126,16 @@ export function StackShowcaseSection({ stack }: Props) {
 
   const cards: StackCard[] = stack.length > 0
     ? stack.map((item) => {
-        const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "spring";
-        const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiJava;
-        const gems = GEMS_BY_KEY[iconKey] ?? ["Libs", "Config", "Padrões", "Setup", "Deploy"];
+        const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "rails";
+        const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiRubyonrails;
+        const gems = GEMS_BY_KEY[iconKey] ?? ["Gems", "Config", "Padrões", "Setup", "Deploy"];
         const patterns = PATTERNS_BY_KEY[iconKey] ?? ["Boas práticas", "Padrões", "Qualidade", "Documentação", "Testes"];
         const tagline = TAGLINE_BY_KEY[iconKey] ?? item.name;
         return {
           id: item.id,
           name: item.name,
           tagline,
-          tone: (item.tone || "tech-spring") as ProjectTone,
+          tone: (item.tone || "tech-rails") as ProjectTone,
           frontDetail: `Experiência com ${item.name}. Nível de domínio ~${item.level}%. Aplicado em projetos e processos do dia a dia.`,
           backTitle: `${item.name} — Aplicação prática`,
           backSubtitle: `Recursos e padrões em ${item.name}`,
@@ -172,7 +156,7 @@ export function StackShowcaseSection({ stack }: Props) {
           <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">Stack completo</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Tecnologias que uso todo dia.</h2>
           <p className="text-muted-foreground mt-3 leading-relaxed">
-            Passe o mouse <em className="text-primary">ou clique</em> no card e ele <strong>vira</strong> — revelando libs, padrões e técnicas aplicadas em produção.
+            Passe o mouse <em className="text-primary">ou clique</em> no card e ele <strong>vira</strong> — revelando gems, padrões e técnicas aplicadas em produção.
           </p>
         </div>
 
@@ -212,7 +196,7 @@ export function StackShowcaseSection({ stack }: Props) {
                         <div className="h-1.5 rounded-full bg-[#e0e5ec] shadow-[inset_1px_1px_3px_#b8c1ec,inset_-1px_-1px_3px_#ffffff] overflow-hidden">
                           <div
                             className="h-full rounded-full"
-                            style={{ width: `${item.level}%`, background: "var(--tech-color,#6db33f)", boxShadow: "0 0 8px color-mix(in srgb, var(--tech-color,#6db33f) 55%, transparent)" }}
+                            style={{ width: `${item.level}%`, background: "var(--tech-color,#cc0000)", boxShadow: "0 0 8px color-mix(in srgb, var(--tech-color,#cc0000) 55%, transparent)" }}
                           />
                         </div>
                         <span className="text-[10.5px] font-mono text-muted-foreground mt-1 inline-block">domínio ~{item.level}%</span>
@@ -239,7 +223,7 @@ export function StackShowcaseSection({ stack }: Props) {
                       </div>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-foreground/70 mb-1.5">Libs / ferramentas</p>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-foreground/70 mb-1.5">Gems / ferramentas</p>
                           <div className="flex flex-wrap gap-1.5">
                             {item.gems.map(g => (
                               <span key={g} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-md border leading-tight">{g}</span>
@@ -268,7 +252,7 @@ export function StackShowcaseSection({ stack }: Props) {
         </div>
 
         <a href="#projects" className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-          Explorar projetos Java · Spring · Kotlin · Flutter <ExternalLink size={15} />
+          Explorar projetos em Ruby on Rails, React & PostgreSQL <ExternalLink size={15} />
         </a>
       </div>
     </section>
@@ -277,27 +261,19 @@ export function StackShowcaseSection({ stack }: Props) {
 
 const DEFAULT_CARDS: StackCard[] = (() => {
   const FALLBACK_STACK: AdminStackItem[] = [
-    { id: "s-java", name: "Java 17 LTS", icon: "java", tone: "tech-java", level: 95 },
-    { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 95 },
-    { id: "s-security", name: "Spring Security · JWT", icon: "spring", tone: "tech-spring", level: 90 },
-    { id: "s-jpa", name: "JPA · Hibernate", icon: "postgres", tone: "tech-spring", level: 92 },
-    { id: "s-kotlin", name: "Kotlin · Android", icon: "kotlin", tone: "tech-kotlin", level: 88 },
-    { id: "s-compose", name: "Jetpack Compose", icon: "kotlin", tone: "tech-kotlin", level: 85 },
-    { id: "s-flutter", name: "Flutter · Dart", icon: "flutter", tone: "tech-flutter", level: 82 },
-    { id: "s-node", name: "Node.js · NestJS", icon: "node", tone: "tech-node", level: 80 },
-    { id: "s-next", name: "Next.js 14", icon: "next", tone: "tech-next", level: 82 },
-    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 78 },
-    { id: "s-angular", name: "Angular 18", icon: "angular", tone: "tech-angular", level: 75 },
-    { id: "s-micros", name: "Microserviços · Kafka", icon: "docker", tone: "tech-docker", level: 85 },
-    { id: "s-pg", name: "PostgreSQL · MySQL", icon: "postgres", tone: "tech-postgres", level: 88 },
-    { id: "s-swagger", name: "OpenAPI 3 · Swagger", icon: "swagger", tone: "tech-openapi", level: 92 },
-    { id: "s-tests", name: "JUnit · Mockito", icon: "vite", tone: "tech-spring", level: 90 },
-    { id: "s-obs", name: "Observabilidade · Docker", icon: "actions", tone: "tech-actions", level: 80 },
+    { id: "s-rails", name: "Ruby on Rails", icon: "rails", tone: "tech-rails", level: 96 },
+    { id: "s-ruby", name: "Ruby 3", icon: "ruby", tone: "tech-ruby", level: 95 },
+    { id: "s-rspec", name: "RSpec · TDD", icon: "ruby", tone: "tech-ruby", level: 92 },
+    { id: "s-sidekiq", name: "Sidekiq · Redis", icon: "redis", tone: "tech-redis", level: 90 },
+    { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 90 },
+    { id: "s-docker", name: "Docker · Compose", icon: "docker", tone: "tech-docker", level: 86 },
+    { id: "s-react", name: "React 18", icon: "react", tone: "tech-react", level: 88 },
+    { id: "s-next", name: "Next.js 14", icon: "next", tone: "tech-next", level: 85 },
   ];
   return FALLBACK_STACK.map((item) => {
-    const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "spring";
-    const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiJava;
-    const gems = GEMS_BY_KEY[iconKey] ?? ["Libs", "Config", "Padrões", "Setup", "Deploy"];
+    const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "rails";
+    const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiRubyonrails;
+    const gems = GEMS_BY_KEY[iconKey] ?? ["Gems", "Config", "Padrões", "Setup", "Deploy"];
     const patterns = PATTERNS_BY_KEY[iconKey] ?? ["Boas práticas", "Padrões", "Qualidade", "Documentação", "Testes"];
     const tagline = TAGLINE_BY_KEY[iconKey] ?? item.name;
     return {
