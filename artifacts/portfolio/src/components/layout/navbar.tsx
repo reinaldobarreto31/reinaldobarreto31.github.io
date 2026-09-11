@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { SiDotnet } from "react-icons/si";
-import { Home, User, Briefcase, Code2, Activity, Mail } from "lucide-react";
+import { Home, User, Briefcase, Code2, Activity, Mail, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,11 +25,15 @@ export function Navbar() {
     { name: "Contato",     href: "#contact",    icon: Mail },
   ];
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-border"
+          ? "bg-background/90 backdrop-blur-md border-border shadow-sm"
           : "bg-transparent border-transparent"
       }`}
     >
@@ -43,23 +51,41 @@ export function Navbar() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-bold text-sm tracking-tight text-foreground">Reinaldo Barreto</span>
-            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">.NET · C# · ASP.NET Core · Desktop &amp; Web</span>
+            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">1º .NET · 2º Java · 3º Node.js</span>
           </div>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="hover:text-primary transition-colors text-xs font-medium tracking-wide"
-              data-testid={`link-nav-${link.name.toLowerCase()}`}
+        {/* Desktop nav + Theme Switcher */}
+        <div className="flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="hover:text-primary transition-colors text-xs font-medium tracking-wide"
+                data-testid={`link-nav-${link.name.toLowerCase()}`}
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Theme Toggle Button */}
+          {mounted && (
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border border-border bg-card/80 hover:bg-primary/15 text-foreground hover:text-primary transition-all flex items-center justify-center shadow-sm"
+              title={theme === "dark" ? "Mudar para Modo Claro" : "Mudar para Modo Escuro"}
+              aria-label="Alternar tema claro/escuro"
             >
-              {link.name}
-            </a>
-          ))}
-        </nav>
+              {theme === "dark" ? (
+                <Sun size={17} className="text-amber-400" />
+              ) : (
+                <Moon size={17} className="text-[#0078d4]" />
+              )}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Mobile bottom nav */}

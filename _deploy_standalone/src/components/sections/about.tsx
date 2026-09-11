@@ -88,7 +88,7 @@ const EDUCATION = [
     icon: GraduationCap,
   },
   {
-    course: "Técnico em Administração",
+    course: "Técnico em Processamento de Dados / Informática",
     school: "CEEP Newton Sucupira",
     period: "1994 – 1996",
     icon: BookOpen,
@@ -96,12 +96,13 @@ const EDUCATION = [
 ];
 
 const COURSES = [
-  "Cursos em C#, .NET, .NET Core, ASP.NET e CSS – Udemy",
-  "APIs RESTful com Spring Boot e Java – Udemy",
-  "Spring Cloud e Microservices – Udemy",
-  "Testes unitários e TDD com JUnit e Mockito – Udemy",
-  "Docker e Kubernetes na prática – Udemy",
-  "Desenvolvimento Android com Kotlin e Java – Udemy",
+  "C# Completo: Programação Orientada a Objetos + Projetos – Udemy",
+  "ASP.NET Core: APIs RESTful com Entity Framework Core e SQL Server – Udemy",
+  "Desenvolvimento Desktop com WPF e Windows Forms em C# – Udemy",
+  "Administração de Windows Server, Active Directory e PowerShell – Udemy",
+  "Banco de Dados Microsoft SQL Server: Modelagem, T-SQL e Otimização – Udemy",
+  "APIs RESTful com Spring Boot 3 e Java 17+ – Udemy",
+  "Node.js, TypeScript e Arquitetura de Microserviços – Udemy",
 ];
 
 const LANGUAGES = [
@@ -117,7 +118,7 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
         <span className="text-foreground font-semibold">{name}</span>
         <span style={{ color }}>{level}%</span>
       </div>
-      <div className="h-[6px] w-full rounded-full bg-[#1e293b] overflow-hidden border border-white/5">
+      <div className="h-[6px] w-full rounded-full bg-muted overflow-hidden border border-border">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
@@ -126,21 +127,21 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
           className="h-full rounded-full"
           style={{
             background: (() => {
+              if (color.toLowerCase() === "#0078d4" || color.toLowerCase() === "#00a4ef" || color.includes("0078") || color.includes("00a4")) {
+                return "linear-gradient(to right, #005a9e, #0078d4, #00a4ef)";
+              }
+              if (color.toLowerCase() === "#512bd4" || color.includes("512b")) {
+                return "linear-gradient(to right, #371b99, #512bd4, #7c5ceb)";
+              }
               if (color.toLowerCase() === "#6db33f" || color.toLowerCase() === "#50fa7b" || color.includes("6db") || color.includes("50fa")) {
-                return "linear-gradient(to right,#3d7a27,#6db33f,#9ed866)";
+                return "linear-gradient(to right, #3d7a27, #6db33f, #9ed866)";
               }
-              if (color.toLowerCase() === "#007396" || color.toLowerCase() === "#f89820" || color.includes("007396") || color.includes("f898")) {
-                return "linear-gradient(to right,#005d7c,#007396,#2fa4c8)";
-              }
-              if (color.toLowerCase() === "#7f52ff" || color.includes("7f52") || color.includes("9333ea")) {
-                return "linear-gradient(to right,#5a3ad1,#7f52ff,#a78bfa)";
-              }
-              if (color.toLowerCase() === "#02569b" || color.toLowerCase() === "#42a5f5" || color.includes("02569b") || color.includes("42a5")) {
-                return "linear-gradient(to right,#013f73,#02569b,#42a5f5)";
+              if (color.toLowerCase() === "#339933" || color.includes("3399")) {
+                return "linear-gradient(to right, #1f661f, #339933, #52cc52)";
               }
               return `linear-gradient(to right, ${color}, ${color})`;
             })(),
-            boxShadow: `0 0 12px ${color}55`,
+            boxShadow: `0 0 10px ${color}44`,
           }}
         />
       </div>
