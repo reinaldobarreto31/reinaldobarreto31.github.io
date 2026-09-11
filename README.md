@@ -1,446 +1,330 @@
-# 🌆 Reinaldo Barreto — Software Engineer | Full-Stack
+﻿# 💻 Reinaldo Barreto — Desenvolvedor .NET | C# | Desktop & Web APIs | Suporte N3 & Infraestrutura Windows
 
-> **Perfil profissional focado em Java 17+ / Spring Boot 3, Kotlin Android nativo, Flutter híbrido e soluções front-end modernas com Next.js 14, React 18, Vue 3 e Angular 18.**
-> Portfólio publicado em **[reinaldobarreto31.github.io](https://reinaldobarreto31.github.io)** · Painel Admin CRUD incluso (login próprio).
+> **Perfil profissional especializado no ecossistema Microsoft:** C# 12 / .NET 8, ASP.NET Core Web APIs, Desenvolvimento Desktop (WPF, Windows Forms, VB.NET e migração de legados VB6), Automações Corporativas em VBA / MS Access, Bancos de Dados SQL Server (T-SQL) e Infraestrutura de TI / Suporte Técnico N3 em ambientes corporativos Windows 11 e Windows Server.
+> 
+> 🌐 Portfólio publicado em **[reinaldobarreto31.github.io](https://reinaldobarreto31.github.io)**  
+> 📄 Currículo completo disponível para **[Download em PDF (2 páginas A4)](https://reinaldobarreto31.github.io/curriculo.pdf)** ou **[Visualização Online (HTML)](https://reinaldobarreto31.github.io/curriculo.html)**.
 
 ---
 
-## 🛠️ Tech Stack Principal (Prioridade Oficial)
+## 🛠️ Tech Stack Principal (Ecossistema Microsoft & Corporativo)
 
-### 🏆 Back-end (Foco 1)
-| Tecnologia | Versão | Badge |
+### 🏆 Back-end, Desktop & Soluções Microsoft (Foco Principal)
+| Tecnologia | Versão / Especialidade | Badge |
 |---|---|---|
-| **Java** | 17+ LTS | ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) |
-| **Spring Boot** | 3.x | ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white) |
-| **Spring Security** | 6.x (JWT) | ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring&logoColor=white) |
-| **Spring Data JPA** | Hibernate | ![JPA](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white) |
-| **Spring Cloud Gateway** | Microserviços | ![Spring Cloud](https://img.shields.io/badge/Spring_Cloud-6DB33F?style=for-the-badge&logo=spring&logoColor=white) |
-| **JUnit 5 · Mockito** | TDD | ![JUnit 5](https://img.shields.io/badge/JUnit_5-25A162?style=for-the-badge&logo=junit5&logoColor=white) |
+| **C#** | 12 / Modern C# | ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white) |
+| **.NET** | 8.0 LTS / .NET Framework | ![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white) |
+| **ASP.NET Core** | Web APIs RESTful, Minimal APIs, Blazor | ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white) |
+| **WPF & Windows Forms** | Desktop Corporativo, MVVM, XAML, Windows UI | ![WPF](https://img.shields.io/badge/WPF_%26_WinForms-0078D4?style=for-the-badge&logo=windows&logoColor=white) |
+| **VB.NET & Visual Basic 6.0** | Modernização, Migração de Legados, Win32 | ![VB.NET](https://img.shields.io/badge/VB.NET_%2F_VB6-004880?style=for-the-badge&logo=visual-basic&logoColor=white) |
+| **VBA & Microsoft Access** | Macros Avançadas, Automação Office, MDB/ACCDB | ![Excel VBA](https://img.shields.io/badge/VBA_%26_Access-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white) |
+| **Entity Framework Core** | ORM, Migrations, LINQ, Dapper | ![EF Core](https://img.shields.io/badge/EF_Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white) |
+| **xUnit / NUnit** | Testes Unitários, Moq, TDD | ![xUnit](https://img.shields.io/badge/xUnit-512BD4?style=for-the-badge&logo=dotnet&logoColor=white) |
 
-### 📱 Mobile (Foco 2)
-| Tecnologia | Versão | Badge |
-|---|---|---|
-| **Kotlin** | 2.0 (Android + Web) | ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) |
-| **Jetpack Compose** | UI moderna | ![Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpack-compose&logoColor=white) |
-| **Flutter / Dart** | 3.x Híbrido | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white) |
-
-### ⚡ Front-end Full-Stack (Obrigatório · 4º Pilar)
-| Tecnologia | Versão | Badge |
-|---|---|---|
-| **Next.js** | 14 · App Router | ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white) |
-| **Node.js** | 20 LTS · NestJS | ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) |
-| **Vue.js** | 3 · Composition API | ![Vue.js](https://img.shields.io/badge/Vue.js-42B883?style=for-the-badge&logo=vuedotjs&logoColor=white) |
-| **Angular** | 18 · Signals | ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white) |
-| **React** | 18 | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) |
-| **TypeScript** | 5.x | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) |
-| **JavaScript** | ES2024 | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) |
-| **Tailwind CSS** | 3.x | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) |
-| **Vite** | 5.x | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) |
-
-### 🗄️ Bancos · DevOps · Infra
+### 🗄️ Bancos de Dados & Cloud
 | Categoria | Tecnologias | Badges |
 |---|---|---|
-| **SQL / NoSQL** | PostgreSQL · MySQL · MongoDB · Redis | ![PG](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![Mongo](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) |
-| **DevOps** | Docker · GitHub Actions · Kubernetes | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white) ![K8s](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white) |
-| **Documentação API** | OpenAPI 3 · Swagger / Springdoc | ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black) |
-| **Versionamento** | Git · Git Flow · Conventional Commits | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) |
+| **Microsoft SQL Server** | T-SQL, Stored Procedures, Triggers, Views, Índices, Otimização | ![SQL Server](https://img.shields.io/badge/Microsoft_SQL_Server-CC292B?style=for-the-badge&logo=microsoftsqlserver&logoColor=white) |
+| **Relacionais & Cache** | PostgreSQL, MySQL, SQLite, Redis | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) |
+| **Microsoft Azure** | Azure VMs, App Services, SQL Database, Entra ID (Azure AD), Blob Storage | ![Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white) |
+
+### 🛡️ Infraestrutura, Suporte N3 & Sistemas Operacionais
+| Área | Detalhamento | Badges |
+|---|---|---|
+| **Ambiente Windows** | Windows 11 Pro/Enterprise, Windows Server (2016/2019/2022), Active Directory, GPO, DNS, DHCP, IIS | ![Windows](https://img.shields.io/badge/Windows_11_%2F_Server-0078D4?style=for-the-badge&logo=windows11&logoColor=white) |
+| **Scripting & Automação** | PowerShell 7, Shell Script, Bash, Batch (CMD) | ![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white) |
+| **Suporte Técnico N3** | Diagnóstico avançado de falhas, redes TCP/IP, VPN corporativa, firewalls, hardware corporativo, atendimento SLA | ![Support N3](https://img.shields.io/badge/Suporte_Técnico_N3-005A9E?style=for-the-badge&logo=windows&logoColor=white) |
+| **DevOps & Containers** | Docker, Docker Compose, GitHub Actions CI/CD, IIS Deploy | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white) |
+
+### 📱 Mobile, Web & Front-end Complementar
+| Tecnologia | Aplicação | Badges |
+|---|---|---|
+| **.NET MAUI & Blazor** | Mobile multiplataforma (Android/Windows) e Progressive Web Apps (PWA) | ![.NET MAUI](https://img.shields.io/badge/.NET_MAUI-512BD4?style=for-the-badge&logo=dotnet&logoColor=white) |
+| **Web & TypeScript** | React 18, Vite, TypeScript 5, Tailwind CSS, HTML5, CSS3 | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) |
+| **Android Nativo** | Experiência prévia em Kotlin / Jetpack Compose para apps corporativos | ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) |
 
 ---
 
-## 💻 Amostras de Código (Stack em Ação — Java 17 & Kotlin 2.0)
+## 💻 Amostras de Código (.NET 8 & C# 12 em Produção)
 
-> Trechos reais da stack que trabalho diariamente: **Spring Boot 3 REST + JPA** e **Jetpack Compose Android com Coroutines Flow**.
+> Arquitetura limpa (*Clean Architecture*), injeção de dependência nativa, Entity Framework Core e ASP.NET Core Web API com documentação OpenAPI/Swagger.
 
-### 🟦 Java 17 LTS · Spring Boot 3 · (Controller · Repository · Record DTO)
+### 🟦 1. C# 12 · Domain Entity & Record DTOs
 
-```java
-// ==============================
-// ClienteResponse.java — RECORD (Java 16+)
-// ==============================
-package br.com.reinaldobarreto.clientehub.dto;
+```csharp
+// ==============================================================
+// ClienteDto.cs — Records imutáveis para transporte seguro de dados
+// ==============================================================
+namespace EnterpriseSystem.Domain.DTOs;
 
-import java.time.LocalDate;
+public record ClienteCreateDto(
+    string RazaoSocial,
+    string NomeFantasia,
+    string CnpjCpf,
+    string Email,
+    string Telefone,
+    string Cep,
+    string Endereco,
+    decimal LimiteCredito
+);
 
-public record ClienteResponse(
-        Long id,
-        String nome,
-        String email,
-        String telefone,
-        String cpfCnpj,
-        LocalDate dataCadastro,
-        Boolean ativo
-) {}
+public record ClienteResponseDto(
+    Guid Id,
+    string RazaoSocial,
+    string NomeFantasia,
+    string CnpjCpf,
+    string Email,
+    string Telefone,
+    decimal LimiteCredito,
+    bool Ativo,
+    DateTime DataCadastro
+);
 ```
 
-```java
-// ==============================
-// ClienteRepository.java — JPA + Spring Data
-// ==============================
-package br.com.reinaldobarreto.clientehub.repositories;
+### 🟦 2. Entity Framework Core & SQL Server · Repository Pattern
 
-import br.com.reinaldobarreto.clientehub.entities.Cliente;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+```csharp
+// ==============================================================
+// ClienteRepository.cs — Repositório com EF Core e consultas assíncronas
+// ==============================================================
+namespace EnterpriseSystem.Infrastructure.Repositories;
 
-import java.util.Optional;
+using Microsoft.EntityFrameworkCore;
+using EnterpriseSystem.Domain.Entities;
+using EnterpriseSystem.Domain.Interfaces;
+using EnterpriseSystem.Infrastructure.Data;
 
-@Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+public class ClienteRepository : IClienteRepository
+{
+    private readonly AppDbContext _context;
 
-    Optional<Cliente> findByEmailIgnoreCase(String email);
-
-    @Query("""
-           SELECT c FROM Cliente c
-            WHERE (:busca IS NULL
-               OR LOWER(c.nome)   LIKE LOWER(CONCAT('%', :busca, '%'))
-               OR LOWER(c.email)  LIKE LOWER(CONCAT('%', :busca, '%'))
-               OR LOWER(c.cpfCnpj) LIKE LOWER(CONCAT('%', :busca, '%')))
-           """)
-    Page<Cliente> buscarPaginado(@Param("busca") String busca, Pageable pageable);
-}
-```
-
-```java
-// ==============================
-// ClienteController.java — REST + Spring Security JWT 6.x
-// ==============================
-package br.com.reinaldobarreto.clientehub.controllers;
-
-import br.com.reinaldobarreto.clientehub.dto.ClienteRequest;
-import br.com.reinaldobarreto.clientehub.dto.ClienteResponse;
-import br.com.reinaldobarreto.clientehub.services.ClienteService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-@RestController
-@RequestMapping("/api/v1/clientes")
-@RequiredArgsConstructor
-@Tag(name = "Clientes", description = "CRUD completo de clientes (autenticado JWT)")
-@SecurityRequirement(name = "bearer-key")
-@CrossOrigin(origins = {"http://localhost:3000", "https://reinaldobarreto31.github.io"}, maxAge = 3600)
-public class ClienteController {
-
-    private final ClienteService clienteService;
-
-    @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN','OPERADOR')")
-    @Operation(summary = "Lista paginada de clientes (com busca textual)")
-    public ResponseEntity<Page<ClienteResponse>> listar(
-            @RequestParam(required = false) String busca,
-            @PageableDefault(size = 20, sort = {"nome"}) Pageable pageable) {
-        return ResponseEntity.ok(clienteService.listarPaginado(busca, pageable));
+    public ClienteRepository(AppDbContext context)
+    {
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','OPERADOR')")
-    @Operation(summary = "Busca um cliente pelo ID")
-    public ResponseEntity<ClienteResponse> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(clienteService.buscarPorId(id));
+    public async Task<Cliente?> ObterPorIdAsync(Guid id, CancellationToken ct = default)
+    {
+        return await _context.Clientes
+            .AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Id == id && c.Ativo, ct);
     }
 
-    @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Cadastra novo cliente")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ClienteResponse> cadastrar(@RequestBody @Valid ClienteRequest request) {
-        var salvo = clienteService.cadastrar(request);
-        var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(salvo.id()).toUri();
-        return ResponseEntity.created(uri).body(salvo);
+    public async Task<IEnumerable<Cliente>> ListarComFiltroAsync(string? termoBusca, int pagina, int tamanhoPagina, CancellationToken ct = default)
+    {
+        var query = _context.Clientes.AsNoTracking().Where(c => c.Ativo);
+
+        if (!string.IsNullOrWhiteSpace(termoBusca))
+        {
+            var termo = termoBusca.Trim().ToLower();
+            query = query.Where(c => 
+                c.RazaoSocial.ToLower().Contains(termo) ||
+                c.CnpjCpf.Contains(termo) ||
+                c.Email.ToLower().Contains(termo));
+        }
+
+        return await query
+            .OrderBy(c => c.RazaoSocial)
+            .Skip((pagina - 1) * tamanhoPagina)
+            .Take(tamanhoPagina)
+            .ToListAsync(ct);
     }
 
-    @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Atualiza cliente existente")
-    public ResponseEntity<ClienteResponse> atualizar(@PathVariable Long id,
-                                                      @RequestBody @Valid ClienteRequest request) {
-        return ResponseEntity.ok(clienteService.atualizar(id, request));
+    public async Task AdicionarAsync(Cliente cliente, CancellationToken ct = default)
+    {
+        await _context.Clientes.AddAsync(cliente, ct);
+        await _context.SaveChangesAsync(ct);
     }
 
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Remove (soft-delete) um cliente")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> remover(@PathVariable Long id) {
-        clienteService.remover(id);
-        return ResponseEntity.noContent().build();
+    public async Task AtualizarAsync(Cliente cliente, CancellationToken ct = default)
+    {
+        _context.Clientes.Update(cliente);
+        await _context.SaveChangesAsync(ct);
     }
 }
 ```
 
-### 🟪 Kotlin 2.0 · Jetpack Compose Android (ViewModel + StateFlow + Hilt)
+### 🟦 3. ASP.NET Core 8 · Web API Controller com Injeção de Dependência & Swagger
 
-```kotlin
-// ==============================
-// HomeViewModel.kt — MVVM + Coroutines Flow + Hilt DI
-// ==============================
-package br.com.reinaldobarreto.appfinanceiro.ui.home
+```csharp
+// ==============================================================
+// ClientesController.cs — API RESTful corporativa com validação e DI
+// ==============================================================
+namespace EnterpriseSystem.Api.Controllers;
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import br.com.reinaldobarreto.appfinanceiro.data.LancamentoRepository
-import br.com.reinaldobarreto.appfinanceiro.data.ResumoMes
-import br.com.reinaldobarreto.appfinanceiro.domain.Lancamento
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import java.time.YearMonth
-import javax.inject.Inject
+using Microsoft.AspNetCore.Mvc;
+using EnterpriseSystem.Domain.DTOs;
+using EnterpriseSystem.Domain.Interfaces;
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val repository: LancamentoRepository
-) : ViewModel() {
+[ApiController]
+[Route("api/v1/[controller]")]
+[Produces("application/json")]
+public class ClientesController : ControllerBase
+{
+    private readonly IClienteService _clienteService;
+    private readonly ILogger<ClientesController> _logger;
 
-    private val _mesCorrente = MutableStateFlow(YearMonth.now())
-    val mesCorrente: StateFlow<YearMonth> = _mesCorrente.asStateFlow()
+    public ClientesController(IClienteService clienteService, ILogger<ClientesController> logger)
+    {
+        _clienteService = clienteService;
+        _logger = logger;
+    }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val uiState: StateFlow<HomeUiState> = _mesCorrente
-        .flatMapLatest { mes ->
-            combine(
-                repository.lancamentosDoMes(mes),
-                repository.resumoDoMes(mes)
-            ) { lancamentos, resumo ->
-                HomeUiState.Sucesso(
-                    mes = mes,
-                    lancamentos = lancamentos,
-                    resumo = resumo
-                )
+    /// <summary>
+    /// Obtém listagem paginada de clientes com suporte a filtro textual.
+    /// </summary>
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<ClienteResponseDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ObterTodos(
+        [FromQuery] string? busca, 
+        [FromQuery] int pagina = 1, 
+        [FromQuery] int tamanho = 20, 
+        CancellationToken ct = default)
+    {
+        var clientes = await _clienteService.ListarPaginadoAsync(busca, pagina, tamanho, ct);
+        return Ok(clientes);
+    }
+
+    /// <summary>
+    /// Cadastra um novo cliente no banco SQL Server.
+    /// </summary>
+    [HttpPost]
+    [ProducesResponseType(typeof(ClienteResponseDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Criar([FromBody] ClienteCreateDto dto, CancellationToken ct = default)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var novoCliente = await _clienteService.CadastrarAsync(dto, ct);
+        _logger.LogInformation("Cliente {Id} cadastrado com sucesso", novoCliente.Id);
+
+        return CreatedAtAction(nameof(ObterPorId), new { id = novoCliente.Id }, novoCliente);
+    }
+
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(ClienteResponseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ObterPorId(Guid id, CancellationToken ct = default)
+    {
+        var cliente = await _clienteService.ObterPorIdAsync(id, ct);
+        if (cliente is null)
+            return NotFound(new { mensagem = $"Cliente com identificador {id} não encontrado." });
+
+        return Ok(cliente);
+    }
+}
+```
+
+### 🟦 4. Desktop C# · WPF & MVVM Pattern
+
+```csharp
+// ==============================================================
+// RelatorioViewModel.cs — Padrão MVVM com comandos e observabilidade
+// ==============================================================
+namespace EnterpriseSystem.Desktop.ViewModels;
+
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using EnterpriseSystem.Domain.DTOs;
+using EnterpriseSystem.Desktop.Commands;
+
+public class RelatorioViewModel : BaseViewModel
+{
+    private readonly IFaturamentoService _faturamentoService;
+    private bool _carregando;
+
+    public ObservableCollection<FaturamentoItemDto> Itens { get; } = new();
+
+    public bool Carregando
+    {
+        get => _carregando;
+        set => SetProperty(ref _carregando, value);
+    }
+
+    public ICommand AtualizarRelatorioCommand { get; }
+
+    public RelatorioViewModel(IFaturamentoService faturamentoService)
+    {
+        _faturamentoService = faturamentoService;
+        AtualizarRelatorioCommand = new AsyncRelayCommand(CarregarDadosAsync);
+    }
+
+    private async Task CarregarDadosAsync()
+    {
+        Carregando = true;
+        try
+        {
+            Itens.Clear();
+            var dados = await _faturamentoService.ObterFaturamentoMensalAsync();
+            foreach (var item in dados)
+            {
+                Itens.Add(item);
             }
         }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = HomeUiState.Carregando
-        )
-
-    fun proximoMes() { _mesCorrente.update { it.plusMonths(1) } }
-    fun mesAnterior() { _mesCorrente.update { it.minusMonths(1) } }
-
-    fun alternarPago(lancamento: Lancamento) {
-        viewModelScope.launch {
-            repository.salvar(lancamento.copy(pago = !lancamento.pago))
+        finally
+        {
+            Carregando = false;
         }
-    }
-}
-
-sealed interface HomeUiState {
-    data object Carregando : HomeUiState
-    data class Sucesso(
-        val mes: YearMonth,
-        val lancamentos: List<Lancamento>,
-        val resumo: ResumoMes
-    ) : HomeUiState
-}
-```
-
-```kotlin
-// ==============================
-// HomeScreen.kt — Jetpack Compose + Material3
-// ==============================
-package br.com.reinaldobarreto.appfinanceiro.ui.home
-
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.reinaldobarreto.appfinanceiro.domain.TipoLancamento.RECEITA
-import java.time.format.DateTimeFormatter
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel()
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("App Financeiro") },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                )
-            )
-        }
-    ) { padding ->
-        when (val state = uiState) {
-            HomeUiState.Carregando -> Box(Modifier.fillMaxSize()) {
-                CircularProgressIndicator(Modifier.align(Alignment.Center))
-            }
-            is HomeUiState.Sucesso -> ConteudoHome(
-                state = state,
-                onAnterior = viewModel::mesAnterior,
-                onProximo = viewModel::proximoMes,
-                onTogglePago = viewModel::alternarPago,
-                modifier = Modifier.padding(padding)
-            )
-        }
-    }
-}
-
-@Composable
-private fun ConteudoHome(
-    state: HomeUiState.Sucesso,
-    onAnterior: () -> Unit,
-    onProximo: () -> Unit,
-    onTogglePago: (br.com.reinaldobarreto.appfinanceiro.domain.Lancamento) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-
-        item {
-            SeletorMes(
-                mesStr = state.mes.format(DateTimeFormatter.ofPattern("MMMM / yyyy")),
-                onAnterior = onAnterior,
-                onProximo = onProximo
-            )
-        }
-
-        item {
-            ResumoCard(state.resumo)
-            Spacer(Modifier.height(16.dp))
-        }
-
-        items(state.lancamentos, key = { it.id ?: 0L }) { lancamento ->
-            LancamentoItem(
-                lancamento = lancamento,
-                onTogglePago = { onTogglePago(lancamento) }
-            )
-            HorizontalDivider(Modifier.padding(vertical = 4.dp))
-        }
-    }
-}
-
-@Composable
-private fun SeletorMes(mesStr: String, onAnterior: () -> Unit, onProximo: () -> Unit) {
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        IconButton(onClick = onAnterior) { Icon(Icons.Default.ChevronLeft, null) }
-        Text(mesStr.replaceFirstChar { it.uppercaseChar() },
-             style = MaterialTheme.typography.titleMedium)
-        IconButton(onClick = onProximo) { Icon(Icons.Default.ChevronRight, null) }
     }
 }
 ```
 
 ---
 
-## 📦 Repositórios Principais (Projetos Reais GitHub)
+## 📦 Projetos em Destaque no Portfólio
 
-> 4 projetos públicos já publicados na conta `reinaldobarreto31`:
-
-| # | Projeto | Repositório | Stack Chave |
-|---|---|---|---|
-| 1 | **Portal Cliente + Contrato Spring** (Full-Stack) | `reinaldobarreto31/clientehub` | Java 17 · Spring Boot 3 · PostgreSQL · Next.js 14 · TS |
-| 2 | **StockWise — Gestão de Estoque & Financeiro** | `reinaldobarreto31/stockwise` | Spring Boot 3 · Spring Data JPA · Thymeleaf · Bootstrap · MySQL |
-| 3 | **Portfólio Pessoal (este repo)** | `reinaldobarreto31/reinaldobarreto31.github.io` | React 18 · TypeScript 5 · Vite · Tailwind · shadcn/ui |
-| 4 | **PDF Compressor Web** (embedded no portfólio) | `artifacts/pdf-compressor` | Vite · React · TS · Service Worker · Canvas |
-
----
-
-## 📂 Estrutura do Repositório
-
-```bash
-reinaldobarreto31.github.io/
-├── artifacts/
-│   ├── portfolio/           # App React 18 + Vite 5 (portfólio principal)
-│   │   └── src/
-│   │       ├── components/sections/   # hero, about, projects, experience, stack-showcase, admin-panel, resume-exporter
-│   │       └── lib/                   # default-data.ts, resume-data.ts, admin-store.ts
-│   ├── pdf-compressor/      # App Vite compactador de PDF
-│   ├── api-server/          # Server Node.js + rotas contact / health
-│   └── mockup-sandbox/      # Sandbox componentes shadcn
-├── public/ (gerado build Vite)
-├── assets/ (builds estáticos publicados no Pages)
-├── .github/workflows/deploy-portfolio.yml   # CI/CD Pages
-└── README.md
-```
+| Projeto | Plataforma / Stack | Descrição |
+|---|---|---|
+| **Sistema de Gestão & Faturamento Corporativo (ERP)** | Desktop C# · WPF · WinForms · SQL Server | Sistema desktop robusto de faturamento, controle de estoque e relatórios fiscais com arquitetura MVVM e banco SQL Server otimizado com T-SQL. |
+| **API RESTful Corporativa & Microserviços** | ASP.NET Core 8 · EF Core · SQL Server · Swagger | Backend de alta performance com autenticação JWT, CQRS, arquitetura limpa, testes xUnit e documentação OpenAPI. |
+| **Migração & Modernização de Sistemas Legados** | VB6 · VB.NET · .NET 8 · Win32 | Refatoração e migração segura de sistemas legados de Visual Basic 6 e VB.NET para a plataforma .NET moderna, garantindo estabilidade operacional. |
+| **Gestor Mobile de Serviços em Campo** | .NET MAUI · Blazor Hybrid · PWA | Aplicativo multiplataforma para sincronização de ordens de serviço offline-first e monitoramento em tempo real. |
+| **Automação de Rotinas e Relatórios Gerenciais** | Excel VBA · Microsoft Access · PowerShell | Macros de alta complexidade, conciliações financeiras automáticas, extração de relatórios e rotinas em lotes corporativos. |
+| **PDF Compressor Tool** | TypeScript · Vite · Web Workers | Utilitário corporativo embarcado no navegador para redução de tamanho de documentos sem perda visual de qualidade. |
 
 ---
 
-## 🔐 Painel Admin CRUD
+## 🏢 Trajetória Profissional
 
-Painel administrativo integrado **dentro do próprio portfólio** que permite editar (via `localStorage`) e JSON export/import:
+### 🏛️ PRODEB — Companhia de Processamento de Dados do Estado da Bahia
+**Cargo:** Técnico de Suporte / Infraestrutura N3  
+**Período:** 03/2024 – 09/2024 (Salvador - BA)  
+- Atendimento e sustentação técnica de nível N3 em ambiente corporativo de missão crítica.
+- Suporte avançado a estações com **Windows 11 Enterprise** e servidores **Windows Server** (Active Directory, GPO, DNS, IIS).
+- Criação de scripts em **PowerShell** e automações em **VBA** para auditoria, coleta de inventário e redução de tempo de chamados operacionais.
+- Apoio na validação e manutenção de sistemas corporativos baseados em **C# / .NET** e rotinas legadas integradas a bancos de dados relacionais.
 
-- 🔑 **Login:** `reinaldobarretosilva@gmail.com`
-- 🔑 **Senha:** `javaOracle1234`
-- ✏️ **Entidades editáveis:** Projetos / Experiências profissionais / Sobre-mim / Stack Showcase
-- 💾 **Export/Import JSON** completo (backup de configuração)
-- 🖨️ **Export Currículo PNG** (`ResumeExporter` — html2canvas, 2x escala)
+### 🔬 LAMPP — Laboratório de Pesquisa e Projetos
+**Cargo:** Desenvolvedor de Software  
+**Período:** 03/2022 – 05/2022 (Salvador - BA)  
+- Desenvolvimento e sustentação de APIs RESTful e aplicações Web corporativas.
+- Modelagem de bancos de dados relacionais, queries SQL otimizadas e integração contínua com Git.
 
----
-
-## 🚀 Rodar Localmente
-
-```bash
-# 1. Entrar no app do portfólio
-cd artifacts/portfolio
-
-# 2. Instalar deps
-npm.cmd install
-
-# 3. Dev server
-npm.cmd run dev
-
-# 4. Build produção (gera index.html estático)
-npm.cmd run build
-```
+### ⚙️ EDZA Engenharia
+**Cargo:** Suporte Técnico & Infraestrutura  
+**Período:** 11/2019 – 03/2022 (Salvador - BA)  
+- Administração e suporte a infraestrutura de redes, cabeamento estruturado, roteadores e firewalls corporativos.
+- Manutenção preventiva e corretiva de estações de trabalho e servidores Windows corporativos.
+- Atendimento ao usuário final, homologação de softwares de engenharia e rotinas de backup corporativo.
 
 ---
 
-## ⚙️ CI/CD — GitHub Pages
+## 🎓 Formação Acadêmica & Cursos
 
-O workflow em `.github/workflows/deploy-portfolio.yml` já está configurado:
-- **Trigger:** push na `main`
-- **Passos:** `setup-node` → `npm install` → `npm run build` → deploy para Pages branch `gh-pages`
-
----
-
-## 📧 Contato
-
-| Canal | Link |
-|---|---|
-| 📧 Email | reinaldobarretosilva@gmail.com |
-| 🐙 GitHub | [github.com/reinaldobarreto31](https://github.com/reinaldobarreto31) |
-| 💼 LinkedIn | Reinaldo Barreto da Silva |
+- **Técnico em Processamento de Dados / Informática** — CEEP Newton Sucupira (1994 – 1996)
+- **Cursos Especializados & Certificações Contínuas:**
+  - C# Completo: Programação Orientada a Objetos + Projetos (Udemy)
+  - ASP.NET Core: APIs RESTful com Entity Framework Core e SQL Server (Udemy)
+  - Desenvolvimento Desktop com WPF e Windows Forms em C# (Udemy)
+  - Administração de Windows Server, Active Directory e PowerShell (Udemy)
+  - Banco de Dados Microsoft SQL Server: Modelagem, T-SQL e Otimização
 
 ---
 
-## 🎯 Padrões Arquiteturais Adotados
+## 📧 Contatos
 
-> Clean Architecture · Hexagonal (Ports & Adapters) · DDD · SOLID · CQRS
-> Repository Pattern · Service Layer · TDD (JUnit 5 · Mockito)
-> Next.js 14 RSC · Server Actions · SSR · ISR
-> Vue 3 Composition API · Angular 18 Standalone + Signals
-> Docker multi-stage · 12-Factor Apps · OpenAPI 3 / Swagger
+- 📧 **E-mail:** [reinaldobarretosilva@gmail.com](mailto:reinaldobarretosilva@gmail.com)
+- 🐙 **GitHub:** [github.com/reinaldobarreto31](https://github.com/reinaldobarreto31)
+- 💼 **LinkedIn:** [linkedin.com/in/reinaldo-barreto-da-silva-62215b22b](https://www.linkedin.com/in/reinaldo-barreto-da-silva-62215b22b)
+- 📍 **Localização:** Salvador, Bahia — Brasil

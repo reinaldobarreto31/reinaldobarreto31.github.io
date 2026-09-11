@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { SiSpringboot } from "react-icons/si";
+import { SiDotnet } from "react-icons/si";
 import { Home, User, Briefcase, Code2, Activity, Mail } from "lucide-react";
 
 export function Navbar() {
@@ -32,18 +32,18 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#hero" className="flex items-center gap-2.5 group">
-          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(109,179,63,0.28)] group-hover:shadow-[0_0_20px_rgba(109,179,63,0.55)] transition-shadow">
+          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-primary/15 border border-primary/30 shadow-[0_0_12px_rgba(0,120,212,0.35)] group-hover:shadow-[0_0_20px_rgba(0,120,212,0.65)] transition-shadow">
             <motion.div
               animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               className="absolute"
             >
-              <SiSpringboot className="text-primary text-sm" />
+              <SiDotnet className="text-primary text-base" />
             </motion.div>
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-bold text-sm tracking-tight text-foreground">Reinaldo Barreto</span>
-            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">Java · Spring · Kotlin · Flutter</span>
+            <span className="text-[10px] text-primary font-mono tracking-wider uppercase">.NET · C# · ASP.NET Core · Desktop &amp; Web</span>
           </div>
         </a>
 

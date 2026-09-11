@@ -165,9 +165,9 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
             <div
               style={{
                 width: 112, height: 112, borderRadius: 999,
-                background: "linear-gradient(135deg,#2f6d3f,#6db33f,#9ed866)",
+                background: "linear-gradient(135deg,#004578,#0078d4,#00a4ef)",
                 padding: 4, display: "grid", placeItems: "center",
-                boxShadow: "0 12px 28px rgba(109,179,63,.38)",
+                boxShadow: "0 12px 28px rgba(0,120,212,.38)",
                 marginBottom: 18,
               }}
             >
@@ -186,7 +186,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                 margin: 0, lineHeight: 1.1,
               }}
             >
-              Reinaldo <span style={{ color: "#9ed866" }}>Barreto</span>
+              Reinaldo <span style={{ color: "#00a4ef" }}>Barreto</span>
             </h1>
             <h2 style={{ fontSize: 22, margin: 0, fontWeight: 700, letterSpacing: -0.02 }}>
               da Silva
@@ -196,12 +196,12 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
               color: "#94a3b8", marginTop: 10, marginBottom: 0,
               lineHeight: 1.5,
             }}>
-              Java 17 · Spring Boot 3 · Kotlin (Android) · Flutter/Dart · APIs REST · JPA · Docker
+              Desenvolvedor .NET / C# | ASP.NET Core, VB6/VB.NET e Infraestrutura Windows
             </p>
           </div>
 
           <section style={{ marginBottom: 36 }}>
-            <h3 style={h3Style("#6db33f")}>Contato</h3>
+            <h3 style={h3Style("#0078d4")}>Contato</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 14 }}>
               <ContactRow icon={<Phone size={14} />} text="+55 47 98830-2308" />
               <ContactRow icon={<Mail size={14} />} text="reinaldobarretosilva@gmail.com" />
@@ -215,7 +215,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           </section>
 
           <section style={{ marginBottom: 36 }}>
-            <h3 style={h3Style("#6db33f")}>Habilidades Técnicas</h3>
+            <h3 style={h3Style("#0078d4")}>Habilidades Técnicas</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 18 }}>
               {HARD_SKILLS.map((s) => (
                 <SkillBarStatic key={s.name} name={s.name} level={s.level} color={s.color} />
@@ -369,7 +369,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
               justifyContent: "space-between",
               alignItems: "flex-start",
               paddingBottom: 24,
-              borderBottom: "3px solid #6db33f",
+              borderBottom: "3px solid #0078d4",
               marginBottom: 28,
             }}
           >
@@ -384,68 +384,53 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                 fontSize: 13, fontFamily: "ui-monospace, monospace",
                 color: "#94a3b8", marginTop: 10, marginBottom: 0,
               }}>
-                Java 17 · Spring Boot 3 · Kotlin (Android) · Flutter/Dart · Microsserviços · Docker
+                Desenvolvedor .NET / C# | ASP.NET Core, VB6/VB.NET e Infraestrutura Windows
               </p>
             </div>
             <div style={{ textAlign: "right", fontSize: 12.5, color: "#f8fafc", display: "flex", flexDirection: "column", gap: 7 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
-                <Phone size={13} style={{ color: "#6db33f" }} />
-                <span style={{ fontFamily: "ui-monospace, monospace" }}>55 47 98830 2308</span>
+                <Phone size={13} style={{ color: "#0078d4" }} />
+                <span style={{ fontFamily: "ui-monospace, monospace" }}>+55 (47) 98830-2308</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
-                <Mail size={13} style={{ color: "#6db33f" }} />
+                <Mail size={13} style={{ color: "#0078d4" }} />
                 <span>reinaldobarretosilva@gmail.com</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#7f52ff" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#00a4ef" }}>
                 <Sparkles size={13} />
                 <span>linkedin.com/in/reinaldo-barreto-2a4ba2116</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#02569b" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#0078d4" }}>
                 <Sparkles size={13} />
                 <span>github.com/reinaldobarreto31</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
-                <MapPin size={13} style={{ color: "#6db33f" }} />
-                <span>Navegantes / SC, Brasil</span>
+                <MapPin size={13} style={{ color: "#0078d4" }} />
+                <span>Navegantes, Santa Catarina – SC</span>
               </div>
             </div>
           </div>
 
           <section style={{ marginBottom: 30 }}>
-            <h3 style={h3Col2Style("#007396")}>Resumo Profissional</h3>
+            <h3 style={h3Col2Style("#0078d4")}>Resumo Profissional</h3>
             <p style={pStyle}>
-              Engenheiro de Software com trajetória sólida em{" "}
-              <strong style={{ color: "#007396" }}>Java Enterprise</strong> &amp;{" "}
-              <strong style={{ color: "#6db33f" }}>Spring Boot 3</strong> (stack principal),
-              com <strong style={{ color: "#7f52ff" }}>Kotlin · Jetpack Compose</strong> para
-              Android nativo em segundo lugar e <strong style={{ color: "#02569b" }}>Flutter / Dart</strong>{" "}
-              em terceiro para mobile híbrido/cross-platform. Especialista em{" "}
-              <strong style={{ color: "#f8fafc" }}>APIs RESTful escaláveis</strong>, microsserviços
-              (Eureka · Gateway · Kafka · Keycloak) e aplicações para o setor público. Domínio de{" "}
-              <strong style={{ color: "#f8fafc" }}>TDD com JUnit 5 · Mockito</strong>, documentação
-              via <strong style={{ color: "#6db33f" }}>SpringDoc OpenAPI 3 / Swagger</strong> e entrega com{" "}
-              <strong style={{ color: "#007396" }}>CI/CD · Docker · GitHub Actions</strong>.{" "}
-              <em style={{ color: "#7f52ff" }}>Clean Architecture · Hexagonal · DDD</em> como filosofia de trabalho.
+              {PROFESSIONAL_SUMMARY[0]}
             </p>
           </section>
 
           <section style={{ marginBottom: 30 }}>
-            <h3 style={h3Col2Style("#7f52ff")}>Objetivo Profissional</h3>
+            <h3 style={h3Col2Style("#00a4ef")}>Objetivo Profissional</h3>
             <div
               style={{
                 padding: "14px 18px",
                 borderRadius: 10,
-                border: "1px solid rgba(109,179,63,.45)",
-                background: "linear-gradient(135deg, rgba(109,179,63,.10), rgba(7,11,21,.92))",
+                border: "1px solid rgba(0,120,212,.45)",
+                background: "linear-gradient(135deg, rgba(0,120,212,.12), rgba(7,11,21,.92))",
                 marginTop: 14,
               }}
             >
               <p style={{ ...pStyle, margin: 0, color: "#f8fafc" }}>
-                Atuar como <strong style={{ color: "#6db33f" }}>Engenheiro de Software Java / Spring Boot</strong>{" "}
-                em produto de alto impacto — com <strong style={{ color: "#7f52ff" }}>Kotlin Android</strong>{" "}
-                e <strong style={{ color: "#02569b" }}>Flutter Mobile</strong> como diferenciais.
-                Contribuir com arquitetura limpa, APIs RESTful robustas, testes JUnit/Mockito,
-                documentação OpenAPI 3 e entrega contínua em produção.
+                {PROFESSIONAL_OBJECTIVE}
               </p>
             </div>
           </section>
@@ -467,20 +452,20 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
                     <div>
-                      <h4 style={{ fontSize: 15, fontWeight: 700, margin: 0, color: "#6db33f" }}>
+                      <h4 style={{ fontSize: 15, fontWeight: 700, margin: 0, color: "#0078d4" }}>
                         {exp.company}
                       </h4>
-                      <h5 style={{ fontSize: 13, fontWeight: 700, color: "#7f52ff", margin: "6px 0 0" }}>
+                      <h5 style={{ fontSize: 13, fontWeight: 700, color: "#00a4ef", margin: "6px 0 0" }}>
                         {exp.role}
                       </h5>
                     </div>
                     <div style={{ textAlign: "right", fontSize: 11.5, fontFamily: "ui-monospace, monospace", color: "#6272a4", display: "flex", flexDirection: "column", gap: 5 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 6, justifyContent: "flex-end" }}>
-                        <CalendarDays size={12} style={{ color: "#f89820" }} />
+                        <CalendarDays size={12} style={{ color: "#0078d4" }} />
                         <span>{exp.period}</span>
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: 6, justifyContent: "flex-end" }}>
-                        <MapPin size={12} style={{ color: "#8be9fd" }} />
+                        <MapPin size={12} style={{ color: "#00a4ef" }} />
                         <span>{exp.location}</span>
                       </div>
                     </div>
@@ -495,8 +480,8 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                         style={{
                           padding: "3px 9px",
                           borderRadius: 5,
-                          border: "1px solid rgba(98,114,164,.55)",
-                          background: "rgba(68,71,90,.55)",
+                          border: "1px solid rgba(0,120,212,.4)",
+                          background: "rgba(0,120,212,.12)",
                           color: "#f8f8f2",
                           fontSize: 10.5,
                           fontFamily: "ui-monospace, monospace",
@@ -513,7 +498,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           </section>
 
           <section>
-            <h3 style={h3Col2Style("#7f52ff")}>Projetos Pessoais</h3>
+            <h3 style={h3Col2Style("#0078d4")}>Projetos em Destaque</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 18 }}>
               {PERSONAL_PROJECTS.map((p) => (
                 <article
@@ -521,17 +506,17 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                   style={{
                     padding: 18,
                     borderRadius: 10,
-                    border: "1px solid rgba(30,58,138,.55)",
+                    border: "1px solid rgba(0,120,212,.35)",
                     background:
                       "linear-gradient(145deg, rgba(15,23,42,.82), rgba(7,11,21,.94))",
                     borderLeft:
                       p.badge === "LIVE"
-                        ? "3px solid #50fa7b"
+                        ? "3px solid #00a4ef"
                         : p.badge === "DESTAQUE"
-                        ? "3px solid #6db33f"
+                        ? "3px solid #0078d4"
                         : p.badge === "EM CONSTRUÇÃO"
-                        ? "3px solid #7f52ff"
-                        : "3px solid #f89820",
+                        ? "3px solid #512bd4"
+                        : "3px solid #005a9e",
                     boxShadow: "0 10px 24px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.035)",
                     position: "relative",
                   }}

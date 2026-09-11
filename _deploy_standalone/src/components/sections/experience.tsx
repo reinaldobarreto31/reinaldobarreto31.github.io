@@ -5,11 +5,22 @@ import {
   SiAngular, SiReact, SiLinux, SiMysql, SiGnubash,
   SiRedis, SiDocker, SiSwagger, SiGo, SiSpringboot, SiTailwindcss,
   SiGithubactions, SiTypescript, SiKotlin, SiFlutter, SiNodedotjs, SiMongodb, SiVite,
+  SiDotnet,
 } from "react-icons/si";
+import { TbBrandCSharp, TbBrandWindows, TbBrandAzure, TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
 import type { AdminExperience, ProjectTone } from "@/lib/default-data";
 
 const ICON_FALLBACKS: Record<ProjectTone, React.ComponentType<{ size?: number; className?: string }>> = {
+  "tech-csharp": TbBrandCSharp,
+  "tech-dotnet": SiDotnet,
+  "tech-aspnet": SiDotnet,
+  "tech-vb": TbBrandWindows,
+  "tech-vba": TbBrandWindows,
+  "tech-sqlserver": TbDatabase,
+  "tech-windows": TbBrandWindows,
+  "tech-azure": TbBrandAzure,
+  "tech-maui": SiDotnet,
   "tech-java": DiJava,
   "tech-spring": SiSpringboot,
   "tech-kotlin": SiKotlin,
@@ -30,17 +41,13 @@ const ICON_FALLBACKS: Record<ProjectTone, React.ComponentType<{ size?: number; c
   "tech-jwt": SiJavascript,
   "tech-openapi": SiSwagger,
   "tech-pdf": SiJavascript,
-  "tech-golang": SiGo,
-  "tech-api": SiJavascript,
-  "tech-tailwind": SiTailwindcss,
-  "tech-vite": SiVite,
+  "tech-api": SiDotnet,
   "tech-git": SiGit,
   "tech-linux": SiLinux,
-  "tech-bash": SiGnubash,
 };
 
 function TagIcon({ tone }: { tone: ProjectTone }) {
-  const Cmp = ICON_FALLBACKS[tone] ?? DiJava;
+  const Cmp = ICON_FALLBACKS[tone] ?? SiDotnet;
   return <Cmp size={11} />;
 }
 

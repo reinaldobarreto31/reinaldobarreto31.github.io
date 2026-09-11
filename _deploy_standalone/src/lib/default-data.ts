@@ -1,5 +1,14 @@
-export type ProjectBadge = "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "API" | "FULL-STACK";
+export type ProjectBadge = "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "API" | "FULL-STACK" | "DESKTOP" | "MOBILE";
 export type ProjectTone =
+  | "tech-dotnet"
+  | "tech-csharp"
+  | "tech-aspnet"
+  | "tech-vb"
+  | "tech-vba"
+  | "tech-sqlserver"
+  | "tech-azure"
+  | "tech-windows"
+  | "tech-maui"
   | "tech-postgres"
   | "tech-redis"
   | "tech-docker"
@@ -9,24 +18,11 @@ export type ProjectTone =
   | "tech-jwt"
   | "tech-openapi"
   | "tech-pdf"
-  | "tech-golang"
   | "tech-java"
   | "tech-spring"
   | "tech-kotlin"
-  | "tech-flutter"
-  | "tech-api"
-  | "tech-vue"
   | "tech-git"
-  | "tech-angular"
-  | "tech-linux"
-  | "tech-mysql"
-  | "tech-bash"
-  | "tech-node"
-  | "tech-next"
-  | "tech-js"
-  | "tech-mongo"
-  | "tech-tailwind"
-  | "tech-vite";
+  | "tech-linux";
 
 export type AdminProject = {
   id: string;
@@ -80,148 +76,114 @@ export const DEFAULTS: {
 } = {
   projects: [
     {
-      id: "proj-spring-crud",
-      title: "Spring Boot CRUD API",
-      subtitle: "REST · JPA · PostgreSQL · Swagger",
+      id: "proj-desktop-csharp-wpf",
+      title: "Sistema ERP & Automação Desktop (C# .NET / WPF)",
+      subtitle: "Desktop · WPF · WinForms · EF Core · SQL Server",
       description:
-        "API RESTful completa em Java 17 + Spring Boot 3 com Spring Data JPA, PostgreSQL, autenticação JWT e documentação OpenAPI 3 (Swagger UI / springdoc-openapi). Testes unitários com JUnit 5 + Mockito, DTOs com MapStruct e validação Bean Validation. Docker Compose para subir banco + app em um comando.",
-      tech: ["Java 17", "Spring Boot 3", "Spring Data JPA", "PostgreSQL", "JWT", "Swagger / OpenAPI 3", "Docker", "JUnit 5"],
-      icon: "spring",
-      tone: "tech-spring",
-      github: `${GITHUB}/spring-boot-crud`,
+        "Sistema corporativo Desktop de alta performance em C# e .NET 8 com interface moderna Windows 11 Fluent UI, arquitetura MVVM, WPF e Windows Forms. Integração completa com banco Microsoft SQL Server via Entity Framework Core e Dapper, autenticação com controle de acesso baseado em papéis (RBAC), relatórios automatizados, exportação contábil/fiscal em lote e rotinas multithread com Task Parallel Library (TPL).",
+      tech: ["C#", ".NET 8", "WPF", "WinForms", "SQL Server", "EF Core", "LINQ", "Windows 11"],
+      icon: "csharp",
+      tone: "tech-csharp",
+      github: `${GITHUB}/dotnet-desktop-erp`,
       badge: "DESTAQUE",
       featured: true,
     },
     {
-      id: "proj-kotlin-mobile",
-      title: "Kotlin Android App",
-      subtitle: "Mobile · Jetpack Compose · MVVM",
+      id: "proj-aspnet-api",
+      title: "ASP.NET Core Enterprise Web API",
+      subtitle: "APIs RESTful · JWT · EF Core · Swagger · Azure",
       description:
-        "Aplicativo Android nativo em Kotlin com Jetpack Compose, arquitetura MVVM + Clean Architecture, Room para persistência local, Retrofit para consumo de APIs REST e injeção de dependência com Hilt. Corrotinas + Flow para reatividade, Material 3 e testes com MockK + Turbine.",
-      tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room", "Retrofit", "Hilt", "Coroutines", "Flow"],
-      icon: "kotlin",
-      tone: "tech-kotlin",
-      github: `${GITHUB}/kotlin-android-app`,
+        "API corporativa robusta e escalável desenvolvida em C# com ASP.NET Core (.NET 8), estruturada sob Clean Architecture e DDD. Implementa autenticação e autorização stateless via JWT, injeção de dependência nativa, validações com FluentValidation, documentação interativa Swagger/OpenAPI, resiliência com Polly e persistência em Microsoft SQL Server. Preparada para publicação na nuvem Azure com contêineres Docker e CI/CD.",
+      tech: ["C#", ".NET 8", "ASP.NET Core", "SQL Server", "JWT", "Swagger / OpenAPI", "Azure", "Docker"],
+      icon: "dotnet",
+      tone: "tech-aspnet",
+      github: `${GITHUB}/aspnetcore-api-server`,
       badge: "DESTAQUE",
       featured: true,
     },
     {
-      id: "proj-spring-micros",
-      title: "Spring Microservices",
-      subtitle: "Microsserviços · Kafka · Eureka · Gateway",
+      id: "proj-vb-migration",
+      title: "Migração & Modernização de ERP Legado (VB6 & VB.NET)",
+      subtitle: "Desktop · Visual Basic 6 · VB.NET · Refatoração C# .NET",
       description:
-        "Arquitetura de microsserviços em Java Spring Boot: Service Discovery (Eureka), API Gateway com Spring Cloud Gateway, comunicação assíncrona via Apache Kafka, resiliência com Resilience4j (Circuit Breaker) e autenticação centralizada em Keycloak / OAuth2. Observabilidade com Micrometer + Prometheus + Grafana.",
-      tech: ["Java", "Spring Boot 3", "Spring Cloud", "Apache Kafka", "Eureka", "Keycloak", "Docker", "PostgreSQL"],
-      icon: "java",
-      tone: "tech-java",
-      github: `${GITHUB}/spring-microservices`,
+        "Sustentação, diagnóstico e modernização contínua de rotinas críticas em sistemas corporativos legados desenvolvidos em Visual Basic 6 (VB6) e Visual Basic .NET (VB.NET). Refatoração de módulos fiscais, contábeis e de folha de pagamento, com migração gradual para C# .NET moderno e APIs REST, garantindo integridade transacional de bancos relacionais e zero tempo de inatividade.",
+      tech: ["Visual Basic 6", "VB.NET", "C#", ".NET 8", "SQL Server", "Crystal Reports", "Windows Server"],
+      icon: "windows",
+      tone: "tech-vb",
+      github: `${GITHUB}/vb-legacy-migration`,
       badge: "DESTAQUE",
       featured: true,
     },
     {
-      id: "proj-flutter-app",
-      title: "Flutter / Dart Mobile App",
-      subtitle: "Cross-Platform · iOS + Android · Firebase",
+      id: "proj-mobile-maui-pwa",
+      title: ".NET MAUI & Blazor Hybrid Mobile PWA",
+      subtitle: "Mobile & Web · PWA · .NET MAUI · Blazor · Offline-first",
       description:
-        "Aplicação multiplataforma em Flutter / Dart com autenticação Firebase (e-mail + Google), Firestore para dados em tempo real, Cloud Storage para uploads, Provider para gerenciamento de estado e padrão Repository. Material 3 responsivo, CI/CD com GitHub Actions e integração nativa.",
-      tech: ["Flutter", "Dart", "Firebase", "Firestore", "Provider", "Material 3", "REST APIs"],
-      icon: "flutter",
-      tone: "tech-flutter",
-      github: `${GITHUB}/flutter-app`,
+        "Aplicação corporativa multiplataforma desenvolvida com C# e .NET MAUI integrada com Blazor Hybrid e Progressive Web App (PWA). Desenvolvida para equipes de campo e operações externas, com sincronização em tempo real via SignalR / WebSockets, persistência local offline com SQLite, interface responsiva adaptada a dispositivos Windows, Android e Web, e autenticação biométrica/PIN.",
+      tech: ["C#", ".NET MAUI", "Blazor", "PWA", "SignalR", "SQLite", "REST APIs"],
+      icon: "maui",
+      tone: "tech-maui",
+      github: `${GITHUB}/maui-blazor-pwa`,
+      badge: "FULL-STACK",
+      featured: true,
+    },
+    {
+      id: "proj-admin-vba-access",
+      title: "Automação Administrativa & Fiscal (C# + Excel VBA + Access)",
+      subtitle: "Automação · VBA · Microsoft Excel · Access · C# .NET",
+      description:
+        "Solução corporativa de automação para departamentos administrativos, financeiros e fiscais, integrando rotinas em C# .NET com macros avançadas em VBA, planilhas inteligentes no Microsoft Excel e bases de dados relacionais em Microsoft Access. Eliminação de processos manuais, cruzamento de dados fiscais em lote e emissão automatizada de relatórios gerenciais.",
+      tech: ["C#", ".NET", "Excel VBA", "Microsoft Access", "SQL", "Office Interop", "Windows"],
+      icon: "vba",
+      tone: "tech-vba",
+      github: `${GITHUB}/vba-office-automation`,
       badge: "FULL-STACK",
     },
     {
       id: "proj-pdf",
-      title: "Compressor de PDF",
-      subtitle: "Padrões Brasileiros · 100% navegador",
+      title: "Compressor de PDF (Padrões Brasileiros)",
+      subtitle: "Padrões Oficiais BR · 100% no navegador",
       description:
-        "Compressor de PDFs 100% no navegador com presets brasileiros: Governo BR (até 2 MB), Empresa (até 5 MB), E-mail e Qualidade. Múltiplos arquivos em lote, progresso individual e renomear antes de baixar.",
-      tech: ["React", "TypeScript", "pdf-lib", "Tailwind"],
-      icon: "sparkles",
+        "Compressor de documentos PDF executado 100% no navegador com presets adaptados aos órgãos brasileiros: Governo Federal (até 2 MB), Empresa (até 5 MB), E-mail e Alta Resolução. Processamento em lote, visualização de compressão e download seguro.",
+      tech: ["React", "TypeScript", "pdf-lib", "Tailwind CSS", "GitHub Pages"],
+      icon: "pdf",
       tone: "tech-pdf",
       github: `${GITHUB}/pdf-compressor`,
       live: `${PAGES}/pdf-compressor/`,
       badge: "LIVE",
     },
     {
-      id: "proj-spring-auth",
-      title: "Spring Auth & Security",
-      subtitle: "OAuth2 · JWT · Keycloak · RBAC",
+      id: "proj-kotlin-tasks",
+      title: "Aplicativo Android em Kotlin (Projeto Anterior)",
+      subtitle: "Mobile · Android Nativo · Jetpack Compose · Room",
       description:
-        "Projeto Spring Security completo: autenticação JWT stateless, integração com Keycloak via OAuth2 / OIDC, controle de acesso baseado em Roles e Permissões (RBAC + ABAC), refresh token e endpoints protegidos. Criptografia com BCrypt e auditoria via Spring Data Envers.",
-      tech: ["Java", "Spring Boot 3", "Spring Security", "JWT", "OAuth2", "Keycloak", "BCrypt"],
-      icon: "spring",
-      tone: "tech-spring",
-      github: `${GITHUB}/spring-auth-security`,
-      badge: "API",
-    },
-    {
-      id: "proj-flutter-chat",
-      title: "Flutter Realtime Chat",
-      subtitle: "WebSocket · Riverpod · Supabase",
-      description:
-        "Aplicativo de chat em tempo real com Flutter + Dart: backend Supabase com PostgreSQL e Realtime Broadcast, gerenciamento de estado Riverpod, notificações push via Firebase Cloud Messaging e upload de mídia com compressão nativa.",
-      tech: ["Flutter", "Dart", "Supabase", "Riverpod", "WebSocket", "FCM"],
-      icon: "flutter",
-      tone: "tech-flutter",
-      github: `${GITHUB}/flutter-realtime-chat`,
-      badge: "EM CONSTRUÇÃO",
-    },
-    {
-      id: "proj-nextjs-hub",
-      title: "Next.js Full-Stack Hub",
-      subtitle: "App Router · tRPC · NextAuth · Prisma",
-      description:
-        "Aplicação full-stack com Next.js 14 (App Router + Server Components + Server Actions), autenticação NextAuth (Credentials + GitHub), tRPC para endpoints end-to-end tipados, ORM Prisma com PostgreSQL e deploy em Vercel. Dashboard administrativo com Tailwind UI e upload de arquivos via Server Actions.",
-      tech: ["Next.js 14", "React 18", "TypeScript", "tRPC", "NextAuth", "Prisma", "PostgreSQL", "Tailwind"],
-      icon: "next",
-      tone: "tech-next",
-      github: `${GITHUB}/nextjs-fullstack-hub`,
-      badge: "FULL-STACK",
-    },
-    {
-      id: "proj-vue-dash",
-      title: "Vue.js 3 Dashboards",
-      subtitle: "Composition API · Pinia · Nuxt · Axios",
-      description:
-        "Painéis administrativos em Vue 3 com Composition API + <script setup>, gerenciamento de estado Pinia, roteamento Vue Router com guards, gráficos ECharts, integração REST via Axios e SSR com Nuxt 3. Prototipagem rápida, responsividade e theming escuro claro integrados.",
-      tech: ["Vue.js 3", "Nuxt 3", "Pinia", "TypeScript", "Tailwind", "Axios"],
-      icon: "vue",
-      tone: "tech-vue",
-      github: `${GITHUB}/vue3-dashboards`,
-      badge: "FULL-STACK",
-    },
-    {
-      id: "proj-angular-corp",
-      title: "Angular 18 Enterprise SPA",
-      subtitle: "Signals · Standalone · NgRx · RxJS",
-      description:
-        "Single Page Application corporativa em Angular 18 com Standalone Components, gerenciamento de estado global NgRx, reatividade com RxJS + Signals, interceptors HTTP com refresh token JWT, lazy loading de rotas e modularidade por domínio. Publicação em pipeline CI/CD GitHub Actions.",
-      tech: ["Angular 18", "TypeScript", "RxJS", "NgRx", "Angular Material", "JWT"],
-      icon: "angular",
-      tone: "tech-angular",
-      github: `${GITHUB}/angular-enterprise-spa`,
-      badge: "FULL-STACK",
+        "Aplicativo móvel Android nativo em Kotlin para gestão de tarefas com sincronização em tempo real, persistência local com Room Database, arquitetura MVVM e interface declarativa em Jetpack Compose.",
+      tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room", "Retrofit", "Coroutines"],
+      icon: "kotlin",
+      tone: "tech-kotlin",
+      github: `${GITHUB}/kotlin-android-app`,
+      badge: "MOBILE",
     },
   ],
 
   experiences: [
     {
       id: "exp-prodeb",
-      company: "PRODEB — Companhia de Processamento de Dados da Bahia",
+      company: "PRODEB — Companhia de Processamento de Dados do Estado da Bahia",
       role: "Analista de Sistemas e Desenvolvedor · Consultor IV",
       period: "mar/2024 – set/2024",
       location: "Salvador / BA",
       description:
-        "Desenvolvimento e manutenção de APIs REST enterprise em Java / Spring Boot e integração de sistemas para órgãos públicos do Governo da Bahia. Arquitetura em camadas (controller / service / repository), transações ACID em PostgreSQL e frontends Vue.js. Entregas contínuas em Scrum com Git Flow.",
+        "Desenvolvimento e manutenção de soluções web e backend para órgãos públicos estaduais do Governo da Bahia. Atuação na construção e otimização de sistemas corporativos, arquitetura e implementação de funcionalidades complexas em camadas, APIs RESTful escaláveis e fluxos de automação para modernização de sistemas públicos.",
       tags: [
+        { name: "C#", tone: "tech-csharp" },
+        { name: ".NET", tone: "tech-dotnet" },
         { name: "Java", tone: "tech-java" },
         { name: "Spring Boot", tone: "tech-spring" },
-        { name: "APIs REST", tone: "tech-api" },
+        { name: "APIs REST", tone: "tech-aspnet" },
         { name: "PostgreSQL", tone: "tech-postgres" },
-        { name: "Vue.js", tone: "tech-vue" },
         { name: "Git", tone: "tech-git" },
-        { name: "Scrum", tone: "tech-spring" },
+        { name: "Scrum", tone: "tech-windows" },
       ],
     },
     {
@@ -231,88 +193,101 @@ export const DEFAULTS: {
       period: "mar/2022 – mai/2022",
       location: "Salvador / BA",
       description:
-        "Integração de sistemas Java EE / Spring com provedores OAuth2 externos, construção de APIs REST e frontends interativos Angular e React.js. Ambientes Linux Ubuntu com deploy em contêineres e bancos PostgreSQL performáticos.",
+        "Construção de APIs REST, integração de sistemas e autenticação corporativa OAuth2. Atuação em sistemas críticos para segurança pública (SSP-BA e Polícia Militar) e no Sistema de Auditoria Interna. Participação na implementação de projetos internos com C#, .NET, ASP.NET/ASP.NET Core e Visual Basic 6 / VB.NET, incluindo aplicações web e desktop, bancos relacionais e manutenção em ambiente Windows.",
       tags: [
-        { name: "Java EE", tone: "tech-java" },
-        { name: "Spring", tone: "tech-spring" },
-        { name: "OAuth2", tone: "tech-api" },
-        { name: "Angular", tone: "tech-angular" },
-        { name: "React.js", tone: "tech-react" },
-        { name: "PostgreSQL", tone: "tech-postgres" },
-        { name: "Linux Ubuntu", tone: "tech-linux" },
+        { name: "C#", tone: "tech-csharp" },
+        { name: ".NET", tone: "tech-dotnet" },
+        { name: "ASP.NET Core", tone: "tech-aspnet" },
+        { name: "Visual Basic 6", tone: "tech-vb" },
+        { name: "VB.NET", tone: "tech-vb" },
+        { name: "SQL Server", tone: "tech-sqlserver" },
+        { name: "Windows", tone: "tech-windows" },
       ],
     },
     {
       id: "exp-edza",
-      company: "EDZA Planejamento",
+      company: "EDZA Planejamento Consultoria e Informática LTDA",
       role: "Analista de Sistemas e Desenvolvedor de Software",
       period: "nov/2019 – mar/2022",
       location: "Salvador / BA",
       description:
-        "Desenvolvimento de plataforma enterprise em Java EE e Spring Boot com dashboards em Angular / Vue.js. Automações e rotinas batch com Bash Script, administração de servidores Linux e bancos relacionais MySQL.",
+        "Desenvolvimento e sustentação de ERP Municipal (Tributário, Contábil, RH e Nota Fiscal Eletrônica) atendendo prefeituras de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas. Administração de parque tecnológico e servidores Linux/Windows, prestação de suporte técnico N3, manutenção de ambientes e sustentação de sistemas 24/7. Participação em projetos internos com C#, .NET, ASP.NET/ASP.NET Core e Visual Basic 6 / VB.NET, englobando aplicações web e desktop, bancos de dados relacionais e manutenção em ambiente Windows.",
       tags: [
-        { name: "Java EE", tone: "tech-java" },
-        { name: "Spring Boot", tone: "tech-spring" },
-        { name: "Angular", tone: "tech-angular" },
-        { name: "Vue.js", tone: "tech-vue" },
-        { name: "Kotlin", tone: "tech-kotlin" },
-        { name: "MySQL", tone: "tech-mysql" },
-        { name: "Linux Ubuntu", tone: "tech-linux" },
-        { name: "Bash Script", tone: "tech-bash" },
+        { name: "C#", tone: "tech-csharp" },
+        { name: ".NET", tone: "tech-dotnet" },
+        { name: "VB6 / VB.NET", tone: "tech-vb" },
+        { name: "ASP.NET", tone: "tech-aspnet" },
+        { name: "Windows Server", tone: "tech-windows" },
+        { name: "Suporte N3", tone: "tech-windows" },
+        { name: "SQL Server", tone: "tech-sqlserver" },
+        { name: "Linux", tone: "tech-linux" },
       ],
     },
   ],
 
   about: {
     summary:
-      "Engenheiro de Software com foco principal em Java & Spring Boot e background sólido no setor público (estadual, municipal) e segurança pública. Segundo pilar em Kotlin para desenvolvimento Android nativo, e em terceiro lugar Flutter / Dart para aplicações mobile cross-platform iOS + Android. Entrega também front-ends modernos com Next.js, React, Vue.js 3 e Angular 18 para consumir as APIs Spring. Experiência com APIs RESTful escaláveis, arquitetura em microsserviços, autenticação OAuth2 / JWT / Keycloak e entrega contínua com CI/CD e Docker.",
+      "Desenvolvedor de Software com sólida experiência na plataforma Microsoft (.NET 8/9, C#, ASP.NET Core e Visual Basic 6/VB.NET), atuando no desenvolvimento de soluções completas Desktop e Web corporativas, além de forte vivência no ecossistema Java (Spring Boot, APIs RESTful e microsserviços). Experiência prática em bancos de dados relacionais (Microsoft SQL Server, PostgreSQL), versionamento com Git, testes automatizados (TDD), suporte a ambientes Windows 11 Pro e servidores corporativos Windows Server e Linux (suporte técnico N3) e noções de nuvem Azure.",
     objective:
-      "Atuar como Engenheiro de Software Java / Spring Boot em produto de alto impacto — com atenção também a oportunidades em Kotlin (mobile Android nativo) e Flutter / Dart (multiplataforma). Aproveitar também a vivência front-end com Next.js, React, Vue e Angular para entregar soluções FULL-STACK.",
+      "Atuar como Desenvolvedor .NET / C#, aplicando sólidos conhecimentos em engenharia de software, integração de APIs e bancos relacionais no desenvolvimento, sustentação e modernização de sistemas corporativos Desktop, Web e Cloud.",
     skills: [
-      { name: "Java", level: 95, color: "#007396", icon: "java" },
-      { name: "Spring Boot 3", level: 95, color: "#6db33f", icon: "spring" },
-      { name: "Kotlin · Android", level: 88, color: "#7f52ff", icon: "kotlin" },
-      { name: "Flutter / Dart", level: 82, color: "#02569b", icon: "flutter" },
-      { name: "Next.js 14 · React", level: 85, color: "#ffffff", icon: "next" },
-      { name: "Node.js · NestJS", level: 82, color: "#339933", icon: "node" },
-      { name: "Vue.js 3 · Nuxt", level: 80, color: "#42b883", icon: "vue" },
-      { name: "Angular 18 · RxJS", level: 78, color: "#dd0031", icon: "angular" },
-      { name: "TypeScript · JavaScript", level: 90, color: "#3178c6", icon: "ts" },
-      { name: "APIs REST · OpenAPI 3", level: 90, color: "#6db33f", icon: "swagger" },
-      { name: "PostgreSQL · MySQL", level: 85, color: "#336791", icon: "postgres" },
-      { name: "Docker · CI/CD", level: 80, color: "#2496ed", icon: "docker" },
-      { name: "Spring Security · JWT", level: 88, color: "#6db33f", icon: "spring" },
+      { name: "C# & .NET 8/9", level: 96, color: "#0078d4", icon: "csharp" },
+      { name: "ASP.NET Core & APIs RESTful", level: 94, color: "#0078d4", icon: "dotnet" },
+      { name: "Desktop (WPF, WinForms & VB.NET)", level: 92, color: "#005a9e", icon: "windows" },
+      { name: "Visual Basic 6 & Legados", level: 90, color: "#005a9e", icon: "vb" },
+      { name: "Microsoft SQL Server & EF Core", level: 93, color: "#cc292b", icon: "sqlserver" },
+      { name: "Windows 11 Pro & Servidores (Suporte N3)", level: 95, color: "#00a4ef", icon: "windows" },
+      { name: "Automação VBA & Microsoft Access", level: 88, color: "#217346", icon: "vba" },
+      { name: ".NET MAUI & Mobile PWA", level: 86, color: "#512bd4", icon: "maui" },
+      { name: "Microsoft Azure Fundamentals", level: 82, color: "#0089d6", icon: "azure" },
+      { name: "Java EE & Spring Boot", level: 88, color: "#6db33f", icon: "spring" },
+      { name: "Testes Automatizados (TDD & xUnit)", level: 90, color: "#0078d4", icon: "dotnet" },
+      { name: "Docker & CI/CD GitHub Actions", level: 85, color: "#2496ed", icon: "docker" },
     ],
     methodologies: [
       "Clean Architecture",
-      "TDD · JUnit 5",
-      "Domain-Driven Design",
-      "Clean Code",
-      "Scrum · Kanban",
-      "CI/CD · GitHub Actions",
-      "OpenAPI / Swagger",
-      "Hexagonal (Ports & Adapters)",
-      "Arquitetura em Camadas",
+      "Domain-Driven Design (DDD)",
+      "TDD (Test-Driven Development)",
+      "SOLID & Design Patterns",
+      "RESTful API Maturity Model",
+      "Scrum & Kanban",
+      "CI/CD com GitHub Actions",
+      "Manutenção e Migração de Legados",
+      "Suporte Técnico N3 & Redes",
+      "Virtualização (Hyper-V & Docker)",
+      "Modelagem Relacional SQL Server",
+      "Segurança e Autenticação JWT / OAuth2",
     ],
-    practices: ["SOLID", "REST APIs", "MVC / MVVM", "JUnit + Mockito", "TDD", "Clean Code", "CI/CD", "Microsserviços"],
+    practices: [
+      "Clean Architecture",
+      "ASP.NET Core",
+      "WPF / WinForms",
+      "VB6 / VB.NET",
+      "SQL Server",
+      "EF Core",
+      "Windows Server",
+      "Suporte N3",
+      "Excel VBA",
+      ".NET MAUI",
+      "Azure Cloud",
+    ],
   },
 
   stack: [
-    { id: "s-java", name: "Java", icon: "java", tone: "tech-java", level: 95 },
-    { id: "s-spring", name: "Spring Boot", icon: "spring", tone: "tech-spring", level: 95 },
-    { id: "s-kotlin", name: "Kotlin", icon: "kotlin", tone: "tech-kotlin", level: 88 },
-    { id: "s-flutter", name: "Flutter / Dart", icon: "flutter", tone: "tech-flutter", level: 82 },
-    { id: "s-next", name: "Next.js", icon: "next", tone: "tech-next", level: 85 },
-    { id: "s-node", name: "Node.js · NestJS", icon: "node", tone: "tech-node", level: 80 },
-    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 78 },
-    { id: "s-angular", name: "Angular 18", icon: "angular", tone: "tech-angular", level: 75 },
-    { id: "s-ts", name: "TypeScript", icon: "ts", tone: "tech-ts", level: 90 },
-    { id: "s-js", name: "JavaScript", icon: "js", tone: "tech-js", level: 92 },
-    { id: "s-react", name: "React 18", icon: "react", tone: "tech-react", level: 86 },
-    { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 85 },
-    { id: "s-mysql", name: "MySQL", icon: "mysql", tone: "tech-mysql", level: 82 },
-    { id: "s-docker", name: "Docker", icon: "docker", tone: "tech-docker", level: 78 },
-    { id: "s-redis", name: "Redis", icon: "redis", tone: "tech-redis", level: 72 },
-    { id: "s-mongo", name: "MongoDB", icon: "mongo", tone: "tech-mongo", level: 70 },
+    { id: "s-csharp", name: "C#", icon: "csharp", tone: "tech-csharp", level: 96 },
+    { id: "s-dotnet", name: ".NET 8 / 9", icon: "dotnet", tone: "tech-dotnet", level: 95 },
+    { id: "s-aspnet", name: "ASP.NET Core", icon: "dotnet", tone: "tech-aspnet", level: 94 },
+    { id: "s-desktop", name: "Desktop (WPF / WinForms)", icon: "windows", tone: "tech-csharp", level: 92 },
+    { id: "s-vb", name: "Visual Basic 6 / VB.NET", icon: "windows", tone: "tech-vb", level: 90 },
+    { id: "s-sqlserver", name: "Microsoft SQL Server", icon: "sqlserver", tone: "tech-sqlserver", level: 93 },
+    { id: "s-windows", name: "Windows 11 / Windows Server", icon: "windows", tone: "tech-windows", level: 95 },
+    { id: "s-support", name: "Suporte Técnico N3 & Infra", icon: "windows", tone: "tech-windows", level: 94 },
+    { id: "s-vba", name: "Excel VBA & Access", icon: "vba", tone: "tech-vba", level: 88 },
+    { id: "s-maui", name: ".NET MAUI & PWA", icon: "maui", tone: "tech-maui", level: 86 },
+    { id: "s-azure", name: "Microsoft Azure", icon: "azure", tone: "tech-azure", level: 82 },
+    { id: "s-java", name: "Java & Spring Boot", icon: "spring", tone: "tech-spring", level: 88 },
+    { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 88 },
+    { id: "s-docker", name: "Docker & Contêineres", icon: "docker", tone: "tech-docker", level: 85 },
+    { id: "s-git", name: "Git & CI/CD", icon: "git", tone: "tech-git", level: 90 },
   ],
 };

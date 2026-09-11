@@ -3,16 +3,27 @@ import { motion } from "framer-motion";
 import {
   SiPostgresql, SiRedis, SiDocker, SiGithubactions,
 } from "react-icons/si";
-import { TestTube, Clock, Shield, Layers, Zap, Satellite, Cpu, Activity, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import type { AdminStackItem, ProjectTone } from "@/lib/default-data";
 import {
   SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
   SiAngular, SiVuedotjs, SiSpringboot, SiKubernetes, SiTailwindcss, SiVite,
-  SiMongodb, SiNodedotjs, SiReact, SiTypescript, SiJava, SiKotlin, SiFlutter,
+  SiMongodb, SiNodedotjs, SiReact, SiTypescript, SiKotlin, SiFlutter,
+  SiDotnet,
 } from "react-icons/si";
+import { TbBrandCSharp, TbBrandWindows, TbBrandAzure, TbDatabase } from "react-icons/tb";
+import { DiJava } from "react-icons/di";
 
 const ADMIN_ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  java: SiJava, spring: SiSpringboot, kotlin: SiKotlin, flutter: SiFlutter,
+  csharp: TbBrandCSharp,
+  dotnet: SiDotnet,
+  windows: TbBrandWindows,
+  sqlserver: TbDatabase,
+  azure: TbBrandAzure,
+  maui: SiDotnet,
+  vba: TbBrandWindows,
+  vb: TbBrandWindows,
+  java: DiJava, spring: SiSpringboot, kotlin: SiKotlin, flutter: SiFlutter,
   node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
   vue: SiVuedotjs, angular: SiAngular, react: SiReact,
   postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
@@ -22,91 +33,72 @@ const ADMIN_ICON_MAP: Record<string, React.ComponentType<{ className?: string; s
 };
 
 const GEMS_BY_KEY: Record<string, string[]> = {
+  csharp: ["C# 12 / 13", "LINQ", "Async / Await TPL", "Pattern Matching", "Records & Structs"],
+  dotnet: [".NET 8 / 9 LTS", "ASP.NET Core", "Entity Framework Core", "Injeção de Dependência", "Kestrel Server"],
+  windows: ["Windows 11 Pro", "Windows Server", "Active Directory", "IIS", "PowerShell & Suporte N3"],
+  sqlserver: ["SQL Server 2022", "T-SQL Avançado", "Índices & Execution Plan", "Stored Procedures", "Transações ACID"],
+  azure: ["Azure App Services", "Azure SQL", "Blob Storage", "Azure DevOps", "Monitor & App Insights"],
+  maui: [".NET MAUI", "Blazor Hybrid", "XAML / C# UI", "PWA Offline", "Cross-Platform"],
+  vba: ["VBA Avançado", "Excel Macros & Interop", "Microsoft Access", "Automação Office", "Modelos Fiscais"],
+  vb: ["Visual Basic 6 (VB6)", "VB.NET", "Windows Forms", "Migração para C#", "Sustentação Legados"],
   java: ["Java 17 · LTS", "JPA Hibernate", "Stream API", "Records · Patterns", "Virtual Threads"],
   spring: ["Spring Boot Starter", "Spring Data JPA", "Spring Security 6", "Spring Cloud Gateway", "JUnit 5 · Mockito"],
   kotlin: ["Kotlin 2.0", "Jetpack Compose", "Coroutines · Flow", "Hilt DI", "Room DB"],
   flutter: ["Flutter 3.x", "Dart 3", "Riverpod · Provider", "Firebase", "Go Router"],
-  node: ["Node.js 20 LTS", "Express · NestJS", "Prisma · Mongoose", "Jest · Supertest", "npm · pnpm"],
-  next: ["Next.js 14 App Router", "RSC · Server Actions", "tRPC", "NextAuth", "Vercel"],
-  js: ["ES2024", "ESLint + Prettier", "npm / pnpm", "Husky hooks", "ESM Modules"],
-  ts: ["TypeScript 5", "Zod", "tsc strict", "esbuild", "Vite"],
-  vue: ["Vue 3 · Composition API", "Pinia", "Nuxt 3", "Vue Router", "Axios"],
-  angular: ["Angular 18", "RxJS + Signals", "NgRx", "Standalone", "Angular CLI"],
-  react: ["React 18", "Vite", "Tailwind", "Radix UI", "shadcn/ui"],
   postgres: ["PostgreSQL 16", "JPA Indexes", "PgSearch", "JSONB", "Window Functions"],
-  mysql: ["MySQL 8", "InnoDB FULLTEXT", "Replication", "Stored Procs", "Flyway"],
-  redis: ["Redis 7", "Spring Cache + Lettuce", "Rate Limit", "Pub/Sub", "Bloom Filter"],
-  mongo: ["MongoDB Atlas", "Aggregation Pipeline", "Atlas Search", "Replica Set", "Change Streams"],
   docker: ["docker-compose.yml", "alpine", "Dockerfile multi-stage", "Docker BuildKit", "entrypoint.sh"],
-  k8s: ["kubectl", "Helm Charts", "Ingress NGINX", "ConfigMap / Secret", "HPA"],
-  actions: ["checkout", "setup-java", "maven build", "testes", "deploy gh-pages"],
-  swagger: ["Springdoc OpenAPI", "Swagger UI", "OpenAPI 3", "Security Schemes JWT", "Redoc"],
   git: ["Git Flow", "Conventional Commits", "Rebase · Cherry-pick", "Husky", "Semantic Release"],
   linux: ["Ubuntu 24.04", "systemd units", "ufw + fail2ban", "cron · journalctl", "SSH hardening"],
-  bash: ["Bash 5", "funções · getopts", "awk · sed · jq", "cronjobs", "trap EXIT"],
-  tailwind: ["Tailwind CSS 3", "JIT compiler", "@apply + variants", "Typography Prose", "shadcn themes"],
-  vite: ["Vite 5", "Rollup plugins", "HMR", "esbuild", "Library Mode"],
-  go: ["net/http", "gin-gonic", "gorm", "jwt-go", "viper"],
 };
 
 const PATTERNS_BY_KEY: Record<string, string[]> = {
+  csharp: ["Clean Architecture", "SOLID & GoF", "Repository Pattern", "CQRS com MediatR", "Result Pattern"],
+  dotnet: ["Middleware Pipeline", "FluentValidation", "Polly Resiliência", "JWT Authentication", "Health Checks"],
+  windows: ["Administração de Servidores", "Políticas de Grupo (GPO)", "Hyper-V", "Diagnóstico N3", "Segurança de Redes"],
+  sqlserver: ["Otimização de Consultas", "Normalização", "Particionamento", "Auditoria de Dados", "Backup & Recovery"],
+  azure: ["Cloud Native", "Serverless Functions", "CI/CD Pipelines", "Managed Identities", "Scale Sets"],
+  maui: ["MVVM", "Data Binding", "Dependency Service", "Offline-First Sync", "Responsive Layouts"],
+  vba: ["Automação de Tarefas", "Processamento em Lote", "Integração COM/OLE", "Tratamento de Exceções", "Macros Seguras"],
+  vb: ["Event-Driven", "COM / ActiveX", "ADO / DAO", "Refatoração Progressiva", "Interoperabilidade"],
   java: ["Clean Architecture", "Hexagonal", "Repository", "Service Layer", "CQRS"],
   spring: ["@Transactional", "AOP", "DTO Projections", "Spring Profiles", "Auto-config"],
   kotlin: ["MVVM + Clean", "Sealed Classes", "Extension Fns", "Delegates", "Reactive Flow"],
   flutter: ["Repository", "BLoC / Provider", "Isolates", "Lazy Lists", "Custom Paint"],
-  node: ["Middleware pipeline", "Error handlers", "NestJS Modules", "Factory + DI", "BullMQ queues"],
-  next: ["RSC · SSR", "Server Actions", "Edge Runtime", "tRPC routers", "ISR revalidation"],
-  js: ["ESM modules", "Event Loop", "Promises / async-await", "Web APIs", "Event Delegation"],
-  ts: ["strict mode", "Generics", "Utility Types", "Discriminated Unions", "infer const"],
-  vue: ["Composition API", "Script Setup", "Pinia stores", "Router guards", "Teleport"],
-  angular: ["Signals", "Standalone", "Dependency Injection", "RxJS pipes", "Async pipe"],
-  react: ["Components", "Custom Hooks", "Context + Reducer", "Error Boundary", "Lazy / Suspense"],
   postgres: ["CTE e Window Fns", "Índices GIN/GiST", "Advisory Locks", "JSONB", "Views"],
-  mysql: ["Stored Procedures", "Triggers", "Replication", "Explain Analyze", "Partitioning"],
-  redis: ["Fragment cache", "Rate Limiting", "Semaphores", "Bloom Filter", "Counter cache"],
-  mongo: ["Aggregation", "Indexes TTL / Text", "Replica Set", "Change Streams", "Atlas Search"],
   docker: ["Camadas otimizadas", "Multi-stage", "Volumes nomeados", "Networks", ".dockerignore"],
-  k8s: ["Deployments", "Services", "PV / PVC", "Ingress Controller", "HPA"],
-  actions: ["Workflows reusable", "Matrix strategy", "Cache @cache", "Artifacts", "Environments"],
-  swagger: ["OpenAPI 3", "Springdoc", "Swagger UI", "Security Schemes JWT", "Examples"],
   git: ["Feature branches", "Squash / Rebase", "Stash", "Bisect", "Husky pre-commit"],
   linux: ["SSH hardening", "systemd units", "fail2ban", "logrotate", "bashrc aliases"],
-  bash: ["funções + trap", "getopts", "xargs", "IFS / arrays", "pipefail"],
-  tailwind: ["Arbitrary values", "@apply", "variants", "plugins", "design tokens"],
-  vite: ["Config define", "plugins", "build.target", "optimizeDeps", "server proxy"],
-  go: ["goroutines / channels", "interfaces implícitas", "context.Context", "struct tags", "go mod"],
 };
 
 const TAGLINE_BY_KEY: Record<string, string> = {
-  java: "Engenharia & Spring",
+  csharp: "Linguagem moderna de alto desempenho",
+  dotnet: "Plataforma corporativa Microsoft",
+  windows: "Sistemas operacionais e servidores",
+  sqlserver: "Banco de dados relacional corporativo",
+  azure: "Nuvem Microsoft & Serviços Web",
+  maui: "Multiplataforma Mobile & PWA",
+  vba: "Produtividade e automação corporativa",
+  vb: "Sustentação e evolução de legados",
+  java: "Engenharia & Back-end",
   spring: "Produtividade Java Enterprise",
   kotlin: "Android nativo · Moderno",
   flutter: "Híbrido iOS · Android",
-  node: "Runtime JS server-side",
-  next: "SSR · App Router React",
-  js: "Fundamentos Web modernos",
-  ts: "Código seguro por padrão",
-  vue: "SPA leve · Composition API",
-  angular: "App escalável · Signals",
-  react: "Interfaces reativas 18",
   postgres: "Dados consistentes ACID",
-  mysql: "Banco SQL popular",
-  redis: "Cache & performance",
-  mongo: "NoSQL orientado a docs",
   docker: "Ambientes reproduzíveis",
-  k8s: "Orquestração containers",
-  actions: "CI / CD automatizado",
-  swagger: "Documentação OpenAPI 3",
   git: "Controle de versão",
-  linux: "Servidores Unix",
-  bash: "Automação Shell",
-  tailwind: "Utility-first CSS",
-  vite: "Build & dev server rápido",
-  go: "Performático e simples",
+  linux: "Servidores Unix / Linux",
 };
 
 const FRONTICON_BY_KEY: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  java: SiJava, spring: SiSpringboot, kotlin: SiKotlin, flutter: SiFlutter,
+  csharp: TbBrandCSharp,
+  dotnet: SiDotnet,
+  windows: TbBrandWindows,
+  sqlserver: TbDatabase,
+  azure: TbBrandAzure,
+  maui: SiDotnet,
+  vba: TbBrandWindows,
+  vb: TbBrandWindows,
+  java: DiJava, spring: SiSpringboot, kotlin: SiKotlin, flutter: SiFlutter,
   node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
   vue: SiVuedotjs, angular: SiAngular, react: SiReact,
   postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
@@ -123,19 +115,19 @@ export function StackShowcaseSection({ stack }: Props) {
 
   const cards = stack.length > 0
     ? stack.map((item) => {
-        const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "spring";
-        const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiJava;
-        const gems = GEMS_BY_KEY[iconKey] ?? ["Libs", "Config", "Padrões", "Setup", "Deploy"];
+        const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "csharp";
+        const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiDotnet;
+        const gems = GEMS_BY_KEY[iconKey] ?? ["Recursos", "Padrões", "Arquitetura", "Qualidade", "Deploy"];
         const patterns = PATTERNS_BY_KEY[iconKey] ?? ["Boas práticas", "Padrões", "Qualidade", "Documentação", "Testes"];
         const tagline = TAGLINE_BY_KEY[iconKey] ?? item.name;
         return {
           id: item.id,
           name: item.name,
           tagline,
-          tone: (item.tone || "tech-spring") as ProjectTone,
-          frontDetail: `Experiência com ${item.name}. Nível de domínio ~${item.level}%. Aplicado em projetos e processos do dia a dia.`,
-          backTitle: `${item.name} — Aplicação prática`,
-          backSubtitle: `Recursos e padrões em ${item.name}`,
+          tone: (item.tone || "tech-csharp") as ProjectTone,
+          frontDetail: `Experiência sólida com ${item.name}. Nível de domínio ~${item.level}%. Aplicado em projetos e sustentação do dia a dia.`,
+          backTitle: `${item.name} — Aplicação Prática`,
+          backSubtitle: `Recursos, arquitetura e padrões em ${item.name}`,
           gems,
           patterns,
           FrontIcon,
@@ -149,10 +141,10 @@ export function StackShowcaseSection({ stack }: Props) {
       <div className="absolute inset-0 pointer-events-none rails-grid opacity-30" />
       <div className="container mx-auto px-4 relative">
         <div className="max-w-2xl mb-12">
-          <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">Stack completo</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Tecnologias que uso todo dia.</h2>
+          <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">Stack Tecnológico</p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Tecnologias que domino na prática.</h2>
           <p className="text-muted-foreground mt-3 leading-relaxed">
-            Passe o mouse <em className="text-primary">ou clique</em> no card e ele <strong>vira</strong> — revelando libs, padrões e técnicas aplicadas em produção.
+            Passe o mouse <em className="text-primary font-semibold">ou clique</em> no card e ele <strong>vira</strong> — revelando libs, recursos de arquitetura e padrões aplicados no ambiente de trabalho.
           </p>
         </div>
 
@@ -188,7 +180,7 @@ export function StackShowcaseSection({ stack }: Props) {
                         <div className="h-1.5 rounded-full bg-[#44475a]/80 overflow-hidden">
                           <div
                             className="h-full rounded-full"
-                            style={{ width: `${item.level}%`, background: "var(--tech-color,#6db33f)", boxShadow: "0 0 8px color-mix(in srgb, var(--tech-color,#6db33f) 55%, transparent)" }}
+                            style={{ width: `${item.level}%`, background: "var(--tech-color,#0078d4)", boxShadow: "0 0 8px color-mix(in srgb, var(--tech-color,#0078d4) 55%, transparent)" }}
                           />
                         </div>
                         <span className="text-[10.5px] font-mono text-muted-foreground mt-1 inline-block">domínio ~{item.level}%</span>
@@ -199,37 +191,46 @@ export function StackShowcaseSection({ stack }: Props) {
                         <span className="text-[10px] font-mono px-2 py-1 rounded-md border border-primary/40 text-primary/90">flip</span>
                       </div>
                     </div>
+
                     <div className="rails-flip-face rails-flip-back">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="rails-icon p-2 rounded-lg">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
                           <item.FrontIcon className="tech-icon text-2xl" />
+                          <div>
+                            <h4 className="font-bold text-sm leading-none">{item.name}</h4>
+                            <span className="text-[10px] font-mono text-muted-foreground">{item.tagline}</span>
+                          </div>
                         </div>
-                        <div className="min-w-0">
-                          <p className="tech-label text-[10px] font-mono uppercase tracking-wider opacity-90">{item.backSubtitle}</p>
-                          <h3 className="text-[15px] font-bold leading-tight">{item.backTitle}</h3>
-                        </div>
+                        <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">voltar ↺</span>
                       </div>
-                      <div className="space-y-3">
+
+                      <div className="space-y-3 my-auto">
                         <div>
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-foreground/70 mb-1.5">Libs / ferramentas</p>
+                          <p className="text-[10px] font-mono text-primary uppercase tracking-wider mb-1.5 font-bold">Recursos &amp; Ferramentas</p>
                           <div className="flex flex-wrap gap-1.5">
-                            {item.gems.map(g => (
-                              <span key={g} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-md border leading-tight">{g}</span>
+                            {item.gems.map((g, i) => (
+                              <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-background/60 border border-border/60 text-foreground font-mono">
+                                {g}
+                              </span>
                             ))}
                           </div>
                         </div>
+
                         <div>
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-foreground/70 mb-1.5">Padrões</p>
+                          <p className="text-[10px] font-mono text-[#00a4ef] uppercase tracking-wider mb-1.5 font-bold">Padrões &amp; Práticas</p>
                           <div className="flex flex-wrap gap-1.5">
-                            {item.patterns.map(p => (
-                              <span key={p} className="text-[10px] font-mono px-2 py-0.5 rounded-md border border-foreground/15 bg-foreground/5 text-foreground/80 leading-tight">{p}</span>
+                            {item.patterns.map((p, i) => (
+                              <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary-foreground font-mono">
+                                {p}
+                              </span>
                             ))}
                           </div>
                         </div>
                       </div>
-                      <div className="mt-auto pt-4 flex items-center justify-between">
-                        <span className="text-[10px] font-mono text-muted-foreground">clique para ↺ voltar</span>
-                        <span className="text-[10px] font-mono px-2 py-1 rounded-md border border-foreground/25 text-foreground/80">verso</span>
+
+                      <div className="mt-auto pt-3 border-t border-border/40 flex items-center justify-between text-[10px] font-mono text-muted-foreground">
+                        <span>Stack Microsoft .NET</span>
+                        <span className="text-primary font-bold">~{item.level}%</span>
                       </div>
                     </div>
                   </div>
@@ -240,7 +241,7 @@ export function StackShowcaseSection({ stack }: Props) {
         </div>
 
         <a href="#projects" className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-          Explorar projetos Java · Spring · Kotlin · Flutter <ExternalLink size={15} />
+          Explorar projetos .NET · C# · Desktop &amp; Web <ExternalLink size={15} />
         </a>
       </div>
     </section>
@@ -249,33 +250,29 @@ export function StackShowcaseSection({ stack }: Props) {
 
 const DEFAULT_CARDS = (() => {
   const FALLBACK_STACK: AdminStackItem[] = [
-    { id: "s-java", name: "Java 17 LTS", icon: "java", tone: "tech-java", level: 95 },
-    { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 95 },
-    { id: "s-security", name: "Spring Security · JWT", icon: "spring", tone: "tech-spring", level: 90 },
-    { id: "s-jpa", name: "JPA · Hibernate", icon: "postgres", tone: "tech-spring", level: 92 },
-    { id: "s-kotlin", name: "Kotlin · Android", icon: "kotlin", tone: "tech-kotlin", level: 88 },
-    { id: "s-compose", name: "Jetpack Compose", icon: "kotlin", tone: "tech-kotlin", level: 85 },
-    { id: "s-flutter", name: "Flutter · Dart", icon: "flutter", tone: "tech-flutter", level: 82 },
-    { id: "s-node", name: "Node.js · NestJS", icon: "node", tone: "tech-node", level: 80 },
-    { id: "s-next", name: "Next.js 14", icon: "next", tone: "tech-next", level: 82 },
-    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 78 },
-    { id: "s-angular", name: "Angular 18", icon: "angular", tone: "tech-angular", level: 75 },
-    { id: "s-micros", name: "Microserviços · Kafka", icon: "docker", tone: "tech-docker", level: 85 },
-    { id: "s-pg", name: "PostgreSQL · MySQL", icon: "postgres", tone: "tech-postgres", level: 88 },
-    { id: "s-swagger", name: "OpenAPI 3 · Swagger", icon: "swagger", tone: "tech-openapi", level: 92 },
-    { id: "s-tests", name: "JUnit · Mockito", icon: "vite", tone: "tech-spring", level: 90 },
-    { id: "s-obs", name: "Observabilidade · Docker", icon: "actions", tone: "tech-actions", level: 80 },
+    { id: "s-csharp", name: "C#", icon: "csharp", tone: "tech-csharp", level: 96 },
+    { id: "s-dotnet", name: ".NET 8 / 9", icon: "dotnet", tone: "tech-dotnet", level: 95 },
+    { id: "s-aspnet", name: "ASP.NET Core", icon: "dotnet", tone: "tech-aspnet", level: 94 },
+    { id: "s-desktop", name: "Desktop (WPF/WinForms)", icon: "windows", tone: "tech-csharp", level: 92 },
+    { id: "s-vb", name: "Visual Basic 6 / VB.NET", icon: "windows", tone: "tech-vb", level: 90 },
+    { id: "s-sqlserver", name: "Microsoft SQL Server", icon: "sqlserver", tone: "tech-sqlserver", level: 93 },
+    { id: "s-windows", name: "Windows 11 / Servidores", icon: "windows", tone: "tech-windows", level: 95 },
+    { id: "s-support", name: "Suporte N3 & Infraestrutura", icon: "windows", tone: "tech-windows", level: 94 },
+    { id: "s-vba", name: "Excel VBA & Access", icon: "vba", tone: "tech-vba", level: 88 },
+    { id: "s-maui", name: ".NET MAUI & PWA", icon: "maui", tone: "tech-maui", level: 86 },
+    { id: "s-azure", name: "Microsoft Azure", icon: "azure", tone: "tech-azure", level: 82 },
+    { id: "s-java", name: "Java & Spring Boot", icon: "spring", tone: "tech-spring", level: 88 },
   ];
   return FALLBACK_STACK.map((item) => {
-    const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "spring";
-    const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiJava;
+    const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "csharp";
+    const FrontIcon = FRONTICON_BY_KEY[iconKey] ?? SiDotnet;
     const gems = GEMS_BY_KEY[iconKey] ?? ["Libs", "Config", "Padrões", "Setup", "Deploy"];
     const patterns = PATTERNS_BY_KEY[iconKey] ?? ["Boas práticas", "Padrões", "Qualidade", "Documentação", "Testes"];
     const tagline = TAGLINE_BY_KEY[iconKey] ?? item.name;
     return {
       id: item.id, name: item.name, tagline,
       tone: item.tone as ProjectTone,
-      frontDetail: `Experiência com ${item.name}. Aplicado em projetos e processos do dia a dia.`,
+      frontDetail: `Experiência com ${item.name}. Aplicado em projetos corporativos e sustentação.`,
       backTitle: `${item.name} — Aplicação prática`,
       backSubtitle: `Recursos e padrões em ${item.name}`,
       gems, patterns, FrontIcon, level: item.level,

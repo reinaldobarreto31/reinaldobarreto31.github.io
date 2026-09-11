@@ -8,8 +8,9 @@ import {
   SiReact, SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs,
   SiMysql, SiMongodb, SiRedis, SiLinux, SiGnubash, SiGit, SiAngular,
   SiVuedotjs, SiSpringboot, SiKubernetes, SiTailwindcss, SiVite,
-  SiKotlin, SiFlutter, SiJava,
+  SiKotlin, SiFlutter,
 } from "react-icons/si";
+import { DiJava } from "react-icons/di";
 import { useAdminData, useAuth } from "@/lib/admin-store";
 import type { AdminProject, AdminExperience, AdminAbout, AdminStackItem, ProjectTone, ProjectBadge } from "@/lib/default-data";
 import { DEFAULTS } from "@/lib/default-data";
@@ -27,7 +28,7 @@ const TONES: ProjectTone[] = [
 const BADGES: (ProjectBadge | "")[] = ["", "DESTAQUE", "EM CONSTRUÇÃO", "LIVE", "API", "FULL-STACK"];
 
 const ICON_OPTIONS = [
-  { key: "java", label: "Java", icon: SiJava },
+  { key: "java", label: "Java", icon: DiJava },
   { key: "spring", label: "Spring Boot", icon: SiSpringboot },
   { key: "kotlin", label: "Kotlin", icon: SiKotlin },
   { key: "flutter", label: "Flutter", icon: SiFlutter },
@@ -192,11 +193,15 @@ export function AdminPanel({ open, onClose }: Props) {
 
 /* ---------------- PROJETOS ---------------- */
 
+type UseAdminReturn = ReturnType<typeof useAdminData>;
+type AdminUpdateFn = UseAdminReturn["update"];
+type AdminDataShape = UseAdminReturn["data"];
+
 function ProjectsTab({
   done, data, update,
-}: { done: (m: string) => void; data: Parameters<typeof useAdminData>["0"]["data"]; update: Parameters<typeof useAdminData>["0"]["update"] }) {
-  const featured = data.projects.filter((p) => p.featured);
-  const secondary = data.projects.filter((p) => !p.featured);
+}: { done: (m: string) => void; data: AdminDataShape; update: AdminUpdateFn }) {
+  const featured = data.projects.filter((p: AdminProject) => p.featured);
+  const secondary = data.projects.filter((p: AdminProject) => !p.featured);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState<AdminProject | null>(null);
 
@@ -215,9 +220,9 @@ function ProjectsTab({
 
   function persist() {
     if (!draft) return;
-    const exists = data.projects.some((p) => p.id === draft.id);
+    const exists = data.projects.some((p: AdminProject) => p.id === draft.id);
     const next = exists
-      ? data.projects.map((p) => (p.id === draft.id ? draft : p))
+      ? data.projects.map((p: AdminProject) => (p.id === draft.id ? draft : p))
       : [...data.projects, draft];
     update({ projects: next });
     done(exists ? "Projeto atualizado no portfólio." : "Projeto criado no portfólio.");
@@ -226,18 +231,18 @@ function ProjectsTab({
 
   function remove(id: string) {
     if (!confirm("Remover este projeto do portfólio?")) return;
-    update({ projects: data.projects.filter((p) => p.id !== id) });
+    update({ projects: data.projects.filter((p: AdminProject) => p.id !== id) });
     done("Projeto removido.");
     if (editingId === id) cancel();
   }
 
-  function move(id: string, dir: -1 | 1, featured: boolean) {
-    const arr = (featured ? featured : secondary).slice();
-    const i = arr.findIndex((p) => p.id === id); if (i < 0) return;
+  function move(id: string, dir: -1 | 1, isFeatured: boolean) {
+    const arr: AdminProject[] = (isFeatured ? featured : secondary).slice();
+    const i = arr.findIndex((p: AdminProject) => p.id === id); if (i < 0) return;
     const j = i + dir; if (j < 0 || j >= arr.length) return;
     [arr[i], arr[j]] = [arr[j], arr[i]];
-    const otherGroup = data.projects.filter((p) => (p.featured ? !featured : featured));
-    const full = featured ? [...arr, ...otherGroup] : [...otherGroup, ...arr];
+    const otherGroup = data.projects.filter((p: AdminProject) => (p.featured ? !isFeatured : isFeatured));
+    const full: AdminProject[] = isFeatured ? [...arr, ...otherGroup] : [...otherGroup, ...arr];
     update({ projects: full });
   }
 
@@ -249,7 +254,7 @@ function ProjectsTab({
         onAdd={() => startAdd(true)}
       >
         {featured.length === 0 && <EmptyHint onAdd={() => startAdd(true)} text="Nenhum projeto em destaque. Clique em + NOVO para adicionar." />}
-        {featured.map((p, idx) => (
+        {featured.map((p: AdminProject, idx: number) => (
           <ProjectRow
             key={p.id} p={p} index={idx} total={featured.length}
             editing={editingId === p.id} draft={editingId === p.id ? draft! : null}
@@ -266,7 +271,7 @@ function ProjectsTab({
         onAdd={() => startAdd(false)}
       >
         {secondary.length === 0 && <EmptyHint onAdd={() => startAdd(false)} text="Nenhum projeto secundário ainda." />}
-        {secondary.map((p, idx) => (
+        {secondary.map((p: AdminProject, idx: number) => (
           <ProjectRow
             key={p.id} p={p} index={idx} total={secondary.length}
             editing={editingId === p.id} draft={editingId === p.id ? draft! : null}
@@ -277,7 +282,7 @@ function ProjectsTab({
         ))}
       </GroupBlock>
 
-      {editingId && !data.projects.some((p) => p.id === editingId) && draft && (
+      {editingId && !data.projects.some((p: AdminProject) => p.id === editingId) && draft && (
         <div className="border border-dashed border-[#84cc16]/50 rounded-xl p-3 bg-[#10140e]">
           <div className="text-xs font-bold text-[#84cc16] mb-2 font-mono uppercase">⬇ Rascunho — novo projeto (clique em SALVAR para gravar)</div>
           <ProjectForm draft={draft} setDraft={setDraft} onCancel={cancel} onSave={persist} saving />
@@ -473,7 +478,7 @@ function Field({ label, children, span = 1 }: { label: string; children: React.R
 
 /* ---------------- EXPERIENCIAS ---------------- */
 
-function ExperiencesTab({ done, data, update }: { done: (m: string) => void; data: any; update: any }) {
+function ExperiencesTab({ done, data, update }: { done: (m: string) => void; data: AdminDataShape; update: AdminUpdateFn }) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState<AdminExperience | null>(null);
 
@@ -607,7 +612,7 @@ function ExperienceForm({
 
 /* ---------------- SOBRE ---------------- */
 
-function AboutTab({ done, data, update }: { done: (m: string) => void; data: any; update: any }) {
+function AboutTab({ done, data, update }: { done: (m: string) => void; data: AdminDataShape; update: AdminUpdateFn }) {
   const about: AdminAbout = data.about;
   const [skillsCsv, setSkillsCsv] = useState(about.skills.map((s: any) => `${s.name}|${s.level}|${s.color}|${s.icon}`).join("\n"));
   const [methodsText, setMethodsText] = useState(about.methodologies.join(", "));
@@ -664,7 +669,7 @@ function AboutTab({ done, data, update }: { done: (m: string) => void; data: any
 
 /* ---------------- STACK ---------------- */
 
-function StackTab({ done, data, update }: { done: (m: string) => void; data: any; update: any }) {
+function StackTab({ done, data, update }: { done: (m: string) => void; data: AdminDataShape; update: AdminUpdateFn }) {
   const stack: AdminStackItem[] = data.stack;
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState<AdminStackItem | null>(null);

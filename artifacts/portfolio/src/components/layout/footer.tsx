@@ -53,15 +53,15 @@ export function Footer({ onOpenAdmin }: FooterProps) {
           >
             reinaldo.barreto
           </span>
-          <p className="text-sm text-muted-foreground mt-1">Java · Spring Boot · Kotlin · Flutter Dev</p>
+          <p className="text-sm text-muted-foreground mt-1">.NET · C# · ASP.NET Core · Desktop &amp; Web</p>
 
           {showLogin && !logged && (
             <form
               onSubmit={tryLogin}
-              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#1e3a8a]/50 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
+              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#0078d4]/40 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
             >
               <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#6db33f" }}>
+                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#0078d4" }}>
                   <Lock size={14} /> Painel Admin — Login
                 </div>
                 <button

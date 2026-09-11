@@ -5,13 +5,23 @@ import {
   SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs, SiMysql, SiMongodb,
   SiRedis, SiLinux, SiGnubash, SiGit, SiAngular, SiVuedotjs, SiSpringboot,
   SiKubernetes, SiTailwindcss, SiVite, SiKotlin, SiFlutter,
+  SiDotnet,
 } from "react-icons/si";
+import { TbBrandCSharp, TbBrandWindows, TbBrandAzure, TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
 import type { AdminProject, ProjectTone, ProjectBadge } from "@/lib/default-data";
 
 const GITHUB = "https://github.com/reinaldobarreto31";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+  csharp: TbBrandCSharp,
+  dotnet: SiDotnet,
+  windows: TbBrandWindows,
+  sqlserver: TbDatabase,
+  azure: TbBrandAzure,
+  maui: SiDotnet,
+  vba: TbBrandWindows,
+  vb: TbBrandWindows,
   java: DiJava,
   spring: SiSpringboot,
   kotlin: SiKotlin,
@@ -46,11 +56,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: 
 };
 
 const badgeStyle: Record<NonNullable<ProjectBadge>, string> = {
-  DESTAQUE: "bg-[#b91f32]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.08),0_8px_22px_rgba(185,31,50,.35)]",
-  "EM CONSTRUÇÃO": "bg-[#bd93f9]/85 text-[#161720] shadow-[0_0_0_1px_rgba(255,255,255,.08),0_8px_22px_rgba(189,147,249,.35)]",
-  LIVE: "bg-[#50fa7b]/90 text-[#161720] shadow-[0_0_0_1px_rgba(255,255,255,.1),0_8px_22px_rgba(80,250,123,.35)]",
-  API: "bg-[#6272a4]/85 text-white shadow-[0_0_0_1px_rgba(255,255,255,.08)]",
-  "FULL-STACK": "bg-[#ffb86c]/85 text-[#161720] shadow-[0_0_0_1px_rgba(255,255,255,.08)]",
+  DESTAQUE: "bg-[#0078d4]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(0,120,212,.45)]",
+  "EM CONSTRUÇÃO": "bg-[#512bd4]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12),0_8px_22px_rgba(81,43,212,.4)]",
+  LIVE: "bg-[#00a4ef]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(0,164,239,.45)]",
+  API: "bg-[#005a9e]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12)]",
+  "FULL-STACK": "bg-[#0078d4]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12)]",
+  DESKTOP: "bg-[#004578]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(0,69,120,.45)]",
+  MOBILE: "bg-[#512bd4]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(81,43,212,.45)]",
 };
 
 type Props = { projects: AdminProject[] };
@@ -152,13 +164,13 @@ export function ProjectsSection({ projects }: Props) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
           <div>
             <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">
-              Portfolio Java · Spring · Kotlin · Flutter
+              Portfólio .NET · C# · Desktop · ASP.NET Core · PWA
             </p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
-              Projetos principais.
+              Projetos em Destaque.
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl text-base">
-              Trabalhos mais representativos — APIs Spring Boot escaláveis, apps Android nativos com Kotlin · Jetpack Compose, apps cross-platform Flutter/Dart e microsserviços Java publicados no GitHub.
+              Soluções completas com arquitetura corporativa — Sistemas Desktop em C# e VB.NET/VB6, APIs robustas em ASP.NET Core (.NET 8), aplicações Mobile PWA com .NET MAUI e automações corporativas integradas ao SQL Server e nuvem Azure.
             </p>
           </div>
           <a
@@ -180,13 +192,13 @@ export function ProjectsSection({ projects }: Props) {
         <div className="mt-20 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <p className="text-[11px] font-mono text-primary/80 uppercase tracking-[.22em] mb-2.5">
-              Outros projetos
+              Outros Projetos &amp; Utilitários
             </p>
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
-              Projetos mais enxutos.
+              Aplicações complementares.
             </h3>
             <p className="text-muted-foreground mt-2 text-sm max-w-lg">
-              Aplicações menores que consolidam a base sólida em Java · Spring · Kotlin — Clean Architecture, REST APIs, JPA/Hibernate, testes JUnit/Mockito e arquitetura de domínio.
+              Soluções corporativas, ferramentas de produtividade, automação administrativa em VBA/Access e projetos móveis que completam a experiência prática em desenvolvimento de software.
             </p>
           </div>
           <a
