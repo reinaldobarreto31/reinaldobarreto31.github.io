@@ -21,24 +21,24 @@
   --foreground: 222 47% 11%;
   --border: 214 32% 91%;
   --input: 214 32% 91%;
-  --ring: 207 100% 45%;
+  --ring: 98 48% 47%;
   --card: 0 0% 100%;
   --card-foreground: 222 47% 11%;
   --card-border: 214 32% 88%;
   --popover: 0 0% 100%;
   --popover-foreground: 222 47% 11%;
   --popover-border: 214 32% 88%;
-  --primary: 207 100% 45%;
+  --primary: 98 48% 47%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 255 68% 52%;
+  --secondary: 195 100% 29%;
   --secondary-foreground: 0 0% 100%;
   --muted: 210 40% 95%;
   --muted-foreground: 215 16% 45%;
-  --accent: 199 100% 45%;
+  --accent: 142 71% 45%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --app-font-sans: 'Segoe UI', 'Inter', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --app-font-sans: 'Plus Jakarta Sans', 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
   --app-font-mono: 'JetBrains Mono', 'Consolas', monospace;
   --radius: .7rem;
 }
@@ -48,20 +48,20 @@
   --foreground: 210 40% 98%;
   --border: 217 33% 18%;
   --input: 217 33% 18%;
-  --ring: 207 100% 45%;
+  --ring: 98 48% 47%;
   --card: 222 47% 12%;
   --card-foreground: 210 40% 98%;
   --card-border: 217 33% 22%;
   --popover: 222 47% 12%;
   --popover-foreground: 210 40% 98%;
   --popover-border: 217 33% 22%;
-  --primary: 207 100% 45%;
+  --primary: 98 48% 47%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 255 68% 52%;
+  --secondary: 195 100% 29%;
   --secondary-foreground: 210 40% 98%;
   --muted: 217 33% 18%;
   --muted-foreground: 215 20% 70%;
-  --accent: 199 100% 47%;
+  --accent: 142 71% 45%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
@@ -70,23 +70,23 @@
 @layer base {
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
-  body { @apply font-sans antialiased bg-background text-foreground transition-colors duration-200; background-image: radial-gradient(circle at 1px 1px, rgba(0,120,212,.14) 1px, transparent 0); background-size: 28px 28px; }
+  body { @apply font-sans antialiased bg-background text-foreground transition-colors duration-200; background-image: radial-gradient(circle at 1px 1px, rgba(109,179,63,.14) 1px, transparent 0); background-size: 28px 28px; }
   h1, h2, h3, h4 { letter-spacing: -.035em; }
   .font-mono, code { font-family: var(--app-font-mono); }
 }
 
-.rails-shine { background: linear-gradient(100deg, #005a9e, #0078d4, #00a4ef, #512bd4, #0078d4, #00a4ef, #005a9e); background-size: 300% auto; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine-sweep 3.1s linear infinite; }
-.hero-aura { background: radial-gradient(ellipse 64% 54% at 50% 42%, rgba(0,120,212,.18), transparent 72%), radial-gradient(ellipse 34% 30% at 88% 22%, rgba(0,164,239,.14), transparent 78%), radial-gradient(ellipse 44% 28% at 12% 74%, rgba(81,43,212,.14), transparent 78%); }
-.rails-badge, .rails-panel, .rails-project-card, .rails-experience-card, .rails-mini-card { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); box-shadow: 0 6px 24px rgba(0,0,0,.06), inset 0 0 0 1px rgba(0,120,212,.10); color: hsl(var(--card-foreground)); }
-.dark .rails-badge, .dark .rails-panel, .dark .rails-project-card, .dark .rails-experience-card, .dark .rails-mini-card { background: linear-gradient(145deg, rgba(15,23,42,.92), rgba(7,11,21,.98)); border: 1px solid rgba(0,120,212,.35); box-shadow: 0 14px 34px rgba(0,0,0,.42), inset 0 1px rgba(148,163,184,.06), inset 0 0 0 1px rgba(0,120,212,.10); color: hsl(var(--card-foreground)); }
-.rails-button { color: white; background: linear-gradient(135deg, #005a9e, #0078d4, #0089d6, #00a4ef); box-shadow: 0 10px 26px rgba(0,120,212,.42), inset 0 1px rgba(255,255,255,.25); transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }.rails-button:hover { filter: brightness(1.12); box-shadow: 0 14px 34px rgba(0,120,212,.60), inset 0 1px rgba(255,255,255,.28); }
-.rails-pill { color: var(--tech-color, #0078d4); background: hsl(var(--card)); border: 1px solid color-mix(in srgb, var(--tech-color, #0078d4) 42%, hsl(var(--border))); box-shadow: 0 2px 8px rgba(0,0,0,.05); }
-.dark .rails-pill { color: var(--tech-color, #0078d4); background: linear-gradient(145deg, rgba(15,23,42,.92), rgba(7,11,21,.96)); border-color: color-mix(in srgb, var(--tech-color, #0078d4) 42%, rgba(0,120,212,.35)); box-shadow: inset 0 1px rgba(148,163,184,.07), 0 7px 16px rgba(0,0,0,.28), inset 0 0 0 1px rgba(0,120,212,.18); }
-.profile-frame { border: 4px solid hsl(var(--card)); box-shadow: 0 0 0 2px rgba(0,120,212,.75), 0 0 58px rgba(0,120,212,.45); cursor: pointer; animation: profile-tilt-intense 7s ease-in-out infinite; }
-.profile-photo { filter: grayscale(1) saturate(.35) brightness(.9); transition: filter .55s ease, transform .55s ease; }
-.profile-frame:hover .profile-photo, .profile-frame:focus-visible .profile-photo { filter: grayscale(0) saturate(1.08) contrast(1.05) brightness(1.01); transform: scale(1.02); }
-@media (hover: none) { .profile-photo { filter: grayscale(.3) saturate(.92) brightness(.96); } }
-/* Microsoft Fluent & Modern Design Utilities */
+.rails-shine { background: linear-gradient(100deg, #6db33f, #007396, #ff2d20, #3178c6, #777bb4, #6db33f); background-size: 300% auto; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine-sweep 3.1s linear infinite; }
+.hero-aura { background: radial-gradient(ellipse 64% 54% at 50% 42%, rgba(109,179,63,.18), transparent 72%), radial-gradient(ellipse 34% 30% at 88% 22%, rgba(0,115,150,.14), transparent 78%), radial-gradient(ellipse 44% 28% at 12% 74%, rgba(255,45,32,.12), transparent 78%); }
+.rails-badge, .rails-panel, .rails-project-card, .rails-experience-card, .rails-mini-card { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); box-shadow: 0 6px 24px rgba(0,0,0,.06), inset 0 0 0 1px rgba(109,179,63,.10); color: hsl(var(--card-foreground)); }
+.dark .rails-badge, .dark .rails-panel, .dark .rails-project-card, .dark .rails-experience-card, .dark .rails-mini-card { background: linear-gradient(145deg, rgba(15,23,42,.92), rgba(7,11,21,.98)); border: 1px solid rgba(109,179,63,.35); box-shadow: 0 14px 34px rgba(0,0,0,.42), inset 0 1px rgba(148,163,184,.06), inset 0 0 0 1px rgba(109,179,63,.10); color: hsl(var(--card-foreground)); }
+.rails-button { color: white; background: linear-gradient(135deg, #1b5e20, #2e7d32, #43a047, #6db33f); box-shadow: 0 10px 26px rgba(109,179,63,.42), inset 0 1px rgba(255,255,255,.25); transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }
+.rails-button:hover { filter: brightness(1.12); box-shadow: 0 14px 34px rgba(109,179,63,.60), inset 0 1px rgba(255,255,255,.28); }
+.rails-pill { color: var(--tech-color, #6db33f); background: hsl(var(--card)); border: 1px solid color-mix(in srgb, var(--tech-color, #6db33f) 42%, hsl(var(--border))); box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+.dark .rails-pill { color: var(--tech-color, #6db33f); background: linear-gradient(145deg, rgba(15,23,42,.92), rgba(7,11,21,.96)); border-color: color-mix(in srgb, var(--tech-color, #6db33f) 42%, rgba(109,179,63,.35)); box-shadow: inset 0 1px rgba(148,163,184,.07), 0 7px 16px rgba(0,0,0,.28), inset 0 0 0 1px rgba(109,179,63,.18); }
+.profile-frame { border: 4px solid hsl(var(--card)); box-shadow: 0 0 0 2px rgba(109,179,63,.75), 0 0 58px rgba(109,179,63,.45); cursor: pointer; animation: profile-tilt-intense 7s ease-in-out infinite; }
+.profile-photo { filter: none !important; -webkit-filter: none !important; object-fit: cover; transition: transform .55s ease; }
+.profile-frame:hover .profile-photo, .profile-frame:focus-visible .profile-photo { filter: none !important; -webkit-filter: none !important; transform: scale(1.03); }
+@media (hover: none) { .profile-photo { filter: none !important; -webkit-filter: none !important; } }
 .bg-radial-vignette {
   background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(6, 10, 20, 0.75) 75%, #060a14 100%);
 }
@@ -97,8 +97,8 @@
 .rails-project-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }.rails-project-card:hover { box-shadow: 10px 20px 34px rgba(0,0,0,.52); }.rails-project-head { background: linear-gradient(135deg, rgba(15,23,42,.94), rgba(30,41,59,.70)); border-bottom: 1px solid rgba(30,58,138,.55); }
 .rails-project-card.tech-java .rails-project-head { background: linear-gradient(145deg, rgba(0,115,150,.30) 0%, rgba(248,152,32,.18) 50%, rgba(7,11,21,.94) 100%); border-bottom: 1px solid rgba(0,115,150,.65); }
 .rails-project-card.tech-spring .rails-project-head { background: linear-gradient(145deg, rgba(109,179,63,.32) 0%, rgba(158,216,102,.18) 50%, rgba(7,11,21,.94) 100%); border-bottom: 1px solid rgba(109,179,63,.70); }
-.rails-project-card.tech-kotlin .rails-project-head { background: linear-gradient(145deg, rgba(127,82,255,.30) 0%, rgba(228,72,87,.18) 50%, rgba(7,11,21,.94) 100%); border-bottom: 1px solid rgba(127,82,255,.65); }
-.rails-project-card.tech-flutter .rails-project-head { background: linear-gradient(145deg, rgba(2,86,155,.30) 0%, rgba(66,165,245,.22) 50%, rgba(7,11,21,.94) 100%); border-bottom: 1px solid rgba(2,86,155,.65); }
+.rails-project-card.tech-php .rails-project-head { background: linear-gradient(145deg, rgba(119,123,180,.30) 0%, rgba(79,91,147,.20) 50%, rgba(7,11,21,.94) 100%); border-bottom: 1px solid rgba(119,123,180,.65); }
+.rails-project-card.tech-laravel .rails-project-head { background: linear-gradient(145deg, rgba(255,45,32,.30) 0%, rgba(220,38,38,.18) 50%, rgba(7,11,21,.94) 100%); border-bottom: 1px solid rgba(255,45,32,.65); }
 .rails-project-card.tech-postgres .rails-project-head { background: linear-gradient(145deg, rgba(51,103,145,.28), rgba(7,11,21,.94)); }
 .rails-project-card.tech-docker .rails-project-head { background: linear-gradient(145deg, rgba(36,150,237,.26), rgba(7,11,21,.94)); }
 .rails-project-card.tech-actions .rails-project-head { background: linear-gradient(145deg, rgba(32,136,255,.24), rgba(7,11,21,.94)); }
@@ -118,20 +118,50 @@
 .tech-icon { filter: drop-shadow(0 6px 16px color-mix(in srgb, var(--tech-color, #6db33f) 48%, transparent)); }
 .tech-label { text-shadow: 0 1px 2px rgba(0,0,0,.6); }
 .tech-tag { color: #f8fafc; background: color-mix(in srgb, var(--tech-color) 30%, rgba(15,23,42,.96)); border-color: color-mix(in srgb, var(--tech-color) 58%, rgba(30,58,138,.35)); font-weight: 600; }
-.tech-spring { --tech-color: #6db33f; }.tech-java { --tech-color: #007396; }.tech-kotlin { --tech-color: #7f52ff; }.tech-flutter { --tech-color: #02569b; }.tech-node { --tech-color: #339933; }.tech-next { --tech-color: #ffffff; }.tech-js { --tech-color: #f7df1e; }.tech-mongo { --tech-color: #47a248; }.tech-tailwind { --tech-color: #06b6d4; }.tech-vite { --tech-color: #646cff; }.tech-postgres { --tech-color: #336791; }.tech-redis { --tech-color: #dc382d; }.tech-docker { --tech-color: #2496ed; }.tech-actions { --tech-color: #2088ff; }.tech-react { --tech-color: #61dafb; }.tech-ts { --tech-color: #3178c6; }.tech-openapi { --tech-color: #6ba539; }.tech-pdf { --tech-color: #ff9500; }.tech-api { --tech-color: #64748b; }.tech-vue { --tech-color: #42b883; }.tech-git { --tech-color: #f05032; }.tech-angular { --tech-color: #dd0031; }.tech-linux { --tech-color: #fcc624; }.tech-mysql { --tech-color: #00758f; }.tech-bash { --tech-color: #4eaa25; }.tech-golang { --tech-color: #00add8; }.tech-ruby { --tech-color: #cc342d; }.tech-rails { --tech-color: #cc0000; }.tech-jwt { --tech-color: #ec4899; }
-.tech-dotnet { --tech-color: #512bd4; }.tech-csharp { --tech-color: #0078d4; }.tech-aspnet { --tech-color: #0089d6; }.tech-vb { --tech-color: #005a9e; }.tech-vba { --tech-color: #217346; }.tech-sqlserver { --tech-color: #e53935; }.tech-azure { --tech-color: #0078d4; }.tech-windows { --tech-color: #00a4ef; }.tech-maui { --tech-color: #512bd4; }
-.rails-stack-card:hover, .rails-project-card:hover, .rails-tool-card:hover { border-color: color-mix(in srgb, var(--tech-color, #0078d4) 68%, transparent); }
-.rails-stack-card.tech-csharp, .rails-project-card.tech-csharp { box-shadow: inset 3px 0 #0078d4, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(0,120,212,.18); }
-.rails-stack-card.tech-dotnet, .rails-project-card.tech-dotnet { box-shadow: inset 3px 0 #512bd4, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(81,43,212,.18); }
-.rails-stack-card.tech-aspnet, .rails-project-card.tech-aspnet { box-shadow: inset 3px 0 #0089d6, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(0,137,214,.18); }
-.rails-stack-card.tech-vb, .rails-project-card.tech-vb { box-shadow: inset 3px 0 #005a9e, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(0,90,158,.18); }
-.rails-stack-card.tech-windows, .rails-project-card.tech-windows { box-shadow: inset 3px 0 #00a4ef, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(0,164,239,.18); }
-.rails-stack-card.tech-sqlserver, .rails-project-card.tech-sqlserver { box-shadow: inset 3px 0 #e53935, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(229,57,53,.18); }
-.rails-stack-card.tech-maui, .rails-project-card.tech-maui { box-shadow: inset 3px 0 #512bd4, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(81,43,212,.18); }
-.rails-stack-card.tech-vba, .rails-project-card.tech-vba { box-shadow: inset 3px 0 #217346, 0 10px 26px rgba(0,0,0,.40); }
-.rails-stack-card.tech-azure, .rails-project-card.tech-azure { box-shadow: inset 3px 0 #0078d4, 0 10px 26px rgba(0,0,0,.40); }
-.rails-stack-card.tech-spring, .rails-project-card.tech-spring { box-shadow: inset 3px 0 #6db33f, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(109,179,63,.14); }.rails-stack-card.tech-java, .rails-project-card.tech-java { box-shadow: inset 3px 0 #007396, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(0,115,150,.14); }.rails-stack-card.tech-kotlin, .rails-project-card.tech-kotlin { box-shadow: inset 3px 0 #7f52ff, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(127,82,255,.14); }.rails-stack-card.tech-flutter, .rails-project-card.tech-flutter { box-shadow: inset 3px 0 #02569b, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(2,86,155,.14); }.rails-stack-card.tech-postgres, .rails-project-card.tech-postgres { box-shadow: inset 3px 0 #336791, 0 10px 26px rgba(0,0,0,.40); }.rails-stack-card.tech-docker, .rails-project-card.tech-docker { box-shadow: inset 3px 0 #2496ed, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-actions { box-shadow: inset 3px 0 #2088ff, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-react { box-shadow: inset 3px 0 #61dafb, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-ts { box-shadow: inset 3px 0 #3178c6, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-openapi { box-shadow: inset 3px 0 #6ba539, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-pdf { box-shadow: inset 3px 0 #ff9500, 0 10px 26px rgba(0,0,0,.40); }
-.rails-project-card.tech-golang { box-shadow: inset 3px 0 #00add8, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-node { box-shadow: inset 3px 0 #339933, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-next { box-shadow: inset 3px 0 #ffffff, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-js { box-shadow: inset 3px 0 #f7df1e, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-vue { box-shadow: inset 3px 0 #42b883, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-angular { box-shadow: inset 3px 0 #dd0031, 0 10px 26px rgba(0,0,0,.40); }.rails-project-card.tech-mongo { box-shadow: inset 3px 0 #47a248, 0 10px 26px rgba(0,0,0,.40); }
+.tech-spring { --tech-color: #6db33f; }
+.tech-java { --tech-color: #007396; }
+.tech-php { --tech-color: #777bb4; }
+.tech-laravel { --tech-color: #ff2d20; }
+.tech-node { --tech-color: #339933; }
+.tech-ts { --tech-color: #3178c6; }
+.tech-js { --tech-color: #f7df1e; }
+.tech-react { --tech-color: #61dafb; }
+.tech-next { --tech-color: #ffffff; }
+.tech-vue { --tech-color: #42b883; }
+.tech-angular { --tech-color: #dd0031; }
+.tech-postgres { --tech-color: #336791; }
+.tech-mysql { --tech-color: #00758f; }
+.tech-mongo { --tech-color: #47a248; }
+.tech-redis { --tech-color: #dc382d; }
+.tech-docker { --tech-color: #2496ed; }
+.tech-actions { --tech-color: #2088ff; }
+.tech-tailwind { --tech-color: #06b6d4; }
+.tech-vite { --tech-color: #646cff; }
+.tech-openapi { --tech-color: #6ba539; }
+.tech-pdf { --tech-color: #ff9500; }
+.tech-api { --tech-color: #64748b; }
+.tech-git { --tech-color: #f05032; }
+.tech-linux { --tech-color: #fcc624; }
+.tech-bash { --tech-color: #4eaa25; }
+.tech-jwt { --tech-color: #ec4899; }
+.rails-stack-card:hover, .rails-project-card:hover, .rails-tool-card:hover { border-color: color-mix(in srgb, var(--tech-color, #6db33f) 68%, transparent); }
+.rails-stack-card.tech-spring, .rails-project-card.tech-spring { box-shadow: inset 3px 0 #6db33f, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(109,179,63,.22); }
+.rails-stack-card.tech-java, .rails-project-card.tech-java { box-shadow: inset 3px 0 #007396, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(0,115,150,.20); }
+.rails-stack-card.tech-php, .rails-project-card.tech-php { box-shadow: inset 3px 0 #777bb4, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(119,123,180,.20); }
+.rails-stack-card.tech-laravel, .rails-project-card.tech-laravel { box-shadow: inset 3px 0 #ff2d20, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(255,45,32,.20); }
+.rails-stack-card.tech-node, .rails-project-card.tech-node { box-shadow: inset 3px 0 #339933, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(51,153,51,.20); }
+.rails-stack-card.tech-ts, .rails-project-card.tech-ts { box-shadow: inset 3px 0 #3178c6, 0 10px 26px rgba(0,0,0,.40), 0 0 24px rgba(49,120,198,.20); }
+.rails-stack-card.tech-postgres, .rails-project-card.tech-postgres { box-shadow: inset 3px 0 #336791, 0 10px 26px rgba(0,0,0,.40); }
+.rails-stack-card.tech-docker, .rails-project-card.tech-docker { box-shadow: inset 3px 0 #2496ed, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-actions { box-shadow: inset 3px 0 #2088ff, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-react { box-shadow: inset 3px 0 #61dafb, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-openapi { box-shadow: inset 3px 0 #6ba539, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-pdf { box-shadow: inset 3px 0 #ff9500, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-next { box-shadow: inset 3px 0 #ffffff, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-js { box-shadow: inset 3px 0 #f7df1e, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-vue { box-shadow: inset 3px 0 #42b883, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-angular { box-shadow: inset 3px 0 #dd0031, 0 10px 26px rgba(0,0,0,.40); }
+.rails-project-card.tech-mongo { box-shadow: inset 3px 0 #47a248, 0 10px 26px rgba(0,0,0,.40); }
 .rails-stack-card.tech-spring.is-active, .rails-stack-card.tech-java.is-active { border-color: color-mix(in srgb, var(--tech-color) 78%, rgba(30,58,138,.35)); box-shadow: inset 3px 0 var(--tech-color), 0 12px 28px rgba(0,0,0,.50), 0 0 28px color-mix(in srgb, var(--tech-color) 28%, transparent); }
 .footer-social { display: grid; place-items: center; width: 2.45rem; height: 2.45rem; border-radius: 999px; color: hsl(var(--muted-foreground)); background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); transition: all .2s ease; }.footer-social:hover { color: white; background: hsl(var(--primary)); transform: translateY(-2px); }
 
@@ -147,11 +177,13 @@
 .rails-flip-back { z-index: 1; transform: rotateY(180deg); background: linear-gradient(155deg, rgba(7,11,21,.99), rgba(15,23,42,.97) 45%, color-mix(in srgb, var(--tech-color, #6db33f) 12%, rgba(7,11,21,.99))); box-shadow: 0 14px 36px rgba(0,0,0,.56), inset 0 1px rgba(148,163,184,.07); }
 .rails-flip-card.tech-java .rails-flip-front { box-shadow: inset 3px 0 #007396, 0 10px 28px rgba(0,0,0,.44); }
 .rails-flip-card.tech-spring .rails-flip-front { box-shadow: inset 3px 0 #6db33f, 0 10px 28px rgba(0,0,0,.44); }
+.rails-flip-card.tech-php .rails-flip-front { box-shadow: inset 3px 0 #777bb4, 0 10px 28px rgba(0,0,0,.44); }
+.rails-flip-card.tech-laravel .rails-flip-front { box-shadow: inset 3px 0 #ff2d20, 0 10px 28px rgba(0,0,0,.44); }
+.rails-flip-card.tech-node .rails-flip-front { box-shadow: inset 3px 0 #339933, 0 10px 28px rgba(0,0,0,.44); }
+.rails-flip-card.tech-ts .rails-flip-front { box-shadow: inset 3px 0 #3178c6, 0 10px 28px rgba(0,0,0,.44); }
 .rails-flip-card.tech-postgres .rails-flip-front { box-shadow: inset 3px 0 #336791, 0 10px 28px rgba(0,0,0,.44); }
 .rails-flip-card.tech-redis .rails-flip-front { box-shadow: inset 3px 0 #dc382d, 0 10px 28px rgba(0,0,0,.44); }
 .rails-flip-card.tech-docker .rails-flip-front { box-shadow: inset 3px 0 #2496ed, 0 10px 28px rgba(0,0,0,.44); }
-.rails-flip-card.tech-kotlin .rails-flip-front { box-shadow: inset 3px 0 #7f52ff, 0 10px 28px rgba(0,0,0,.44); }
-.rails-flip-card.tech-flutter .rails-flip-front { box-shadow: inset 3px 0 #02569b, 0 10px 28px rgba(0,0,0,.44); }
 .rails-flip-card.tech-actions .rails-flip-front { box-shadow: inset 3px 0 #2088ff, 0 10px 28px rgba(0,0,0,.44); }
 .rails-flip-card.is-flipped .rails-flip-front, .rails-flip-card.is-flipped .rails-flip-back { box-shadow: inset 3px 0 var(--tech-color, #6db33f), 0 16px 40px rgba(0,0,0,.62), 0 0 30px color-mix(in srgb, var(--tech-color, #6db33f) 28%, transparent); }
 .rails-flip-card:focus-visible { outline: 2px solid color-mix(in srgb, var(--tech-color, #6db33f) 78%, white); outline-offset: 4px; border-radius: 1rem; }

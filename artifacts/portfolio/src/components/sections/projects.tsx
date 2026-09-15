@@ -5,25 +5,19 @@ import {
   SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs, SiMysql, SiMongodb,
   SiRedis, SiLinux, SiGnubash, SiGit, SiAngular, SiVuedotjs, SiSpringboot,
   SiKubernetes, SiTailwindcss, SiVite, SiKotlin, SiFlutter,
-  SiDotnet,
+  SiPhp, SiLaravel,
 } from "react-icons/si";
-import { TbBrandCSharp, TbBrandWindows, TbBrandAzure, TbDatabase } from "react-icons/tb";
+import { TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
 import type { AdminProject, ProjectTone, ProjectBadge } from "@/lib/default-data";
 
 const GITHUB = "https://github.com/reinaldobarreto31";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  csharp: TbBrandCSharp,
-  dotnet: SiDotnet,
-  windows: TbBrandWindows,
-  sqlserver: TbDatabase,
-  azure: TbBrandAzure,
-  maui: SiDotnet,
-  vba: TbBrandWindows,
-  vb: TbBrandWindows,
   java: DiJava,
   spring: SiSpringboot,
+  php: SiPhp,
+  laravel: SiLaravel,
   kotlin: SiKotlin,
   flutter: SiFlutter,
   next: SiNodedotjs,
@@ -34,12 +28,12 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: 
   swagger: SiSwagger,
   package: Package,
   postgres: SiPostgresql,
+  mysql: SiMysql,
   docker: SiDocker,
   redis: SiRedis,
   actions: SiGithubactions,
   react: SiReact,
   go: SiGo,
-  mysql: SiMysql,
   mongo: SiMongodb,
   linux: SiLinux,
   bash: SiGnubash,
@@ -56,13 +50,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: 
 };
 
 const badgeStyle: Record<NonNullable<ProjectBadge>, string> = {
-  DESTAQUE: "bg-[#0078d4]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(0,120,212,.45)]",
-  "EM CONSTRUÇÃO": "bg-[#512bd4]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12),0_8px_22px_rgba(81,43,212,.4)]",
-  LIVE: "bg-[#00a4ef]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(0,164,239,.45)]",
-  API: "bg-[#005a9e]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12)]",
-  "FULL-STACK": "bg-[#0078d4]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12)]",
-  DESKTOP: "bg-[#004578]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(0,69,120,.45)]",
-  MOBILE: "bg-[#512bd4]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(81,43,212,.45)]",
+  DESTAQUE: "bg-[#6db33f]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(109,179,63,.45)]",
+  "EM CONSTRUÇÃO": "bg-[#f59e0b]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12),0_8px_22px_rgba(245,158,11,.4)]",
+  LIVE: "bg-[#10b981]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(16,185,129,.45)]",
+  API: "bg-[#007396]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12)]",
+  "FULL-STACK": "bg-[#777bb4]/90 text-white shadow-[0_0_0_1px_rgba(255,255,255,.12)]",
+  DESKTOP: "bg-[#334155]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(51,65,85,.45)]",
+  MOBILE: "bg-[#3b82f6]/95 text-white shadow-[0_0_0_1px_rgba(255,255,255,.15),0_8px_22px_rgba(59,130,246,.45)]",
 };
 
 type Props = { projects: AdminProject[] };

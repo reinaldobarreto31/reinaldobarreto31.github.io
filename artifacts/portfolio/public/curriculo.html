@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reinaldo Barreto da Silva — Currículo Profissional (.NET / C#)</title>
+  <title>Reinaldo Barreto da Silva — Currículo Profissional (Java · PHP / Laravel · Node.js)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ms-blue: #0078D4;
-      --ms-dark-blue: #004578;
-      --ms-navy: #0f2b48;
-      --ms-cyan: #00a4ef;
+      --primary-green: #2e7d32;
+      --spring-green: #6db33f;
+      --java-blue: #007396;
+      --php-purple: #4f5b93;
+      --laravel-red: #e03131;
+      --brand-navy: #0f172a;
       --text-dark: #1e293b;
       --text-muted: #334155;
       --text-light: #64748b;
       --border-color: #cbd5e1;
       --bg-light: #f8fafc;
-      --bg-accent: #f0f7ff;
+      --bg-accent: #f0fdf4;
     }
 
     * {
@@ -33,8 +35,8 @@
       font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #525659;
       color: var(--text-dark);
-      font-size: 8.8pt;
-      line-height: 1.34;
+      font-size: 8.7pt;
+      line-height: 1.33;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -55,7 +57,7 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.3);
     }
     .screen-controls a, .screen-controls button {
-      background: var(--ms-blue);
+      background: var(--primary-green);
       color: #fff;
       border: none;
       padding: 6px 14px;
@@ -70,7 +72,7 @@
       transition: background 0.2s;
     }
     .screen-controls a:hover, .screen-controls button:hover {
-      background: #005a9e;
+      background: #1b5e20;
     }
 
     /* ── A4 Page Definition ── */
@@ -79,7 +81,7 @@
       height: 297mm;
       max-height: 297mm;
       background: #ffffff;
-      padding: 12mm 15mm 10mm 15mm;
+      padding: 11mm 14mm 9mm 14mm;
       margin-bottom: 20px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.25);
       position: relative;
@@ -95,35 +97,35 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid var(--ms-blue);
-      padding-bottom: 9px;
-      margin-bottom: 10px;
+      border-bottom: 2px solid var(--primary-green);
+      padding-bottom: 8px;
+      margin-bottom: 8px;
       gap: 16px;
     }
     .header-info {
       flex: 1;
     }
     .name {
-      font-size: 19pt;
+      font-size: 18.5pt;
       font-weight: 700;
-      color: var(--ms-navy);
+      color: var(--brand-navy);
       letter-spacing: -0.02em;
       line-height: 1.1;
       text-transform: uppercase;
     }
     .title {
-      font-size: 10.2pt;
+      font-size: 10pt;
       font-weight: 600;
-      color: var(--ms-blue);
+      color: var(--primary-green);
       margin-top: 2px;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .contact-grid {
       display: grid;
       grid-template-columns: auto 1fr;
       column-gap: 8px;
       row-gap: 2px;
-      font-size: 8.4pt;
+      font-size: 8.3pt;
       color: var(--text-muted);
     }
     .contact-item {
@@ -134,7 +136,7 @@
       color: inherit;
     }
     .contact-item svg {
-      color: var(--ms-blue);
+      color: var(--primary-green);
       flex-shrink: 0;
     }
     .contact-item a {
@@ -143,15 +145,15 @@
     }
     .contact-item a:hover {
       text-decoration: underline;
-      color: var(--ms-blue);
+      color: var(--primary-green);
     }
     .photo-container {
-      width: 78px;
-      height: 94px;
+      width: 76px;
+      height: 92px;
       border-radius: 6px;
       overflow: hidden;
-      border: 2px solid var(--ms-blue);
-      box-shadow: 0 2px 6px rgba(0, 120, 212, 0.2);
+      border: 2px solid var(--primary-green);
+      box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
       flex-shrink: 0;
       background: #f1f5f9;
     }
@@ -163,72 +165,72 @@
       display: block;
     }
 
-    /* ── Section Structure ── */
+    /* ── Sections ── */
     .section {
-      margin-bottom: 8.5px;
+      margin-bottom: 8px;
     }
     .section-title {
+      font-size: 9.3pt;
+      font-weight: 700;
+      color: var(--brand-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 2px;
+      margin-bottom: 5px;
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 9.5pt;
-      font-weight: 700;
-      color: var(--ms-navy);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      border-bottom: 1.5px solid #0078d4;
-      padding-bottom: 2px;
-      margin-bottom: 5px;
     }
     .section-title svg {
-      color: var(--ms-blue);
+      color: var(--primary-green);
     }
 
     .text-block {
       font-size: 8.6pt;
-      color: var(--text-dark);
       text-align: justify;
-      line-height: 1.35;
+      color: var(--text-muted);
+      line-height: 1.34;
     }
 
-    /* ── Tech Stack Table ── */
+    /* ── Stack Table ── */
     .stack-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 8.2pt;
-      margin-top: 2px;
+      font-size: 8.4pt;
     }
     .stack-table tr {
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid #f1f5f9;
     }
     .stack-table tr:last-child {
       border-bottom: none;
     }
     .stack-label {
-      padding: 2.2px 6px 2.2px 0;
+      width: 155px;
       font-weight: 700;
-      color: var(--ms-dark-blue);
-      width: 32%;
+      color: var(--brand-navy);
+      padding: 2.2px 6px 2.2px 0;
       vertical-align: top;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
+      white-space: nowrap;
     }
     .stack-label svg {
-      color: var(--ms-blue);
+      color: var(--primary-green);
       flex-shrink: 0;
     }
     .stack-desc {
       padding: 2.2px 0;
       color: var(--text-muted);
-      vertical-align: top;
-      line-height: 1.25;
+      vertical-align: middle;
+      line-height: 1.28;
     }
     .stack-desc strong {
-      color: var(--text-dark);
+      color: var(--brand-navy);
     }
 
-    /* ── Experience Entries ── */
+    /* ── Experience ── */
     .exp-item {
       margin-bottom: 7px;
     }
@@ -239,17 +241,17 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 1px;
     }
     .exp-company {
-      font-size: 9pt;
       font-weight: 700;
-      color: var(--text-dark);
+      font-size: 8.9pt;
+      color: var(--brand-navy);
     }
     .exp-role-period {
-      font-size: 8.4pt;
+      font-size: 8.3pt;
+      color: var(--primary-green);
       font-weight: 600;
-      color: var(--ms-blue);
+      margin-top: 1px;
       margin-bottom: 2px;
     }
     .exp-bullets {
@@ -259,78 +261,82 @@
     .exp-bullets li {
       position: relative;
       padding-left: 11px;
-      font-size: 8.25pt;
+      margin-bottom: 1.8px;
+      font-size: 8.4pt;
       color: var(--text-muted);
-      line-height: 1.3;
-      margin-bottom: 2px;
-      text-align: justify;
+      line-height: 1.28;
     }
     .exp-bullets li::before {
-      content: "•";
+      content: "▪";
       position: absolute;
-      left: 2px;
-      color: var(--ms-blue);
-      font-weight: bold;
+      left: 0;
+      color: var(--primary-green);
+      font-size: 9pt;
+      top: -0.5px;
     }
 
     /* ── Education & Courses ── */
     .edu-item {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      font-size: 8.5pt;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
     .edu-name {
       font-weight: 700;
-      color: var(--text-dark);
+      font-size: 8.7pt;
+      color: var(--brand-navy);
     }
     .edu-desc {
-      font-size: 8.2pt;
+      font-size: 8.3pt;
       color: var(--text-muted);
     }
     .edu-year {
+      font-size: 8.3pt;
+      color: var(--primary-green);
       font-weight: 600;
-      color: var(--ms-blue);
-      font-size: 8.2pt;
-      font-family: 'JetBrains Mono', monospace;
-      flex-shrink: 0;
+      white-space: nowrap;
     }
+
     .courses-box {
       margin-top: 4px;
-      font-size: 8.2pt;
+      background: var(--bg-light);
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 4px 8px;
     }
     .courses-title {
+      font-size: 8.2pt;
       font-weight: 700;
-      color: var(--ms-dark-blue);
+      color: var(--brand-navy);
       margin-bottom: 2px;
     }
     .courses-list {
-      list-style-type: none;
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 12px;
-      row-gap: 2px;
+      row-gap: 1.5px;
+      list-style-type: none;
+      padding-left: 0;
     }
     .courses-list li {
       position: relative;
       padding-left: 10px;
+      font-size: 8.1pt;
       color: var(--text-muted);
-      line-height: 1.25;
     }
     .courses-list li::before {
       content: "•";
       position: absolute;
-      left: 1px;
-      color: var(--ms-blue);
+      left: 0;
+      color: var(--primary-green);
     }
 
-    /* ── Projects Section ── */
+    /* ── Projects ── */
     .project-notice {
-      font-size: 7.6pt;
-      font-style: italic;
+      font-size: 7.7pt;
       color: var(--text-light);
-      margin-bottom: 4px;
+      font-style: italic;
+      margin-bottom: 3px;
     }
     .project-bullets {
       list-style-type: none;
@@ -339,104 +345,89 @@
     .project-bullets li {
       position: relative;
       padding-left: 11px;
-      font-size: 8.2pt;
+      margin-bottom: 2.2px;
+      font-size: 8.3pt;
       color: var(--text-muted);
       line-height: 1.28;
-      margin-bottom: 3.5px;
-      text-align: justify;
     }
     .project-bullets li::before {
-      content: "•";
+      content: "▸";
       position: absolute;
-      left: 2px;
-      color: var(--ms-blue);
-      font-weight: bold;
-    }
-    .project-bullets li strong {
-      color: var(--text-dark);
+      left: 0;
+      color: var(--primary-green);
+      font-size: 8.5pt;
     }
 
     /* ── Languages ── */
     .lang-list {
-      list-style-type: none;
       display: flex;
-      gap: 22px;
+      gap: 16px;
+      list-style-type: none;
+      padding-left: 0;
       font-size: 8.3pt;
       color: var(--text-muted);
     }
-    .lang-list li {
-      position: relative;
-      padding-left: 10px;
-    }
-    .lang-list li::before {
-      content: "•";
-      position: absolute;
-      left: 1px;
-      color: var(--ms-blue);
+    .lang-list li strong {
+      color: var(--brand-navy);
     }
 
-    /* ── Footer ── */
+    /* ── Page Footer ── */
     .page-footer {
       margin-top: auto;
-      border-top: 1px solid var(--border-color);
-      padding-top: 5px;
-      display: flex;
-      justify-content: space-between;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
       font-size: 7.6pt;
       color: var(--text-light);
-      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
     }
 
     /* ── Print Adjustments ── */
     @media print {
       body {
-        background: transparent;
-        padding: 0;
-        margin: 0;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
       .screen-controls {
-        display: none;
+        display: none !important;
       }
       .page {
-        box-shadow: none;
-        margin: 0;
-        width: 210mm;
-        height: 297mm;
-        max-height: 297mm;
-        padding: 10mm 14mm 8mm 14mm;
-        page-break-after: always;
-        break-after: page;
+        margin: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        padding: 10mm 14mm 8mm 14mm !important;
       }
       .page:last-child {
-        page-break-after: avoid;
-        break-after: avoid;
-      }
-      @page {
-        size: A4 portrait;
-        margin: 0;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Controls for screen viewer -->
+  <!-- Screen Controls -->
   <div class="screen-controls">
-    <div>
-      <strong>Currículo — Reinaldo Barreto da Silva</strong> (.NET / C# / Infraestrutura Windows)
-    </div>
-    <div style="display: flex; gap: 10px;">
-      <a href="/curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Baixar PDF Oficial
+    <div><strong>Currículo Profissional</strong> — Reinaldo Barreto (Java · PHP / Laravel · Node.js)</div>
+    <div style="display: flex; gap: 8px;">
+      <a href="curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        Baixar PDF (2 Páginas)
       </a>
       <button onclick="window.print()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        Imprimir em A4
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        Imprimir
       </button>
-      <a href="/" style="background: #334155;">
-        Voltar ao Portfólio
-      </a>
     </div>
   </div>
 
@@ -449,24 +440,24 @@
     <header class="header">
       <div class="header-info">
         <h1 class="name">Reinaldo Barreto da Silva</h1>
-        <div class="title">Desenvolvedor .NET / C# | ASP.NET Core, VB6/VB.NET e Infraestrutura Windows</div>
+        <div class="title">Desenvolvedor Java / Spring Boot · PHP / Laravel · Node.js &amp; TypeScript</div>
         
         <div class="contact-grid">
           <div class="contact-item">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>+55 (47) 98830-2308</span>
-          </div>
-          <div class="contact-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Navegantes, Santa Catarina – SC</span>
+            <span>Salvador – BA (Disponível Remoto / Presencial)</span>
           </div>
           <div class="contact-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <a href="mailto:reinaldobarretosilva@gmail.com">reinaldobarretosilva@gmail.com</a>
+            <a href="mailto:reinaldobarreto31@gmail.com">reinaldobarreto31@gmail.com</a>
           </div>
           <div class="contact-item">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            <a href="https://reinaldobarreto31.github.io" target="_blank">https://reinaldobarreto31.github.io</a>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+5571991823131">(71) 99182-3131</a>
+          </div>
+          <div class="contact-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            <a href="https://github.com/reinaldobarreto31" target="_blank">github.com/reinaldobarreto31</a>
           </div>
           <div class="contact-item" style="grid-column: span 2;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
@@ -487,7 +478,7 @@
         Resumo Profissional
       </div>
       <p class="text-block">
-        Desenvolvedor de Software com sólida experiência no ecossistema Java (Spring Boot, APIs RESTful, microsserviços e integração de sistemas legados e críticos). Experiência complementar com a plataforma Microsoft (.NET, C#, ASP.NET Core e Visual Basic 6/VB.NET), atuando no desenvolvimento web e desktop. Vivência com bancos de dados relacionais (SQL Server, PostgreSQL), versionamento com Git, testes automatizados, suporte a ambientes Windows e noções de nuvem Azure.
+        Engenheiro de Software e Desenvolvedor Backend com sólida vivência no desenvolvimento, modernização e sustentação de sistemas corporativos de missão crítica para a gestão pública estadual e municipal. Especialista no ecossistema <strong>Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Hibernate, Maven)</strong> e <strong>PHP moderno (PHP 8+, Laravel, Eloquent ORM, Composer)</strong>, atuando também no desenvolvimento full-stack com <strong>Node.js, TypeScript e React / Vue.js</strong>. Domínio comprovado em arquitetura em microsserviços, modelagem e otimização de bancos de dados relacionais (PostgreSQL, MySQL, Oracle), autenticação OAuth2 / JWT, conteinerização com Docker e esteiras CI/CD.
       </p>
     </section>
 
@@ -498,7 +489,7 @@
         Objetivo
       </div>
       <p class="text-block">
-        Atuar como Desenvolvedor .NET / C# ou Desenvolvedor Java, aplicando sólidos conhecimentos em engenharia de software, integração de APIs e bancos relacionais no desenvolvimento, sustentação e modernização de sistemas corporativos.
+        Atuar como <strong>Desenvolvedor Java / Spring Boot</strong>, <strong>Desenvolvedor PHP / Laravel</strong> ou <strong>Desenvolvedor Full-Stack (Node.js / TypeScript)</strong>, aplicando sólidos conhecimentos em engenharia de software (Clean Architecture, SOLID, TDD), integração de APIs RESTful e persistência relacional na construção e sustentação de aplicações corporativas de alto impacto.
       </p>
     </section>
 
@@ -512,59 +503,52 @@
         <tbody>
           <tr>
             <td class="stack-label">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
-              1º Foco (Microsoft):
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              1º Foco (Java Enterprise):
             </td>
-            <td class="stack-desc"><strong>C#, .NET 8, ASP.NET Core, Desktop (WPF/WinForms), VB6, VB.NET, SQL Server, Windows 11/Server (Suporte N3), Azure.</strong></td>
+            <td class="stack-desc"><strong>Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Spring Cloud, Hibernate, Maven, JUnit 5, Mockito, APIs RESTful, Swagger/OpenAPI.</strong></td>
           </tr>
           <tr>
             <td class="stack-label">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              2º Foco (Java):
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+              2º Foco (PHP &amp; Laravel):
             </td>
-            <td class="stack-desc">Java 17+, Spring Boot 3, JPA/Hibernate, Spring Security, Spring Cloud, APIs RESTful, PostgreSQL.</td>
+            <td class="stack-desc"><strong>PHP 8+, Laravel 10/11, Eloquent ORM, Composer, Blade, Artisan, PHPUnit, integrações de APIs REST e portais corporativos (LAMPP IT e Freelance).</strong></td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m16 18 2-2-2-2"/><path d="m8 6-2 2 2 2"/></svg>
-              3º Foco (Node & Web):
+              3º Foco (Node &amp; Front-end):
             </td>
-            <td class="stack-desc">Node.js, TypeScript 5, Express, APIs RESTful, OpenAPI/Swagger, React, Tailwind CSS, Docker.</td>
+            <td class="stack-desc"><strong>Node.js, TypeScript 5, Express, APIs RESTful, React, Vue.js, Angular, HTML5, CSS3, Tailwind CSS.</strong></td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
               Bancos de Dados:
             </td>
-            <td class="stack-desc"><strong>Microsoft SQL Server</strong>, PostgreSQL, MySQL e Oracle.</td>
-          </tr>
-          <tr>
-            <td class="stack-label">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-              Automação e Ferramentas:
-            </td>
-            <td class="stack-desc"><strong>VBA, Microsoft Excel e Microsoft Access.</strong></td>
+            <td class="stack-desc"><strong>PostgreSQL, MySQL, Oracle</strong> (modelagem relacional, queries avançadas, índices e transações ACID).</td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
               Testes e Qualidade:
             </td>
-            <td class="stack-desc">TDD, JUnit, Mockito, testes unitários, testes de integração e ciclo de vida de bugs.</td>
+            <td class="stack-desc">TDD, JUnit 5, Mockito, PHPUnit, testes unitários, testes de integração e Clean Code.</td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
-              Infraestrutura e Suporte:
+              DevOps e Ambientes:
             </td>
-            <td class="stack-desc"><strong>Windows 11 Pro, Servidores Windows e Linux</strong>, redes, virtualização, <strong>suporte N3</strong>, Git e versionamento.</td>
+            <td class="stack-desc"><strong>Docker, Git, GitHub Actions, Linux (Ubuntu/Debian)</strong>, redes, virtualização, Nginx e Apache.</td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
-              Metodologias & Práticas:
+              Metodologias &amp; Práticas:
             </td>
-            <td class="stack-desc">Scrum, Kanban, Clean Architecture, SOLID, microsserviços e CI/CD.</td>
+            <td class="stack-desc">Scrum, Kanban, Clean Architecture, SOLID, microsserviços, 12-Factor Apps e CI/CD.</td>
           </tr>
         </tbody>
       </table>
@@ -584,25 +568,26 @@
         </div>
         <div class="exp-role-period">Analista de Sistemas e Desenvolvedor (Consultor IV) | Março/2024 – Setembro/2024 (6 meses)</div>
         <ul class="exp-bullets">
-          <li>Desenvolveu e manteve soluções web e backend para órgãos públicos estaduais.</li>
-          <li>Utilizou Java, Spring Boot, Java EE, Struts e JSF na construção e otimização de sistemas corporativos.</li>
-          <li>Colaborou na arquitetura e implementação de funcionalidades complexas, incluindo soluções backend escaláveis em Java e Spring Boot.</li>
-          <li>Otimizou arquiteturas e implementou fluxos de automação para modernização de sistemas públicos.</li>
+          <li>Desenvolveu e manteve soluções web e backend enterprise para órgãos públicos estaduais do Governo da Bahia.</li>
+          <li>Utilizou <strong>Java, Spring Boot, Java EE, Struts e JSF</strong> na construção e otimização de sistemas corporativos de alta demanda.</li>
+          <li>Colaborou na arquitetura e implementação de funcionalidades complexas, incluindo soluções backend escaláveis em microsserviços Spring.</li>
+          <li>Realizou modelagem relacional, otimização de consultas e rotinas transacionais com <strong>PostgreSQL</strong>.</li>
+          <li>Atuou em equipe ágil multidisciplinar orientada a Scrum, versionamento com Git Flow e entregas contínuas.</li>
         </ul>
       </div>
 
       <!-- LAMPP IT SOLUTIONS -->
-      <div class="exp-item" style="margin-top: 6px;">
+      <div class="exp-item" style="margin-top: 5px;">
         <div class="exp-header">
           <span class="exp-company">LAMPP IT Solutions</span>
         </div>
         <div class="exp-role-period">Analista de Sistemas e Desenvolvedor de Software | Março/2022 – Maio/2022 (3 meses)</div>
         <ul class="exp-bullets">
-          <li>Construiu APIs REST com Spring Boot, Java EE, Struts e JSF.</li>
-          <li>Atuou na integração de sistemas e autenticação OAuth2 com Spring Security.</li>
-          <li>Contribuiu para soluções de segurança pública e sistemas críticos para SSP-BA (Secretaria de Segurança Pública da Bahia) e Polícia Militar.</li>
-          <li>Atuou no Sistema de Auditoria Interna.</li>
-          <li><strong>Participou da implementação de projetos internos com C#, .NET, ASP.NET/ASP.NET Core e Visual Basic 6 / VB.NET</strong>, incluindo aplicações web e desktop, bancos relacionais e manutenção em ambiente Windows.</li>
+          <li>Construiu APIs RESTful escaláveis com <strong>Spring Boot, Java EE, Struts e JSF</strong> integradas a frontends modernos.</li>
+          <li>Atuou no desenvolvimento e manutenção de sistemas corporativos e portais web utilizando <strong>PHP e Laravel</strong>.</li>
+          <li>Contribuiu para soluções de segurança pública e sistemas críticos para SSP-BA (Secretaria de Segurança Pública) e Polícia Militar.</li>
+          <li>Implementou autenticação e controle de permissões robustos via <strong>OAuth2 e Spring Security</strong>.</li>
+          <li>Atuou no Sistema de Auditoria Interna com persistência em <strong>PostgreSQL</strong> e ambientes Linux.</li>
         </ul>
       </div>
     </section>
@@ -619,7 +604,7 @@
   <!-- ══════════════════════════════════════════════════════════════ -->
   <div class="page" id="page-2">
     
-    <!-- EXPERIÊNCIA PROFISSIONAL (CONTINUAÇÃO - EDZA) -->
+    <!-- EXPERIÊNCIA PROFISSIONAL (CONTINUAÇÃO - EDZA & FREELANCE) -->
     <section class="section">
       <div class="section-title">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -633,13 +618,26 @@
         </div>
         <div class="exp-role-period">Analista de Sistemas e Desenvolvedor de Software | Novembro/2019 – Março/2022 (2 anos e 5 meses)</div>
         <ul class="exp-bullets">
-          <li>Desenvolveu soluções backend em Java EE, JSP, Struts e Spring Boot para sistemas de gestão pública municipal nos módulos Tributário, Contábil e RH.</li>
-          <li>Criou e manteve APIs REST integradas a frontends em Angular e Vue.js.</li>
-          <li>Atuou com sistemas legados, migração de funcionalidades e Git para versionamento.</li>
-          <li>Colaborou em equipes ágeis com Scrum e evoluiu o ERP Municipal do Poder Executivo nos módulos Tributário, Saúde, RH e Nota Fiscal Eletrônica.</li>
-          <li>Prestou atendimento técnico e sustentação para as prefeituras de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas, entre outras.</li>
-          <li><strong>Administrou parque tecnológico e servidores Linux/Windows, prestou suporte técnico N3</strong>, realizou manutenção de ambientes e atuou na sustentação de sistemas.</li>
-          <li><strong>Participou de forma complementar em projetos internos com C#, .NET, ASP.NET/ASP.NET Core e Visual Basic 6/VB.NET</strong>, incluindo aplicações web e desktop, bancos relacionais e manutenção em ambiente Windows.</li>
+          <li>Desenvolveu soluções backend em <strong>Java EE, JSP, Struts e Spring Boot</strong> para sistemas de gestão pública municipal (Tributário, Contábil, RH e NF-e).</li>
+          <li>Criou e manteve APIs REST integradas a frontends dinâmicos em <strong>Angular e Vue.js</strong>.</li>
+          <li>Atuou na sustentação, migração de funcionalidades legadas e versionamento estruturado com Git.</li>
+          <li>Colaborou ativamente em equipes ágeis com Scrum na evolução do ERP Municipal do Poder Executivo.</li>
+          <li>Prestou atendimento técnico e sustentação para prefeituras municipais de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas.</li>
+          <li>Administrou servidores Linux Ubuntu, realizou rotinas de automação em <strong>Shell Script</strong> e manutenção de bancos <strong>MySQL e PostgreSQL</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- FREELANCE -->
+      <div class="exp-item" style="margin-top: 5px;">
+        <div class="exp-header">
+          <span class="exp-company">Desenvolvedor Full-Stack (Projetos Comerciais / Freelance)</span>
+        </div>
+        <div class="exp-role-period">Desenvolvedor Backend &amp; Web | Períodos Intermitentes</div>
+        <ul class="exp-bullets">
+          <li>Desenvolvimento de sistemas corporativos e portais web sob medida utilizando <strong>PHP 8, Laravel e Vue.js</strong>.</li>
+          <li>Construção de APIs RESTful estruturadas em camadas em <strong>Java (Spring Boot)</strong> e <strong>Node.js / TypeScript</strong>.</li>
+          <li>Modelagem relacional, migrations e persistência performática com <strong>MySQL e PostgreSQL</strong>.</li>
+          <li>Implementação de autenticação via JWT, integração com gateways de pagamento e deploy conteinerizado com Docker.</li>
         </ul>
       </div>
     </section>
@@ -659,7 +657,7 @@
         <div class="edu-year">2021 – 2023</div>
       </div>
 
-      <div class="edu-item" style="margin-top: 3px;">
+      <div class="edu-item" style="margin-top: 2px;">
         <div>
           <div class="edu-name">CEEP Newton Sucupira</div>
           <div class="edu-desc">Técnico em Processamento de Dados / Informática</div>
@@ -668,44 +666,33 @@
       </div>
 
       <div class="courses-box">
-        <div class="courses-title">Cursos de Aperfeiçoamento:</div>
+        <div class="courses-title">Cursos de Aperfeiçoamento Especializados:</div>
         <ul class="courses-list">
-          <li><strong>C# Completo: Programação Orientada a Objetos + Projetos – Udemy</strong></li>
-          <li>ASP.NET Core: APIs RESTful com EF Core e SQL Server – Udemy</li>
-          <li>Desenvolvimento Desktop com WPF e Windows Forms em C# – Udemy</li>
-          <li>APIs RESTful com Spring Boot 3 e Java 17+ – Udemy</li>
-          <li>Node.js, TypeScript e Arquitetura de Microserviços – Udemy</li>
-          <li>Administração de Windows Server, Active Directory e PowerShell – Udemy</li>
+          <li><strong>APIs RESTful com Spring Boot 3 e Java 17+ – Udemy</strong></li>
+          <li><strong>PHP 8 e Laravel Completo com Projetos Práticos – Udemy</strong></li>
+          <li>Node.js, TypeScript e Arquitetura de Microsserviços – Udemy</li>
+          <li>Testes Unitários e TDD com JUnit 5 e Mockito – Udemy</li>
+          <li>Docker e Kubernetes na Prática – Udemy</li>
+          <li>Spring Cloud e Microsserviços Corporativos – Udemy</li>
         </ul>
       </div>
     </section>
 
-    <!-- PROJETOS MICROSOFT EM DESENVOLVIMENTO -->
+    <!-- PROJETOS EM DESTAQUE NO PORTFÓLIO -->
     <section class="section">
       <div class="section-title">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Projetos Microsoft em Destaque
+        Projetos em Destaque no Portfólio
       </div>
       <div class="project-notice">
-        Projetos de portfólio planejados ou em desenvolvimento; não caracterizam experiência profissional concluída.
+        Projetos de engenharia e portfólio prático com código disponível em github.com/reinaldobarreto31.
       </div>
       <ul class="project-bullets">
-        <li><strong>API de cadastro e autenticação em C# com ASP.NET Core:</strong> APIs REST, autenticação com JWT, documentação Swagger e persistência em SQL Server ou PostgreSQL.</li>
-        <li><strong>Aplicação Web em ASP.NET Core com C#:</strong> Arquitetura em camadas, banco relacional e publicação planejada na nuvem Azure.</li>
-        <li><strong>Aplicações Desktop em Visual Basic 6 e Visual Basic .NET (VB.NET):</strong> Manutenção, refatoração e evolução de sistemas corporativos legados para .NET moderno.</li>
-        <li><strong>Aplicações Administrativas corporativas:</strong> Automação com C#, .NET, Excel VBA e Microsoft Access, unindo regras fiscais, relatórios e produtividade.</li>
-        <li><strong>Aplicação Mobile e PWA em desenvolvimento:</strong> Desenvolvida com C# e .NET MAUI / Blazor PWA, tecnologias Microsoft para aplicações móveis e multiplataforma.</li>
-      </ul>
-    </section>
-
-    <!-- PROJETO ANTERIOR -->
-    <section class="section">
-      <div class="section-title">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-        Projeto Anterior
-      </div>
-      <ul class="project-bullets">
-        <li><strong>Aplicativo Android em Kotlin:</strong> Gestão de tarefas com sincronização em tempo real, persistência local e arquitetura reativa.</li>
+        <li><strong>API RESTful Enterprise em Java &amp; Spring Boot 3:</strong> Arquitetura limpa em camadas (Controller, Service, Repository), Spring Security com JWT, documentação Swagger/OpenAPI, testes automatizados com JUnit 5 e persistência em PostgreSQL.</li>
+        <li><strong>Plataforma Corporativa em PHP 8 &amp; Laravel 11:</strong> Aplicação web moderna com Eloquent ORM, painel administrativo Blade, autenticação segura, validação de regras de negócio e banco relacional MySQL.</li>
+        <li><strong>Full-Stack Hub em Node.js &amp; TypeScript:</strong> APIs RESTful construídas com TypeScript e Express/NestJS, consumo integrado com React e Tailwind CSS, conteinerização com Docker e esteira CI/CD.</li>
+        <li><strong>Gestão de Microsserviços com Spring Cloud:</strong> Implementação de Service Discovery (Eureka), API Gateway, circuit breaker (Resilience4j) e comunicação assíncrona.</li>
+        <li><strong>Aplicativo Mobile em Kotlin Android:</strong> Gestão de tarefas e consumo de APIs backend com arquitetura MVVM, persistência local Room e componentes reativos.</li>
       </ul>
     </section>
 

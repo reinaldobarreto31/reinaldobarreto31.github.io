@@ -5,28 +5,18 @@ import {
   SiAngular, SiReact, SiLinux, SiMysql, SiGnubash,
   SiRedis, SiDocker, SiSwagger, SiGo, SiSpringboot, SiTailwindcss,
   SiGithubactions, SiTypescript, SiKotlin, SiFlutter, SiNodedotjs, SiMongodb, SiVite,
-  SiDotnet,
+  SiPhp, SiLaravel,
 } from "react-icons/si";
-import { TbBrandCSharp, TbBrandWindows, TbBrandAzure, TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
 import type { AdminExperience, ProjectTone } from "@/lib/default-data";
 
 const ICON_FALLBACKS: Record<ProjectTone, React.ComponentType<{ size?: number; className?: string }>> = {
-  "tech-csharp": TbBrandCSharp,
-  "tech-dotnet": SiDotnet,
-  "tech-aspnet": SiDotnet,
-  "tech-vb": TbBrandWindows,
-  "tech-vba": TbBrandWindows,
-  "tech-sqlserver": TbDatabase,
-  "tech-windows": TbBrandWindows,
-  "tech-azure": TbBrandAzure,
-  "tech-maui": SiDotnet,
   "tech-java": DiJava,
   "tech-spring": SiSpringboot,
-  "tech-kotlin": SiKotlin,
-  "tech-flutter": SiFlutter,
+  "tech-php": SiPhp,
+  "tech-laravel": SiLaravel,
   "tech-node": SiNodedotjs,
-  "tech-next": SiNodedotjs,
+  "tech-ts": SiTypescript,
   "tech-js": SiJavascript,
   "tech-postgres": SiPostgresql,
   "tech-mysql": SiMysql,
@@ -35,19 +25,18 @@ const ICON_FALLBACKS: Record<ProjectTone, React.ComponentType<{ size?: number; c
   "tech-docker": SiDocker,
   "tech-actions": SiGithubactions,
   "tech-react": SiReact,
-  "tech-ts": SiTypescript,
   "tech-vue": SiVuedotjs,
   "tech-angular": SiAngular,
   "tech-jwt": SiJavascript,
   "tech-openapi": SiSwagger,
   "tech-pdf": SiJavascript,
-  "tech-api": SiDotnet,
+  "tech-api": SiSpringboot,
   "tech-git": SiGit,
   "tech-linux": SiLinux,
 };
 
 function TagIcon({ tone }: { tone: ProjectTone }) {
-  const Cmp = ICON_FALLBACKS[tone] ?? SiDotnet;
+  const Cmp = ICON_FALLBACKS[tone] ?? SiSpringboot;
   return <Cmp size={11} />;
 }
 

@@ -1,7 +1,6 @@
 export type ResumeIcon =
-  | "dotnet" | "csharp" | "windows" | "sqlserver" | "azure" | "maui" | "vba"
-  | "java" | "spring" | "kotlin" | "flutter"
-  | "react" | "ts" | "js" | "next" | "node"
+  | "java" | "spring" | "php" | "laravel" | "kotlin"
+  | "react" | "ts" | "js" | "node"
   | "postgres" | "mysql" | "mongo" | "redis" | "docker" | "actions"
   | "vue" | "angular" | "git" | "linux" | "bash" | "jwt"
   | "openapi" | "swagger" | "pdf" | "package" | "tailwind" | "vite";
@@ -25,7 +24,7 @@ export interface ResumeExperience {
 export interface ResumeProject {
   title: string;
   subtitle?: string;
-  badge: "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "FULL-STACK" | "API" | "DESKTOP" | "MOBILE";
+  badge: "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "FULL-STACK" | "API" | "MOBILE";
   stack: string;
   description: string;
   tags: string[];
@@ -36,260 +35,236 @@ export interface ResumeProject {
 }
 
 export const PROFESSIONAL_SUMMARY = [
-  "Desenvolvedor de Software com sólida experiência no ecossistema Java (Spring Boot, APIs RESTful, microsserviços e integração de sistemas legados e críticos). Experiência complementar com a plataforma Microsoft (.NET, C#, ASP.NET Core e Visual Basic 6/VB.NET), atuando no desenvolvimento web e desktop. Vivência com bancos de dados relacionais (SQL Server, PostgreSQL), versionamento com Git, testes automatizados, suporte a ambientes Windows e noções de nuvem Azure.",
+  "Engenheiro de Software e Desenvolvedor Backend com sólida vivência no desenvolvimento, modernização e sustentação de sistemas corporativos de missão crítica para a gestão pública estadual e municipal. Especialista no ecossistema Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Hibernate, Maven) e PHP moderno (PHP 8+, Laravel 10/11, Eloquent ORM, Composer), atuando também no desenvolvimento full-stack com Node.js, TypeScript e React / Vue.js. Domínio comprovado em arquitetura em microsserviços, modelagem de bancos de dados relacionais (PostgreSQL, MySQL, Oracle), autenticação OAuth2 / JWT, conteinerização com Docker e esteiras CI/CD.",
 ];
 
 export const PROFESSIONAL_OBJECTIVE =
-  "Atuar como Desenvolvedor .NET / C# ou Desenvolvedor Java, aplicando sólidos conhecimentos em engenharia de software, integração de APIs e bancos relacionais no desenvolvimento, sustentação e modernização de sistemas corporativos.";
+  "Atuar como Desenvolvedor Java / Spring Boot, Desenvolvedor PHP / Laravel ou Desenvolvedor Full-Stack (Node.js / TypeScript), aplicando sólidas práticas de engenharia de software (Clean Architecture, SOLID, TDD), integração de APIs RESTful e persistência relacional na construção de soluções corporativas escaláveis e de alta disponibilidade.";
 
 export const CONTACT = {
   name: "Reinaldo Barreto da Silva",
-  phone: "+55 (47) 98830-2308",
-  email: "reinaldobarretosilva@gmail.com",
-  location: "Navegantes, Santa Catarina – SC",
+  phone: "(71) 99182-3131",
+  email: "reinaldobarreto31@gmail.com",
+  location: "Salvador – BA (Disponível Remoto / Presencial)",
   linkedin: "linkedin.com/in/reinaldo-barreto-2a4ba2116",
   github: "github.com/reinaldobarreto31",
-  headline: "Desenvolvedor .NET / C# | ASP.NET Core, VB6/VB.NET e Infraestrutura Windows",
+  headline: "Desenvolvedor Java / Spring Boot · PHP (Laravel) · Node.js & TypeScript",
 };
 
 export const HARD_SKILLS: ResumeSkill[] = [
-  { name: "C# & .NET 8/9", level: 96, color: "#0078d4", icon: "csharp" },
-  { name: "ASP.NET Core & APIs RESTful", level: 94, color: "#0078d4", icon: "dotnet" },
-  { name: "Desktop (WPF, WinForms & VB.NET)", level: 92, color: "#005a9e", icon: "windows" },
-  { name: "Visual Basic 6 & Legados", level: 90, color: "#005a9e", icon: "windows" },
-  { name: "Microsoft SQL Server & EF Core", level: 93, color: "#cc292b", icon: "sqlserver" },
-  { name: "Windows 11 Pro & Servidores (Suporte N3)", level: 95, color: "#00a4ef", icon: "windows" },
-  { name: "Automação com VBA & Access", level: 88, color: "#217346", icon: "vba" },
-  { name: ".NET MAUI & Mobile PWA", level: 86, color: "#512bd4", icon: "maui" },
-  { name: "Microsoft Azure Fundamentals", level: 82, color: "#0089d6", icon: "azure" },
-  { name: "Java EE & Spring Boot", level: 88, color: "#6db33f", icon: "spring" },
-  { name: "Testes Automatizados (TDD / xUnit)", level: 90, color: "#0078d4", icon: "dotnet" },
-  { name: "Docker & CI/CD GitHub Actions", level: 85, color: "#2496ed", icon: "docker" },
+  { name: "Java 17 / 21+ & Spring Boot 3", level: 96, color: "#6db33f", icon: "spring" },
+  { name: "Spring Data JPA & Hibernate", level: 94, color: "#6db33f", icon: "spring" },
+  { name: "Spring Security & JWT", level: 92, color: "#6db33f", icon: "spring" },
+  { name: "PHP 8+ & Laravel 10/11", level: 92, color: "#ff2d20", icon: "laravel" },
+  { name: "Eloquent ORM & Composer", level: 90, color: "#777bb4", icon: "php" },
+  { name: "Node.js, TypeScript & Express", level: 88, color: "#3178c6", icon: "node" },
+  { name: "PostgreSQL, MySQL & Oracle", level: 92, color: "#336791", icon: "postgres" },
+  { name: "APIs RESTful & OpenAPI 3 / Swagger", level: 94, color: "#6db33f", icon: "swagger" },
+  { name: "Docker & Docker Compose", level: 86, color: "#2496ed", icon: "docker" },
+  { name: "Testes Unitários (JUnit 5 & Mockito)", level: 90, color: "#6db33f", icon: "spring" },
+  { name: "Front-end (React 18 & Vue.js 3)", level: 84, color: "#61dafb", icon: "react" },
+  { name: "Git, GitHub & CI/CD Actions", level: 90, color: "#f05032", icon: "git" },
 ];
 
 export const METHODOLOGIES = [
   "Clean Architecture",
   "Domain-Driven Design (DDD)",
+  "Hexagonal Architecture",
   "TDD (Test-Driven Development)",
-  "SOLID & Design Patterns",
+  "SOLID & Clean Code",
   "APIs RESTful · Richardson Maturity",
   "Scrum & Kanban",
   "CI/CD com GitHub Actions",
-  "Manutenção e Migração de Legados",
-  "Suporte Técnico N3 & Infraestrutura",
-  "Virtualização (Hyper-V & Docker)",
-  "Modelagem Relacional SQL Server",
+  "Microsserviços & 12-Factor Apps",
+  "Modelagem Relacional e ACID",
   "Segurança e Autenticação JWT / OAuth2",
 ];
 
 export const PRACTICES = [
   "Clean Architecture",
-  "C# / .NET 8",
-  "ASP.NET Core",
-  "WPF / WinForms",
-  "VB6 / VB.NET",
-  "Microsoft SQL Server",
-  "EF Core",
-  "Windows Server & N3",
-  "Excel VBA & Access",
-  ".NET MAUI PWA",
-  "Azure Cloud",
+  "Java 21 / Spring Boot 3",
+  "PHP 8 / Laravel 11",
+  "Spring Security & JWT",
+  "Laravel Eloquent",
+  "Node.js & TypeScript",
+  "PostgreSQL & MySQL",
+  "Docker & Compose",
+  "JUnit 5 & Mockito",
+  "APIs RESTful",
+  "CI/CD Actions",
 ];
 
 export const EDUCATION = [
   {
-    course: "Curso Superior de Tecnologia (CST) em Análise e Desenvolvimento de Sistemas",
     school: "Centro Universitário Jorge Amado (UNIJORGE)",
+    degree: "Curso Superior de Tecnologia (CST) em Análise e Desenvolvimento de Sistemas",
     period: "2021 – 2023",
   },
   {
-    course: "Técnico em Administração",
     school: "CEEP Newton Sucupira",
+    degree: "Técnico em Processamento de Dados / Informática",
     period: "1994 – 1996",
   },
 ];
 
 export const COURSES = [
-  "Cursos em C#, .NET, .NET Core, ASP.NET e CSS – Udemy",
-  "APIs RESTful com Spring Boot e Java – Udemy",
-  "Spring Cloud e Microservices – Udemy",
-  "Testes unitários e TDD com JUnit e Mockito – Udemy",
-  "Docker e Kubernetes na prática – Udemy",
-  "Desenvolvimento Android com Kotlin e Java – Udemy",
-];
-
-export const LANGUAGES = [
-  { name: "Português", level: "Fluente (leitura, escrita e fala)", percent: 100, tone: "tech-csharp" },
-  { name: "Inglês", level: "Intermediário (leitura, escrita e fala)", percent: 65, tone: "tech-dotnet" },
-  { name: "Espanhol", level: "Básico (leitura, escrita e fala)", percent: 40, tone: "tech-windows" },
+  "APIs RESTful com Spring Boot 3 e Java 17+ – Udemy",
+  "PHP 8 e Laravel Completo com Projetos Práticos – Udemy",
+  "Node.js, TypeScript e Arquitetura de Microserviços – Udemy",
+  "Testes Unitários e TDD com JUnit 5 e Mockito – Udemy",
+  "Docker e Kubernetes na Prática – Udemy",
+  "Spring Cloud e Microsserviços Corporativos – Udemy",
 ];
 
 export const EXPERIENCES: ResumeExperience[] = [
   {
     company: "PRODEB — Companhia de Processamento de Dados do Estado da Bahia",
-    role: "Analista de Sistemas e Desenvolvedor · Consultor IV",
-    period: "mar/2024 – set/2024 (6 meses)",
+    role: "Analista de Sistemas e Desenvolvedor (Consultor IV)",
+    period: "Mar/2024 – Set/2024",
     location: "Salvador / BA",
     description:
-      "Desenvolveu e manteve soluções web e backend para órgãos públicos estaduais. Utilizou Java, Spring Boot, Java EE, Struts e JSF na construção e otimização de sistemas corporativos. Colaborou na arquitetura e implementação de funcionalidades complexas, incluindo soluções backend escaláveis em Java e Spring Boot. Otimizou arquiteturas e implementou fluxos de automação para modernização de sistemas públicos.",
+      "Desenvolveu e manteve soluções web e backend enterprise para órgãos públicos estaduais do Governo da Bahia com Java, Spring Boot, Java EE, Struts e JSF. Colaborou na arquitetura e implementação de funcionalidades complexas em microsserviços Spring, persistência transacional com PostgreSQL e frontends Vue.js, atuando em equipes ágeis com Scrum e Git Flow.",
     tags: [
-      { name: "C#", icon: "csharp", tone: "tech-csharp" },
-      { name: ".NET", icon: "dotnet", tone: "tech-dotnet" },
-      { name: "Java EE", icon: "java", tone: "tech-java" },
-      { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
-      { name: "APIs REST", icon: "openapi", tone: "tech-aspnet" },
+      { name: "Java 17+", icon: "java", tone: "tech-java" },
+      { name: "Spring Boot 3", icon: "spring", tone: "tech-spring" },
       { name: "PostgreSQL", icon: "postgres", tone: "tech-postgres" },
+      { name: "Vue.js", icon: "vue", tone: "tech-vue" },
       { name: "Git", icon: "git", tone: "tech-git" },
-      { name: "Scrum", icon: "actions", tone: "tech-windows" },
+      { name: "Scrum", icon: "spring", tone: "tech-spring" },
     ],
   },
   {
     company: "LAMPP IT Solutions",
     role: "Analista de Sistemas e Desenvolvedor de Software",
-    period: "mar/2022 – mai/2022 (3 meses)",
+    period: "Mar/2022 – Mai/2022",
     location: "Salvador / BA",
     description:
-      "Construiu APIs REST com Spring Boot, Java EE, Struts e JSF. Atuou na integração de sistemas e autenticação OAuth2 com Spring Security. Contribuiu para soluções de segurança pública e sistemas críticos para SSP-BA (Secretaria de Segurança Pública da Bahia) e Polícia Militar. Atuou no Sistema de Auditoria Interna. Participou da implementação de projetos internos com C#, .NET, ASP.NET/ASP.NET Core e Visual Basic 6 / VB.NET, incluindo aplicações web e desktop, bancos relacionais e manutenção em ambiente Windows.",
+      "Construiu APIs RESTful escaláveis com Spring Boot e Java EE, além de atuar no desenvolvimento e manutenção de sistemas corporativos com PHP e Laravel para a SSP-BA e Polícia Militar. Autenticação e autorização via OAuth2 e Spring Security, integração de sistemas e persistência com PostgreSQL em Linux.",
     tags: [
-      { name: "C#", icon: "csharp", tone: "tech-csharp" },
-      { name: ".NET", icon: "dotnet", tone: "tech-dotnet" },
-      { name: "ASP.NET Core", icon: "dotnet", tone: "tech-aspnet" },
-      { name: "VB6 / VB.NET", icon: "windows", tone: "tech-vb" },
-      { name: "Desktop", icon: "windows", tone: "tech-windows" },
-      { name: "SQL Server", icon: "sqlserver", tone: "tech-sqlserver" },
-      { name: "Windows", icon: "windows", tone: "tech-windows" },
+      { name: "Java EE", icon: "java", tone: "tech-java" },
+      { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
+      { name: "PHP", icon: "php", tone: "tech-php" },
+      { name: "Laravel", icon: "laravel", tone: "tech-laravel" },
+      { name: "OAuth2", icon: "jwt", tone: "tech-jwt" },
+      { name: "PostgreSQL", icon: "postgres", tone: "tech-postgres" },
+      { name: "Linux", icon: "linux", tone: "tech-linux" },
     ],
   },
   {
     company: "EDZA Planejamento Consultoria e Informática LTDA",
     role: "Analista de Sistemas e Desenvolvedor de Software",
-    period: "nov/2019 – mar/2022 (2 anos e 5 meses)",
+    period: "Nov/2019 – Mar/2022",
     location: "Salvador / BA",
     description:
-      "Desenvolveu soluções backend em Java EE, JSP, Struts e Spring Boot para sistemas de gestão pública municipal nos módulos Tributário, Contábil e RH. Criou e manteve APIs REST integradas a frontends em Angular e Vue.js. Atuou com sistemas legados, migração de funcionalidades e Git para versionamento. Colaborou em equipes ágeis com Scrum e evoluiu o ERP Municipal do Poder Executivo nos módulos Tributário, Saúde, RH e Nota Fiscal Eletrônica. Prestou atendimento técnico e sustentação para prefeituras municipais. Administrou parque tecnológico e servidores Linux/Windows, prestou suporte técnico N3, realizou manutenção de ambientes e atuou na sustentação de sistemas. Participou de forma complementar em projetos internos com C#, .NET, ASP.NET/ASP.NET Core e Visual Basic 6/VB.NET, incluindo aplicações web e desktop, bancos relacionais e manutenção em ambiente Windows.",
+      "Desenvolveu soluções backend em Java EE, JSP, Struts e Spring Boot para ERP de gestão pública municipal (módulos Tributário, Contábil, RH e Nota Fiscal Eletrônica). Criação de APIs REST integradas a frontends em Angular e Vue.js, automação de rotinas em Shell Script e manutenção de bancos MySQL e PostgreSQL.",
     tags: [
-      { name: "C#", icon: "csharp", tone: "tech-csharp" },
-      { name: ".NET", icon: "dotnet", tone: "tech-dotnet" },
-      { name: "VB6 / VB.NET", icon: "windows", tone: "tech-vb" },
-      { name: "ASP.NET", icon: "dotnet", tone: "tech-aspnet" },
-      { name: "Windows Server", icon: "windows", tone: "tech-windows" },
-      { name: "Suporte N3", icon: "windows", tone: "tech-windows" },
-      { name: "SQL Server", icon: "sqlserver", tone: "tech-sqlserver" },
-      { name: "Linux", icon: "linux", tone: "tech-linux" },
+      { name: "Java EE", icon: "java", tone: "tech-java" },
+      { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
+      { name: "Angular", icon: "angular", tone: "tech-angular" },
+      { name: "Vue.js", icon: "vue", tone: "tech-vue" },
+      { name: "MySQL", icon: "mysql", tone: "tech-mysql" },
+      { name: "PostgreSQL", icon: "postgres", tone: "tech-postgres" },
+      { name: "Shell Script", icon: "bash", tone: "tech-bash" },
+    ],
+  },
+  {
+    company: "Desenvolvimento Full-Stack (Projetos Comerciais / Freelance)",
+    role: "Desenvolvedor Backend & Web",
+    period: "Períodos Intermitentes",
+    location: "Remoto",
+    description:
+      "Desenvolvimento de aplicações corporativas sob medida utilizando PHP 8, Laravel e Vue.js, além de APIs RESTful estruturadas em Java Spring Boot e Node.js / TypeScript, com persistência relacional em MySQL e PostgreSQL, autenticação JWT e deploy em contêineres Docker.",
+    tags: [
+      { name: "PHP 8", icon: "php", tone: "tech-php" },
+      { name: "Laravel", icon: "laravel", tone: "tech-laravel" },
+      { name: "Java", icon: "java", tone: "tech-java" },
+      { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
+      { name: "Node.js", icon: "node", tone: "tech-node" },
+      { name: "TypeScript", icon: "ts", tone: "tech-ts" },
+      { name: "Docker", icon: "docker", tone: "tech-docker" },
     ],
   },
 ];
 
-const GITHUB = "https://github.com/reinaldobarreto31";
-const PAGES = "https://reinaldobarreto31.github.io";
-
-export const PERSONAL_PROJECTS: ResumeProject[] = [
+export const PROJECTS: ResumeProject[] = [
   {
-    title: "Sistema ERP & Automação Desktop (C# .NET / WPF)",
-    subtitle: "Desktop · WPF · WinForms · EF Core · SQL Server",
+    title: "API RESTful Enterprise em Java & Spring Boot 3",
+    subtitle: "Spring Boot 3 · Spring Security · JPA · PostgreSQL",
     badge: "DESTAQUE",
-    stack: "C# · .NET 8 · WPF · Windows Forms · Entity Framework Core · Microsoft SQL Server · LINQ · Windows 11 Fluent UI",
+    stack: "Java 21, Spring Boot 3, Spring Data JPA, Spring Security, PostgreSQL, Docker, JUnit 5",
     description:
-      "Sistema corporativo Desktop de alta performance em C# e .NET 8 com interface moderna Windows 11 Fluent UI, WPF e Windows Forms. Integração completa com banco Microsoft SQL Server via Entity Framework Core, controle de permissões de usuário (RBAC), relatórios automatizados, exportação contábil/fiscal e processamento em lote multithread com Task Parallel Library (TPL).",
-    tags: ["C#", ".NET 8", "WPF", "WinForms", "SQL Server", "EF Core", "LINQ", "Windows 11"],
-    github: `${GITHUB}/dotnet-desktop-erp`,
-    tone: "tech-csharp",
-    icon: "csharp",
+      "API corporativa robusta e escalável desenvolvida em Java 21 com Spring Boot 3 sob Clean Architecture. Autenticação stateless via Spring Security 6 e JWT, validações com Bean Validation, documentação Swagger/OpenAPI e testes com JUnit 5 e Mockito.",
+    tags: ["Java 21", "Spring Boot 3", "PostgreSQL", "JWT", "Swagger", "Docker"],
+    github: "https://github.com/reinaldobarreto31/spring-boot-enterprise-api",
+    tone: "tech-spring",
+    icon: "spring",
   },
   {
-    title: "ASP.NET Core Enterprise Web API",
-    subtitle: "APIs RESTful · JWT · EF Core · Swagger · Azure",
+    title: "Plataforma Corporativa em PHP 8 & Laravel 11",
+    subtitle: "PHP 8.3 · Laravel 11 · Eloquent ORM · Blade · MySQL",
     badge: "DESTAQUE",
-    stack: "C# · .NET 8 · ASP.NET Core · Clean Architecture · Microsoft SQL Server · JWT · Swagger / OpenAPI · Docker · Azure",
+    stack: "PHP 8.3, Laravel 11, Eloquent ORM, Blade, MySQL, Composer, REST APIs",
     description:
-      "API corporativa robusta e escalável desenvolvida em C# com ASP.NET Core (.NET 8), estruturada sob Clean Architecture e Domain-Driven Design (DDD). Implementa autenticação e autorização via JWT, injeção de dependência nativa, validações FluentValidation, documentação Swagger/OpenAPI e persistência relacional com Entity Framework Core em SQL Server. Preparada para publicação em nuvem Azure.",
-    tags: ["C#", ".NET 8", "ASP.NET Core", "SQL Server", "JWT", "Swagger / OpenAPI", "Azure", "Docker"],
-    github: `${GITHUB}/aspnetcore-api-server`,
-    tone: "tech-aspnet",
-    icon: "dotnet",
+      "Sistema corporativo e portal web desenvolvido com PHP 8 e framework Laravel 11 (experiência LAMPP IT e Freelance). Utiliza Eloquent ORM para modelagem relacional, filas assíncronas, painel administrativo responsivo Blade e APIs RESTful integradas.",
+    tags: ["PHP 8.3", "Laravel 11", "Eloquent ORM", "MySQL", "Composer", "Blade"],
+    github: "https://github.com/reinaldobarreto31/laravel-corporate-portal",
+    tone: "tech-laravel",
+    icon: "laravel",
   },
   {
-    title: "Migração & Modernização de ERP Legado (VB6 & VB.NET)",
-    subtitle: "Desktop · Visual Basic 6 · VB.NET · Refatoração C# .NET",
-    badge: "DESTAQUE",
-    stack: "Visual Basic 6 · VB.NET · C# · .NET 8 · Microsoft SQL Server · Windows Server · Crystal Reports",
-    description:
-      "Manutenção, sustentação e modernização de módulos corporativos legados em Visual Basic 6 (VB6) e Visual Basic .NET (VB.NET). Diagnóstico e refatoração de regras de negócio contábeis, tributárias e de folha de pagamento, com migração planejada para C# .NET moderno e APIs REST, garantindo integridade de dados e estabilidade contínua.",
-    tags: ["Visual Basic 6", "VB.NET", "C#", ".NET 8", "SQL Server", "Crystal Reports", "Windows Server"],
-    github: `${GITHUB}/vb-legacy-migration`,
-    tone: "tech-vb",
-    icon: "windows",
-  },
-  {
-    title: ".NET MAUI & Blazor Hybrid Mobile PWA",
-    subtitle: "Mobile & Web · PWA · .NET MAUI · Blazor · Offline-first",
+    title: "Full-Stack Hub em Node.js, TypeScript & React",
+    subtitle: "Node.js · TypeScript · Express · React 18 · Tailwind",
     badge: "FULL-STACK",
-    stack: "C# · .NET MAUI · Blazor Hybrid · Progressive Web App (PWA) · SignalR · SQLite · REST APIs",
+    stack: "Node.js, TypeScript, Express, React 18, Tailwind CSS, Prisma, PostgreSQL, Docker",
     description:
-      "Aplicação corporativa multiplataforma com C# .NET MAUI integrada com Blazor Hybrid e Progressive Web App (PWA). Desenvolvida para operações de campo com sincronização em tempo real via WebSockets/SignalR, armazenamento local seguro com SQLite e interface adaptada a dispositivos Windows, Android e Web.",
-    tags: ["C#", ".NET MAUI", "Blazor", "PWA", "SignalR", "SQLite", "REST APIs"],
-    github: `${GITHUB}/maui-blazor-pwa`,
-    tone: "tech-maui",
-    icon: "maui",
+      "Aplicação full-stack modular com backend em Node.js e TypeScript estrito, estruturada com padrão Repository. Frontend em React 18 com Vite e Tailwind CSS, validação com Zod e persistência em PostgreSQL via Prisma.",
+    tags: ["Node.js", "TypeScript", "React 18", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    github: "https://github.com/reinaldobarreto31/nodejs-typescript-hub",
+    tone: "tech-node",
+    icon: "node",
   },
   {
-    title: "Automação Administrativa & Fiscal (C# + Excel VBA + Access)",
-    subtitle: "Automação · VBA · Microsoft Excel · Access · C# .NET",
-    badge: "FULL-STACK",
-    stack: "C# · .NET · Excel VBA · Microsoft Access · Office Interop · Windows · SQL",
+    title: "Arquitetura de Microsserviços com Spring Cloud",
+    subtitle: "Spring Cloud Gateway · Eureka · Resilience4j · Keycloak",
+    badge: "API",
+    stack: "Spring Cloud, Spring Boot, Eureka, Gateway, Resilience4j, Keycloak, Docker",
     description:
-      "Suite corporativa de automação administrativa e fiscal, integrando rotinas em C# .NET com macros avançadas em VBA, planilhas inteligentes no Microsoft Excel e bases de dados relacionais em Microsoft Access. Automação de fechamentos financeiros e geração de relatórios oficiais.",
-    tags: ["C#", ".NET", "Excel VBA", "Microsoft Access", "SQL", "Windows"],
-    github: `${GITHUB}/vba-office-automation`,
-    tone: "tech-vba",
-    icon: "vba",
+      "Ecossistema distribuído de microsserviços com Spring Cloud Gateway, Service Discovery com Netflix Eureka, tolerância a falhas e circuit breaker com Resilience4j e autenticação centralizada com Keycloak / OAuth2.",
+    tags: ["Spring Cloud", "Eureka", "Gateway", "Resilience4j", "Keycloak"],
+    github: "https://github.com/reinaldobarreto31/spring-cloud-microservices",
+    tone: "tech-spring",
+    icon: "spring",
   },
   {
-    title: "Compressor de PDF (Padrões Brasileiros)",
-    subtitle: "100% no navegador · Presets Oficiais BR",
+    title: "Aplicativo Mobile em Kotlin Android",
+    subtitle: "Kotlin 2.0 · Jetpack Compose · Room DB · Coroutines",
+    badge: "MOBILE",
+    stack: "Kotlin, Android, Jetpack Compose, Coroutines, Room DB, Hilt",
+    description:
+      "Aplicativo Android nativo em Kotlin com interface moderna em Jetpack Compose, arquitetura MVVM, reatividade com Coroutines/StateFlow e persistência local com Room DB.",
+    tags: ["Kotlin", "Android", "Jetpack Compose", "Room DB", "Coroutines"],
+    github: "https://github.com/reinaldobarreto31/kotlin-tasks-android",
+    tone: "tech-kotlin",
+    icon: "kotlin",
+  },
+  {
+    title: "PDF Compressor Web & Utilitários",
+    subtitle: "TypeScript · Web Workers · Client-side · Vite",
     badge: "LIVE",
-    stack: "React 18 · TypeScript · pdf-lib · Tailwind CSS · GitHub Pages",
+    stack: "TypeScript, Vite, Web Workers, PDF.js, Tailwind CSS",
     description:
-      "Compressor de documentos PDF no navegador com limites padrão do Governo Federal (2 MB), Empresa (5 MB), e-mail e alta resolução. Suporta múltiplos arquivos em fila, visualização de compressão e download direto.",
-    tags: ["React 18", "TypeScript", "pdf-lib", "Tailwind CSS"],
-    github: `${GITHUB}/pdf-compressor`,
-    live: `${PAGES}/pdf-compressor/`,
-    tone: "tech-pdf",
-    icon: "pdf",
+      "Ferramenta cliente de alta performance para compressão e manipulação de documentos PDF diretamente no navegador, sem upload para servidores terceiros.",
+    tags: ["TypeScript", "Vite", "Web Workers", "PDF.js", "Tailwind CSS"],
+    github: "https://github.com/reinaldobarreto31/pdf-compressor",
+    tone: "tech-ts",
+    icon: "ts",
   },
 ];
 
-export const STACK_SHOWCASE = [
-  { name: "C#", icon: "csharp" as ResumeIcon, tone: "tech-csharp" },
-  { name: ".NET 8 / 9", icon: "dotnet" as ResumeIcon, tone: "tech-dotnet" },
-  { name: "ASP.NET Core", icon: "dotnet" as ResumeIcon, tone: "tech-aspnet" },
-  { name: "Desktop (WPF/WinForms)", icon: "windows" as ResumeIcon, tone: "tech-csharp" },
-  { name: "Visual Basic 6 / VB.NET", icon: "windows" as ResumeIcon, tone: "tech-vb" },
-  { name: "Microsoft SQL Server", icon: "sqlserver" as ResumeIcon, tone: "tech-sqlserver" },
-  { name: "Windows 11 & Servidores", icon: "windows" as ResumeIcon, tone: "tech-windows" },
-  { name: "Suporte N3 & Infraestrutura", icon: "windows" as ResumeIcon, tone: "tech-windows" },
-  { name: "Excel VBA & Access", icon: "vba" as ResumeIcon, tone: "tech-vba" },
-  { name: ".NET MAUI & PWA", icon: "maui" as ResumeIcon, tone: "tech-maui" },
-  { name: "Microsoft Azure", icon: "azure" as ResumeIcon, tone: "tech-azure" },
-  { name: "Java & Spring Boot", icon: "spring" as ResumeIcon, tone: "tech-spring" },
-  { name: "PostgreSQL", icon: "postgres" as ResumeIcon, tone: "tech-postgres" },
-  { name: "Docker", icon: "docker" as ResumeIcon, tone: "tech-docker" },
-  { name: "Git & CI/CD", icon: "git" as ResumeIcon, tone: "tech-git" },
+export const LANGUAGES = [
+  { name: "Português", level: "Fluente (leitura, escrita e fala)", percent: 100 },
+  { name: "Inglês", level: "Intermediário técnico (leitura, escrita e fala)", percent: 65 },
+  { name: "Espanhol", level: "Básico (leitura, escrita e fala)", percent: 40 },
 ];
 
-export const COMPLEMENTARY_TECHS = [
-  { name: "C#", icon: "csharp" as ResumeIcon, tone: "tech-csharp" },
-  { name: ".NET 8", icon: "dotnet" as ResumeIcon, tone: "tech-dotnet" },
-  { name: "ASP.NET Core", icon: "dotnet" as ResumeIcon, tone: "tech-aspnet" },
-  { name: "VB6 / VB.NET", icon: "windows" as ResumeIcon, tone: "tech-vb" },
-  { name: "SQL Server", icon: "sqlserver" as ResumeIcon, tone: "tech-sqlserver" },
-  { name: "Windows 11 Pro", icon: "windows" as ResumeIcon, tone: "tech-windows" },
-  { name: "Suporte Técnico N3", icon: "windows" as ResumeIcon, tone: "tech-windows" },
-  { name: "Excel VBA", icon: "vba" as ResumeIcon, tone: "tech-vba" },
-  { name: ".NET MAUI", icon: "maui" as ResumeIcon, tone: "tech-maui" },
-  { name: "Azure Cloud", icon: "azure" as ResumeIcon, tone: "tech-azure" },
-  { name: "Java Spring Boot", icon: "spring" as ResumeIcon, tone: "tech-spring" },
-  { name: "PostgreSQL", icon: "postgres" as ResumeIcon, tone: "tech-postgres" },
-  { name: "Docker", icon: "docker" as ResumeIcon, tone: "tech-docker" },
-  { name: "Git", icon: "git" as ResumeIcon, tone: "tech-git" },
-];
+export const PERSONAL_PROJECTS = PROJECTS;

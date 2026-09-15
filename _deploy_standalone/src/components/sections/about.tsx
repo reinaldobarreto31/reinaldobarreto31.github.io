@@ -8,25 +8,17 @@ import {
   SiReact, SiTypescript, SiSpringboot, SiVuedotjs, SiAngular,
   SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
   SiKubernetes, SiTailwindcss, SiVite, SiMongodb, SiNodedotjs,
-  SiKotlin, SiFlutter, SiDotnet,
+  SiKotlin, SiFlutter, SiPhp, SiLaravel,
 } from "react-icons/si";
-import { TbBrandCSharp, TbBrandWindows, TbBrandAzure, TbDatabase } from "react-icons/tb";
+import { TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
 import type { AdminAbout, AdminSkill, ProjectTone } from "@/lib/default-data";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
-  csharp: TbBrandCSharp,
-  dotnet: SiDotnet,
-  windows: TbBrandWindows,
-  sqlserver: TbDatabase,
-  azure: TbBrandAzure,
-  maui: SiDotnet,
-  vba: TbBrandWindows,
-  vb: TbBrandWindows,
   java: DiJava,
   spring: SiSpringboot,
-  kotlin: SiKotlin,
-  flutter: SiFlutter,
+  php: SiPhp,
+  laravel: SiLaravel,
   node: SiNodedotjs,
   js: SiJavascript,
   next: SiNodedotjs,
@@ -52,15 +44,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: 
 };
 
 const TONE_MAP: Record<ProjectTone, true> = {
-  "tech-dotnet": true, "tech-csharp": true, "tech-aspnet": true, "tech-vb": true, "tech-vba": true,
-  "tech-sqlserver": true, "tech-azure": true, "tech-windows": true, "tech-maui": true,
-  "tech-java": true, "tech-spring": true, "tech-kotlin": true, "tech-flutter": true,
-  "tech-node": true, "tech-next": true, "tech-js": true, "tech-mongo": true, "tech-tailwind": true, "tech-vite": true,
+  "tech-java": true, "tech-spring": true, "tech-php": true, "tech-laravel": true,
+  "tech-node": true, "tech-ts": true, "tech-js": true, "tech-react": true,
+  "tech-vue": true, "tech-angular": true, "tech-kotlin": true,
   "tech-postgres": true, "tech-mysql": true, "tech-redis": true,
-  "tech-docker": true, "tech-actions": true, "tech-react": true, "tech-ts": true,
-  "tech-jwt": true, "tech-openapi": true, "tech-pdf": true,
-  "tech-api": true, "tech-vue": true, "tech-git": true,
-  "tech-angular": true, "tech-linux": true,
+  "tech-docker": true, "tech-actions": true, "tech-jwt": true,
+  "tech-openapi": true, "tech-pdf": true, "tech-api": true,
+  "tech-git": true, "tech-linux": true,
 };
 
 function isTone(v: string): v is ProjectTone {
@@ -68,16 +58,16 @@ function isTone(v: string): v is ProjectTone {
 }
 
 const DEFAULT_TOOL_CARDS: { name: string; iconKey: string; tone: ProjectTone }[] = [
-  { name: "C# (.NET 8/9)", iconKey: "csharp", tone: "tech-csharp" },
-  { name: "ASP.NET Core", iconKey: "dotnet", tone: "tech-aspnet" },
-  { name: "Desktop (WPF / WinForms)", iconKey: "windows", tone: "tech-csharp" },
-  { name: "Visual Basic 6 & VB.NET", iconKey: "vb", tone: "tech-vb" },
-  { name: "Microsoft SQL Server", iconKey: "sqlserver", tone: "tech-sqlserver" },
-  { name: "Windows 11 / Suporte N3", iconKey: "windows", tone: "tech-windows" },
-  { name: "Excel VBA & Access", iconKey: "vba", tone: "tech-vba" },
-  { name: ".NET MAUI & PWA", iconKey: "maui", tone: "tech-maui" },
-  { name: "Microsoft Azure", iconKey: "azure", tone: "tech-azure" },
-  { name: "Java & Spring Boot", iconKey: "spring", tone: "tech-spring" },
+  { name: "Java (17 / 21+)", iconKey: "java", tone: "tech-java" },
+  { name: "Spring Boot 3", iconKey: "spring", tone: "tech-spring" },
+  { name: "PHP 8+", iconKey: "php", tone: "tech-php" },
+  { name: "Laravel 11", iconKey: "laravel", tone: "tech-laravel" },
+  { name: "Node.js", iconKey: "node", tone: "tech-node" },
+  { name: "TypeScript", iconKey: "ts", tone: "tech-ts" },
+  { name: "PostgreSQL", iconKey: "postgres", tone: "tech-postgres" },
+  { name: "MySQL", iconKey: "mysql", tone: "tech-mysql" },
+  { name: "Docker & CI/CD", iconKey: "docker", tone: "tech-docker" },
+  { name: "React 18", iconKey: "react", tone: "tech-react" },
 ];
 
 const EDUCATION = [
@@ -96,19 +86,18 @@ const EDUCATION = [
 ];
 
 const COURSES = [
-  "C# Completo: Programação Orientada a Objetos + Projetos – Udemy",
-  "ASP.NET Core: APIs RESTful com Entity Framework Core e SQL Server – Udemy",
-  "Desenvolvimento Desktop com WPF e Windows Forms em C# – Udemy",
-  "Administração de Windows Server, Active Directory e PowerShell – Udemy",
-  "Banco de Dados Microsoft SQL Server: Modelagem, T-SQL e Otimização – Udemy",
   "APIs RESTful com Spring Boot 3 e Java 17+ – Udemy",
+  "PHP 8 e Laravel Completo com Projetos Práticos – Udemy",
   "Node.js, TypeScript e Arquitetura de Microserviços – Udemy",
+  "Testes Unitários e TDD com JUnit 5 e Mockito – Udemy",
+  "Docker e Kubernetes na Prática – Udemy",
+  "Spring Cloud e Microsserviços Corporativos – Udemy",
 ];
 
 const LANGUAGES = [
-  { name: "Português", level: "Fluente (leitura, escrita e fala)", percent: 100, tone: "tech-csharp" as ProjectTone },
-  { name: "Inglês", level: "Intermediário (leitura, escrita e fala)", percent: 65, tone: "tech-dotnet" as ProjectTone },
-  { name: "Espanhol", level: "Básico (leitura, escrita e fala)", percent: 40, tone: "tech-windows" as ProjectTone },
+  { name: "Português", level: "Fluente (leitura, escrita e fala)", percent: 100, tone: "tech-spring" as ProjectTone },
+  { name: "Inglês", level: "Intermediário técnico (leitura, escrita e fala)", percent: 65, tone: "tech-java" as ProjectTone },
+  { name: "Espanhol", level: "Básico (leitura, escrita e fala)", percent: 40, tone: "tech-php" as ProjectTone },
 ];
 
 function SkillBar({ name, level, color }: { name: string; level: number; color: string }) {
@@ -155,36 +144,29 @@ export function AboutSection({ about }: Props) {
   const toolCards = about.skills.length > 0
     ? about.skills.map<{ name: string; iconKey: string; tone: ProjectTone }>((s: AdminSkill) => {
         const name = s.name;
-        const iconKey = ICON_MAP[s.icon] ? s.icon : "csharp";
+        const iconKey = ICON_MAP[s.icon] ? s.icon : "spring";
         const colorTone =
-          /c#|csharp/i.test(name) ? "tech-csharp" :
-          /\.net|dotnet|asp\.net/i.test(name) ? "tech-dotnet" :
-          /wpf|winforms|desktop/i.test(name) ? "tech-csharp" :
-          /vb6|visual.?basic|vb\.net/i.test(name) ? "tech-vb" :
-          /vba|access/i.test(name) ? "tech-vba" :
-          /sql.?server/i.test(name) ? "tech-sqlserver" :
-          /windows|suporte/i.test(name) ? "tech-windows" :
-          /azure/i.test(name) ? "tech-azure" :
-          /maui|pwa/i.test(name) ? "tech-maui" :
           /spring|spring.?boot/i.test(name) ? "tech-spring" :
-          /kotlin|compose|android/i.test(name) ? "tech-kotlin" :
-          /flutter|dart/i.test(name) ? "tech-flutter" :
           /java|jvm|jpa|hibernate|jakarta/i.test(name) ? "tech-java" :
+          /laravel/i.test(name) ? "tech-laravel" :
+          /php/i.test(name) ? "tech-php" :
+          /node/i.test(name) ? "tech-node" :
+          /ts|typescript/i.test(name) ? "tech-ts" :
+          /js|javascript/i.test(name) ? "tech-js" :
           /postgres|pg/i.test(name) ? "tech-postgres" :
           /mysql|maria/i.test(name) ? "tech-mysql" :
           /redis/i.test(name) ? "tech-redis" :
           /docker|kube|k8s/i.test(name) ? "tech-docker" :
           /action|ci.?cd|deploy/i.test(name) ? "tech-actions" :
           /react|vite|tailwind/i.test(name) ? "tech-react" :
-          /ts|type/i.test(name) ? "tech-ts" :
           /vue/i.test(name) ? "tech-vue" :
           /angular/i.test(name) ? "tech-angular" :
           /git/i.test(name) ? "tech-git" :
           /linux|bash|ubuntu/i.test(name) ? "tech-linux" :
           /swagger|openapi/i.test(name) ? "tech-openapi" :
           /api|rest/i.test(name) ? "tech-api" :
-          "tech-csharp";
-        const tone = isTone(colorTone) ? colorTone : "tech-csharp";
+          "tech-spring";
+        const tone = isTone(colorTone) ? colorTone : "tech-spring";
         return { name, iconKey, tone };
       })
     : DEFAULT_TOOL_CARDS;
@@ -427,14 +409,14 @@ export function AboutSection({ about }: Props) {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { name: "React", iconKey: "react", tone: "tech-react" as ProjectTone },
+                    { name: "PHP 8", iconKey: "php", tone: "tech-php" as ProjectTone },
+                    { name: "Laravel", iconKey: "laravel", tone: "tech-laravel" as ProjectTone },
+                    { name: "Java 21", iconKey: "java", tone: "tech-java" as ProjectTone },
+                    { name: "Spring", iconKey: "spring", tone: "tech-spring" as ProjectTone },
+                    { name: "Node.js", iconKey: "node", tone: "tech-node" as ProjectTone },
                     { name: "TypeScript", iconKey: "ts", tone: "tech-ts" as ProjectTone },
-                    { name: "Java", iconKey: "java", tone: "tech-java" as ProjectTone },
-                    { name: "Spring", iconKey: "spring", tone: "tech-java" as ProjectTone },
-                    { name: "Vue.js", iconKey: "vue", tone: "tech-vue" as ProjectTone },
-                    { name: "Angular", iconKey: "angular", tone: "tech-angular" as ProjectTone },
+                    { name: "React", iconKey: "react", tone: "tech-react" as ProjectTone },
                     { name: "Docker", iconKey: "docker", tone: "tech-docker" as ProjectTone },
-                    { name: "Actions", iconKey: "actions", tone: "tech-actions" as ProjectTone },
                   ].map(({ name, iconKey, tone }) => {
                     const Icon = ICON_MAP[iconKey] ?? SiReact;
                     return (
