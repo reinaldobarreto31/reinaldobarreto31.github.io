@@ -53,15 +53,15 @@ export function Footer({ onOpenAdmin }: FooterProps) {
           >
             reinaldo.barreto
           </span>
-          <p className="text-sm text-muted-foreground mt-1">.NET · C# · ASP.NET Core · Desktop &amp; Web</p>
+          <p className="text-sm text-muted-foreground mt-1">Java 17/21+ · Spring Boot 3 · PHP / Laravel · Node.js</p>
 
           {showLogin && !logged && (
             <form
               onSubmit={tryLogin}
-              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#0078d4]/40 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
+              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#6db33f]/40 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
             >
               <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#0078d4" }}>
+                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#6db33f" }}>
                   <Lock size={14} /> Painel Admin — Login
                 </div>
                 <button
@@ -158,7 +158,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
       </div>
 
       <span className="block text-center text-xs font-mono text-muted-foreground mt-5">
-        Construído com Java · Spring Boot · Kotlin · Flutter.
+        Construído com Java 17/21+ · Spring Boot 3 · PHP / Laravel · Node.js &amp; TypeScript.
       </span>
     </footer>
   );

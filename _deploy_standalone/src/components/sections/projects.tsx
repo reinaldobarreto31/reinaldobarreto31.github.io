@@ -158,13 +158,13 @@ export function ProjectsSection({ projects }: Props) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
           <div>
             <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">
-              Portfólio .NET · C# · Desktop · ASP.NET Core · PWA
+              Portfólio Java 17/21+ · Spring Boot 3 · PHP / Laravel · Node.js
             </p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
               Projetos em Destaque.
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl text-base">
-              Soluções completas com arquitetura corporativa — Sistemas Desktop em C# e VB.NET/VB6, APIs robustas em ASP.NET Core (.NET 8), aplicações Mobile PWA com .NET MAUI e automações corporativas integradas ao SQL Server e nuvem Azure.
+              Soluções corporativas completas sob Clean Architecture — APIs RESTful em Java 21 com Spring Boot 3, portais corporativos em PHP 8 e Laravel 11, aplicações modulares em Node.js / TypeScript e microsserviços integrados a PostgreSQL, MySQL e Docker.
             </p>
           </div>
           <a

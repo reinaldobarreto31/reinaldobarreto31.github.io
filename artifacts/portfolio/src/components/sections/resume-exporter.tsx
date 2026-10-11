@@ -196,16 +196,16 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
               color: "#94a3b8", marginTop: 10, marginBottom: 0,
               lineHeight: 1.5,
             }}>
-              Desenvolvedor .NET / C# | ASP.NET Core, VB6/VB.NET e Infraestrutura Windows
+              Desenvolvedor Java / Spring Boot 3 · PHP (Laravel) · Node.js &amp; TypeScript
             </p>
           </div>
 
           <section style={{ marginBottom: 36 }}>
-            <h3 style={h3Style("#0078d4")}>Contato</h3>
+            <h3 style={h3Style("#6db33f")}>Contato</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 14 }}>
-              <ContactRow icon={<Phone size={14} />} text="+55 47 98830-2308" />
-              <ContactRow icon={<Mail size={14} />} text="reinaldobarretosilva@gmail.com" />
-              <ContactRow icon={<MapPin size={14} />} text="Navegantes / SC, Brasil" />
+              <ContactRow icon={<Phone size={14} />} text="+55 (71) 99182-3131" />
+              <ContactRow icon={<Mail size={14} />} text="reinaldobarreto31@gmail.com" />
+              <ContactRow icon={<MapPin size={14} />} text="Salvador / BA, Brasil" />
               <ContactRow
                 icon={<Sparkles size={14} />}
                 text="linkedin.com/in/reinaldo-barreto-2a4ba2116"
@@ -384,35 +384,35 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                 fontSize: 13, fontFamily: "ui-monospace, monospace",
                 color: "#94a3b8", marginTop: 10, marginBottom: 0,
               }}>
-                Desenvolvedor .NET / C# | ASP.NET Core, VB6/VB.NET e Infraestrutura Windows
+                Desenvolvedor Java / Spring Boot 3 · PHP (Laravel) · Node.js &amp; TypeScript
               </p>
             </div>
             <div style={{ textAlign: "right", fontSize: 12.5, color: "#f8fafc", display: "flex", flexDirection: "column", gap: 7 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
-                <Phone size={13} style={{ color: "#0078d4" }} />
-                <span style={{ fontFamily: "ui-monospace, monospace" }}>+55 (47) 98830-2308</span>
+                <Phone size={13} style={{ color: "#6db33f" }} />
+                <span style={{ fontFamily: "ui-monospace, monospace" }}>+55 (71) 99182-3131</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
-                <Mail size={13} style={{ color: "#0078d4" }} />
-                <span>reinaldobarretosilva@gmail.com</span>
+                <Mail size={13} style={{ color: "#6db33f" }} />
+                <span>reinaldobarreto31@gmail.com</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#00a4ef" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#007396" }}>
                 <Sparkles size={13} />
                 <span>linkedin.com/in/reinaldo-barreto-2a4ba2116</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#0078d4" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, color: "#6db33f" }}>
                 <Sparkles size={13} />
                 <span>github.com/reinaldobarreto31</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
-                <MapPin size={13} style={{ color: "#0078d4" }} />
-                <span>Navegantes, Santa Catarina – SC</span>
+                <MapPin size={13} style={{ color: "#6db33f" }} />
+                <span>Salvador, Bahia – BA</span>
               </div>
             </div>
           </div>
 
           <section style={{ marginBottom: 30 }}>
-            <h3 style={h3Col2Style("#0078d4")}>Resumo Profissional</h3>
+            <h3 style={h3Col2Style("#6db33f")}>Resumo Profissional</h3>
             <p style={pStyle}>
               {PROFESSIONAL_SUMMARY[0]}
             </p>
