@@ -243,16 +243,6 @@ const DEFAULT_CARDS = (() => {
   const FALLBACK_STACK: AdminStackItem[] = [
     { id: "s-java", name: "Java 17 / 21+", icon: "java", tone: "tech-java", level: 96 },
     { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 95 },
-    { id: "s-php", name: "PHP 8+", icon: "php", tone: "tech-php", level: 92 },
-    { id: "s-laravel", name: "Laravel 11", icon: "laravel", tone: "tech-laravel", level: 94 },
-    { id: "s-node", name: "Node.js", icon: "node", tone: "tech-node", level: 88 },
-    { id: "s-ts", name: "TypeScript 5", icon: "ts", tone: "tech-ts", level: 90 },
-    { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 92 },
-    { id: "s-mysql", name: "MySQL", icon: "mysql", tone: "tech-mysql", level: 90 },
-    { id: "s-docker", name: "Docker & Compose", icon: "docker", tone: "tech-docker", level: 86 },
-    { id: "s-react", name: "React 18", icon: "react", tone: "tech-react", level: 84 },
-    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 82 },
-    { id: "s-git", name: "Git & GitHub Actions", icon: "git", tone: "tech-git", level: 92 },
   ];
   return FALLBACK_STACK.map((item) => {
     const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "java";

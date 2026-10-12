@@ -86,32 +86,8 @@ export const DEFAULTS: {
       badge: "DESTAQUE",
       featured: true,
     },
-    {
-      id: "proj-laravel-corp",
-      title: "Plataforma Corporativa em PHP 8 & Laravel 11",
-      subtitle: "Web & Back-end · Laravel · Eloquent ORM · Blade · MySQL",
-      description:
-        "Sistema corporativo e portal web desenvolvido com PHP 8.3 e framework Laravel 11, baseado na vivência prática na LAMPP IT e projetos Freelance. Utiliza Eloquent ORM para modelagem de dados relacionais e migrations seguras, autenticação com policies/gates, rotinas em fila assíncrona (Queues), painel responsivo com Blade/Livewire e APIs RESTful integradas.",
-      tech: ["PHP 8.3", "Laravel 11", "Eloquent ORM", "Composer", "MySQL", "Blade", "APIs REST", "PHPUnit"],
-      icon: "laravel",
-      tone: "tech-laravel",
-      github: `${GITHUB}/laravel-corporate-portal`,
-      badge: "DESTAQUE",
-      featured: true,
-    },
-    {
-      id: "proj-node-ts-hub",
-      title: "Full-Stack Hub em Node.js, TypeScript & React",
-      subtitle: "Full-Stack · Node.js · TypeScript · Express · React 18",
-      description:
-        "Aplicação full-stack modular com backend ágil em Node.js e TypeScript estrito, estruturada com padrão Repository e middleware pipelines. Frontend reativo construído com React 18, Vite e Tailwind CSS. Gerenciamento de estado, validação de schemas com Zod, integração com banco relacional via Prisma e conteinerização completa em Docker com esteiras GitHub Actions.",
-      tech: ["Node.js", "TypeScript", "Express", "React 18", "Tailwind CSS", "Prisma", "PostgreSQL", "Docker"],
-      icon: "node",
-      tone: "tech-node",
-      github: `${GITHUB}/nodejs-typescript-hub`,
-      badge: "FULL-STACK",
-      featured: true,
-    },
+
+
     {
       id: "proj-spring-cloud",
       title: "Arquitetura de Microsserviços com Spring Cloud",
@@ -244,22 +220,22 @@ export const DEFAULTS: {
 
   about: {
     summary:
-      "Engenheiro de Software e Desenvolvedor Backend com sólida experiência no ecossistema Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Hibernate, Maven) e PHP moderno (PHP 8+, Laravel 10/11, Eloquent ORM, Composer), além de desenvolvimento full-stack com Node.js, TypeScript e React / Vue.js.\n\nVivência comprovada no desenvolvimento, modernização e sustentação de sistemas corporativos de alta demanda para o setor público (Governo do Estado da Bahia — PRODEB, Secretaria de Segurança Pública — LAMPP IT e prefeituras municipais — EDZA). Domínio de arquiteturas orientadas a microsserviços, modelagem de bancos de dados relacionais (PostgreSQL, MySQL, Oracle), autenticação OAuth2 / JWT, conteinerização com Docker e esteiras CI/CD.",
+      "Engenheiro de Software e Desenvolvedor Backend com sólida experiência no ecossistema Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Hibernate, Maven), arquiteturas de microsserviços com Spring Cloud e desenvolvimento mobile com Kotlin Android.\n\nVivência comprovada no desenvolvimento, modernização e sustentação de sistemas corporativos de alta demanda para o setor público (Governo do Estado da Bahia — PRODEB, Secretaria de Segurança Pública — LAMPP IT e prefeituras municipais — EDZA). Domínio de arquiteturas orientadas a microsserviços, modelagem de bancos de dados relacionais (PostgreSQL, MySQL, Oracle), autenticação OAuth2 / JWT, documentação OpenAPI 3 / Swagger, conteinerização com Docker e esteiras CI/CD.",
     objective:
-      "Atuar como Desenvolvedor Java / Spring Boot, Desenvolvedor PHP / Laravel ou Desenvolvedor Full-Stack (Node.js / TypeScript), aplicando sólidos padrões de engenharia de software (Clean Architecture, SOLID, TDD), integração de APIs RESTful e persistência relacional na construção de soluções escaláveis e de alta disponibilidade.",
+      "Atuar como Desenvolvedor Java / Spring Boot ou Engenheiro de Software Backend, aplicando sólidos padrões de engenharia de software (Clean Architecture, SOLID, TDD), integração de APIs RESTful, documentação Swagger / OpenAPI 3 e persistência relacional na construção de soluções escaláveis e de alta disponibilidade.",
     skills: [
       { name: "Java (17 / 21+)", level: 95, color: "#007396", icon: "java" },
       { name: "Spring Boot 3", level: 95, color: "#6db33f", icon: "spring" },
       { name: "Spring Security & JWT", level: 90, color: "#6db33f", icon: "spring" },
-      { name: "PHP 8+", level: 90, color: "#777bb4", icon: "php" },
-      { name: "Laravel 10 / 11", level: 92, color: "#ff2d20", icon: "laravel" },
-      { name: "Node.js & Express", level: 86, color: "#339933", icon: "node" },
-      { name: "TypeScript & JavaScript", level: 90, color: "#3178c6", icon: "ts" },
+      { name: "Spring Data JPA / Hibernate", level: 94, color: "#6db33f", icon: "spring" },
       { name: "PostgreSQL & MySQL", level: 92, color: "#336791", icon: "postgres" },
+      { name: "APIs REST & OpenAPI 3 / Swagger", level: 94, color: "#6db33f", icon: "swagger" },
       { name: "Docker & CI/CD", level: 85, color: "#2496ed", icon: "docker" },
-      { name: "APIs REST & OpenAPI 3", level: 94, color: "#6db33f", icon: "swagger" },
-      { name: "React 18 & Vue.js 3", level: 84, color: "#61dafb", icon: "react" },
       { name: "TDD · JUnit 5 & Mockito", level: 88, color: "#6db33f", icon: "spring" },
+      { name: "Kotlin & Android", level: 80, color: "#7F52FF", icon: "kotlin" },
+      { name: "TypeScript & JavaScript", level: 85, color: "#3178c6", icon: "ts" },
+      { name: "Vue.js 3", level: 82, color: "#42b883", icon: "vue" },
+      { name: "Git & GitHub Actions", level: 92, color: "#f05032", icon: "git" },
     ],
     methodologies: [
       "Clean Architecture",
@@ -277,7 +253,7 @@ export const DEFAULTS: {
       "SOLID",
       "TDD · JUnit 5",
       "Spring Data JPA",
-      "Laravel Eloquent",
+      "Swagger / OpenAPI",
       "APIs RESTful",
       "Docker",
       "CI/CD",
@@ -287,15 +263,12 @@ export const DEFAULTS: {
   stack: [
     { id: "s-java", name: "Java 17/21+", icon: "java", tone: "tech-java", level: 95 },
     { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 95 },
-    { id: "s-php", name: "PHP 8+", icon: "php", tone: "tech-php", level: 90 },
-    { id: "s-laravel", name: "Laravel 11", icon: "laravel", tone: "tech-laravel", level: 92 },
-    { id: "s-node", name: "Node.js", icon: "node", tone: "tech-node", level: 86 },
-    { id: "s-ts", name: "TypeScript", icon: "ts", tone: "tech-ts", level: 90 },
     { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 92 },
     { id: "s-mysql", name: "MySQL", icon: "mysql", tone: "tech-mysql", level: 90 },
     { id: "s-docker", name: "Docker & Compose", icon: "docker", tone: "tech-docker", level: 85 },
-    { id: "s-react", name: "React 18", icon: "react", tone: "tech-react", level: 84 },
-    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 82 },
-    { id: "s-git", name: "Git & GitHub", icon: "git", tone: "tech-git", level: 92 },
+    { id: "s-swagger", name: "Swagger / OpenAPI 3", icon: "swagger", tone: "tech-openapi", level: 94 },
+    { id: "s-kotlin", name: "Kotlin & Android", icon: "kotlin", tone: "tech-kotlin", level: 80 },
+    { id: "s-git", name: "Git & GitHub Actions", icon: "git", tone: "tech-git", level: 92 },
+    { id: "s-linux", name: "Linux / Windows Server", icon: "linux", tone: "tech-linux", level: 88 },
   ],
 };

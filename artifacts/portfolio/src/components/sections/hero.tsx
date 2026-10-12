@@ -17,18 +17,7 @@ const PRIMARY_JAVA_STACK = [
   { label: "Docker", icon: <SiDocker size={14} />, tone: "tech-docker" },
 ];
 
-const SECONDARY_PHP_STACK = [
-  { label: "PHP 8.3", icon: <SiPhp size={16} />, tone: "tech-php" },
-  { label: "Laravel 11", icon: <SiLaravel size={14} />, tone: "tech-laravel" },
-  { label: "Eloquent ORM", icon: <TbDatabase size={14} />, tone: "tech-php" },
-  { label: "MySQL", icon: <TbDatabase size={14} />, tone: "tech-mysql" },
-];
 
-const TERTIARY_NODE_STACK = [
-  { label: "Node.js", icon: <SiNodedotjs size={14} />, tone: "tech-node" },
-  { label: "TypeScript", icon: <SiTypescript size={14} />, tone: "tech-ts" },
-  { label: "REST APIs", icon: <SiNodedotjs size={14} />, tone: "tech-node" },
-];
 
 export function HeroSection() {
   const resumeRef = useRef<ResumeExporterHandle | null>(null);
