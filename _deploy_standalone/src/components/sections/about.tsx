@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import {
   Database, ShieldCheck, Workflow, Sparkles, BookOpen, GraduationCap,
   Award, Languages, Target, Briefcase,

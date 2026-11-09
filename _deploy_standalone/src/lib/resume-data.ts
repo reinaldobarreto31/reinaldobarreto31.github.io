@@ -35,11 +35,11 @@ export interface ResumeProject {
 }
 
 export const PROFESSIONAL_SUMMARY = [
-  "Engenheiro de Software e Desenvolvedor Backend com sólida vivência no desenvolvimento, modernização e sustentação de sistemas corporativos de missão crítica para a gestão pública estadual e municipal. Especialista no ecossistema Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Hibernate, Maven) e PHP moderno (PHP 8+, Laravel 10/11, Eloquent ORM, Composer), atuando também no desenvolvimento full-stack com Node.js, TypeScript e React / Vue.js. Domínio comprovado em arquitetura em microsserviços, modelagem de bancos de dados relacionais (PostgreSQL, MySQL, Oracle), autenticação OAuth2 / JWT, conteinerização com Docker e esteiras CI/CD.",
+  "Engenheiro de Software e Desenvolvedor especializado em ecossistema Mobile nativo com Kotlin (Android SDK, Jetpack Compose, MVVM, Coroutines, StateFlow, Room, Hilt) e arquitetura multiplataforma com Kotlin Multiplatform (KMP), com atuação intermediária em Flutter (Dart), noções em React Native e iOS (Swift), além de sólida base backend corporativa em Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL, Docker). Vivência consolidada na modernização e sustentação de sistemas de missão crítica para o setor público estadual (PRODEB, SSP-BA/Polícia Militar) e municipal (EDZA), combinando desenvolvimento de software com suporte técnico especializado a Auditores Fiscais do Município e usuários corporativos. Concepção e desenvolvimento do aplicativo próprio Limpapp (Kotlin nativo & KMP com upload de fotos ilustrativas).",
 ];
 
 export const PROFESSIONAL_OBJECTIVE =
-  "Atuar como Desenvolvedor Java / Spring Boot, Desenvolvedor PHP / Laravel ou Desenvolvedor Full-Stack (Node.js / TypeScript), aplicando sólidas práticas de engenharia de software (Clean Architecture, SOLID, TDD), integração de APIs RESTful e persistência relacional na construção de soluções corporativas escaláveis e de alta disponibilidade.";
+  "Atuar como Desenvolvedor Mobile (Kotlin / Android / KMP / Flutter) ou Desenvolvedor Mobile & Backend Java Spring, aplicando princípios de Clean Architecture, MVVM, SOLID, TDD e persistência reativa na construção de aplicativos fluidos, escaláveis e integrados a APIs robustas.";
 
 export const CONTACT = {
   name: "Reinaldo Barreto da Silva",
@@ -48,28 +48,29 @@ export const CONTACT = {
   location: "Salvador – BA (Disponível Remoto / Presencial)",
   linkedin: "linkedin.com/in/reinaldo-barreto-2a4ba2116",
   github: "github.com/reinaldobarreto31",
-  headline: "Desenvolvedor Java / Spring Boot · PHP (Laravel) · Node.js & TypeScript",
+  headline: "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Flutter (Intermediário) · Java Spring Boot",
 };
 
 export const HARD_SKILLS: ResumeSkill[] = [
-  { name: "Java 17 / 21+ & Spring Boot 3", level: 96, color: "#6db33f", icon: "spring" },
-  { name: "Spring Data JPA & Hibernate", level: 94, color: "#6db33f", icon: "spring" },
-  { name: "Spring Security & JWT", level: 92, color: "#6db33f", icon: "spring" },
-  { name: "PHP 8+ & Laravel 10/11", level: 92, color: "#ff2d20", icon: "laravel" },
-  { name: "Eloquent ORM & Composer", level: 90, color: "#777bb4", icon: "php" },
-  { name: "Node.js, TypeScript & Express", level: 88, color: "#3178c6", icon: "node" },
-  { name: "PostgreSQL, MySQL & Oracle", level: 92, color: "#336791", icon: "postgres" },
+  { name: "Kotlin & Jetpack Compose (Android)", level: 95, color: "#7f52ff", icon: "kotlin" },
+  { name: "Kotlin Multiplatform (KMP)", level: 85, color: "#7f52ff", icon: "kotlin" },
+  { name: "Flutter & Dart (Intermediário)", level: 75, color: "#02569b", icon: "react" },
+  { name: "Java 17 / 21+ & Spring Boot 3", level: 90, color: "#6db33f", icon: "spring" },
+  { name: "React Native (Básico)", level: 65, color: "#61dafb", icon: "react" },
+  { name: "iOS Nativo / Swift (Noções)", level: 45, color: "#f05138", icon: "actions" },
+  { name: "PostgreSQL & MySQL", level: 90, color: "#336791", icon: "postgres" },
   { name: "APIs RESTful & OpenAPI 3 / Swagger", level: 94, color: "#6db33f", icon: "swagger" },
   { name: "Docker & Docker Compose", level: 86, color: "#2496ed", icon: "docker" },
-  { name: "Testes Unitários (JUnit 5 & Mockito)", level: 90, color: "#6db33f", icon: "spring" },
-  { name: "Front-end (React 18 & Vue.js 3)", level: 84, color: "#61dafb", icon: "react" },
+  { name: "Clean Architecture & MVVM", level: 90, color: "#7f52ff", icon: "kotlin" },
   { name: "Git, GitHub & CI/CD Actions", level: 90, color: "#f05032", icon: "git" },
+  { name: "PHP (Noções básicas / legados)", level: 35, color: "#777bb4", icon: "php" },
 ];
 
 export const METHODOLOGIES = [
   "Clean Architecture",
-  "Domain-Driven Design (DDD)",
-  "Hexagonal Architecture",
+  "MVVM (Model-View-ViewModel)",
+  "Kotlin Multiplatform (KMP)",
+  "Flutter State Management (Provider/Bloc)",
   "TDD (Test-Driven Development)",
   "SOLID & Clean Code",
   "APIs RESTful · Richardson Maturity",
@@ -81,15 +82,15 @@ export const METHODOLOGIES = [
 ];
 
 export const PRACTICES = [
-  "Clean Architecture",
+  "Kotlin Android Nativo",
+  "Jetpack Compose",
+  "Kotlin Multiplatform",
+  "Flutter & Dart",
   "Java 21 / Spring Boot 3",
-  "PHP 8 / Laravel 11",
   "Spring Security & JWT",
-  "Laravel Eloquent",
-  "Node.js & TypeScript",
   "PostgreSQL & MySQL",
+  "Room Database",
   "Docker & Compose",
-  "JUnit 5 & Mockito",
   "APIs RESTful",
   "CI/CD Actions",
 ];
@@ -108,27 +109,28 @@ export const EDUCATION = [
 ];
 
 export const COURSES = [
-  "APIs RESTful com Spring Boot 3 e Java 17+ – Udemy",
-  "PHP 8 e Laravel Completo com Projetos Práticos – Udemy",
-  "Node.js, TypeScript e Arquitetura de Microserviços – Udemy",
-  "Testes Unitários e TDD com JUnit 5 e Mockito – Udemy",
-  "Docker e Kubernetes na Prática – Udemy",
-  "Spring Cloud e Microsserviços Corporativos – Udemy",
+  "Formação Kotlin para Android: Jetpack Compose, MVVM e Coroutines",
+  "Kotlin Multiplatform (KMP): Compartilhamento de Código entre Android e iOS",
+  "Desenvolvimento de Aplicativos Multiplataforma com Flutter & Dart",
+  "APIs RESTful com Java 21 e Spring Boot 3 Enterprise — Udemy",
+  "Testes Automatizados e TDD com JUnit 5 e Mockito — Udemy",
+  "Docker e Orquestração de Containers para Desenvolvedores — Udemy",
+  "Desenvolvimento iOS Nativo com Swift & SwiftUI (em aprendizado contínuo)",
 ];
 
 export const EXPERIENCES: ResumeExperience[] = [
   {
-    company: "PRODEB — Companhia de Processamento de Dados do Estado da Bahia",
+    company: "PRODEB — Companhia de Processamento de Dados da Bahia",
     role: "Analista de Sistemas e Desenvolvedor (Consultor IV)",
     period: "Mar/2024 – Set/2024",
     location: "Salvador / BA",
     description:
-      "Desenvolveu e manteve soluções web e backend enterprise para órgãos públicos estaduais do Governo da Bahia com Java, Spring Boot, Java EE, Struts e JSF. Colaborou na arquitetura e implementação de funcionalidades complexas em microsserviços Spring, persistência transacional com PostgreSQL e frontends Vue.js, atuando em equipes ágeis com Scrum e Git Flow.",
+      "Desenvolveu e manteve soluções corporativas enterprise em Java 17/21+ e Spring Boot 3 na estruturação de APIs de alta performance consumidas por aplicações web e mobile do Governo da Bahia. Atuação com microsserviços, modelagem de dados transacionais em PostgreSQL e entregas ágeis contínuas com Scrum e Git Flow.",
     tags: [
       { name: "Java 17+", icon: "java", tone: "tech-java" },
       { name: "Spring Boot 3", icon: "spring", tone: "tech-spring" },
       { name: "PostgreSQL", icon: "postgres", tone: "tech-postgres" },
-      { name: "Vue.js", icon: "vue", tone: "tech-vue" },
+      { name: "APIs REST", icon: "openapi", tone: "tech-api" },
       { name: "Git", icon: "git", tone: "tech-git" },
       { name: "Scrum", icon: "spring", tone: "tech-spring" },
     ],
@@ -139,12 +141,10 @@ export const EXPERIENCES: ResumeExperience[] = [
     period: "Mar/2022 – Mai/2022",
     location: "Salvador / BA",
     description:
-      "Construiu APIs RESTful escaláveis com Spring Boot e Java EE, além de atuar no desenvolvimento e manutenção de sistemas corporativos com PHP e Laravel para a SSP-BA e Polícia Militar. Autenticação e autorização via OAuth2 e Spring Security, integração de sistemas e persistência com PostgreSQL em Linux.",
+      "Construiu APIs RESTful escaláveis com Spring Boot e Java EE para projetos de missão crítica voltados à segurança pública (SSP-BA / Polícia Militar). Implementação de regras de autenticação e controle granular de permissões com OAuth2 e Spring Security, auditoria interna e persistência performática em PostgreSQL sobre servidores Linux.",
     tags: [
       { name: "Java EE", icon: "java", tone: "tech-java" },
       { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
-      { name: "PHP", icon: "php", tone: "tech-php" },
-      { name: "Laravel", icon: "laravel", tone: "tech-laravel" },
       { name: "OAuth2", icon: "jwt", tone: "tech-jwt" },
       { name: "PostgreSQL", icon: "postgres", tone: "tech-postgres" },
       { name: "Linux", icon: "linux", tone: "tech-linux" },
@@ -152,45 +152,78 @@ export const EXPERIENCES: ResumeExperience[] = [
   },
   {
     company: "EDZA Planejamento Consultoria e Informática LTDA",
-    role: "Analista de Sistemas e Desenvolvedor de Software",
+    role: "Analista de TI / Analista de Sistemas e Suporte Especializado",
     period: "Nov/2019 – Mar/2022",
     location: "Salvador / BA",
     description:
-      "Desenvolveu soluções backend em Java EE, JSP, Struts e Spring Boot para ERP de gestão pública municipal (módulos Tributário, Contábil, RH e Nota Fiscal Eletrônica). Criação de APIs REST integradas a frontends em Angular e Vue.js, automação de rotinas em Shell Script e manutenção de bancos MySQL e PostgreSQL.",
+      "Atuação como Analista de TI e Desenvolvedor com suporte técnico especializado e atendimento consultivo direto a Auditores Fiscais do Município, secretarias de fazenda e servidores públicos municipais de diversas prefeituras (Ilhéus, Juazeiro, Candeias, Porto Seguro, Lauro de Freitas). Diagnóstico e resolução de incidentes críticos em regras de tributação municipal (ISS, IPTU, ITBI), arrecadação e validação de Nota Fiscal de Serviços Eletrônica (NFS-e). Desenvolvimento e sustentação de backend em Java EE e Spring Boot para o ERP municipal com bancos relacionais MySQL e PostgreSQL em Linux.",
     tags: [
+      { name: "Analista de TI", icon: "spring", tone: "tech-spring" },
+      { name: "Suporte a Auditores", icon: "kotlin", tone: "tech-kotlin" },
       { name: "Java EE", icon: "java", tone: "tech-java" },
       { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
-      { name: "Angular", icon: "angular", tone: "tech-angular" },
-      { name: "Vue.js", icon: "vue", tone: "tech-vue" },
-      { name: "MySQL", icon: "mysql", tone: "tech-mysql" },
-      { name: "PostgreSQL", icon: "postgres", tone: "tech-postgres" },
-      { name: "Shell Script", icon: "bash", tone: "tech-bash" },
+      { name: "NFS-e / Tributos", icon: "openapi", tone: "tech-api" },
+      { name: "MySQL / Postgres", icon: "postgres", tone: "tech-postgres" },
     ],
   },
   {
-    company: "Desenvolvimento Full-Stack (Projetos Comerciais / Freelance)",
-    role: "Desenvolvedor Backend & Web",
-    period: "Períodos Intermitentes",
-    location: "Remoto",
+    company: "Desenvolvimento Mobile & Projetos Comerciais (Freelance)",
+    role: "Desenvolvedor Mobile & Backend",
+    period: "Períodos Intermitentes / Em Andamento",
+    location: "Salvador / BA & Remoto",
     description:
-      "Desenvolvimento de aplicações corporativas sob medida utilizando PHP 8, Laravel e Vue.js, além de APIs RESTful estruturadas em Java Spring Boot e Node.js / TypeScript, com persistência relacional em MySQL e PostgreSQL, autenticação JWT e deploy em contêineres Docker.",
+      "Concepção e desenvolvimento do aplicativo mobile nativo Limpapp em Kotlin e Kotlin Multiplatform (KMP), com upload e compressão de fotos ilustrativas dos serviços antes/depois do atendimento, cache offline com Room e integração com API Spring Boot 3. Desenvolvimento de aplicativos multiplataforma em Flutter, soluções em React Native e entregas comerciais sob demanda.",
     tags: [
-      { name: "PHP 8", icon: "php", tone: "tech-php" },
-      { name: "Laravel", icon: "laravel", tone: "tech-laravel" },
-      { name: "Java", icon: "java", tone: "tech-java" },
-      { name: "Spring Boot", icon: "spring", tone: "tech-spring" },
-      { name: "Node.js", icon: "node", tone: "tech-node" },
-      { name: "TypeScript", icon: "ts", tone: "tech-ts" },
-      { name: "Docker", icon: "docker", tone: "tech-docker" },
+      { name: "Kotlin", icon: "kotlin", tone: "tech-kotlin" },
+      { name: "KMP", icon: "kotlin", tone: "tech-kotlin" },
+      { name: "Flutter", icon: "react", tone: "tech-react" },
+      { name: "React Native", icon: "react", tone: "tech-react" },
+      { name: "Spring Boot 3", icon: "spring", tone: "tech-spring" },
     ],
   },
 ];
 
 export const PROJECTS: ResumeProject[] = [
   {
+    title: "Limpapp — App de Serviços & Limpeza",
+    subtitle: "Mobile Nativo · Kotlin · Compose · KMP · Upload de Fotos",
+    badge: "EM CONSTRUÇÃO",
+    stack: "Kotlin, Jetpack Compose, KMP, Room Database, Coroutines, Spring Boot 3, PostgreSQL",
+    description:
+      "Aplicativo mobile nativo em desenvolvimento com Kotlin e Kotlin Multiplatform (KMP). Inclui catálogo de serviços, agenda de atendimentos e fluxo inteligente de upload de fotos ilustrativas dos serviços (antes e depois do trabalho) com compressão local, sincronização offline com Room e integração com API Spring Boot 3.",
+    tags: ["Kotlin", "Compose", "KMP", "Room", "Fotos", "Spring Boot 3"],
+    github: "https://github.com/reinaldobarreto31/limpapp-mobile",
+    tone: "tech-kotlin",
+    icon: "kotlin",
+  },
+  {
+    title: "App Android Nativo com Jetpack Compose & Clean Arch",
+    subtitle: "Android Nativo · Kotlin · MVVM · Coroutines · Hilt · Room",
+    badge: "DESTAQUE",
+    stack: "Kotlin, Android SDK, Jetpack Compose, Coroutines, Flow, Room, Hilt, Material 3",
+    description:
+      "Aplicativo Android moderno seguindo as diretrizes oficiais da Google: arquitetura limpa em camadas (MVVM), StateFlow, Coroutines, Room para persistência reativa, injeção de dependência com Hilt e consumo de APIs REST.",
+    tags: ["Kotlin", "Compose", "MVVM", "Flow", "Hilt", "Room"],
+    github: "https://github.com/reinaldobarreto31/kotlin-android-native",
+    tone: "tech-kotlin",
+    icon: "kotlin",
+  },
+  {
+    title: "App Multiplataforma com Flutter & Dart",
+    subtitle: "Mobile Multiplataforma · Flutter (Intermediário) · Dart · State Management",
+    badge: "LIVE",
+    stack: "Flutter 3, Dart, Provider/Bloc, REST APIs, Material Design",
+    description:
+      "Aplicativo multiplataforma para Android e iOS desenvolvido com Flutter e Dart: widgets customizados, gerenciamento de estado reativo, consumo de APIs RESTful e navegação fluida.",
+    tags: ["Flutter", "Dart", "Multiplataforma", "REST APIs", "State Management"],
+    github: "https://github.com/reinaldobarreto31/flutter-cross-app",
+    tone: "tech-react",
+    icon: "react",
+  },
+  {
     title: "API RESTful Enterprise em Java & Spring Boot 3",
     subtitle: "Spring Boot 3 · Spring Security · JPA · PostgreSQL",
-    badge: "DESTAQUE",
+    badge: "API",
     stack: "Java 21, Spring Boot 3, Spring Data JPA, Spring Security, PostgreSQL, Docker, JUnit 5",
     description:
       "API corporativa robusta e escalável desenvolvida em Java 21 com Spring Boot 3 sob Clean Architecture. Autenticação stateless via Spring Security 6 e JWT, validações com Bean Validation, documentação Swagger/OpenAPI e testes com JUnit 5 e Mockito.",
@@ -199,72 +232,4 @@ export const PROJECTS: ResumeProject[] = [
     tone: "tech-spring",
     icon: "spring",
   },
-  {
-    title: "Plataforma Corporativa em PHP 8 & Laravel 11",
-    subtitle: "PHP 8.3 · Laravel 11 · Eloquent ORM · Blade · MySQL",
-    badge: "DESTAQUE",
-    stack: "PHP 8.3, Laravel 11, Eloquent ORM, Blade, MySQL, Composer, REST APIs",
-    description:
-      "Sistema corporativo e portal web desenvolvido com PHP 8 e framework Laravel 11 (experiência LAMPP IT e Freelance). Utiliza Eloquent ORM para modelagem relacional, filas assíncronas, painel administrativo responsivo Blade e APIs RESTful integradas.",
-    tags: ["PHP 8.3", "Laravel 11", "Eloquent ORM", "MySQL", "Composer", "Blade"],
-    github: "https://github.com/reinaldobarreto31/laravel-corporate-portal",
-    tone: "tech-laravel",
-    icon: "laravel",
-  },
-  {
-    title: "Full-Stack Hub em Node.js, TypeScript & React",
-    subtitle: "Node.js · TypeScript · Express · React 18 · Tailwind",
-    badge: "FULL-STACK",
-    stack: "Node.js, TypeScript, Express, React 18, Tailwind CSS, Prisma, PostgreSQL, Docker",
-    description:
-      "Aplicação full-stack modular com backend em Node.js e TypeScript estrito, estruturada com padrão Repository. Frontend em React 18 com Vite e Tailwind CSS, validação com Zod e persistência em PostgreSQL via Prisma.",
-    tags: ["Node.js", "TypeScript", "React 18", "Tailwind CSS", "Prisma", "PostgreSQL"],
-    github: "https://github.com/reinaldobarreto31/nodejs-typescript-hub",
-    tone: "tech-node",
-    icon: "node",
-  },
-  {
-    title: "Arquitetura de Microsserviços com Spring Cloud",
-    subtitle: "Spring Cloud Gateway · Eureka · Resilience4j · Keycloak",
-    badge: "API",
-    stack: "Spring Cloud, Spring Boot, Eureka, Gateway, Resilience4j, Keycloak, Docker",
-    description:
-      "Ecossistema distribuído de microsserviços com Spring Cloud Gateway, Service Discovery com Netflix Eureka, tolerância a falhas e circuit breaker com Resilience4j e autenticação centralizada com Keycloak / OAuth2.",
-    tags: ["Spring Cloud", "Eureka", "Gateway", "Resilience4j", "Keycloak"],
-    github: "https://github.com/reinaldobarreto31/spring-cloud-microservices",
-    tone: "tech-spring",
-    icon: "spring",
-  },
-  {
-    title: "Aplicativo Mobile em Kotlin Android",
-    subtitle: "Kotlin 2.0 · Jetpack Compose · Room DB · Coroutines",
-    badge: "MOBILE",
-    stack: "Kotlin, Android, Jetpack Compose, Coroutines, Room DB, Hilt",
-    description:
-      "Aplicativo Android nativo em Kotlin com interface moderna em Jetpack Compose, arquitetura MVVM, reatividade com Coroutines/StateFlow e persistência local com Room DB.",
-    tags: ["Kotlin", "Android", "Jetpack Compose", "Room DB", "Coroutines"],
-    github: "https://github.com/reinaldobarreto31/kotlin-tasks-android",
-    tone: "tech-kotlin",
-    icon: "kotlin",
-  },
-  {
-    title: "PDF Compressor Web & Utilitários",
-    subtitle: "TypeScript · Web Workers · Client-side · Vite",
-    badge: "LIVE",
-    stack: "TypeScript, Vite, Web Workers, PDF.js, Tailwind CSS",
-    description:
-      "Ferramenta cliente de alta performance para compressão e manipulação de documentos PDF diretamente no navegador, sem upload para servidores terceiros.",
-    tags: ["TypeScript", "Vite", "Web Workers", "PDF.js", "Tailwind CSS"],
-    github: "https://github.com/reinaldobarreto31/pdf-compressor",
-    tone: "tech-ts",
-    icon: "ts",
-  },
 ];
-
-export const LANGUAGES = [
-  { name: "Português", level: "Fluente (leitura, escrita e fala)", percent: 100 },
-  { name: "Inglês", level: "Intermediário técnico (leitura, escrita e fala)", percent: 65 },
-  { name: "Espanhol", level: "Básico (leitura, escrita e fala)", percent: 40 },
-];
-
-export const PERSONAL_PROJECTS = PROJECTS;

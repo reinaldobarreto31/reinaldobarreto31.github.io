@@ -1,0 +1,27 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0f172a; border-radius:24px; font-family:system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-fit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+  <text x="24" y="24" fill="#94a3b8" font-size="11" font-weight="600">09:41</text>
+  <text x="24" y="66" fill="#ffffff" font-size="18" font-weight="800">FitPulse Multiplatform</text>
+  <text x="24" y="84" fill="#6ee7b7" font-size="11">Flutter 3 &amp; Dart Â· IntermediÃ¡rio Multi</text>
+
+  <rect x="18" y="100" width="324" height="140" rx="18" fill="url(#grad-fit)" />
+  <text x="36" y="136" fill="#ffffff" font-size="14" font-weight="600">Treino em Andamento</text>
+  <text x="36" y="174" fill="#ffffff" font-size="34" font-weight="800">00:45:20</text>
+  <text x="36" y="204" fill="#d1fae5" font-size="13">ðŸ”¥ 420 kcal queimadas</text>
+
+  <!-- Workout details -->
+  <rect x="18" y="254" width="324" height="70" rx="14" fill="#1e293b" />
+  <text x="36" y="282" fill="#ffffff" font-size="14" font-weight="700">Supino Reto com Barra</text>
+  <text x="36" y="302" fill="#94a3b8" font-size="11">4 sÃ©ries Ã— 10 reps (32 kg)</text>
+  <text x="310" y="292" fill="#10b981" font-size="12" font-weight="700" text-anchor="end">4/4 ConcluÃ­do</text>
+
+  <rect x="18" y="334" width="324" height="70" rx="14" fill="#1e293b" />
+  <text x="36" y="362" fill="#ffffff" font-size="14" font-weight="700">Agachamento Livre</text>
+  <text x="36" y="382" fill="#94a3b8" font-size="11">4 sÃ©ries Ã— 12 reps (40 kg)</text>
+  <text x="310" y="372" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="end">2/4 Em Andamento</text>
+</svg>
