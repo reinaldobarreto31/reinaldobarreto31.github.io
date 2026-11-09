@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reinaldo Barreto da Silva — Currículo Profissional (Java · PHP / Laravel · Node.js)</title>
+  <title>Reinaldo Barreto da Silva — Currículo Profissional (Mobile Kotlin · KMP · Java Spring Boot)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary-green: #2e7d32;
-      --spring-green: #6db33f;
-      --java-blue: #007396;
-      --php-purple: #4f5b93;
-      --laravel-red: #e03131;
+      --primary-kotlin: #7f52ff;
+      --kotlin-dark: #6333ea;
+      --spring-green: #2e7d32;
+      --spring-bright: #6db33f;
+      --swift-orange: #f05138;
       --brand-navy: #0f172a;
       --text-dark: #1e293b;
       --text-muted: #334155;
       --text-light: #64748b;
       --border-color: #cbd5e1;
       --bg-light: #f8fafc;
-      --bg-accent: #f0fdf4;
+      --bg-accent: #f5f3ff;
     }
 
     * {
@@ -50,17 +50,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #1e293b;
+      background: #0f172a;
       color: #fff;
       padding: 10px 18px;
       border-radius: 8px;
       box-shadow: 0 4px 14px rgba(0,0,0,0.3);
     }
     .screen-controls a, .screen-controls button {
-      background: var(--primary-green);
+      background: var(--primary-kotlin);
       color: #fff;
       border: none;
-      padding: 6px 14px;
+      padding: 7px 15px;
       font-size: 12px;
       font-weight: 600;
       border-radius: 6px;
@@ -72,7 +72,14 @@
       transition: background 0.2s;
     }
     .screen-controls a:hover, .screen-controls button:hover {
-      background: #1b5e20;
+      background: var(--kotlin-dark);
+    }
+    .screen-controls .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .screen-controls .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
     }
 
     /* ── A4 Page Definition ── */
@@ -81,7 +88,7 @@
       height: 297mm;
       max-height: 297mm;
       background: #ffffff;
-      padding: 11mm 14mm 9mm 14mm;
+      padding: 10.5mm 14mm 8.5mm 14mm;
       margin-bottom: 20px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.25);
       position: relative;
@@ -97,7 +104,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid var(--primary-green);
+      border-bottom: 2.5px solid var(--primary-kotlin);
       padding-bottom: 8px;
       margin-bottom: 8px;
       gap: 16px;
@@ -114,17 +121,29 @@
       text-transform: uppercase;
     }
     .title {
-      font-size: 10pt;
+      font-size: 9.8pt;
       font-weight: 600;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       margin-top: 2px;
       margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .title .badge {
+      font-size: 7.5pt;
+      background: #ede9fe;
+      color: var(--primary-kotlin);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 700;
     }
     .contact-grid {
       display: grid;
       grid-template-columns: auto 1fr;
       column-gap: 8px;
-      row-gap: 2px;
+      row-gap: 2.5px;
       font-size: 8.3pt;
       color: var(--text-muted);
     }
@@ -136,7 +155,7 @@
       color: inherit;
     }
     .contact-item svg {
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       flex-shrink: 0;
     }
     .contact-item a {
@@ -145,15 +164,15 @@
     }
     .contact-item a:hover {
       text-decoration: underline;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
     }
     .photo-container {
       width: 76px;
       height: 92px;
       border-radius: 6px;
       overflow: hidden;
-      border: 2px solid var(--primary-green);
-      box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
+      border: 2px solid var(--primary-kotlin);
+      box-shadow: 0 2px 6px rgba(127, 82, 255, 0.25);
       flex-shrink: 0;
       background: #f1f5f9;
     }
@@ -167,7 +186,7 @@
 
     /* ── Sections ── */
     .section {
-      margin-bottom: 8px;
+      margin-bottom: 7.5px;
     }
     .section-title {
       font-size: 9.3pt;
@@ -177,17 +196,17 @@
       letter-spacing: 0.05em;
       border-bottom: 1.5px solid #e2e8f0;
       padding-bottom: 2px;
-      margin-bottom: 5px;
+      margin-bottom: 4.5px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .section-title svg {
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
     }
 
     .text-block {
-      font-size: 8.6pt;
+      font-size: 8.55pt;
       text-align: justify;
       color: var(--text-muted);
       line-height: 1.34;
@@ -197,7 +216,7 @@
     .stack-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 8.4pt;
+      font-size: 8.35pt;
     }
     .stack-table tr {
       border-bottom: 1px solid #f1f5f9;
@@ -206,10 +225,10 @@
       border-bottom: none;
     }
     .stack-label {
-      width: 155px;
+      width: 175px;
       font-weight: 700;
       color: var(--brand-navy);
-      padding: 2.2px 6px 2.2px 0;
+      padding: 2px 6px 2px 0;
       vertical-align: top;
       display: inline-flex;
       align-items: center;
@@ -217,11 +236,11 @@
       white-space: nowrap;
     }
     .stack-label svg {
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       flex-shrink: 0;
     }
     .stack-desc {
-      padding: 2.2px 0;
+      padding: 2px 0;
       color: var(--text-muted);
       vertical-align: middle;
       line-height: 1.28;
@@ -232,7 +251,7 @@
 
     /* ── Experience ── */
     .exp-item {
-      margin-bottom: 7px;
+      margin-bottom: 6.5px;
     }
     .exp-item:last-child {
       margin-bottom: 0;
@@ -249,7 +268,7 @@
     }
     .exp-role-period {
       font-size: 8.3pt;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       font-weight: 600;
       margin-top: 1px;
       margin-bottom: 2px;
@@ -261,8 +280,8 @@
     .exp-bullets li {
       position: relative;
       padding-left: 11px;
-      margin-bottom: 1.8px;
-      font-size: 8.4pt;
+      margin-bottom: 1.6px;
+      font-size: 8.35pt;
       color: var(--text-muted);
       line-height: 1.28;
     }
@@ -270,7 +289,7 @@
       content: "▪";
       position: absolute;
       left: 0;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       font-size: 9pt;
       top: -0.5px;
     }
@@ -292,15 +311,15 @@
     }
     .edu-year {
       font-size: 8.3pt;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       font-weight: 600;
       white-space: nowrap;
     }
 
     .courses-box {
       margin-top: 4px;
-      background: var(--bg-light);
-      border: 1px solid #e2e8f0;
+      background: var(--bg-accent);
+      border: 1px solid #ddd6fe;
       border-radius: 4px;
       padding: 4px 8px;
     }
@@ -328,7 +347,7 @@
       content: "•";
       position: absolute;
       left: 0;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
     }
 
     /* ── Projects ── */
@@ -354,7 +373,7 @@
       content: "▸";
       position: absolute;
       left: 0;
-      color: var(--primary-green);
+      color: var(--primary-kotlin);
       font-size: 8.5pt;
     }
 
@@ -405,7 +424,7 @@
         break-after: page !important;
         height: 297mm !important;
         max-height: 297mm !important;
-        padding: 10mm 14mm 8mm 14mm !important;
+        padding: 9.5mm 14mm 7.5mm 14mm !important;
       }
       .page:last-child {
         page-break-after: avoid !important;
@@ -418,15 +437,15 @@
 
   <!-- Screen Controls -->
   <div class="screen-controls">
-    <div><strong>Currículo Profissional</strong> — Reinaldo Barreto (Java · PHP / Laravel · Node.js)</div>
+    <div><strong>Currículo Profissional</strong> — Reinaldo Barreto (Mobile Kotlin · KMP · Java Spring Boot)</div>
     <div style="display: flex; gap: 8px;">
-      <a href="curriculo.pdf" download="Curriculo_Reinaldo_Barreto.pdf">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-        Baixar PDF (2 Páginas)
+      <a href="index.html" class="btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Ver Portfólio
       </a>
       <button onclick="window.print()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        Imprimir
+        Imprimir / Salvar PDF
       </button>
     </div>
   </div>
@@ -440,16 +459,19 @@
     <header class="header">
       <div class="header-info">
         <h1 class="name">Reinaldo Barreto da Silva</h1>
-        <div class="title">Desenvolvedor Java / Spring Boot · PHP / Laravel · Node.js &amp; TypeScript</div>
+        <div class="title">
+          <span>Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Backend Java (Spring Boot 3)</span>
+          <span class="badge">Mobile &amp; Java</span>
+        </div>
         
         <div class="contact-grid">
           <div class="contact-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Salvador – BA (Disponível Remoto / Presencial)</span>
+            <span>Salvador – BA (Disponível Remoto / Presencial / Híbrido)</span>
           </div>
           <div class="contact-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <a href="mailto:reinaldobarreto31@gmail.com">reinaldobarreto31@gmail.com</a>
+            <a href="mailto:reinaldobarretosilva@gmail.com">reinaldobarretosilva@gmail.com</a>
           </div>
           <div class="contact-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -478,7 +500,7 @@
         Resumo Profissional
       </div>
       <p class="text-block">
-        Engenheiro de Software e Desenvolvedor Backend com sólida vivência no desenvolvimento, modernização e sustentação de sistemas corporativos de missão crítica para a gestão pública estadual e municipal. Especialista no ecossistema <strong>Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Hibernate, Maven)</strong> e <strong>PHP moderno (PHP 8+, Laravel, Eloquent ORM, Composer)</strong>, atuando também no desenvolvimento full-stack com <strong>Node.js, TypeScript e React / Vue.js</strong>. Domínio comprovado em arquitetura em microsserviços, modelagem e otimização de bancos de dados relacionais (PostgreSQL, MySQL, Oracle), autenticação OAuth2 / JWT, conteinerização com Docker e esteiras CI/CD.
+        Engenheiro de Software e Desenvolvedor especializado em ecossistema <strong>Mobile nativo com Kotlin (Android SDK, Jetpack Compose, MVVM, Coroutines, StateFlow, Room, Hilt)</strong> e arquitetura multiplataforma com <strong>Kotlin Multiplatform (KMP)</strong>, com sólida base backend corporativa em <strong>Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL, Docker)</strong>. Vivência consolidada na modernização e sustentação de sistemas de missão crítica para o setor público estadual (PRODEB, SSP-BA/Polícia Militar) e municipal. Concepção e desenvolvimento do aplicativo próprio <strong>Limpapp</strong> (Kotlin nativo &amp; KMP com upload de fotos ilustrativas), entregas pontuais em <strong>React Native</strong> e expansão contínua em <strong>iOS nativo com Swift &amp; SwiftUI</strong>.
       </p>
     </section>
 
@@ -489,7 +511,7 @@
         Objetivo
       </div>
       <p class="text-block">
-        Atuar como <strong>Desenvolvedor Java / Spring Boot</strong>, <strong>Desenvolvedor PHP / Laravel</strong> ou <strong>Desenvolvedor Full-Stack (Node.js / TypeScript)</strong>, aplicando sólidos conhecimentos em engenharia de software (Clean Architecture, SOLID, TDD), integração de APIs RESTful e persistência relacional na construção e sustentação de aplicações corporativas de alto impacto.
+        Atuar como <strong>Desenvolvedor Mobile (Kotlin / Android / KMP)</strong> ou <strong>Desenvolvedor Mobile &amp; Backend Java Spring</strong>, aplicando princípios de Clean Architecture, MVVM, SOLID, TDD e persistência reativa na construção de aplicativos fluidos, escaláveis e integrados a APIs robustas.
       </p>
     </section>
 
@@ -503,52 +525,52 @@
         <tbody>
           <tr>
             <td class="stack-label">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+              1º Foco (Mobile Nativo &amp; KMP):
+            </td>
+            <td class="stack-desc"><strong>Kotlin Moderno, Jetpack Compose, Kotlin Multiplatform (KMP), Android SDK, MVVM, Coroutines, StateFlow, Room Database, Hilt, Koin, Material Design 3, React Native (pontual).</strong></td>
+          </tr>
+          <tr>
+            <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              1º Foco (Java Enterprise):
+              2º Foco (Backend Java Enterprise):
             </td>
-            <td class="stack-desc"><strong>Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, Spring Cloud, Hibernate, Maven, JUnit 5, Mockito, APIs RESTful, Swagger/OpenAPI.</strong></td>
+            <td class="stack-desc"><strong>Java 17 / 21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, OAuth2, Hibernate, Maven, APIs RESTful, OpenAPI 3 / Swagger.</strong></td>
           </tr>
           <tr>
             <td class="stack-label">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
-              2º Foco (PHP &amp; Laravel):
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+              3º Foco (iOS Nativo em Estudo):
             </td>
-            <td class="stack-desc"><strong>PHP 8+, Laravel 10/11, Eloquent ORM, Composer, Blade, Artisan, PHPUnit, integrações de APIs REST e portais corporativos (LAMPP IT e Freelance).</strong></td>
-          </tr>
-          <tr>
-            <td class="stack-label">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m16 18 2-2-2-2"/><path d="m8 6-2 2 2 2"/></svg>
-              3º Foco (Node &amp; Front-end):
-            </td>
-            <td class="stack-desc"><strong>Node.js, TypeScript 5, Express, APIs RESTful, React, Vue.js, Angular, HTML5, CSS3, Tailwind CSS.</strong></td>
+            <td class="stack-desc"><strong>Swift 5/6, SwiftUI, UIKit (fundamentos), Xcode, Apple Human Interface Guidelines (HIG), interoperabilidade KMP.</strong></td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
               Bancos de Dados:
             </td>
-            <td class="stack-desc"><strong>PostgreSQL, MySQL, Oracle</strong> (modelagem relacional, queries avançadas, índices e transações ACID).</td>
+            <td class="stack-desc"><strong>PostgreSQL, MySQL, SQLite, Room, SQLDelight</strong> (modelagem relacional, queries avançadas, índices e transações ACID).</td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
               Testes e Qualidade:
             </td>
-            <td class="stack-desc">TDD, JUnit 5, Mockito, PHPUnit, testes unitários, testes de integração e Clean Code.</td>
+            <td class="stack-desc">TDD, JUnit 5, Mockito, testes unitários e de integração, Clean Code, Clean Architecture e refatoração contínua.</td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
               DevOps e Ambientes:
             </td>
-            <td class="stack-desc"><strong>Docker, Git, GitHub Actions, Linux (Ubuntu/Debian)</strong>, redes, virtualização, Nginx e Apache.</td>
+            <td class="stack-desc"><strong>Docker, Git / GitHub Flow, CI/CD (GitHub Actions), Linux (Ubuntu/Debian)</strong>, Nginx, Apache e virtualização.</td>
           </tr>
           <tr>
             <td class="stack-label">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
               Metodologias &amp; Práticas:
             </td>
-            <td class="stack-desc">Scrum, Kanban, Clean Architecture, SOLID, microsserviços, 12-Factor Apps e CI/CD.</td>
+            <td class="stack-desc">Scrum, Kanban, Clean Architecture, MVVM, SOLID, microsserviços, 12-Factor Apps e desenvolvimento orientado a testes.</td>
           </tr>
         </tbody>
       </table>
@@ -568,11 +590,10 @@
         </div>
         <div class="exp-role-period">Analista de Sistemas e Desenvolvedor (Consultor IV) | Março/2024 – Setembro/2024 (6 meses)</div>
         <ul class="exp-bullets">
-          <li>Desenvolveu e manteve soluções web e backend enterprise para órgãos públicos estaduais do Governo da Bahia.</li>
-          <li>Utilizou <strong>Java, Spring Boot, Java EE, Struts e JSF</strong> na construção e otimização de sistemas corporativos de alta demanda.</li>
-          <li>Colaborou na arquitetura e implementação de funcionalidades complexas, incluindo soluções backend escaláveis em microsserviços Spring.</li>
-          <li>Realizou modelagem relacional, otimização de consultas e rotinas transacionais com <strong>PostgreSQL</strong>.</li>
-          <li>Atuou em equipe ágil multidisciplinar orientada a Scrum, versionamento com Git Flow e entregas contínuas.</li>
+          <li>Desenvolveu e manteve soluções corporativas enterprise para órgãos públicos estaduais do Governo da Bahia.</li>
+          <li>Utilizou <strong>Java 17/21+, Spring Boot 3 e microsserviços</strong> na estruturação de APIs de alta performance consumidas por aplicações web e mobile.</li>
+          <li>Colaborou na arquitetura de software, desacoplamento de serviços e otimização de endpoints de dados com persistência em <strong>PostgreSQL</strong>.</li>
+          <li>Atuou em equipe ágil multidisciplinar orientada a Scrum, versionamento com Git Flow e entregas contínuas com foco em qualidade de código.</li>
         </ul>
       </div>
 
@@ -583,11 +604,10 @@
         </div>
         <div class="exp-role-period">Analista de Sistemas e Desenvolvedor de Software | Março/2022 – Maio/2022 (3 meses)</div>
         <ul class="exp-bullets">
-          <li>Construiu APIs RESTful escaláveis com <strong>Spring Boot, Java EE, Struts e JSF</strong> integradas a frontends modernos.</li>
-          <li>Atuou no desenvolvimento e manutenção de sistemas corporativos e portais web utilizando <strong>PHP e Laravel</strong>.</li>
-          <li>Contribuiu para soluções de segurança pública e sistemas críticos para SSP-BA (Secretaria de Segurança Pública) e Polícia Militar.</li>
-          <li>Implementou autenticação e controle de permissões robustos via <strong>OAuth2 e Spring Security</strong>.</li>
-          <li>Atuou no Sistema de Auditoria Interna com persistência em <strong>PostgreSQL</strong> e ambientes Linux.</li>
+          <li>Construiu APIs RESTful escaláveis com <strong>Spring Boot e Java EE</strong> integradas a clientes móveis e interfaces web dinâmicas.</li>
+          <li>Contribuiu para soluções de segurança pública e sistemas de missão crítica voltados à SSP-BA (Secretaria de Segurança Pública) e Polícia Militar.</li>
+          <li>Implementou autenticação robusta e controle de permissões por perfis com <strong>OAuth2 e Spring Security</strong>.</li>
+          <li>Atuou no Sistema de Auditoria Interna com persistência em <strong>PostgreSQL</strong> e servidores Linux de produção.</li>
         </ul>
       </div>
     </section>
@@ -595,7 +615,7 @@
     <!-- FOOTER PAGE 1 -->
     <footer class="page-footer">
       <span>Reinaldo Barreto da Silva</span>
-      <span>Currículo Profissional | Página 1 de 2</span>
+      <span>Currículo Profissional | Mobile Kotlin &amp; Java Spring | Página 1 de 2</span>
     </footer>
   </div>
 
@@ -604,7 +624,7 @@
   <!-- ══════════════════════════════════════════════════════════════ -->
   <div class="page" id="page-2">
     
-    <!-- EXPERIÊNCIA PROFISSIONAL (CONTINUAÇÃO - EDZA & FREELANCE) -->
+    <!-- EXPERIÊNCIA PROFISSIONAL (CONTINUAÇÃO) -->
     <section class="section">
       <div class="section-title">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -618,26 +638,24 @@
         </div>
         <div class="exp-role-period">Analista de Sistemas e Desenvolvedor de Software | Novembro/2019 – Março/2022 (2 anos e 5 meses)</div>
         <ul class="exp-bullets">
-          <li>Desenvolveu soluções backend em <strong>Java EE, JSP, Struts e Spring Boot</strong> para sistemas de gestão pública municipal (Tributário, Contábil, RH e NF-e).</li>
-          <li>Criou e manteve APIs REST integradas a frontends dinâmicos em <strong>Angular e Vue.js</strong>.</li>
-          <li>Atuou na sustentação, migração de funcionalidades legadas e versionamento estruturado com Git.</li>
-          <li>Colaborou ativamente em equipes ágeis com Scrum na evolução do ERP Municipal do Poder Executivo.</li>
-          <li>Prestou atendimento técnico e sustentação para prefeituras municipais de Ilhéus, Juazeiro, Candeias, Porto Seguro e Lauro de Freitas.</li>
-          <li>Administrou servidores Linux Ubuntu, realizou rotinas de automação em <strong>Shell Script</strong> e manutenção de bancos <strong>MySQL e PostgreSQL</strong>.</li>
+          <li>Desenvolveu soluções backend em <strong>Java EE e Spring Boot</strong> para ERP municipal (módulos Tributário, Contábil, RH e NF-e).</li>
+          <li>Criou e manteve APIs REST integradas a frontends reativos (Angular e Vue.js), garantindo integridade transacional e alta disponibilidade.</li>
+          <li>Colaborou com equipes ágeis em cerimônias Scrum e prestou sustentação técnica a prefeituras de grande porte na Bahia.</li>
+          <li>Administrou ambientes de banco de dados relacionais <strong>MySQL e PostgreSQL</strong>, scripts de automação e rotinas de deploy Linux.</li>
         </ul>
       </div>
 
-      <!-- FREELANCE -->
+      <!-- FREELANCE & MOBILE -->
       <div class="exp-item" style="margin-top: 5px;">
         <div class="exp-header">
-          <span class="exp-company">Desenvolvedor Full-Stack (Projetos Comerciais / Freelance)</span>
+          <span class="exp-company">Desenvolvimento Mobile &amp; Projetos Comerciais (Freelance)</span>
         </div>
-        <div class="exp-role-period">Desenvolvedor Backend &amp; Web | Períodos Intermitentes</div>
+        <div class="exp-role-period">Desenvolvedor Mobile &amp; Backend | Períodos Intermitentes / Em Andamento</div>
         <ul class="exp-bullets">
-          <li>Desenvolvimento de sistemas corporativos e portais web sob medida utilizando <strong>PHP 8, Laravel e Vue.js</strong>.</li>
-          <li>Construção de APIs RESTful estruturadas em camadas em <strong>Java (Spring Boot)</strong> e <strong>Node.js / TypeScript</strong>.</li>
-          <li>Modelagem relacional, migrations e persistência performática com <strong>MySQL e PostgreSQL</strong>.</li>
-          <li>Implementação de autenticação via JWT, integração com gateways de pagamento e deploy conteinerizado com Docker.</li>
+          <li>Concepção, arquitetura e desenvolvimento do aplicativo mobile nativo <strong>Limpapp</strong> utilizando <strong>Kotlin, Jetpack Compose e Kotlin Multiplatform (KMP)</strong>.</li>
+          <li>Implementou no Limpapp o fluxo completo de <strong>upload e visualização de fotos ilustrativas dos serviços (antes/depois)</strong>, persistência offline com Room e integração com backend Spring Boot.</li>
+          <li>Desenvolveu aplicações móveis pontuais com <strong>React Native</strong> e sites comerciais / portais institucionais sob demanda para clientes.</li>
+          <li>Construção de APIs RESTful estruturadas em camadas com <strong>Spring Boot 3</strong>, autenticação JWT e deploy conteinerizado com Docker.</li>
         </ul>
       </div>
     </section>
@@ -668,12 +686,12 @@
       <div class="courses-box">
         <div class="courses-title">Cursos de Aperfeiçoamento Especializados:</div>
         <ul class="courses-list">
-          <li><strong>APIs RESTful com Spring Boot 3 e Java 17+ – Udemy</strong></li>
-          <li><strong>PHP 8 e Laravel Completo com Projetos Práticos – Udemy</strong></li>
-          <li>Node.js, TypeScript e Arquitetura de Microsserviços – Udemy</li>
-          <li>Testes Unitários e TDD com JUnit 5 e Mockito – Udemy</li>
-          <li>Docker e Kubernetes na Prática – Udemy</li>
-          <li>Spring Cloud e Microsserviços Corporativos – Udemy</li>
+          <li><strong>Formação Kotlin para Android: Jetpack Compose, MVVM e Coroutines</strong></li>
+          <li><strong>Kotlin Multiplatform (KMP): Compartilhamento de Código entre Android e iOS</strong></li>
+          <li><strong>APIs RESTful com Java 21 e Spring Boot 3 Enterprise – Udemy</strong></li>
+          <li>Testes Automatizados e TDD com JUnit 5 e Mockito – Udemy</li>
+          <li>Docker e Orquestração de Containers para Desenvolvedores – Udemy</li>
+          <li>Desenvolvimento iOS Nativo com Swift &amp; SwiftUI (em aprendizado contínuo)</li>
         </ul>
       </div>
     </section>
@@ -685,14 +703,14 @@
         Projetos em Destaque no Portfólio
       </div>
       <div class="project-notice">
-        Projetos de engenharia e portfólio prático com código disponível em github.com/reinaldobarreto31.
+        Código-fonte, arquitetura e demonstrações disponíveis em github.com/reinaldobarreto31 e no portfólio online.
       </div>
       <ul class="project-bullets">
-        <li><strong>API RESTful Enterprise em Java &amp; Spring Boot 3:</strong> Arquitetura limpa em camadas (Controller, Service, Repository), Spring Security com JWT, documentação Swagger/OpenAPI, testes automatizados com JUnit 5 e persistência em PostgreSQL.</li>
-        <li><strong>Plataforma Corporativa em PHP 8 &amp; Laravel 11:</strong> Aplicação web moderna com Eloquent ORM, painel administrativo Blade, autenticação segura, validação de regras de negócio e banco relacional MySQL.</li>
-        <li><strong>Full-Stack Hub em Node.js &amp; TypeScript:</strong> APIs RESTful construídas com TypeScript e Express/NestJS, consumo integrado com React e Tailwind CSS, conteinerização com Docker e esteira CI/CD.</li>
-        <li><strong>Gestão de Microsserviços com Spring Cloud:</strong> Implementação de Service Discovery (Eureka), API Gateway, circuit breaker (Resilience4j) e comunicação assíncrona.</li>
-        <li><strong>Aplicativo Mobile em Kotlin Android:</strong> Gestão de tarefas e consumo de APIs backend com arquitetura MVVM, persistência local Room e componentes reativos.</li>
+        <li><strong>Limpapp (Mobile Nativo Kotlin &amp; KMP · Em desenvolvimento):</strong> Aplicativo multi-serviços com Jetpack Compose, módulo interativo de upload de fotos ilustrativas do serviço (antes e depois), cache e sincronização offline com Room e integração com API Spring Boot 3.</li>
+        <li><strong>App Android Nativo Kotlin (Jetpack Compose &amp; Clean Architecture):</strong> Aplicativo seguindo diretrizes oficiais da Google: MVVM, StateFlow, Coroutines, Room Database, injeção de dependência via Hilt e consumo reativo de APIs REST.</li>
+        <li><strong>Camada Compartilhada com Kotlin Multiplatform (KMP):</strong> Módulo unificado de modelos de domínio, regras de negócio e camada HTTP com Ktor Client e Kotlinx.Serialization compartilhado entre plataformas mantendo UI nativa.</li>
+        <li><strong>API RESTful Enterprise em Java 21 &amp; Spring Boot 3:</strong> Microsserviços e backend corporativo com Spring Security, autenticação JWT, documentação Swagger/OpenAPI 3, JUnit 5 e persistência em PostgreSQL conteinerizado com Docker.</li>
+        <li><strong>App Cross-Platform em React Native (Pontual):</strong> Solução mobile multiplataforma sob medida desenvolvida com TypeScript e Expo integrada a endpoints REST.</li>
       </ul>
     </section>
 
@@ -703,16 +721,16 @@
         Idiomas
       </div>
       <ul class="lang-list">
-        <li><strong>Português:</strong> técnico fluente — leitura, escrita e fala</li>
-        <li><strong>Inglês:</strong> técnico intermediário — leitura, escrita e fala</li>
-        <li><strong>Espanhol:</strong> básico — leitura, escrita e fala</li>
+        <li><strong>Português:</strong> nativo / fluente — leitura, escrita e conversação</li>
+        <li><strong>Inglês:</strong> intermediário técnico — leitura de documentações, termos técnicos e escrita</li>
+        <li><strong>Espanhol:</strong> básico — leitura e compreensão</li>
       </ul>
     </section>
 
     <!-- FOOTER PAGE 2 -->
     <footer class="page-footer">
       <span>Reinaldo Barreto da Silva</span>
-      <span>Currículo Profissional | Página 2 de 2</span>
+      <span>Currículo Profissional | Mobile Kotlin &amp; Java Spring | Página 2 de 2</span>
     </footer>
   </div>
 

@@ -1,0 +1,349 @@
+{
+  "profile": {
+    "name": "Reinaldo Barreto",
+    "fullName": "Reinaldo Barreto da Silva",
+    "headline": "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) & Backend Java (Spring Boot 3)",
+    "tagline": "Especialista em desenvolvimento mobile nativo com Kotlin, Jetpack Compose e Kotlin Multiplatform (KMP), integrado a APIs robustas em Java 21 e Spring Boot 3. Entregas pontuais em React Native e aprendizado contínuo em iOS nativo com Swift.",
+    "location": "Salvador / BA, Brasil",
+    "availability": "Disponível para oportunidades Remotas e Presenciais / Híbridas",
+    "phone": "+55 (71) 99182-3131",
+    "email": "reinaldobarretosilva@gmail.com",
+    "linkedin": "https://linkedin.com/in/reinaldo-barreto-2a4ba2116",
+    "github": "https://github.com/reinaldobarreto31",
+    "photo": "foto-reinaldo.png",
+    "about": "Engenheiro de Software e Desenvolvedor focado em ecossistema Mobile nativo e Backend moderno. Atuação em desenvolvimento de aplicativos Android com Kotlin, Jetpack Compose, Coroutines, StateFlow, Room e injeção com Hilt, além de arquiteturas compartilhadas com Kotlin Multiplatform (KMP). Sólida base em backend corporativo com Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL e Docker, construída em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras) e produtos comerciais. Em constante expansão no desenvolvimento iOS nativo com Swift/SwiftUI e entregas sob medida em sites freelance.",
+    "goal": "Atuar como Desenvolvedor Mobile (Kotlin / KMP / Android) ou Desenvolvedor Mobile & Backend Java Spring Boot, projetando aplicativos nativos de alto desempenho, arquitetura limpa (Clean Architecture / MVVM), persistência reativa, testes automatizados e integração contínua."
+  },
+  "auth": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "stack": {
+    "intro": "1º Foco: Mobile Nativo (Kotlin, KMP, Jetpack Compose e React Native pontual) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: iOS Nativo com Swift & SwiftUI (em estudo ativo).",
+    "pillars": [
+      {
+        "level": "1º Foco",
+        "title": "Mobile Nativo & KMP",
+        "subtitle": "Kotlin · Compose · Multiplatform",
+        "color": "#7F52FF",
+        "items": [
+          "Kotlin Moderno",
+          "Jetpack Compose",
+          "Kotlin Multiplatform (KMP)",
+          "Coroutines & StateFlow",
+          "Android SDK & Lifecycle",
+          "Room Database & SQLDelight",
+          "Hilt & Koin DI",
+          "React Native (pontual)"
+        ]
+      },
+      {
+        "level": "2º Foco",
+        "title": "Backend Java Enterprise",
+        "subtitle": "Spring Boot 3 · APIs RESTful",
+        "color": "#6DB33F",
+        "items": [
+          "Java 17 / Java 21+",
+          "Spring Boot 3",
+          "Spring Security & JWT",
+          "Spring Data JPA / Hibernate",
+          "PostgreSQL & MySQL",
+          "OpenAPI / Swagger 3",
+          "Docker & Containers",
+          "JUnit 5 & Mockito"
+        ]
+      },
+      {
+        "level": "3º Foco (Em Estudo)",
+        "title": "iOS Nativo em Expansão",
+        "subtitle": "Swift · SwiftUI · Apple HIG",
+        "color": "#F05138",
+        "items": [
+          "Swift 5 / 6",
+          "SwiftUI",
+          "UIKit Básico",
+          "Xcode & Simulators",
+          "Apple HIG",
+          "Integração KMP com iOS"
+        ]
+      }
+    ]
+  },
+  "skills": [
+    { "name": "Kotlin & Jetpack Compose", "level": 92 },
+    { "name": "Kotlin Multiplatform (KMP)", "level": 84 },
+    { "name": "Android SDK (MVVM, Coroutines, StateFlow, Room, Hilt)", "level": 90 },
+    { "name": "Java 17 / 21+ & Spring Boot 3", "level": 95 },
+    { "name": "Spring Security, JWT & OAuth2", "level": 92 },
+    { "name": "APIs RESTful & Documentação OpenAPI 3 / Swagger", "level": 94 },
+    { "name": "PostgreSQL, MySQL & Modelagem Relacional", "level": 92 },
+    { "name": "Clean Architecture, SOLID & Padrões de Projeto", "level": 90 },
+    { "name": "Testes Automatizados (JUnit 5, Mockito, TDD)", "level": 88 },
+    { "name": "Docker & Ambientes Conteinerizados", "level": 86 },
+    { "name": "React Native (entregas pontuais cross-platform)", "level": 72 },
+    { "name": "iOS / Swift & SwiftUI (em estudo / aprendendo)", "level": 50 }
+  ],
+  "practices": [
+    "Clean Architecture",
+    "MVVM (Model-View-ViewModel)",
+    "Kotlin Multiplatform (KMP)",
+    "SOLID Principles",
+    "TDD & Testes Automatizados",
+    "APIs RESTful Resilientes",
+    "Git Flow & Versionamento Estruturado",
+    "CI/CD com GitHub Actions",
+    "Scrum & Metodologias Ágeis"
+  ],
+  "projects": [
+    {
+      "id": "limpapp",
+      "featured": true,
+      "status": "Em desenvolvimento",
+      "category": "Mobile Nativo · Kotlin & KMP",
+      "title": "Limpapp — Aplicativo de Serviços & Limpeza",
+      "summary": "Aplicativo mobile nativo desenvolvido em Kotlin e Kotlin Multiplatform (KMP), com Jetpack Compose, fluxo interativo de upload de fotos ilustrativas dos serviços (antes e depois do trabalho) e integração com backend robusto em Spring Boot 3.",
+      "description": "O Limpapp conecta clientes e profissionais de serviços de limpeza residencial e comercial. O app possui catálogo de serviços, agenda de atendimentos, orçamentos e um módulo de portfólio visual para o prestador: permite capturar ou subir fotos ilustrativas do ambiente antes e depois da execução do serviço, com compressão local, sincronização offline com Room e integração segura a uma API Java Spring Boot com PostgreSQL.",
+      "tags": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Kotlin Multiplatform (KMP)",
+        "Upload de Fotos",
+        "Room Database",
+        "Coroutines",
+        "Spring Boot 3",
+        "PostgreSQL",
+        "Em desenvolvimento"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "kotlin-android-native",
+      "featured": true,
+      "status": "Mobile Nativo",
+      "category": "Android Nativo · Kotlin",
+      "title": "App Android Nativo com Jetpack Compose & Clean Arch",
+      "summary": "Aplicativo Android moderno construído 100% em Kotlin com Jetpack Compose, arquitetura MVVM, StateFlow, Coroutines, Room para persistência local e injeção de dependência com Hilt.",
+      "description": "Implementação completa seguindo o guia oficial de arquitetura da Google: camada de apresentação declarativa com Material 3, repositório reativo, cache local em Room, comunicação com API REST em Spring Boot e testes unitários.",
+      "tags": [
+        "Kotlin",
+        "Jetpack Compose",
+        "MVVM",
+        "Coroutines & Flow",
+        "Room",
+        "Hilt",
+        "Material 3"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "spring-boot-enterprise-api",
+      "featured": true,
+      "status": "Backend Enterprise",
+      "category": "Java 21 · Spring Boot 3",
+      "title": "API RESTful Enterprise com Java 21 & Spring Boot 3",
+      "summary": "API corporativa de alto desempenho com Spring Boot 3, Spring Security com JWT, persistência com Spring Data JPA, banco PostgreSQL, documentação Swagger/OpenAPI 3 e cobertura de testes JUnit 5.",
+      "description": "Backend desenhado com Clean Architecture para atender clientes mobile (Android/KMP) e web. Inclui paginação, filtros dinâmicos, tratamento global de exceções, auditoria de dados e deploy em containers Docker.",
+      "tags": [
+        "Java 21",
+        "Spring Boot 3",
+        "Spring Security",
+        "JWT",
+        "PostgreSQL",
+        "Docker",
+        "JUnit 5",
+        "OpenAPI 3"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "kmp-shared-architecture",
+      "featured": true,
+      "status": "Multiplataforma",
+      "category": "Kotlin Multiplatform (KMP)",
+      "title": "Camada Compartilhada com Kotlin Multiplatform (KMP)",
+      "summary": "Módulo compartilhado KMP integrando modelos de domínio, regras de negócio e camada HTTP com Ktor Client, reduzindo duplicação entre Android nativo e futuras metas iOS.",
+      "description": "Arquitetura compartilhada com KMP onde a lógica de rede, serialização (Kotlinx.Serialization) e armazenamento de dados são unificados, mantendo a camada de interface visual 100% nativa na plataforma de destino.",
+      "tags": [
+        "KMP",
+        "Kotlin",
+        "Ktor Client",
+        "Kotlinx.Serialization",
+        "Multiplatform",
+        "Clean Arch"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "react-native-cross-app",
+      "featured": false,
+      "status": "Cross-Platform",
+      "category": "React Native (pontual)",
+      "title": "App Mobile Cross-Platform em React Native",
+      "summary": "Aplicativo multiplataforma para clientes sob demanda com React Native, Expo e TypeScript, integrando autenticação, navegação fluida e consumo de APIs REST.",
+      "description": "Entregas pontuais quando o projeto prioriza um único código base JavaScript/TypeScript para lançamento rápido em iOS e Android. A preferência contínua do perfil permanece no ecossistema nativo Kotlin / KMP.",
+      "tags": [
+        "React Native",
+        "TypeScript",
+        "Expo",
+        "Mobile Cross-Platform",
+        "REST API"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "ios-swift-studies",
+      "featured": false,
+      "status": "Em estudo ativo",
+      "category": "iOS Nativo · Swift",
+      "title": "Estudos Práticos de iOS Nativo com Swift & SwiftUI",
+      "summary": "Laboratório de aprendizado contínuo explorando Swift moderno, SwiftUI, Xcode, arquitetura MVVM no ecossistema Apple e integração com módulos KMP.",
+      "description": "Projetos práticos focados em interfaces declarativas no iOS, navegação nativa, consumo de APIs backend em Spring Boot e interoperabilidade com código compartilhado Kotlin.",
+      "tags": [
+        "Swift",
+        "SwiftUI",
+        "Xcode",
+        "iOS Nativo",
+        "Apple HIG",
+        "Em estudo"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "spring-cloud-microservices",
+      "featured": false,
+      "status": "Backend Distribuído",
+      "category": "Microsserviços · Spring Cloud",
+      "title": "Arquitetura Distribuída de Microsserviços com Spring Cloud",
+      "summary": "Ecossistema de microsserviços integrando API Gateway, Service Discovery com Netflix Eureka, Circuit Breaker com Resilience4j e conteinerização Docker.",
+      "description": "Projeto demonstrativo de resiliência e escalabilidade backend: roteamento dinâmico, tolerância a falhas, balanceamento de carga e observabilidade em ambiente corporativo.",
+      "tags": [
+        "Spring Cloud",
+        "API Gateway",
+        "Eureka",
+        "Resilience4j",
+        "Docker",
+        "Microsserviços"
+      ],
+      "repo": "https://github.com/reinaldobarreto31",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    }
+  ],
+  "freelanceSites": [
+    {
+      "id": "freelance-site-institucional",
+      "title": "Site Institucional Corporativo",
+      "summary": "Desenvolvimento completo de site institucional sob medida para empresa local: layout moderno, páginas institucionais, formulários de contato com validação, SEO e responsividade total.",
+      "url": "",
+      "tags": ["Freelance", "Site Institucional", "Responsivo", "UI/UX", "SEO"],
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "freelance-landing-page",
+      "title": "Landing Page de Conversão e Captação de Clientes",
+      "summary": "Landing page de alta conversão para negócio de prestação de serviços com seções de apresentação, galeria de trabalhos anteriores, depoimentos e integração com WhatsApp.",
+      "url": "",
+      "tags": ["Freelance", "Landing Page", "Conversão", "WhatsApp", "Mobile First"],
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "freelance-portal-catalogo",
+      "title": "Portal de Catálogo de Serviços e Produtos",
+      "summary": "Vitrine online dinâmica com catálogo de itens, filtros por categoria, visualização detalhada de fotos e envio direto de propostas comerciais sob demanda.",
+      "url": "",
+      "tags": ["Freelance", "Catálogo Web", "Vitrine de Serviços", "Responsivo"],
+      "cover": "",
+      "gallery": []
+    }
+  ],
+  "experience": [
+    {
+      "id": "prodeb",
+      "role": "Analista de Sistemas e Desenvolvedor (Consultor IV)",
+      "company": "PRODEB — Companhia de Processamento de Dados do Estado da Bahia",
+      "period": "Mar/2024 – Set/2024",
+      "location": "Salvador / BA (Presencial / Híbrido)",
+      "description": "Desenvolvimento e modernização de soluções backend enterprise e sustentação de sistemas corporativos para órgãos públicos do Governo da Bahia. Atuação com Java 17/21+, Spring Boot 3 e Java EE na arquitetura e implementação de microsserviços de alta demanda e APIs RESTful integradas a aplicações web e mobile. Modelagem de dados, otimização de consultas e rotinas transacionais com PostgreSQL em times ágeis orientados a Scrum e Git Flow.",
+      "tags": ["Java 17/21+", "Spring Boot 3", "PostgreSQL", "APIs RESTful", "Microsserviços", "Scrum"]
+    },
+    {
+      "id": "lampp",
+      "role": "Analista de Sistemas e Desenvolvedor de Software",
+      "company": "LAMPP IT Solutions",
+      "period": "Mar/2022 – Mai/2022",
+      "location": "Salvador / BA",
+      "description": "Construção de APIs RESTful escaláveis em Spring Boot e Java EE para projetos de missão crítica voltados à segurança pública (SSP-BA / Polícia Militar). Implementação de regras de autenticação e controle granular de permissões com OAuth2 e Spring Security, auditoria interna e persistência performática em PostgreSQL sobre servidores Linux.",
+      "tags": ["Java EE", "Spring Boot", "Spring Security", "OAuth2", "PostgreSQL", "Linux"]
+    },
+    {
+      "id": "edza",
+      "role": "Analista de Sistemas e Desenvolvedor de Software",
+      "company": "EDZA Planejamento Consultoria e Informática LTDA",
+      "period": "Nov/2019 – Mar/2022",
+      "location": "Salvador / BA",
+      "description": "Desenvolvimento backend em Java EE e Spring Boot para ERP corporativo municipal (módulos Tributário, Contábil, Recursos Humanos e Nota Fiscal Eletrônica). Criação e manutenção de APIs RESTful consumidas por frontends modernos, sustentação e migração de rotinas em bancos MySQL e PostgreSQL para prefeituras municipais em equipe ágil.",
+      "tags": ["Java EE", "Spring Boot", "APIs REST", "MySQL", "PostgreSQL", "Scrum"]
+    },
+    {
+      "id": "freelance-mobile",
+      "role": "Desenvolvedor Mobile & Web (Projetos Comerciais / Freelance)",
+      "company": "Projetos Comerciais Sob Demanda & Limpapp",
+      "period": "Períodos Intermitentes / Em Andamento",
+      "location": "Salvador / BA & Remoto",
+      "description": "Concepção e desenvolvimento do aplicativo mobile nativo Limpapp em Kotlin e Kotlin Multiplatform (KMP), incluindo módulo de captura e upload de fotos ilustrativas dos serviços com persistência local e sincronização backend Spring Boot. Desenvolvimento de sites institucionais, landing pages e portais comerciais para clientes sob demanda.",
+      "tags": ["Kotlin", "KMP", "Jetpack Compose", "Spring Boot 3", "Sites Freelance", "Mobile"]
+    }
+  ],
+  "education": [
+    {
+      "title": "CST em Análise e Desenvolvimento de Sistemas",
+      "place": "Centro Universitário Jorge Amado (UNIJORGE)",
+      "period": "2021 – 2023"
+    },
+    {
+      "title": "Técnico em Processamento de Dados / Informática",
+      "place": "CEEP Newton Sucupira",
+      "period": "1994 – 1996"
+    }
+  ],
+  "courses": [
+    "Formação Kotlin para Android: Jetpack Compose, MVVM e Coroutines",
+    "Kotlin Multiplatform (KMP): Compartilhamento de Código entre Android e iOS",
+    "APIs RESTful com Java 21 e Spring Boot 3 Enterprise — Udemy",
+    "Testes Automatizados e TDD com JUnit 5 e Mockito — Udemy",
+    "Docker e Orquestração de Containers para Desenvolvedores — Udemy",
+    "Desenvolvimento iOS Nativo com Swift & SwiftUI — em aprendizado ativo"
+  ],
+  "languages": [
+    { "name": "Português", "level": "Nativo / Fluente (leitura, escrita e conversação)", "percent": 100 },
+    { "name": "Inglês", "level": "Intermediário técnico (leitura de documentações e escrita)", "percent": 65 },
+    { "name": "Espanhol", "level": "Básico", "percent": 40 }
+  ],
+  "githubPublish": {
+    "owner": "reinaldobarreto31",
+    "repo": "reinaldobarreto31.github.io",
+    "branch": "main",
+    "jsonPath": "data/portfolio.json"
+  }
+}
