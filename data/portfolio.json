@@ -11,7 +11,7 @@
     "linkedin": "https://linkedin.com/in/reinaldo-barreto-2a4ba2116",
     "github": "https://github.com/reinaldobarreto31",
     "photo": "foto-reinaldo.png",
-    "about": "Engenheiro de Software e Desenvolvedor focado em ecossistema Mobile nativo e Backend moderno. Atuação em desenvolvimento de aplicativos Android com Kotlin, Jetpack Compose, Coroutines, StateFlow, Room e injeção com Hilt, além de arquiteturas compartilhadas com Kotlin Multiplatform (KMP). Sólida base em backend corporativo com Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL e Docker, construída em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras) e produtos comerciais. Em constante expansão no desenvolvimento iOS nativo com Swift/SwiftUI e entregas sob medida em sites freelance.",
+    "about": "Engenheiro de Software e Desenvolvedor focado em ecossistema Mobile nativo e Backend moderno. Atuação em desenvolvimento de aplicativos Android com Kotlin, Jetpack Compose, Coroutines, StateFlow, Room e injeção com Hilt, além de arquiteturas compartilhadas com Kotlin Multiplatform (KMP). Sólida base em backend corporativo com Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL e Docker, construída em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras) e produtos comerciais. Experiência comprovada como Analista de TI e suporte técnico especializado a usuários corporativos e Auditores Fiscais Municipais na EDZA. Em constante expansão no desenvolvimento iOS nativo com Swift/SwiftUI e entregas sob medida em sites freelance.",
     "goal": "Atuar como Desenvolvedor Mobile (Kotlin / KMP / Android) ou Desenvolvedor Mobile & Backend Java Spring Boot, projetando aplicativos nativos de alto desempenho, arquitetura limpa (Clean Architecture / MVVM), persistência reativa, testes automatizados e integração contínua."
   },
   "auth": {
@@ -298,12 +298,12 @@
     },
     {
       "id": "edza",
-      "role": "Analista de Sistemas e Desenvolvedor de Software",
+      "role": "Analista de TI / Analista de Sistemas e Suporte Especializado",
       "company": "EDZA Planejamento Consultoria e Informática LTDA",
       "period": "Nov/2019 – Mar/2022",
       "location": "Salvador / BA",
-      "description": "Desenvolvimento backend em Java EE e Spring Boot para ERP corporativo municipal (módulos Tributário, Contábil, Recursos Humanos e Nota Fiscal Eletrônica). Criação e manutenção de APIs RESTful consumidas por frontends modernos, sustentação e migração de rotinas em bancos MySQL e PostgreSQL para prefeituras municipais em equipe ágil.",
-      "tags": ["Java EE", "Spring Boot", "APIs REST", "MySQL", "PostgreSQL", "Scrum"]
+      "description": "Atuação como Analista de TI e Desenvolvedor com suporte técnico especializado e atendimento direto a Auditores Fiscais do Município, servidores fazendários e operadores de prefeituras (Ilhéus, Juazeiro, Candeias, Lauro de Freitas, Porto Seguro). Resolução de incidentes críticos em tributação municipal (ISS, IPTU, ITBI), arrecadação e Nota Fiscal de Serviços Eletrônica (NFS-e). Desenvolvimento e sustentação de backend em Java EE e Spring Boot para o ERP municipal com persistência em MySQL e PostgreSQL.",
+      "tags": ["Analista de TI", "Suporte a Auditores Fiscais", "Java EE", "Spring Boot", "ERP Tributário", "NFS-e", "MySQL", "PostgreSQL"]
     },
     {
       "id": "freelance-mobile",
