@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#080f1a;border-radius:22px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;">
+  <defs>
+    <linearGradient id="px-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Android status bar -->
+  <text x="22" y="24" fill="#a1a1aa" font-size="11" font-weight="600">09:41</text>
+  <path d="M296 16h3v8h-3zM302 14h3v10h-3zM308 12h3v12h-3z" fill="#a1a1aa" />
+  <rect x="316" y="13" width="22" height="11" rx="3" fill="none" stroke="#a1a1aa" stroke-width="1.2" />
+  <rect x="318" y="15" width="14" height="7" rx="1.5" fill="#a1a1aa" />
+
+  <text x="22" y="62" fill="#ffffff" font-size="18" font-weight="800">PixPay Wallet</text>
+  <text x="22" y="80" fill="#5eead4" font-size="10.5">Android · Kotlin · Compose · Biometria</text>
+
+  <!-- Balance card -->
+  <rect x="18" y="96" width="324" height="150" rx="18" fill="url(#px-grad)" />
+  <text x="36" y="128" fill="#e0f2fe" font-size="12">Saldo disponivel</text>
+  <text x="36" y="164" fill="#ffffff" font-size="30" font-weight="800">R$ 4.870,25</text>
+  <text x="36" y="192" fill="#e0f2fe" font-size="11.5">Conta digital - ag. 0001 / cc 2351-7</text>
+
+  <!-- Quick actions -->
+  <rect x="30" y="200" width="86" height="34" rx="17" fill="#ffffff" fill-opacity="0.22" />
+  <text x="73" y="222" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">PIX</text>
+  <rect x="137" y="200" width="86" height="34" rx="17" fill="#ffffff" fill-opacity="0.22" />
+  <text x="180" y="222" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Transferir</text>
+  <rect x="244" y="200" width="86" height="34" rx="17" fill="#ffffff" fill-opacity="0.22" />
+  <text x="287" y="222" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Pagar</text>
+
+  <!-- Transactions -->
+  <text x="22" y="286" fill="#ffffff" font-size="13" font-weight="700">Ultimas transacoes</text>
+
+  <rect x="18" y="300" width="324" height="58" rx="14" fill="#111f35" />
+  <circle cx="46" cy="329" r="15" fill="#064e3b" />
+  <text x="46" y="334" fill="#34d399" font-size="14" font-weight="800" text-anchor="middle">+</text>
+  <text x="74" y="325" fill="#ffffff" font-size="13" font-weight="600">PIX recebido</text>
+  <text x="74" y="341" fill="#94a3b8" font-size="10.5">Maria Oliveira - hoje</text>
+  <text x="326" y="334" fill="#34d399" font-size="13" font-weight="700" text-anchor="end">+ R$ 850,00</text>
+
+  <rect x="18" y="366" width="324" height="58" rx="14" fill="#111f35" />
+  <circle cx="46" cy="395" r="15" fill="#7c2d12" />
+  <text x="46" y="400" fill="#fdba74" font-size="14" font-weight="800" text-anchor="middle">-</text>
+  <text x="74" y="391" fill="#ffffff" font-size="13" font-weight="600">Pagamento de conta</text>
+  <text x="74" y="407" fill="#94a3b8" font-size="10.5">Energia eletrica - hoje</text>
+  <text x="326" y="400" fill="#fdba74" font-size="13" font-weight="700" text-anchor="end">- R$ 214,90</text>
+
+  <!-- Bottom nav -->
+  <rect x="0" y="580" width="360" height="60" fill="#0b0f19" stroke="#1f2937" stroke-width="1" />
+  <circle cx="70" cy="604" r="4" fill="#22c55e" />
+  <text x="70" y="622" fill="#5eead4" font-size="9" text-anchor="middle">Carteira</text>
+  <circle cx="180" cy="604" r="4" fill="#71717a" />
+  <text x="180" y="622" fill="#71717a" font-size="9" text-anchor="middle">Extrato</text>
+  <circle cx="290" cy="604" r="4" fill="#71717a" />
+  <text x="290" y="622" fill="#71717a" font-size="9" text-anchor="middle">Perfil</text>
+</svg>

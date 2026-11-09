@@ -8,7 +8,7 @@ import {
   SiReact, SiTypescript, SiSpringboot, SiVuedotjs, SiAngular,
   SiGo, SiSwagger, SiJavascript, SiMysql, SiLinux, SiGnubash, SiGit,
   SiKubernetes, SiTailwindcss, SiVite, SiMongodb, SiNodedotjs,
-  SiKotlin, SiFlutter, SiPhp, SiLaravel,
+  SiKotlin, SiFlutter, SiSwift, SiPhp, SiLaravel,
 } from "react-icons/si";
 import { TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
@@ -17,6 +17,9 @@ import type { AdminAbout, AdminSkill, ProjectTone } from "@/lib/default-data";
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
   java: DiJava,
   spring: SiSpringboot,
+  kotlin: SiKotlin,
+  flutter: SiFlutter,
+  swift: SiSwift,
   php: SiPhp,
   laravel: SiLaravel,
   node: SiNodedotjs,
@@ -58,16 +61,16 @@ function isTone(v: string): v is ProjectTone {
 }
 
 const DEFAULT_TOOL_CARDS: { name: string; iconKey: string; tone: ProjectTone }[] = [
+  { name: "Kotlin (Android)", iconKey: "kotlin", tone: "tech-kotlin" },
+  { name: "Jetpack Compose", iconKey: "kotlin", tone: "tech-kotlin" },
   { name: "Java (17 / 21+)", iconKey: "java", tone: "tech-java" },
   { name: "Spring Boot 3", iconKey: "spring", tone: "tech-spring" },
-  { name: "PHP 8+", iconKey: "php", tone: "tech-php" },
-  { name: "Laravel 11", iconKey: "laravel", tone: "tech-laravel" },
   { name: "Node.js", iconKey: "node", tone: "tech-node" },
   { name: "TypeScript", iconKey: "ts", tone: "tech-ts" },
+  { name: "Flutter (Intermediário)", iconKey: "flutter", tone: "tech-react" },
   { name: "PostgreSQL", iconKey: "postgres", tone: "tech-postgres" },
-  { name: "MySQL", iconKey: "mysql", tone: "tech-mysql" },
   { name: "Docker & CI/CD", iconKey: "docker", tone: "tech-docker" },
-  { name: "React 18", iconKey: "react", tone: "tech-react" },
+  { name: "Room / SQLite", iconKey: "kotlin", tone: "tech-kotlin" },
 ];
 
 const EDUCATION = [
@@ -86,12 +89,12 @@ const EDUCATION = [
 ];
 
 const COURSES = [
+  "Desenvolvimento Android Nativo com Kotlin e Jetpack Compose – Udemy",
+  "Kotlin Multiplatform (KMP) na Prática – Udemy",
+  "Arquitetura Android: MVVM, Clean Architecture, Room e Hilt – Udemy",
   "APIs RESTful com Spring Boot 3 e Java 17+ – Udemy",
-  "PHP 8 e Laravel Completo com Projetos Práticos – Udemy",
   "Node.js, TypeScript e Arquitetura de Microserviços – Udemy",
-  "Testes Unitários e TDD com JUnit 5 e Mockito – Udemy",
   "Docker e Kubernetes na Prática – Udemy",
-  "Spring Cloud e Microsserviços Corporativos – Udemy",
 ];
 
 const LANGUAGES = [
@@ -183,7 +186,7 @@ export function AboutSection({ about }: Props) {
               Perfil profissional
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
-              Produtos web claros por fora. Estruturados por dentro.
+              Apps Android nativos por fora. Arquitetura sólida por dentro.
             </h2>
 
             <div className="mt-6 space-y-5 text-muted-foreground leading-relaxed max-w-2xl">
@@ -276,14 +279,14 @@ export function AboutSection({ about }: Props) {
                   ))}
                   {about.skills.length === 0 && (
                     <>
-                      <SkillBar name="Java 17 LTS" level={95} color="#007396" />
-                      <SkillBar name="Spring Boot 3 · Spring Security" level={93} color="#6db33f" />
-                      <SkillBar name="Kotlin · Jetpack Compose (Android)" level={86} color="#7f52ff" />
-                      <SkillBar name="Flutter / Dart (Cross-platform)" level={78} color="#02569b" />
-                      <SkillBar name="APIs RESTful · OpenAPI 3 · JWT" level={92} color="#007396" />
-                      <SkillBar name="PostgreSQL · MySQL · Redis" level={85} color="#336791" />
-                      <SkillBar name="JUnit 5 · Mockito · TDD" level={88} color="#6db33f" />
-                      <SkillBar name="Docker · Kubernetes · CI/CD" level={80} color="#2496ed" />
+                      <SkillBar name="Kotlin · Jetpack Compose (Android)" level={92} color="#7f52ff" />
+                      <SkillBar name="Android SDK · Room · Hilt · KMP" level={90} color="#7f52ff" />
+                      <SkillBar name="Java 17 / 21+ LTS" level={90} color="#007396" />
+                      <SkillBar name="Spring Boot 3 · Spring Security" level={90} color="#6db33f" />
+                      <SkillBar name="APIs RESTful · OpenAPI 3 · JWT" level={90} color="#007396" />
+                      <SkillBar name="Node.js · TypeScript" level={70} color="#339933" />
+                      <SkillBar name="PostgreSQL · MySQL · Room" level={88} color="#336791" />
+                      <SkillBar name="Docker · CI/CD · GitHub Actions" level={80} color="#2496ed" />
                     </>
                   )}
                 </div>

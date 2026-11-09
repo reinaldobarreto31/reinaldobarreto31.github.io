@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
-import { SiGithub, SiSpringboot, SiKotlin, SiFlutter, SiPostgresql, SiDocker, SiSwift, SiDart } from "react-icons/si";
+import { SiGithub, SiSpringboot, SiKotlin, SiFlutter, SiPostgresql, SiDocker, SiSwift, SiDart, SiNodedotjs, SiTypescript } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import { TbDeviceMobile, TbBrandReactNative } from "react-icons/tb";
 import { Mail, ArrowDownRight, FileImage, FileDown, ExternalLink } from "lucide-react";
@@ -17,18 +17,27 @@ const PRIMARY_MOBILE_STACK = [
   { label: "Hilt / Koin DI", icon: <TbDeviceMobile size={14} />, tone: "tech-kotlin" },
 ];
 
-const SECONDARY_CROSS_STACK = [
+const SECONDARY_BACKEND_STACK = [
+  { label: "Java 21", icon: <DiJava size={16} />, tone: "tech-java" },
+  { label: "Spring Boot 3", icon: <SiSpringboot size={14} />, tone: "tech-spring" },
+  { label: "Spring Security · JWT", icon: <SiSpringboot size={14} />, tone: "tech-spring" },
+  { label: "Spring Data JPA", icon: <SiSpringboot size={14} />, tone: "tech-spring" },
+  { label: "PostgreSQL", icon: <SiPostgresql size={14} />, tone: "tech-postgres" },
+  { label: "Docker & REST APIs", icon: <SiDocker size={14} />, tone: "tech-docker" },
+];
+
+const TERTIARY_NODE_STACK = [
+  { label: "Node.js", icon: <SiNodedotjs size={14} />, tone: "tech-node" },
+  { label: "Express / NestJS", icon: <SiNodedotjs size={14} />, tone: "tech-node" },
+  { label: "TypeScript", icon: <SiTypescript size={14} />, tone: "tech-ts" },
+  { label: "REST APIs", icon: <TbDeviceMobile size={14} />, tone: "tech-node" },
+];
+
+const COMPLEMENTARY_STACK = [
   { label: "Flutter (Intermediário)", icon: <SiFlutter size={14} />, tone: "tech-react" },
   { label: "Dart", icon: <SiDart size={14} />, tone: "tech-react" },
   { label: "React Native (Básico)", icon: <TbBrandReactNative size={15} />, tone: "tech-react" },
   { label: "iOS / Swift (Noções)", icon: <SiSwift size={14} />, tone: "tech-actions" },
-];
-
-const TERTIARY_BACKEND_STACK = [
-  { label: "Java 21", icon: <DiJava size={16} />, tone: "tech-java" },
-  { label: "Spring Boot 3", icon: <SiSpringboot size={14} />, tone: "tech-spring" },
-  { label: "PostgreSQL", icon: <SiPostgresql size={14} />, tone: "tech-postgres" },
-  { label: "Docker & REST APIs", icon: <SiDocker size={14} />, tone: "tech-docker" },
   { label: "PHP (Noções básicas)", icon: <span style={{ fontSize: 10, fontWeight: 700 }}>PHP</span>, tone: "tech-php" },
 ];
 
@@ -90,7 +99,7 @@ export function HeroSection() {
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full w-fit text-xs font-mono tracking-tight bg-[#7f52ff]/15 border border-[#7f52ff]/40 text-[#a78bfa] shadow-[0_0_20px_rgba(127,82,255,0.25)] backdrop-blur-md">
             <SiKotlin className="text-[#a78bfa] text-base shrink-0" />
             <span className="font-semibold text-foreground/90">
-              1º Mobile Android (Kotlin &amp; KMP) · 2º Flutter (Intermediário) · 3º Java &amp; Spring Boot
+              1º Mobile Android (Kotlin &amp; KMP) · 2º Java &amp; Spring Boot 3 · 3º Node.js
             </span>
           </div>
           
@@ -100,7 +109,7 @@ export function HeroSection() {
           </h1>
           
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed font-sans" data-testid="text-hero-description">
-            Desenvolvedor focado em <span className="text-[#a78bfa] font-bold">Mobile Android Nativo (Kotlin, Jetpack Compose, KMP)</span>, com desenvolvimento multiplataforma em <span className="text-[#38bdf8] font-semibold">Flutter (Intermediário)</span> e <span className="text-[#61dafb] font-semibold">React Native (Básico)</span>, noções em <span className="text-[#f97316] font-semibold">iOS Nativo (Swift)</span> e sólida bagagem corporativa backend em <span className="text-[#6db33f] font-semibold">Java 21 &amp; Spring Boot 3</span>.
+            Desenvolvedor focado em <span className="text-[#a78bfa] font-bold">Mobile Android Nativo (Kotlin, Jetpack Compose, KMP)</span>, com backend corporativo em <span className="text-[#6db33f] font-semibold">Java 21 &amp; Spring Boot 3</span> e APIs em <span className="text-[#52cc52] font-semibold">Node.js</span>. Experiência complementar em <span className="text-[#38bdf8] font-semibold">Flutter (Intermediário)</span>, <span className="text-[#61dafb] font-semibold">React Native (Básico)</span>, noções em <span className="text-[#f97316] font-semibold">iOS Nativo (Swift)</span> e em PHP para sistemas legados.
           </p>
           
           {/* Stack Tiers Badges */}
@@ -123,36 +132,54 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* 2º Foco: Multiplataforma & Expansão Mobile */}
+            {/* 2º Foco: Backend Java & Spring Boot */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#38bdf8] flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" /> 2º Multiplataforma · Flutter (Intermediário) · React Native · iOS
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#6db33f] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#6db33f]" /> 2º Foco Backend · Java 21 &amp; Spring Boot 3
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {SECONDARY_CROSS_STACK.map(({ label, icon }) => (
+                {SECONDARY_BACKEND_STACK.map(({ label, icon }) => (
                   <span
                     key={label}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] font-medium font-mono bg-card border-[#38bdf8]/35 text-foreground shadow-sm hover:border-[#38bdf8]/70 transition-colors"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] font-medium font-mono bg-card border-[#6db33f]/35 text-foreground shadow-sm hover:border-[#6db33f]/70 transition-colors"
                   >
-                    <span className="text-[#38bdf8]">{icon}</span>
+                    <span className="text-[#6db33f]">{icon}</span>
                     {label}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* 3º Foco: Backend & Infraestrutura */}
+            {/* 3º Foco: Node.js */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#6db33f] flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#6db33f]" /> 3º Base Corporativa · Backend Java Enterprise &amp; APIs
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#52cc52] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#339933]" /> 3º Foco Backend · Node.js &amp; TypeScript
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {TERTIARY_BACKEND_STACK.map(({ label, icon }) => (
+                {TERTIARY_NODE_STACK.map(({ label, icon }) => (
                   <span
                     key={label}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] font-medium font-mono bg-card border-[#6db33f]/35 text-foreground shadow-sm hover:border-[#6db33f]/70 transition-colors"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] font-medium font-mono bg-card border-[#339933]/35 text-foreground shadow-sm hover:border-[#339933]/70 transition-colors"
                   >
-                    <span className="text-[#6db33f]">{icon}</span>
+                    <span className="text-[#52cc52]">{icon}</span>
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Complementares Mobile */}
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#38bdf8] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" /> Complementares · Flutter (Intermediário) · React Native (Básico) · iOS (Noções) · PHP (Noções)
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {COMPLEMENTARY_STACK.map(({ label, icon }) => (
+                  <span
+                    key={label}
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] font-medium font-mono bg-card border-[#38bdf8]/35 text-foreground shadow-sm hover:border-[#38bdf8]/70 transition-colors"
+                  >
+                    <span className="text-[#38bdf8]">{icon}</span>
                     {label}
                   </span>
                 ))}
@@ -255,18 +282,18 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Floating Flutter Badge */}
+          {/* Floating Node.js Badge */}
           <motion.div
             animate={{ y: [0, 12, 0], rotate: [0, -2, 0] }}
             transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute bottom-4 left-0 md:left-2 z-20 flex items-center gap-2.5 bg-card/90 border border-[#02569b]/60 rounded-2xl px-3.5 py-2.5 shadow-[0_0_24px_rgba(2,86,155,0.3)] backdrop-blur-md"
+            className="absolute bottom-4 left-0 md:left-2 z-20 flex items-center gap-2.5 bg-card/90 border border-[#339933]/60 rounded-2xl px-3.5 py-2.5 shadow-[0_0_24px_rgba(51,153,51,0.3)] backdrop-blur-md"
           >
             <div className="flex items-center gap-1">
-              <SiFlutter className="text-2xl text-[#38bdf8]" />
+              <SiNodedotjs className="text-2xl text-[#52cc52]" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-bold text-foreground">Flutter &amp; Dart</span>
-              <span className="text-[10px] font-mono text-muted-foreground">Intermediário Multi</span>
+              <span className="text-xs font-bold text-foreground">Node.js &amp; TypeScript</span>
+              <span className="text-[10px] font-mono text-muted-foreground">3º Foco Backend</span>
             </div>
           </motion.div>
 

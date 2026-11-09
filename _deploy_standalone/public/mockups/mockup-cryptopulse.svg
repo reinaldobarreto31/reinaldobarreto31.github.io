@@ -1,47 +1,51 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0a0e17; border-radius:24px; font-family:system-ui, -apple-system, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0a0e17;border-radius:22px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;">
   <defs>
-    <linearGradient id="grad-crypto" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.3" />
+    <linearGradient id="cp-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.35" />
       <stop offset="100%" stop-color="#10b981" stop-opacity="0" />
     </linearGradient>
   </defs>
-  <text x="24" y="24" fill="#71717a" font-size="11" font-weight="600">09:41</text>
-  <text x="24" y="66" fill="#ffffff" font-size="18" font-weight="800">CryptoPulse KMP</text>
-  <text x="24" y="84" fill="#a1a1aa" font-size="11">Multiplatform Â· Ktor Client Â· StateFlow</text>
 
-  <!-- Big Value Card -->
-  <rect x="18" y="100" width="324" height="170" rx="18" fill="#121826" stroke="#1f2937" stroke-width="1" />
-  <text x="34" y="128" fill="#9ca3af" font-size="12">Bitcoin / USD</text>
-  <text x="34" y="156" fill="#ffffff" font-size="26" font-weight="800">$ 94,820.50</text>
-  <text x="34" y="178" fill="#10b981" font-size="12" font-weight="700">+5.42% (24h)</text>
-  <!-- Sparkline chart -->
-  <path d="M 34 240 Q 90 220, 150 230 T 250 200 T 324 190" fill="none" stroke="#10b981" stroke-width="3" />
-  <path d="M 34 240 Q 90 220, 150 230 T 250 200 T 324 190 V 254 H 34 Z" fill="url(#grad-crypto)" />
+  <text x="22" y="24" fill="#71717a" font-size="11" font-weight="600">09:41</text>
+  <path d="M296 16h3v8h-3zM302 14h3v10h-3zM308 12h3v12h-3z" fill="#71717a" />
+  <rect x="316" y="13" width="22" height="11" rx="3" fill="none" stroke="#71717a" stroke-width="1.2" />
+  <rect x="318" y="15" width="14" height="7" rx="1.5" fill="#71717a" />
 
-  <!-- Coin Row 1 -->
-  <rect x="18" y="284" width="324" height="56" rx="14" fill="#121826" />
-  <circle cx="46" cy="312" r="14" fill="#f59e0b" />
-  <text x="46" y="317" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">â‚¿</text>
-  <text x="72" y="310" fill="#ffffff" font-size="13" font-weight="700">Bitcoin</text>
-  <text x="72" y="324" fill="#9ca3af" font-size="10">BTC Â· Ktor API</text>
-  <text x="320" y="310" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end">$ 94,820</text>
-  <text x="320" y="324" fill="#10b981" font-size="10" text-anchor="end">+5.4%</text>
+  <text x="22" y="62" fill="#ffffff" font-size="18" font-weight="800">CryptoPulse</text>
+  <text x="22" y="80" fill="#a1a1aa" font-size="10.5">Android · Kotlin · Ktor Client · StateFlow</text>
 
-  <!-- Coin Row 2 -->
-  <rect x="18" y="348" width="324" height="56" rx="14" fill="#121826" />
-  <circle cx="46" cy="376" r="14" fill="#6366f1" />
-  <text x="46" y="381" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">Îž</text>
-  <text x="72" y="374" fill="#ffffff" font-size="13" font-weight="700">Ethereum</text>
-  <text x="72" y="388" fill="#9ca3af" font-size="10">ETH Â· Coroutines Flow</text>
-  <text x="320" y="374" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end">$ 3,450</text>
-  <text x="320" y="388" fill="#10b981" font-size="10" text-anchor="end">+3.1%</text>
+  <!-- Value card -->
+  <rect x="18" y="96" width="324" height="164" rx="18" fill="#121826" stroke="#1f2937" stroke-width="1" />
+  <text x="34" y="124" fill="#9ca3af" font-size="12">Bitcoin / USD</text>
+  <text x="34" y="152" fill="#ffffff" font-size="25" font-weight="800">$ 94.820,50</text>
+  <text x="34" y="174" fill="#10b981" font-size="12" font-weight="700">+5,42% (24h)</text>
+  <path d="M34 236 Q90 216 150 226 T250 196 T324 186" fill="none" stroke="#10b981" stroke-width="3" />
+  <path d="M34 236 Q90 216 150 226 T250 196 T324 186 L324 250 L34 250 Z" fill="url(#cp-fill)" />
 
-  <!-- Coin Row 3 -->
-  <rect x="18" y="412" width="324" height="56" rx="14" fill="#121826" />
-  <circle cx="46" cy="440" r="14" fill="#14b8a6" />
-  <text x="46" y="445" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">S</text>
-  <text x="72" y="438" fill="#ffffff" font-size="13" font-weight="700">Solana</text>
-  <text x="72" y="452" fill="#9ca3af" font-size="10">SOL Â· Room Cache</text>
-  <text x="320" y="438" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end">$ 218</text>
-  <text x="320" y="452" fill="#10b981" font-size="10" text-anchor="end">+8.7%</text>
+  <!-- Row 1 -->
+  <rect x="18" y="276" width="324" height="54" rx="14" fill="#121826" />
+  <circle cx="46" cy="303" r="14" fill="#f59e0b" />
+  <text x="46" y="308" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">B</text>
+  <text x="72" y="300" fill="#ffffff" font-size="13" font-weight="700">Bitcoin</text>
+  <text x="72" y="314" fill="#9ca3af" font-size="10">BTC · Ktor API</text>
+  <text x="322" y="300" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end">$ 94.820</text>
+  <text x="322" y="314" fill="#10b981" font-size="10" text-anchor="end">+5,4%</text>
+
+  <!-- Row 2 -->
+  <rect x="18" y="338" width="324" height="54" rx="14" fill="#121826" />
+  <circle cx="46" cy="365" r="14" fill="#6366f1" />
+  <text x="46" y="370" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">E</text>
+  <text x="72" y="362" fill="#ffffff" font-size="13" font-weight="700">Ethereum</text>
+  <text x="72" y="376" fill="#9ca3af" font-size="10">ETH · Coroutines Flow</text>
+  <text x="322" y="362" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end">$ 3.450</text>
+  <text x="322" y="376" fill="#10b981" font-size="10" text-anchor="end">+3,1%</text>
+
+  <!-- Row 3 -->
+  <rect x="18" y="400" width="324" height="54" rx="14" fill="#121826" />
+  <circle cx="46" cy="427" r="14" fill="#14b8a6" />
+  <text x="46" y="432" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">S</text>
+  <text x="72" y="424" fill="#ffffff" font-size="13" font-weight="700">Solana</text>
+  <text x="72" y="438" fill="#9ca3af" font-size="10">SOL · Room Cache</text>
+  <text x="322" y="424" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end">$ 218</text>
+  <text x="322" y="438" fill="#10b981" font-size="10" text-anchor="end">+8,7%</text>
 </svg>

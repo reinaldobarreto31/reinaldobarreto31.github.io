@@ -53,7 +53,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
           >
             reinaldo.barreto
           </span>
-          <p className="text-sm text-muted-foreground mt-1">Java 17/21+ · Spring Boot 3 · PHP / Laravel · Node.js</p>
+          <p className="text-sm text-muted-foreground mt-1">1º Mobile Android (Kotlin) · 2º Java 21 &amp; Spring Boot 3 · 3º Node.js</p>
 
           {showLogin && !logged && (
             <form
@@ -158,7 +158,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
       </div>
 
       <span className="block text-center text-xs font-mono text-muted-foreground mt-5">
-        Construído com Java 17/21+ · Spring Boot 3 · PHP / Laravel · Node.js &amp; TypeScript.
+        Construído com Kotlin &amp; Jetpack Compose (Android) · Java 21 &amp; Spring Boot 3 · Node.js &amp; TypeScript.
       </span>
     </footer>
   );

@@ -1,44 +1,48 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0b1120; border-radius:24px; font-family:system-ui, -apple-system, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0b1120;border-radius:22px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;">
   <defs>
-    <linearGradient id="grad-habit" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="hf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#38bdf8" />
       <stop offset="100%" stop-color="#6366f1" />
     </linearGradient>
   </defs>
-  <text x="24" y="24" fill="#94a3b8" font-size="11" font-weight="600">09:41</text>
-  <text x="24" y="68" fill="#ffffff" font-size="20" font-weight="800">HabitFlow Android</text>
-  <text x="24" y="86" fill="#94a3b8" font-size="12">Kotlin Â· Jetpack Compose Â· Room</text>
 
-  <!-- Ring Card -->
-  <rect x="18" y="104" width="324" height="130" rx="18" fill="#1e293b" stroke="#334155" stroke-width="1" />
-  <circle cx="80" cy="169" r="44" stroke="#334155" stroke-width="8" fill="none" />
-  <circle cx="80" cy="169" r="44" stroke="url(#grad-habit)" stroke-width="8" fill="none" stroke-dasharray="276" stroke-dashoffset="55" stroke-linecap="round" />
-  <text x="80" y="174" fill="#ffffff" font-size="16" font-weight="800" text-anchor="middle">80%</text>
-  <text x="145" y="150" fill="#ffffff" font-size="14" font-weight="700">Meta DiÃ¡ria</text>
-  <text x="145" y="170" fill="#38bdf8" font-size="12" font-weight="600">4 de 5 hÃ¡bitos feitos</text>
-  <text x="145" y="190" fill="#94a3b8" font-size="11">SequÃªncia: ðŸ”¥ 14 dias</text>
+  <text x="22" y="24" fill="#94a3b8" font-size="11" font-weight="600">09:41</text>
+  <path d="M296 16h3v8h-3zM302 14h3v10h-3zM308 12h3v12h-3z" fill="#94a3b8" />
+  <rect x="316" y="13" width="22" height="11" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.2" />
+  <rect x="318" y="15" width="14" height="7" rx="1.5" fill="#94a3b8" />
 
-  <!-- Habits List -->
-  <rect x="18" y="248" width="324" height="52" rx="14" fill="#1e293b" />
-  <circle cx="44" cy="274" r="10" fill="#0284c7" />
-  <text x="66" y="278" fill="#ffffff" font-size="13" font-weight="600">Beber 2.5L de Ãgua</text>
-  <text x="310" y="278" fill="#38bdf8" font-size="12">âœ“</text>
+  <text x="22" y="62" fill="#ffffff" font-size="18" font-weight="800">HabitFlow</text>
+  <text x="22" y="80" fill="#94a3b8" font-size="10.5">Android · Kotlin · Room · WorkManager</text>
 
-  <rect x="18" y="310" width="324" height="52" rx="14" fill="#1e293b" />
-  <circle cx="44" cy="336" r="10" fill="#7c3aed" />
-  <text x="66" y="340" fill="#ffffff" font-size="13" font-weight="600">Estudo Kotlin &amp; Compose</text>
-  <text x="310" y="340" fill="#38bdf8" font-size="12">âœ“</text>
+  <!-- Progress ring -->
+  <rect x="18" y="96" width="324" height="128" rx="18" fill="#1e293b" stroke="#334155" stroke-width="1" />
+  <circle cx="80" cy="160" r="42" stroke="#334155" stroke-width="8" fill="none" />
+  <circle cx="80" cy="160" r="42" stroke="url(#hf-grad)" stroke-width="8" fill="none" stroke-dasharray="264" stroke-dashoffset="53" stroke-linecap="round" transform="rotate(-90 80 160)" />
+  <text x="80" y="165" fill="#ffffff" font-size="16" font-weight="800" text-anchor="middle">80%</text>
+  <text x="145" y="146" fill="#ffffff" font-size="14" font-weight="700">Meta diaria</text>
+  <text x="145" y="166" fill="#38bdf8" font-size="12" font-weight="600">4 de 5 habitos feitos</text>
+  <text x="145" y="186" fill="#94a3b8" font-size="11">Sequencia: 14 dias</text>
 
-  <rect x="18" y="372" width="324" height="52" rx="14" fill="#1e293b" />
-  <circle cx="44" cy="398" r="10" fill="#16a34a" />
-  <text x="66" y="402" fill="#ffffff" font-size="13" font-weight="600">Treino DiÃ¡rio 45 min</text>
-  <text x="310" y="402" fill="#38bdf8" font-size="12">âœ“</text>
+  <!-- Habits -->
+  <rect x="18" y="238" width="324" height="52" rx="14" fill="#1e293b" />
+  <circle cx="44" cy="264" r="10" fill="#0284c7" />
+  <text x="66" y="268" fill="#ffffff" font-size="13" font-weight="600">Beber 2,5 L de agua</text>
+  <text x="322" y="268" fill="#38bdf8" font-size="13" text-anchor="end">OK</text>
 
-  <rect x="18" y="434" width="324" height="52" rx="14" fill="#1e293b" stroke="#475569" stroke-width="1" stroke-dasharray="3,3" />
-  <circle cx="44" cy="460" r="10" fill="#334155" />
-  <text x="66" y="464" fill="#94a3b8" font-size="13">Leitura TÃ©cnica (Pendente)</text>
+  <rect x="18" y="300" width="324" height="52" rx="14" fill="#1e293b" />
+  <circle cx="44" cy="326" r="10" fill="#7c3aed" />
+  <text x="66" y="330" fill="#ffffff" font-size="13" font-weight="600">Estudo Kotlin e Compose</text>
+  <text x="322" y="330" fill="#38bdf8" font-size="13" text-anchor="end">OK</text>
 
-  <!-- FAB Button -->
-  <circle cx="300" cy="540" r="26" fill="url(#grad-habit)" />
-  <text x="300" y="547" fill="#ffffff" font-size="22" font-weight="600" text-anchor="middle">+</text>
+  <rect x="18" y="362" width="324" height="52" rx="14" fill="#1e293b" />
+  <circle cx="44" cy="388" r="10" fill="#16a34a" />
+  <text x="66" y="392" fill="#ffffff" font-size="13" font-weight="600">Treino diario 45 min</text>
+  <text x="322" y="392" fill="#38bdf8" font-size="13" text-anchor="end">OK</text>
+
+  <rect x="18" y="424" width="324" height="52" rx="14" fill="#1e293b" stroke="#475569" stroke-width="1" stroke-dasharray="4 3" />
+  <circle cx="44" cy="450" r="10" fill="#334155" />
+  <text x="66" y="454" fill="#94a3b8" font-size="13">Leitura tecnica (pendente)</text>
+
+  <circle cx="300" cy="540" r="26" fill="url(#hf-grad)" />
+  <text x="300" y="548" fill="#ffffff" font-size="22" font-weight="600" text-anchor="middle">+</text>
 </svg>

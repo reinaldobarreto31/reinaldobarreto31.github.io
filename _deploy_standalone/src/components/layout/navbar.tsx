@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { SiSpringboot } from "react-icons/si";
+import { SiKotlin } from "react-icons/si";
 import { Home, User, Briefcase, Code2, Activity, Mail, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -40,12 +40,12 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#hero" className="flex items-center gap-2.5 group">
-          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-[#6db33f]/15 border border-[#6db33f]/35 shadow-[0_0_12px_rgba(109,179,63,0.35)] group-hover:shadow-[0_0_20px_rgba(109,179,63,0.65)] transition-shadow">
-            <SiSpringboot className="text-[#6db33f] text-base" />
+          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-[#7f52ff]/15 border border-[#7f52ff]/35 shadow-[0_0_12px_rgba(127,82,255,0.35)] group-hover:shadow-[0_0_20px_rgba(127,82,255,0.65)] transition-shadow">
+            <SiKotlin className="text-[#a78bfa] text-base" />
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-bold text-sm tracking-tight text-foreground">Reinaldo Barreto</span>
-            <span className="text-[10px] text-[#6db33f] font-mono tracking-wider uppercase">Java · PHP / Laravel · Node.js</span>
+            <span className="text-[10px] text-[#a78bfa] font-mono tracking-wider uppercase">Android · Kotlin · Spring · Node.js</span>
           </div>
         </a>
 

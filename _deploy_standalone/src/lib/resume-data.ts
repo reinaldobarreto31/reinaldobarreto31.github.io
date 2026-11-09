@@ -35,7 +35,7 @@ export interface ResumeProject {
 }
 
 export const PROFESSIONAL_SUMMARY = [
-  "Engenheiro de Software e Desenvolvedor especializado em ecossistema Mobile nativo com Kotlin (Android SDK, Jetpack Compose, MVVM, Coroutines, StateFlow, Room, Hilt) e arquitetura multiplataforma com Kotlin Multiplatform (KMP), com atuação intermediária em Flutter (Dart), noções em React Native e iOS (Swift), além de sólida base backend corporativa em Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL, Docker). Vivência consolidada na modernização e sustentação de sistemas de missão crítica para o setor público estadual (PRODEB, SSP-BA/Polícia Militar) e municipal (EDZA), combinando desenvolvimento de software com suporte técnico especializado a Auditores Fiscais do Município e usuários corporativos. Concepção e desenvolvimento do aplicativo próprio Limpapp (Kotlin nativo & KMP com upload de fotos ilustrativas).",
+  "Engenheiro de Software e Desenvolvedor especializado em ecossistema Mobile nativo com Kotlin (Android SDK, Jetpack Compose, MVVM, Coroutines, StateFlow, Room, Hilt) e arquitetura multiplataforma com Kotlin Multiplatform (KMP). Evolução técnica organizada em 3 níveis de prioridade: 1º Mobile Android/Kotlin, 2º backend corporativo em Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL, Docker) e 3º APIs em Node.js/TypeScript. Atuação complementar intermediária em Flutter (Dart), noções em React Native e iOS (Swift) e em PHP para sistemas legados. Vivência consolidada na modernização e sustentação de sistemas de missão crítica para o setor público estadual (PRODEB, SSP-BA/Polícia Militar) e municipal (EDZA), combinando desenvolvimento de software com suporte técnico especializado a Auditores Fiscais do Município e usuários corporativos. Concepção e desenvolvimento do aplicativo próprio Limpapp (Kotlin nativo & KMP com upload de fotos ilustrativas).",
 ];
 
 export const PROFESSIONAL_OBJECTIVE =
@@ -48,7 +48,7 @@ export const CONTACT = {
   location: "Salvador – BA (Disponível Remoto / Presencial)",
   linkedin: "linkedin.com/in/reinaldo-barreto-2a4ba2116",
   github: "github.com/reinaldobarreto31",
-  headline: "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Flutter (Intermediário) · Java Spring Boot",
+  headline: "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Java 21 & Spring Boot 3 · Node.js",
 };
 
 export const HARD_SKILLS: ResumeSkill[] = [
@@ -56,6 +56,7 @@ export const HARD_SKILLS: ResumeSkill[] = [
   { name: "Kotlin Multiplatform (KMP)", level: 85, color: "#7f52ff", icon: "kotlin" },
   { name: "Flutter & Dart (Intermediário)", level: 75, color: "#02569b", icon: "react" },
   { name: "Java 17 / 21+ & Spring Boot 3", level: 90, color: "#6db33f", icon: "spring" },
+  { name: "Node.js & TypeScript (3º foco)", level: 70, color: "#339933", icon: "node" },
   { name: "React Native (Básico)", level: 65, color: "#61dafb", icon: "react" },
   { name: "iOS Nativo / Swift (Noções)", level: 45, color: "#f05138", icon: "actions" },
   { name: "PostgreSQL & MySQL", level: 90, color: "#336791", icon: "postgres" },
@@ -209,6 +210,42 @@ export const PROJECTS: ResumeProject[] = [
     icon: "kotlin",
   },
   {
+    title: "PixPay Wallet — Carteira Digital Android",
+    subtitle: "Android Nativo · Kotlin · Compose · Biometria · Ktor",
+    badge: "MOBILE",
+    stack: "Kotlin, Jetpack Compose, BiometricPrompt, Ktor Client, MVVM, StateFlow",
+    description:
+      "Protótipo de carteira digital nativa (fora de loja) em Kotlin com Jetpack Compose: saldo e extrato, transferências e pagamentos via PIX, autenticação por biometria e criptografia local dos dados sensíveis sob arquitetura MVVM.",
+    tags: ["Kotlin", "Compose", "Biometria", "Ktor", "MVVM"],
+    github: "https://github.com/reinaldobarreto31",
+    tone: "tech-kotlin",
+    icon: "kotlin",
+  },
+  {
+    title: "NotaFácil — Leitor de Nota Fiscal (ML Kit)",
+    subtitle: "Android Nativo · Kotlin · ML Kit · CameraX · Room",
+    badge: "MOBILE",
+    stack: "Kotlin, ML Kit, CameraX, Room, Compose, Coroutines",
+    description:
+      "Protótipo Android (fora de loja) que digitaliza notas fiscais: detecção automática de QR Code / código de barras com ML Kit e CameraX, extração dos dados do emitente e valor total, histórico offline com Room e exportação dos lançamentos.",
+    tags: ["Kotlin", "ML Kit", "CameraX", "Room", "Compose"],
+    github: "https://github.com/reinaldobarreto31",
+    tone: "tech-kotlin",
+    icon: "kotlin",
+  },
+  {
+    title: "ChefExpress — App de Delivery em Compose",
+    subtitle: "Android Nativo · Kotlin · MVVM · Navigation · Carrinho",
+    badge: "MOBILE",
+    stack: "Kotlin, Jetpack Compose, MVVM, Navigation Compose, Retrofit, Coil",
+    description:
+      "Protótipo de delivery (fora de loja): listagem de pratos, detalhes do produto, carrinho com cálculo de total e acompanhamento do pedido, com navegação fluida pelo Navigation Compose e arquitetura MVVM com StateFlow.",
+    tags: ["Kotlin", "Compose", "MVVM", "Navigation", "Retrofit"],
+    github: "https://github.com/reinaldobarreto31",
+    tone: "tech-kotlin",
+    icon: "kotlin",
+  },
+  {
     title: "App Multiplataforma com Flutter & Dart",
     subtitle: "Mobile Multiplataforma · Flutter (Intermediário) · Dart · State Management",
     badge: "LIVE",
@@ -233,3 +270,11 @@ export const PROJECTS: ResumeProject[] = [
     icon: "spring",
   },
 ];
+
+export const LANGUAGES = [
+  { name: "Português", level: "Fluente (leitura, escrita e fala)", percent: 100 },
+  { name: "Inglês", level: "Intermediário técnico (leitura, escrita e fala)", percent: 65 },
+  { name: "Espanhol", level: "Básico (leitura, escrita e fala)", percent: 40 },
+];
+
+export const PERSONAL_PROJECTS = PROJECTS;

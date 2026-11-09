@@ -1,38 +1,49 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0f172a; border-radius:24px; font-family:system-ui, -apple-system, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" width="100%" height="100%" style="background:#0f172a;border-radius:22px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;">
   <defs>
-    <linearGradient id="grad-chef" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="ce-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f97316" />
       <stop offset="100%" stop-color="#ea580c" />
     </linearGradient>
   </defs>
-  <text x="24" y="24" fill="#94a3b8" font-size="11" font-weight="600">09:41</text>
-  <text x="24" y="66" fill="#ffffff" font-size="18" font-weight="800">ChefExpress Delivery</text>
-  <text x="24" y="84" fill="#fdba74" font-size="11">Android Nativo Â· Kotlin Â· MVVM Â· Coil</text>
 
-  <!-- Promo Banner -->
-  <rect x="18" y="100" width="324" height="110" rx="16" fill="url(#grad-chef)" />
-  <text x="34" y="136" fill="#ffffff" font-size="18" font-weight="800">Sabores Especiais</text>
-  <text x="34" y="156" fill="#ffedd5" font-size="12">Frete grÃ¡tis no primeiro pedido</text>
-  <rect x="34" y="170" width="110" height="26" rx="13" fill="#ffffff" />
-  <text x="89" y="187" fill="#ea580c" font-size="11" font-weight="700" text-anchor="middle">PEDIR AGORA</text>
+  <!-- Android status bar -->
+  <text x="22" y="24" fill="#94a3b8" font-size="11" font-weight="600">09:41</text>
+  <path d="M296 16h3v8h-3zM302 14h3v10h-3zM308 12h3v12h-3z" fill="#94a3b8" />
+  <rect x="316" y="13" width="22" height="11" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.2" />
+  <rect x="318" y="15" width="14" height="7" rx="1.5" fill="#94a3b8" />
+
+  <text x="22" y="62" fill="#ffffff" font-size="18" font-weight="800">ChefExpress</text>
+  <text x="22" y="80" fill="#fdba74" font-size="10.5">Android Nativo · Kotlin · MVVM · Compose</text>
+
+  <!-- Promo banner -->
+  <rect x="18" y="96" width="324" height="108" rx="16" fill="url(#ce-grad)" />
+  <text x="34" y="132" fill="#ffffff" font-size="17" font-weight="800">Sabores especiais</text>
+  <text x="34" y="152" fill="#ffedd5" font-size="11.5">Frete gratis no primeiro pedido</text>
+  <rect x="34" y="166" width="112" height="26" rx="13" fill="#ffffff" />
+  <text x="90" y="183" fill="#ea580c" font-size="11" font-weight="700" text-anchor="middle">PEDIR AGORA</text>
 
   <!-- Dish 1 -->
-  <rect x="18" y="224" width="324" height="84" rx="14" fill="#1e293b" />
-  <rect x="28" y="234" width="64" height="64" rx="10" fill="#334155" />
-  <text x="60" y="270" fill="#f97316" font-size="20" text-anchor="middle">ðŸ”</text>
-  <text x="104" y="254" fill="#ffffff" font-size="14" font-weight="700">Smash Burger Artesanal</text>
-  <text x="104" y="272" fill="#94a3b8" font-size="11">Carne angus, queijo cheddar, bacon</text>
-  <text x="104" y="292" fill="#fb923c" font-size="13" font-weight="700">R$ 34,90</text>
-  <rect x="274" y="274" width="56" height="24" rx="12" fill="#f97316" />
-  <text x="302" y="290" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">+ Add</text>
+  <rect x="18" y="218" width="324" height="84" rx="14" fill="#1e293b" />
+  <rect x="28" y="228" width="64" height="64" rx="10" fill="#334155" />
+  <circle cx="60" cy="260" r="18" fill="#f97316" fill-opacity="0.5" />
+  <text x="104" y="248" fill="#ffffff" font-size="14" font-weight="700">Smash Burger Artesanal</text>
+  <text x="104" y="266" fill="#94a3b8" font-size="10.5">Carne angus, cheddar, bacon</text>
+  <text x="104" y="286" fill="#fb923c" font-size="13" font-weight="700">R$ 34,90</text>
+  <rect x="274" y="268" width="56" height="24" rx="12" fill="#f97316" />
+  <text x="302" y="284" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">+ Add</text>
 
   <!-- Dish 2 -->
-  <rect x="18" y="318" width="324" height="84" rx="14" fill="#1e293b" />
-  <rect x="28" y="328" width="64" height="64" rx="10" fill="#334155" />
-  <text x="60" y="364" fill="#f97316" font-size="20" text-anchor="middle">ðŸ•</text>
-  <text x="104" y="348" fill="#ffffff" font-size="14" font-weight="700">Pizza Napolitana</text>
-  <text x="104" y="366" fill="#94a3b8" font-size="11">Molho artesanal, manjericÃ£o fresco</text>
-  <text x="104" y="386" fill="#fb923c" font-size="13" font-weight="700">R$ 49,90</text>
-  <rect x="274" y="368" width="56" height="24" rx="12" fill="#f97316" />
-  <text x="302" y="384" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">+ Add</text>
+  <rect x="18" y="312" width="324" height="84" rx="14" fill="#1e293b" />
+  <rect x="28" y="322" width="64" height="64" rx="10" fill="#334155" />
+  <circle cx="60" cy="354" r="18" fill="#fbbf24" fill-opacity="0.5" />
+  <text x="104" y="342" fill="#ffffff" font-size="14" font-weight="700">Pizza Napolitana</text>
+  <text x="104" y="360" fill="#94a3b8" font-size="10.5">Molho artesanal, manjericao</text>
+  <text x="104" y="380" fill="#fb923c" font-size="13" font-weight="700">R$ 49,90</text>
+  <rect x="274" y="362" width="56" height="24" rx="12" fill="#f97316" />
+  <text x="302" y="378" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">+ Add</text>
+
+  <!-- Cart bar -->
+  <rect x="18" y="418" width="324" height="48" rx="14" fill="#1e293b" stroke="#f97316" stroke-width="1" />
+  <text x="34" y="447" fill="#ffffff" font-size="12" font-weight="600">2 itens no carrinho</text>
+  <text x="326" y="447" fill="#fb923c" font-size="14" font-weight="800" text-anchor="end">R$ 84,80</text>
 </svg>

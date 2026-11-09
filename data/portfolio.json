@@ -2,8 +2,8 @@
   "profile": {
     "name": "Reinaldo Barreto",
     "fullName": "Reinaldo Barreto da Silva",
-    "headline": "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) & Backend Java (Spring Boot 3)",
-    "tagline": "Especialista em desenvolvimento mobile nativo com Kotlin, Jetpack Compose e Kotlin Multiplatform (KMP), integrado a APIs robustas em Java 21 e Spring Boot 3. Entregas pontuais em React Native e aprendizado contínuo em iOS nativo com Swift.",
+    "headline": "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Backend Java (Spring Boot 3) & Node.js",
+    "tagline": "Especialista em desenvolvimento mobile nativo Android com Kotlin, Jetpack Compose e Kotlin Multiplatform (KMP), integrado a APIs robustas em Java 21/Spring Boot 3 e Node.js. Complementos: Flutter (intermediário), React Native (básico) e iOS/Swift e PHP (noções).",
     "location": "Salvador / BA, Brasil",
     "availability": "Disponível para oportunidades Remotas e Presenciais / Híbridas",
     "phone": "+55 (71) 99182-3131",
@@ -11,15 +11,15 @@
     "linkedin": "https://linkedin.com/in/reinaldo-barreto-2a4ba2116",
     "github": "https://github.com/reinaldobarreto31",
     "photo": "foto-reinaldo.png",
-    "about": "Engenheiro de Software e Desenvolvedor focado em ecossistema Mobile nativo e Backend moderno. Atuação em desenvolvimento de aplicativos Android com Kotlin, Jetpack Compose, Coroutines, StateFlow, Room e injeção com Hilt, além de arquiteturas compartilhadas com Kotlin Multiplatform (KMP). Sólida base em backend corporativo com Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL e Docker, construída em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras) e produtos comerciais. Experiência comprovada como Analista de TI e suporte técnico especializado a usuários corporativos e Auditores Fiscais Municipais na EDZA. Em constante expansão no desenvolvimento iOS nativo com Swift/SwiftUI e entregas sob medida em sites freelance.",
-    "goal": "Atuar como Desenvolvedor Mobile (Kotlin / KMP / Android) ou Desenvolvedor Mobile & Backend Java Spring Boot, projetando aplicativos nativos de alto desempenho, arquitetura limpa (Clean Architecture / MVVM), persistência reativa, testes automatizados e integração contínua."
+    "about": "Engenheiro de Software e Desenvolvedor Mobile focado no ecossistema Android nativo e Backend moderno. Atuação em desenvolvimento de aplicativos Android com Kotlin, Jetpack Compose, Coroutines, StateFlow, Room e injeção com Hilt, além de arquiteturas compartilhadas com Kotlin Multiplatform (KMP). Sólida base em backend corporativo com Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL e Docker, e APIs em Node.js/TypeScript (3º foco), construída em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras) e produtos comerciais. Experiência comprovada como Analista de TI e suporte técnico especializado a usuários corporativos e Auditores Fiscais Municipais na EDZA. Complementos: Flutter (intermediário), React Native (básico) e iOS/Swift e PHP (noções).",
+    "goal": "Atuar como Desenvolvedor Mobile Android (Kotlin / KMP / Jetpack Compose) ou Desenvolvedor Mobile & Backend Java Spring Boot, projetando aplicativos nativos de alto desempenho, arquitetura limpa (Clean Architecture / MVVM), persistência reativa, testes automatizados e integração contínua."
   },
   "auth": {
     "username": "admin",
     "password": "admin123"
   },
   "stack": {
-    "intro": "1º Foco: Mobile Nativo (Kotlin, KMP, Jetpack Compose e React Native pontual) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: iOS Nativo com Swift & SwiftUI (em estudo ativo).",
+    "intro": "1º Foco: Mobile Android Nativo (Kotlin, Jetpack Compose e Kotlin Multiplatform) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: Node.js & TypeScript · Complementares: Flutter (intermediário), React Native (básico), iOS/Swift e PHP (noções).",
     "pillars": [
       {
         "level": "1º Foco",
@@ -54,17 +54,30 @@
         ]
       },
       {
-        "level": "3º Foco (Em Estudo)",
-        "title": "iOS Nativo em Expansão",
-        "subtitle": "Swift · SwiftUI · Apple HIG",
-        "color": "#F05138",
+        "level": "3º Foco",
+        "title": "Backend Node.js & TypeScript",
+        "subtitle": "Node.js · Express / NestJS · TypeScript",
+        "color": "#339933",
         "items": [
-          "Swift 5 / 6",
-          "SwiftUI",
-          "UIKit Básico",
-          "Xcode & Simulators",
-          "Apple HIG",
-          "Integração KMP com iOS"
+          "Node.js",
+          "Express & NestJS",
+          "TypeScript",
+          "APIs RESTful",
+          "Integração com Banco de Dados",
+          "Consumo por Apps Mobile"
+        ]
+      },
+      {
+        "level": "Complementares (Noções)",
+        "title": "Flutter · React Native · iOS · PHP",
+        "subtitle": "Mobile & Web complementar",
+        "color": "#38BDF8",
+        "items": [
+          "Flutter & Dart (Intermediário)",
+          "React Native (Básico)",
+          "iOS / Swift & SwiftUI (Noções)",
+          "PHP & Laravel (Noções)",
+          "Git & Versionamento"
         ]
       }
     ]
@@ -80,8 +93,11 @@
     { "name": "Clean Architecture, SOLID & Padrões de Projeto", "level": 90 },
     { "name": "Testes Automatizados (JUnit 5, Mockito, TDD)", "level": 88 },
     { "name": "Docker & Ambientes Conteinerizados", "level": 86 },
-    { "name": "React Native (entregas pontuais cross-platform)", "level": 72 },
-    { "name": "iOS / Swift & SwiftUI (em estudo / aprendendo)", "level": 50 }
+    { "name": "Node.js & TypeScript (3º foco backend)", "level": 70 },
+    { "name": "Flutter & Dart (intermediário)", "level": 68 },
+    { "name": "React Native (entregas pontuais cross-platform)", "level": 60 },
+    { "name": "iOS / Swift & SwiftUI (noções)", "level": 45 },
+    { "name": "PHP & Laravel (noções / sistemas legados)", "level": 35 }
   ],
   "practices": [
     "Clean Architecture",
@@ -116,8 +132,10 @@
       ],
       "repo": "https://github.com/reinaldobarreto31",
       "demo": "",
-      "cover": "",
-      "gallery": []
+      "cover": "assets/mockups/mockup-limpapp.svg",
+      "gallery": [
+        "assets/mockups/mockup-limpapp.svg"
+      ]
     },
     {
       "id": "kotlin-android-native",
@@ -138,8 +156,10 @@
       ],
       "repo": "https://github.com/reinaldobarreto31",
       "demo": "",
-      "cover": "",
-      "gallery": []
+      "cover": "assets/screenshots/screen_task_list.png",
+      "gallery": [
+        "assets/screenshots/screen_task_list.png"
+      ]
     },
     {
       "id": "spring-boot-enterprise-api",

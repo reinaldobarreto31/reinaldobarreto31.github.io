@@ -5,7 +5,7 @@ import {
   SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs, SiMysql, SiMongodb,
   SiRedis, SiLinux, SiGnubash, SiGit, SiAngular, SiVuedotjs, SiSpringboot,
   SiKubernetes, SiTailwindcss, SiVite, SiKotlin, SiFlutter,
-  SiPhp, SiLaravel,
+  SiPhp, SiLaravel, SiSwift,
 } from "react-icons/si";
 import { TbDatabase } from "react-icons/tb";
 import { DiJava } from "react-icons/di";
@@ -20,6 +20,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: 
   laravel: SiLaravel,
   kotlin: SiKotlin,
   flutter: SiFlutter,
+  swift: SiSwift,
   next: SiNodedotjs,
   node: SiNodedotjs,
   js: SiJavascript,
@@ -95,9 +96,20 @@ function ProjectCard({
         )}
       </div>
 
-      <div className={`relative flex items-center justify-center rails-project-head ${isFeatured ? "h-40 md:h-44" : "h-24 md:h-28"}`}>
-        <Icon className={`tech-icon relative z-10 ${isFeatured ? "text-6xl md:text-7xl drop-shadow-[0_6px_14px_rgba(0,0,0,.45)]" : "text-4xl md:text-5xl"}`} />
+      <div className={`relative flex items-center justify-center overflow-hidden rails-project-head ${project.image ? (isFeatured ? "h-64 md:h-72" : "h-56") : (isFeatured ? "h-40 md:h-44" : "h-24 md:h-28")}`}>
         <div className="absolute inset-0 rails-grid opacity-50" />
+        {project.image ? (
+          <div className="relative z-10 h-[86%] aspect-[9/19] rounded-[1.6rem] border-[3px] border-[#1f2430] bg-black shadow-[0_16px_44px_rgba(0,0,0,.55)] overflow-hidden group-hover:scale-[1.03] transition-transform duration-300">
+            <img
+              src={project.image}
+              alt={`Tela do aplicativo ${project.title}`}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        ) : (
+          <Icon className={`tech-icon relative z-10 ${isFeatured ? "text-6xl md:text-7xl drop-shadow-[0_6px_14px_rgba(0,0,0,.45)]" : "text-4xl md:text-5xl"}`} />
+        )}
         {isFeatured && (
           <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-90 group-hover:opacity-100" />
         )}
@@ -158,13 +170,13 @@ export function ProjectsSection({ projects }: Props) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
           <div>
             <p className="text-xs font-mono text-primary uppercase tracking-[.24em] mb-3">
-              Portfólio Java 17/21+ · Spring Boot 3 · PHP / Laravel · Node.js
+              1º Mobile Android (Kotlin &amp; Compose) · 2º Java 21 &amp; Spring Boot 3 · 3º Node.js
             </p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
-              Projetos em Destaque.
+              Projetos Mobile em Destaque.
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl text-base">
-              Soluções corporativas completas sob Clean Architecture — APIs RESTful em Java 21 com Spring Boot 3, portais corporativos em PHP 8 e Laravel 11, aplicações modulares em Node.js / TypeScript e microsserviços integrados a PostgreSQL, MySQL e Docker.
+              Aplicativos Android nativos em Kotlin e Jetpack Compose como foco principal — arquitetura MVVM + Clean Architecture, Coroutines, StateFlow, Room, Hilt e Kotlin Multiplatform. Os apps consomem APIs RESTful próprias em Java 21 com Spring Boot 3 e Node.js, integradas a PostgreSQL e Docker.
             </p>
           </div>
           <a
@@ -192,7 +204,7 @@ export function ProjectsSection({ projects }: Props) {
               Aplicações complementares.
             </h3>
             <p className="text-muted-foreground mt-2 text-sm max-w-lg">
-              Soluções corporativas, ferramentas de produtividade, automação administrativa em VBA/Access e projetos móveis que completam a experiência prática em desenvolvimento de software.
+              Aplicativos Android adicionais (carteira digital, leitor de nota fiscal, hábitos, delivery e clima), a API backend em Spring Boot 3 que os atende e os estudos complementares em Flutter, React Native e iOS que completam a experiência prática em desenvolvimento mobile.
             </p>
           </div>
           <a

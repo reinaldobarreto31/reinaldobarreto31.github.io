@@ -70,7 +70,7 @@ function render(data) {
   const p = data.profile;
 
   // Title and header
-  document.title = `${p.name} — Desenvolvedor Mobile (Kotlin · KMP) & Java Spring`;
+  document.title = `${p.name} — Desenvolvedor Mobile Android (Kotlin · KMP) · Java Spring · Node.js`;
   
   document.querySelectorAll("[data-bind=name]").forEach((el) => {
     el.textContent = p.name;

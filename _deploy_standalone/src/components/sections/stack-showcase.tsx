@@ -8,14 +8,14 @@ import {
   SiDocker, SiKubernetes, SiGithubactions, SiReact, SiTypescript,
   SiJavascript, SiVuedotjs, SiAngular, SiSwagger, SiGit,
   SiLinux, SiGnubash, SiTailwindcss, SiVite, SiGo, SiNodedotjs,
-  SiKotlin, SiFlutter, SiPhp, SiLaravel,
+  SiKotlin, SiFlutter, SiSwift, SiPhp, SiLaravel,
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import type { AdminStackItem, ProjectTone } from "@/lib/default-data";
 
 const ADMIN_ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
   java: DiJava, spring: SiSpringboot, php: SiPhp, laravel: SiLaravel,
-  kotlin: SiKotlin, flutter: SiFlutter,
+  kotlin: SiKotlin, flutter: SiFlutter, swift: SiSwift,
   node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
   vue: SiVuedotjs, angular: SiAngular, react: SiReact,
   postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
@@ -33,6 +33,7 @@ const GEMS_BY_KEY: Record<string, string[]> = {
   ts: ["TypeScript 5", "Tipagem Estrita", "Interfaces & Generics", "Type Safety", "Async / Await"],
   kotlin: ["Kotlin 2.0", "Jetpack Compose", "Coroutines · Flow", "Hilt DI", "Room DB"],
   flutter: ["Flutter 3.x", "Dart 3", "Riverpod · Provider", "Firebase", "Go Router"],
+  swift: ["Swift 5/6", "SwiftUI", "Xcode", "iOS Nativo", "APIs REST"],
   postgres: ["PostgreSQL 16", "JPA Indexes", "PgSearch", "JSONB", "Window Functions"],
   mysql: ["MySQL 8", "InnoDB Engine", "Índices B-Tree", "Transações ACID", "Stored Procedures"],
   docker: ["docker-compose.yml", "alpine", "Dockerfile multi-stage", "Docker BuildKit", "entrypoint.sh"],
@@ -51,6 +52,7 @@ const PATTERNS_BY_KEY: Record<string, string[]> = {
   ts: ["Strict Typing", "DTO Validation", "Decorators", "Modular Design", "Type Inference"],
   kotlin: ["MVVM + Clean", "Sealed Classes", "Extension Fns", "Delegates", "Reactive Flow"],
   flutter: ["Repository", "BLoC / Provider", "Isolates", "Lazy Lists", "Custom Paint"],
+  swift: ["MVVM", "Combine", "Async/Await", "View Composition", "Navigation Stack"],
   postgres: ["CTE e Window Fns", "Índices GIN/GiST", "Advisory Locks", "JSONB", "Views"],
   mysql: ["Normalização de Dados", "Foreign Keys", "Índices Compostos", "Transactions", "Migrations"],
   docker: ["Camadas otimizadas", "Multi-stage", "Volumes nomeados", "Networks", ".dockerignore"],
@@ -69,6 +71,7 @@ const TAGLINE_BY_KEY: Record<string, string> = {
   ts: "Tipagem estática e segurança de código",
   kotlin: "Android nativo · Moderno",
   flutter: "Híbrido iOS · Android",
+  swift: "iOS nativo Apple",
   postgres: "Dados consistentes ACID",
   mysql: "Banco relacional performático",
   docker: "Ambientes reproduzíveis",
@@ -80,7 +83,7 @@ const TAGLINE_BY_KEY: Record<string, string> = {
 
 const FRONTICON_BY_KEY: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
   java: DiJava, spring: SiSpringboot, php: SiPhp, laravel: SiLaravel,
-  kotlin: SiKotlin, flutter: SiFlutter,
+  kotlin: SiKotlin, flutter: SiFlutter, swift: SiSwift,
   node: SiNodedotjs, next: SiNodedotjs, js: SiJavascript, ts: SiTypescript,
   vue: SiVuedotjs, angular: SiAngular, react: SiReact,
   postgres: SiPostgresql, mysql: SiMysql, redis: SiRedis, mongo: SiMongodb,
@@ -123,14 +126,14 @@ export function StackShowcaseSection({ stack }: Props) {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <p className="text-xs font-mono text-[#6db33f] uppercase tracking-[0.24em] mb-3">
+            <p className="text-xs font-mono text-[#a78bfa] uppercase tracking-[0.24em] mb-3">
               Ecossistemas &amp; Tecnologias
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-foreground">
               Stack em 3 Níveis Prioritários
             </h2>
             <p className="text-sm text-muted-foreground mt-2 max-w-xl">
-              1º Java &amp; Spring Boot 3 · 2º PHP 8+ &amp; Laravel 11 · 3º Node.js &amp; TypeScript. Clique em cada card para virar e conferir os detalhes técnicos.
+              1º Mobile Android Nativo com Kotlin &amp; Jetpack Compose · 2º Java 21 &amp; Spring Boot 3 · 3º Node.js &amp; TypeScript. Clique em cada card para virar e conferir os detalhes técnicos.
             </p>
           </div>
           <span className="text-xs font-mono text-muted-foreground">
@@ -232,7 +235,7 @@ export function StackShowcaseSection({ stack }: Props) {
         </div>
 
         <a href="#projects" className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-          Explorar projetos Java · Spring Boot · PHP / Laravel · Node.js <ExternalLink size={15} />
+          Explorar projetos Mobile Android · Java &amp; Spring Boot · Node.js <ExternalLink size={15} />
         </a>
       </div>
     </section>
@@ -241,18 +244,18 @@ export function StackShowcaseSection({ stack }: Props) {
 
 const DEFAULT_CARDS = (() => {
   const FALLBACK_STACK: AdminStackItem[] = [
-    { id: "s-java", name: "Java 17 / 21+", icon: "java", tone: "tech-java", level: 96 },
-    { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 95 },
-    { id: "s-php", name: "PHP 8+", icon: "php", tone: "tech-php", level: 92 },
-    { id: "s-laravel", name: "Laravel 11", icon: "laravel", tone: "tech-laravel", level: 94 },
-    { id: "s-node", name: "Node.js", icon: "node", tone: "tech-node", level: 88 },
-    { id: "s-ts", name: "TypeScript 5", icon: "ts", tone: "tech-ts", level: 90 },
-    { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 92 },
-    { id: "s-mysql", name: "MySQL", icon: "mysql", tone: "tech-mysql", level: 90 },
-    { id: "s-docker", name: "Docker & Compose", icon: "docker", tone: "tech-docker", level: 86 },
-    { id: "s-react", name: "React 18", icon: "react", tone: "tech-react", level: 84 },
-    { id: "s-vue", name: "Vue.js 3", icon: "vue", tone: "tech-vue", level: 82 },
-    { id: "s-git", name: "Git & GitHub Actions", icon: "git", tone: "tech-git", level: 92 },
+    { id: "s-kotlin", name: "Kotlin (Android Nativo)", icon: "kotlin", tone: "tech-kotlin", level: 92 },
+    { id: "s-compose", name: "Jetpack Compose", icon: "kotlin", tone: "tech-kotlin", level: 90 },
+    { id: "s-kmp", name: "Kotlin Multiplatform", icon: "kotlin", tone: "tech-kotlin", level: 84 },
+    { id: "s-android", name: "Android SDK · Room · Hilt", icon: "kotlin", tone: "tech-kotlin", level: 90 },
+    { id: "s-java", name: "Java 17 / 21+", icon: "java", tone: "tech-java", level: 90 },
+    { id: "s-spring", name: "Spring Boot 3", icon: "spring", tone: "tech-spring", level: 90 },
+    { id: "s-node", name: "Node.js", icon: "node", tone: "tech-node", level: 70 },
+    { id: "s-ts", name: "TypeScript 5", icon: "ts", tone: "tech-ts", level: 78 },
+    { id: "s-flutter", name: "Flutter (Intermediário)", icon: "flutter", tone: "tech-react", level: 75 },
+    { id: "s-postgres", name: "PostgreSQL", icon: "postgres", tone: "tech-postgres", level: 90 },
+    { id: "s-docker", name: "Docker & Compose", icon: "docker", tone: "tech-docker", level: 84 },
+    { id: "s-git", name: "Git & GitHub Actions", icon: "git", tone: "tech-git", level: 90 },
   ];
   return FALLBACK_STACK.map((item) => {
     const iconKey = ADMIN_ICON_MAP[item.icon] ? item.icon : "java";

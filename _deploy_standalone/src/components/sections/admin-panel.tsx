@@ -8,7 +8,7 @@ import {
   SiReact, SiTypescript, SiSwagger, SiGo, SiJavascript, SiNodedotjs,
   SiMysql, SiMongodb, SiRedis, SiLinux, SiGnubash, SiGit, SiAngular,
   SiVuedotjs, SiSpringboot, SiKubernetes, SiTailwindcss, SiVite,
-  SiKotlin, SiFlutter,
+  SiKotlin, SiFlutter, SiSwift,
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import { useAdminData, useAuth } from "@/lib/admin-store";
@@ -25,13 +25,14 @@ const TONES: ProjectTone[] = [
   "tech-openapi", "tech-pdf", "tech-api", "tech-git", "tech-linux", "tech-bash", "tech-tailwind", "tech-vite",
   "tech-jwt", "tech-golang",
 ];
-const BADGES: (ProjectBadge | "")[] = ["", "DESTAQUE", "EM CONSTRUÇÃO", "LIVE", "API", "FULL-STACK"];
+const BADGES: (ProjectBadge | "")[] = ["", "DESTAQUE", "MOBILE", "EM CONSTRUÇÃO", "LIVE", "API", "FULL-STACK"];
 
 const ICON_OPTIONS = [
   { key: "java", label: "Java", icon: DiJava },
   { key: "spring", label: "Spring Boot", icon: SiSpringboot },
   { key: "kotlin", label: "Kotlin", icon: SiKotlin },
   { key: "flutter", label: "Flutter", icon: SiFlutter },
+  { key: "swift", label: "iOS / Swift", icon: SiSwift },
   { key: "node", label: "Node.js", icon: SiNodedotjs },
   { key: "next", label: "Next.js", icon: SiNodedotjs },
   { key: "js", label: "JavaScript", icon: SiJavascript },
