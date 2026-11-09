@@ -64,10 +64,14 @@ type Props = { projects: AdminProject[] };
 
 function ProjectCard({
   project, index, size = "normal",
-}: { project: AdminProject; index: number; size?: "featured" | "normal" }) {
+}: { project: AdminProject; index: number; size?: "lead" | "featured" | "normal" }) {
   const Icon = ICON_MAP[project.icon] ?? Sparkles;
-  const onOpen = () => window.open(project.live ?? project.github, "_blank", "noopener,noreferrer");
-  const isFeatured = size === "featured";
+  const target = project.live || project.github;
+  const onOpen = () => {
+    if (target) window.open(target, "_blank", "noopener,noreferrer");
+  };
+  const isFeatured = size !== "normal";
+  const isLead = size === "lead";
 
   return (
     <motion.article
@@ -79,9 +83,9 @@ function ProjectCard({
       whileHover={{ y: isFeatured ? -10 : -6 }}
       onClick={onOpen}
       onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") onOpen(); }}
-      role="link"
-      tabIndex={0}
-      className={`rails-project-card ${project.tone} rounded-xl overflow-hidden flex flex-col cursor-pointer relative group ${isFeatured ? "ring-1 ring-primary/25 shadow-[0_18px_48px_rgba(0,0,0,.48),inset_0_1px_0_rgba(255,255,255,.04)] hover:ring-primary/55 hover:shadow-[0_24px_60px_rgba(200,40,60,.22),0_18px_48px_rgba(0,0,0,.55)]" : ""}`}
+      role={target ? "link" : undefined}
+      tabIndex={target ? 0 : -1}
+      className={`rails-project-card ${project.tone} rounded-xl overflow-hidden flex flex-col ${target ? "cursor-pointer" : "cursor-default"} relative group ${isLead ? "md:col-span-2 md:grid md:grid-cols-[.85fr_1.15fr]" : ""} ${isFeatured ? "ring-1 ring-primary/25 shadow-[0_18px_48px_rgba(0,0,0,.48),inset_0_1px_0_rgba(255,255,255,.04)] hover:ring-primary/55 hover:shadow-[0_24px_60px_rgba(200,40,60,.22),0_18px_48px_rgba(0,0,0,.55)]" : ""}`}
     >
       <div className="absolute top-3 right-3 z-20 flex flex-col gap-1.5 items-end">
         {isFeatured && (
@@ -96,7 +100,7 @@ function ProjectCard({
         )}
       </div>
 
-      <div className={`relative flex items-center justify-center overflow-hidden rails-project-head ${project.image ? (isFeatured ? "h-64 md:h-72" : "h-56") : (isFeatured ? "h-40 md:h-44" : "h-24 md:h-28")}`}>
+      <div className={`relative flex items-center justify-center overflow-hidden rails-project-head ${project.image ? (isLead ? "h-80 md:h-full md:min-h-[34rem]" : isFeatured ? "h-64 md:h-72" : "h-56") : (isFeatured ? "h-40 md:h-44" : "h-24 md:h-28")}`}>
         <div className="absolute inset-0 rails-grid opacity-50" />
         {project.image ? (
           <div className="relative z-10 h-[86%] aspect-[9/19] rounded-[1.6rem] border-[3px] border-[#1f2430] bg-black shadow-[0_16px_44px_rgba(0,0,0,.55)] overflow-hidden group-hover:scale-[1.03] transition-transform duration-300">
@@ -117,7 +121,7 @@ function ProjectCard({
 
       <div className={`flex flex-col flex-1 ${isFeatured ? "p-6" : "p-5"}`}>
         <p className={`tech-label text-xs font-mono ${isFeatured ? "tracking-wide" : ""}`}>{project.subtitle}</p>
-        <h3 className={`font-bold tracking-tight leading-snug mt-1.5 ${isFeatured ? "text-xl md:text-[1.4rem]" : "text-lg"}`}>
+        <h3 className={`font-bold tracking-tight leading-snug mt-1.5 ${isLead ? "text-2xl md:text-3xl" : isFeatured ? "text-xl md:text-[1.4rem]" : "text-lg"}`}>
           {project.title}
         </h3>
         <p className={`text-sm text-muted-foreground leading-relaxed mt-3 flex-1 ${isFeatured ? "text-[13.5px] md:text-sm leading-[1.7] mt-4" : ""}`}>
@@ -132,16 +136,18 @@ function ProjectCard({
         </div>
 
         <div className={`mt-5 flex items-center gap-3 flex-wrap ${isFeatured ? "mt-6" : ""}`}>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(event) => event.stopPropagation()}
-            className={`inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors`}
-          >
-            <Github size={isFeatured ? 16 : 15} />
-            Repositório
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Github size={isFeatured ? 16 : 15} />
+              Repositório
+            </a>
+          )}
           {project.live && (
             <a
               href={project.live}
@@ -161,7 +167,9 @@ function ProjectCard({
 }
 
 export function ProjectsSection({ projects }: Props) {
-  const featured = projects.filter((p) => p.featured);
+  const featured = projects
+    .filter((p) => p.featured)
+    .sort((a, b) => Number(b.id === "proj-limpapp") - Number(a.id === "proj-limpapp"));
   const secondary = projects.filter((p) => !p.featured);
 
   return (
@@ -189,22 +197,22 @@ export function ProjectsSection({ projects }: Props) {
           </a>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-7">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-7">
           {featured.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} size="featured" />
+            <ProjectCard key={project.id} project={project} index={index} size={project.id === "proj-limpapp" ? "lead" : "featured"} />
           ))}
         </div>
 
         <div className="mt-20 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <p className="text-[11px] font-mono text-primary/80 uppercase tracking-[.22em] mb-2.5">
-              Outros Projetos &amp; Utilitários
+              Conceitos de apps Android
             </p>
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
-              Aplicações complementares.
+              Ideias pequenas para evoluir.
             </h3>
             <p className="text-muted-foreground mt-2 text-sm max-w-lg">
-              Aplicativos Android adicionais (carteira digital, leitor de nota fiscal, hábitos, delivery e clima), a API backend em Spring Boot 3 que os atende e os estudos complementares em Flutter, React Native e iOS que completam a experiência prática em desenvolvimento mobile.
+              Mockups de projetos Android pequenos (carteira digital, leitor de notas, hábitos, delivery e clima). São conceitos em desenvolvimento, não aplicativos publicados; o Limpapp é o projeto principal. Backend Java/Spring e Node.js aparecem depois do foco mobile.
             </p>
           </div>
           <a

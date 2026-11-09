@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail, Lock, Unlock, Settings } from "lucide-react";
 import { useAuth } from "@/lib/admin-store";
 
@@ -7,17 +7,36 @@ type FooterProps = {
 };
 
 export function Footer({ onOpenAdmin }: FooterProps) {
-  const { logged, login, logout } = useAuth();
+  const {
+    logged,
+    loading,
+    error: authError,
+    message: authMessage,
+    recoveryRequired,
+    login,
+    logout,
+    requestPasswordReset,
+    changePassword,
+  } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [err, setErr] = useState<string | null>(null);
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
-  function tryLogin(e: React.FormEvent) {
+  useEffect(() => {
+    if (recoveryRequired) {
+      setShowLogin(true);
+      setErr(null);
+    }
+  }, [recoveryRequired]);
+
+  async function tryLogin(e: React.FormEvent) {
     e.preventDefault();
-    const ok = login(user, pass);
-    if (!ok) {
-      setErr("Usuário ou senha incorretos.");
+    const result = await login(user, pass);
+    if (!result.ok) {
+      setErr(result.error ?? "Não foi possível entrar.");
       return;
     }
     setErr(null);
@@ -25,6 +44,33 @@ export function Footer({ onOpenAdmin }: FooterProps) {
     setUser("");
     setPass("");
     onOpenAdmin();
+  }
+
+  async function sendRecovery() {
+    const result = await requestPasswordReset(user);
+    if (!result.ok) setErr(result.error ?? "Não foi possível enviar o link.");
+    else setErr(null);
+  }
+
+  async function submitNewPassword(e: React.FormEvent) {
+    e.preventDefault();
+    if (newPass.length < 8) {
+      setErr("Use uma senha com pelo menos 8 caracteres.");
+      return;
+    }
+    if (newPass !== confirmPass) {
+      setErr("As senhas não coincidem.");
+      return;
+    }
+    const result = await changePassword(newPass);
+    if (!result.ok) {
+      setErr(result.error ?? "Não foi possível atualizar a senha.");
+      return;
+    }
+    setErr(null);
+    setNewPass("");
+    setConfirmPass("");
+    setShowLogin(false);
   }
 
   return (
@@ -55,14 +101,14 @@ export function Footer({ onOpenAdmin }: FooterProps) {
           </span>
           <p className="text-sm text-muted-foreground mt-1">1º Mobile Android (Kotlin) · 2º Java 21 &amp; Spring Boot 3 · 3º Node.js</p>
 
-          {showLogin && !logged && (
+          {((showLogin && !logged) || recoveryRequired) && (
             <form
-              onSubmit={tryLogin}
+              onSubmit={recoveryRequired ? submitNewPassword : tryLogin}
               className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#6db33f]/40 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#6db33f" }}>
-                  <Lock size={14} /> Painel Admin — Login
+                  <Lock size={14} /> {recoveryRequired ? "Redefinir senha do painel" : "Painel Admin — Login"}
                 </div>
                 <button
                   type="button"
@@ -75,36 +121,66 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                   ✖ fechar
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-2 mb-2">
-                <input
-                  value={user}
-                  onChange={(e) => setUser(e.target.value)}
-                  type="text"
-                  placeholder="usuário"
-                  className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
-                  autoComplete="username"
-                />
-                <input
-                  value={pass}
-                  onChange={(e) => setPass(e.target.value)}
-                  type="password"
-                  placeholder="senha"
-                  className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
-                  autoComplete="current-password"
-                />
-              </div>
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <span className="text-[10.5px] font-mono text-muted-foreground">
-                  dica: <span className="text-[#9ed866]">reinaldobarretosilva@gmail.com</span> / <span className="text-[#9ed866]">javaOracle1234</span>
-                </span>
-                <button
-                  type="submit"
-                  className="rails-button rounded-lg px-3 py-1.5 text-xs font-semibold"
-                >
-                  Entrar
-                </button>
-              </div>
-              {err && <div className="text-[11px] text-[#e44857] mt-1.5 font-mono">{err}</div>}
+              {recoveryRequired ? (
+                <>
+                  <input
+                    value={newPass}
+                    onChange={(e) => setNewPass(e.target.value)}
+                    type="password"
+                    placeholder="Nova senha (mínimo 8 caracteres)"
+                    className="w-full rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary mb-2"
+                    autoComplete="new-password"
+                    minLength={8}
+                    required
+                  />
+                  <input
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
+                    type="password"
+                    placeholder="Confirme a nova senha"
+                    className="w-full rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary mb-2"
+                    autoComplete="new-password"
+                    required
+                  />
+                  <button type="submit" disabled={loading} className="rails-button rounded-lg px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
+                    Atualizar senha
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="grid grid-cols-2 gap-2 mb-2">
+                    <input
+                      value={user}
+                      onChange={(e) => setUser(e.target.value)}
+                      type="email"
+                      placeholder="e-mail"
+                      className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
+                      autoComplete="username"
+                      required
+                    />
+                    <input
+                      value={pass}
+                      onChange={(e) => setPass(e.target.value)}
+                      type="password"
+                      placeholder="senha"
+                      className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
+                      autoComplete="current-password"
+                      required
+                    />
+                  </div>
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <span className="text-[10.5px] font-mono text-muted-foreground">Acesso protegido pelo Supabase Auth.</span>
+                    <button type="submit" disabled={loading} className="rails-button rounded-lg px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
+                      {loading ? "Entrando..." : "Entrar"}
+                    </button>
+                  </div>
+                  <button type="button" onClick={() => void sendRecovery()} disabled={loading} className="mt-2 text-[11px] font-mono text-[#9ed866] hover:underline disabled:opacity-50">
+                    Esqueci minha senha
+                  </button>
+                </>
+              )}
+              {(err || authError) && <div className="text-[11px] text-[#e44857] mt-1.5 font-mono">{err || authError}</div>}
+              {authMessage && <div className="text-[11px] text-[#9ed866] mt-1.5 font-mono">{authMessage}</div>}
             </form>
           )}
         </div>

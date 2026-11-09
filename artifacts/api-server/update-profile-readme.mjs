@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Update GitHub profile README (reinaldobarreto31/reinaldobarreto31)
 import { ReplitConnectors } from "@replit/connectors-sdk";
+import { readFile } from "node:fs/promises";
 
 const OWNER = "reinaldobarreto31";
 const REPO  = "reinaldobarreto31";
@@ -17,7 +18,7 @@ async function gh(method, path, body) {
   return { status: res.status, data };
 }
 
-const README = `<div align="center">
+const LEGACY_README = `<div align="center">
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=3000&pause=1000&color=6DB33F&center=true&vCenter=true&width=800&lines=Hi+%F0%9F%91%8B+I'm+Reinaldo+Barreto;Java+%26+Spring+Boot+Engineer+%E2%98%95;Kotlin+%C2%B7+Go+%C2%B7+React+%C2%B7+Vue.js;Microsservi%C3%A7os+%7C+OAuth2+%7C+Keycloak;Linux+Ubuntu+is+my+home+%F0%9F%90%A7;Clean+Code+%7C+CI%2FCD+%7C+Docker)](https://git.io/typing-svg)
 
@@ -165,6 +166,8 @@ public class Developer {
 </div>
 `;
 
+const README = await readFile(new URL("../../github-profile/README.md", import.meta.url), "utf8");
+
 // Get current SHA
 const current = await gh("GET", `/repos/${OWNER}/${REPO}/contents/README.md`);
 if (current.status !== 200) {
@@ -177,7 +180,7 @@ console.log("Current SHA:", sha);
 // Push updated README
 const content = Buffer.from(README).toString("base64");
 const result = await gh("PUT", `/repos/${OWNER}/${REPO}/contents/README.md`, {
-  message: "chore: update profile README — Java/Spring Boot/Kotlin/Go, Navegantes/SC",
+  message: "chore: update profile README — Android/Kotlin, Java/Spring and Node.js",
   content,
   sha,
 });

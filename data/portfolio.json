@@ -3,15 +3,15 @@
     "name": "Reinaldo Barreto",
     "fullName": "Reinaldo Barreto da Silva",
     "headline": "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Backend Java (Spring Boot 3) & Node.js",
-    "tagline": "Especialista em desenvolvimento mobile nativo Android com Kotlin, Jetpack Compose e Kotlin Multiplatform (KMP), integrado a APIs robustas em Java 21/Spring Boot 3 e Node.js. Complementos: Flutter (intermediário), React Native (básico) e iOS/Swift e PHP (noções).",
-    "location": "Salvador / BA, Brasil",
+    "tagline": "Desenvolvedor Mobile com foco em Android nativo usando Kotlin, Jetpack Compose e KMP; depois Java/Spring Boot e Node.js. Flutter (intermediário), React Native (básico), Swift/iOS em aprendizado (ainda sem Mac para executar o Xcode) e PHP (noções).",
+    "location": "Navegantes, Santa Catarina, Brasil",
     "availability": "Disponível para oportunidades Remotas e Presenciais / Híbridas",
     "phone": "+55 (71) 99182-3131",
     "email": "reinaldobarretosilva@gmail.com",
     "linkedin": "https://linkedin.com/in/reinaldo-barreto-2a4ba2116",
     "github": "https://github.com/reinaldobarreto31",
     "photo": "foto-reinaldo.png",
-    "about": "Engenheiro de Software e Desenvolvedor Mobile focado no ecossistema Android nativo e Backend moderno. Atuação em desenvolvimento de aplicativos Android com Kotlin, Jetpack Compose, Coroutines, StateFlow, Room e injeção com Hilt, além de arquiteturas compartilhadas com Kotlin Multiplatform (KMP). Sólida base em backend corporativo com Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL e Docker, e APIs em Node.js/TypeScript (3º foco), construída em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras) e produtos comerciais. Experiência comprovada como Analista de TI e suporte técnico especializado a usuários corporativos e Auditores Fiscais Municipais na EDZA. Complementos: Flutter (intermediário), React Native (básico) e iOS/Swift e PHP (noções).",
+    "about": "Engenheiro de Software e Desenvolvedor Mobile com prioridade em Android nativo e Kotlin: Jetpack Compose, Coroutines, StateFlow, Room, Hilt e Kotlin Multiplatform (KMP). Em seguida, backend Java 17/21+ com Spring Boot 3; como terceiro foco, Node.js/TypeScript. Experiência em sistemas de missão crítica para o setor público da Bahia (PRODEB, SSP-BA e prefeituras), além de suporte especializado a usuários e Auditores Fiscais Municipais na EDZA. Flutter (intermediário), React Native (básico), Swift/iOS em aprendizado (ainda sem Mac para executar e testar com Xcode) e PHP (noções).",
     "goal": "Atuar como Desenvolvedor Mobile Android (Kotlin / KMP / Jetpack Compose) ou Desenvolvedor Mobile & Backend Java Spring Boot, projetando aplicativos nativos de alto desempenho, arquitetura limpa (Clean Architecture / MVVM), persistência reativa, testes automatizados e integração contínua."
   },
   "auth": {
@@ -19,7 +19,7 @@
     "password": "admin123"
   },
   "stack": {
-    "intro": "1º Foco: Mobile Android Nativo (Kotlin, Jetpack Compose e Kotlin Multiplatform) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: Node.js & TypeScript · Complementares: Flutter (intermediário), React Native (básico), iOS/Swift e PHP (noções).",
+    "intro": "1º Foco: Mobile Android Nativo (Kotlin, Jetpack Compose e Kotlin Multiplatform) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: Node.js & TypeScript · Complementares: Flutter (intermediário), React Native (básico), Swift/iOS em aprendizado (sem Mac para executar Xcode) e PHP (noções).",
     "pillars": [
       {
         "level": "1º Foco",
@@ -75,8 +75,8 @@
         "items": [
           "Flutter & Dart (Intermediário)",
           "React Native (Básico)",
-          "iOS / Swift & SwiftUI (Noções)",
-          "PHP & Laravel (Noções)",
+          "Swift / iOS em aprendizado (ainda sem Mac/Xcode)",
+          "PHP (noções básicas)",
           "Git & Versionamento"
         ]
       }
@@ -96,8 +96,8 @@
     { "name": "Node.js & TypeScript (3º foco backend)", "level": 70 },
     { "name": "Flutter & Dart (intermediário)", "level": 68 },
     { "name": "React Native (entregas pontuais cross-platform)", "level": 60 },
-    { "name": "iOS / Swift & SwiftUI (noções)", "level": 45 },
-    { "name": "PHP & Laravel (noções / sistemas legados)", "level": 35 }
+    { "name": "Swift / iOS (em aprendizado; ainda sem Mac/Xcode)", "level": 35 },
+    { "name": "PHP (noções básicas)", "level": 30 }
   ],
   "practices": [
     "Clean Architecture",
@@ -115,22 +115,19 @@
       "id": "limpapp",
       "featured": true,
       "status": "Em desenvolvimento",
-      "category": "Mobile Nativo · Kotlin & KMP",
-      "title": "Limpapp — Aplicativo de Serviços & Limpeza",
-      "summary": "Aplicativo mobile nativo desenvolvido em Kotlin e Kotlin Multiplatform (KMP), com Jetpack Compose, fluxo interativo de upload de fotos ilustrativas dos serviços (antes e depois do trabalho) e integração com backend robusto em Spring Boot 3.",
-      "description": "O Limpapp conecta clientes e profissionais de serviços de limpeza residencial e comercial. O app possui catálogo de serviços, agenda de atendimentos, orçamentos e um módulo de portfólio visual para o prestador: permite capturar ou subir fotos ilustrativas do ambiente antes e depois da execução do serviço, com compressão local, sincronização offline com Room e integração segura a uma API Java Spring Boot com PostgreSQL.",
+      "category": "Projeto principal · Android Nativo · Kotlin & KMP",
+      "title": "Limpapp — Marketplace de Limpeza sob Demanda",
+      "summary": "Projeto principal em desenvolvimento: aplicativo Android para conectar clientes a diaristas e profissionais de limpeza. As telas exibidas são mockups; o app ainda não foi publicado em loja.",
+      "description": "O Limpapp está sendo planejado como um marketplace de serviços de limpeza residencial: clientes poderão encontrar profissionais, consultar perfis e solicitar/agendar serviços. A implementação está em andamento; as telas da galeria são protótipos visuais e não representam funcionalidades já concluídas.",
       "tags": [
         "Kotlin",
         "Jetpack Compose",
         "Kotlin Multiplatform (KMP)",
-        "Upload de Fotos",
-        "Room Database",
-        "Coroutines",
-        "Spring Boot 3",
-        "PostgreSQL",
+        "Marketplace de serviços",
+        "Protótipo de interface",
         "Em desenvolvimento"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "https://reinaldobarreto31.github.io/#projects",
       "demo": "",
       "cover": "assets/mockups/mockup-limpapp.svg",
       "gallery": [
@@ -138,13 +135,13 @@
       ]
     },
     {
-      "id": "kotlin-android-native",
+      "id": "kotlin-tasks-android",
       "featured": true,
-      "status": "Mobile Nativo",
+      "status": "Android · Kotlin",
       "category": "Android Nativo · Kotlin",
-      "title": "App Android Nativo com Jetpack Compose & Clean Arch",
-      "summary": "Aplicativo Android moderno construído 100% em Kotlin com Jetpack Compose, arquitetura MVVM, StateFlow, Coroutines, Room para persistência local e injeção de dependência com Hilt.",
-      "description": "Implementação completa seguindo o guia oficial de arquitetura da Google: camada de apresentação declarativa com Material 3, repositório reativo, cache local em Room, comunicação com API REST em Spring Boot e testes unitários.",
+      "title": "Kotlin Tasks — Aplicativo Android Nativo",
+      "summary": "Aplicativo público no GitHub para gestão de tarefas, desenvolvido com Kotlin, MVVM, Room Database e Material Design 3.",
+      "description": "Projeto Android verificável no repositório público kotlin-tasks-android. O README e o código-fonte documentam as funcionalidades e a arquitetura implementadas.",
       "tags": [
         "Kotlin",
         "Jetpack Compose",
@@ -154,7 +151,7 @@
         "Hilt",
         "Material 3"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "https://github.com/reinaldobarreto31/kotlin-tasks-android",
       "demo": "",
       "cover": "assets/screenshots/screen_task_list.png",
       "gallery": [
@@ -163,7 +160,7 @@
     },
     {
       "id": "spring-boot-enterprise-api",
-      "featured": true,
+      "featured": false,
       "status": "Backend Enterprise",
       "category": "Java 21 · Spring Boot 3",
       "title": "API RESTful Enterprise com Java 21 & Spring Boot 3",
@@ -179,14 +176,14 @@
         "JUnit 5",
         "OpenAPI 3"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "https://github.com/reinaldobarreto31/spring-boot-swagger-crud",
       "demo": "",
       "cover": "",
       "gallery": []
     },
     {
       "id": "kmp-shared-architecture",
-      "featured": true,
+      "featured": false,
       "status": "Multiplataforma",
       "category": "Kotlin Multiplatform (KMP)",
       "title": "Camada Compartilhada com Kotlin Multiplatform (KMP)",
@@ -200,7 +197,7 @@
         "Multiplatform",
         "Clean Arch"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "",
       "demo": "",
       "cover": "",
       "gallery": []
@@ -208,11 +205,11 @@
     {
       "id": "react-native-cross-app",
       "featured": false,
-      "status": "Cross-Platform",
+      "status": "Tecnologia complementar · Básico",
       "category": "React Native (pontual)",
-      "title": "App Mobile Cross-Platform em React Native",
-      "summary": "Aplicativo multiplataforma para clientes sob demanda com React Native, Expo e TypeScript, integrando autenticação, navegação fluida e consumo de APIs REST.",
-      "description": "Entregas pontuais quando o projeto prioriza um único código base JavaScript/TypeScript para lançamento rápido em iOS e Android. A preferência contínua do perfil permanece no ecossistema nativo Kotlin / KMP.",
+      "title": "Estudos pontuais em React Native (básico)",
+      "summary": "Tecnologia complementar estudada para projetos mobile cross-platform; Android nativo com Kotlin continua sendo o foco principal.",
+      "description": "Noções básicas de React Native e Expo para compreender a construção de interfaces multiplataforma. Não representa um aplicativo publicado.",
       "tags": [
         "React Native",
         "TypeScript",
@@ -220,7 +217,7 @@
         "Mobile Cross-Platform",
         "REST API"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "",
       "demo": "",
       "cover": "",
       "gallery": []
@@ -230,18 +227,18 @@
       "featured": false,
       "status": "Em estudo ativo",
       "category": "iOS Nativo · Swift",
-      "title": "Estudos Práticos de iOS Nativo com Swift & SwiftUI",
-      "summary": "Laboratório de aprendizado contínuo explorando Swift moderno, SwiftUI, Xcode, arquitetura MVVM no ecossistema Apple e integração com módulos KMP.",
-      "description": "Projetos práticos focados em interfaces declarativas no iOS, navegação nativa, consumo de APIs backend em Spring Boot e interoperabilidade com código compartilhado Kotlin.",
+      "title": "Aprendizado de Swift e iOS (em andamento)",
+      "summary": "Estudo inicial de Swift e fundamentos do desenvolvimento iOS. Ainda sem Mac, não consigo executar o Xcode nem compilar/testar aplicativos iOS.",
+      "description": "Aprendizado dos fundamentos da linguagem Swift e exploração conceitual de SwiftUI e integração com KMP. O desenvolvimento e os testes em simulador/dispositivo ficam pendentes até ter acesso a um Mac.",
       "tags": [
         "Swift",
-        "SwiftUI",
-        "Xcode",
+        "SwiftUI (em estudo)",
+        "Sem Mac / Xcode",
         "iOS Nativo",
         "Apple HIG",
         "Em estudo"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "",
       "demo": "",
       "cover": "",
       "gallery": []
@@ -262,7 +259,7 @@
         "Docker",
         "Microsserviços"
       ],
-      "repo": "https://github.com/reinaldobarreto31",
+      "repo": "",
       "demo": "",
       "cover": "",
       "gallery": []
@@ -330,8 +327,8 @@
       "role": "Desenvolvedor Mobile & Web (Projetos Comerciais / Freelance)",
       "company": "Projetos Comerciais Sob Demanda & Limpapp",
       "period": "Períodos Intermitentes / Em Andamento",
-      "location": "Salvador / BA & Remoto",
-      "description": "Concepção e desenvolvimento do aplicativo mobile nativo Limpapp em Kotlin e Kotlin Multiplatform (KMP), incluindo módulo de captura e upload de fotos ilustrativas dos serviços com persistência local e sincronização backend Spring Boot. Desenvolvimento de sites institucionais, landing pages e portais comerciais para clientes sob demanda.",
+      "location": "Navegantes / SC & Remoto",
+      "description": "Desenvolvimento mobile com prioridade para Android nativo em Kotlin. Projeto principal em andamento: Limpapp, marketplace planejado para conectar clientes a diaristas e profissionais de limpeza; suas telas atuais são mockups e o app ainda não foi publicado. Desenvolvimento de sites e soluções comerciais sob demanda.",
       "tags": ["Kotlin", "KMP", "Jetpack Compose", "Spring Boot 3", "Sites Freelance", "Mobile"]
     }
   ],
@@ -353,7 +350,7 @@
     "APIs RESTful com Java 21 e Spring Boot 3 Enterprise — Udemy",
     "Testes Automatizados e TDD com JUnit 5 e Mockito — Udemy",
     "Docker e Orquestração de Containers para Desenvolvedores — Udemy",
-    "Desenvolvimento iOS Nativo com Swift & SwiftUI — em aprendizado ativo"
+    "Fundamentos de Swift e iOS — em aprendizado; ainda sem Mac para executar o Xcode"
   ],
   "languages": [
     { "name": "Português", "level": "Nativo / Fluente (leitura, escrita e conversação)", "percent": 100 },

@@ -35,7 +35,7 @@ export interface ResumeProject {
 }
 
 export const PROFESSIONAL_SUMMARY = [
-  "Engenheiro de Software e Desenvolvedor especializado em ecossistema Mobile nativo com Kotlin (Android SDK, Jetpack Compose, MVVM, Coroutines, StateFlow, Room, Hilt) e arquitetura multiplataforma com Kotlin Multiplatform (KMP). Evolução técnica organizada em 3 níveis de prioridade: 1º Mobile Android/Kotlin, 2º backend corporativo em Java (Java 17/21+, Spring Boot 3, Spring Data JPA, Spring Security, JWT, PostgreSQL, Docker) e 3º APIs em Node.js/TypeScript. Atuação complementar intermediária em Flutter (Dart), noções em React Native e iOS (Swift) e em PHP para sistemas legados. Vivência consolidada na modernização e sustentação de sistemas de missão crítica para o setor público estadual (PRODEB, SSP-BA/Polícia Militar) e municipal (EDZA), combinando desenvolvimento de software com suporte técnico especializado a Auditores Fiscais do Município e usuários corporativos. Concepção e desenvolvimento do aplicativo próprio Limpapp (Kotlin nativo & KMP com upload de fotos ilustrativas).",
+  "Engenheiro de Software e Desenvolvedor Mobile com foco em Android nativo usando Kotlin (Android SDK, Jetpack Compose, MVVM, Coroutines, StateFlow, Room e Hilt), além de Kotlin Multiplatform (KMP). Prioridades: 1º Mobile Android/Kotlin, 2º backend Java 17/21+ com Spring Boot 3 e 3º APIs Node.js/TypeScript. Flutter (intermediário), React Native (básico), Swift/iOS em aprendizado (ainda sem Mac para executar e testar com Xcode) e PHP (noções). Experiência em sistemas de missão crítica no setor público (PRODEB, SSP-BA e EDZA), incluindo suporte técnico especializado a Auditores Fiscais do Município e usuários corporativos. Projeto principal em andamento: Limpapp, marketplace Android planejado para conectar clientes a diaristas; as telas atuais são mockups.",
 ];
 
 export const PROFESSIONAL_OBJECTIVE =
@@ -45,7 +45,7 @@ export const CONTACT = {
   name: "Reinaldo Barreto da Silva",
   phone: "(71) 99182-3131",
   email: "reinaldobarreto31@gmail.com",
-  location: "Salvador – BA (Disponível Remoto / Presencial)",
+  location: "Navegantes – Santa Catarina (Disponível Remoto / Híbrido / Presencial na região)",
   linkedin: "linkedin.com/in/reinaldo-barreto-2a4ba2116",
   github: "github.com/reinaldobarreto31",
   headline: "Desenvolvedor Mobile (Kotlin · KMP · Android Nativo) · Java 21 & Spring Boot 3 · Node.js",
@@ -58,7 +58,7 @@ export const HARD_SKILLS: ResumeSkill[] = [
   { name: "Java 17 / 21+ & Spring Boot 3", level: 90, color: "#6db33f", icon: "spring" },
   { name: "Node.js & TypeScript (3º foco)", level: 70, color: "#339933", icon: "node" },
   { name: "React Native (Básico)", level: 65, color: "#61dafb", icon: "react" },
-  { name: "iOS Nativo / Swift (Noções)", level: 45, color: "#f05138", icon: "actions" },
+  { name: "Swift / iOS (em aprendizado; ainda sem Mac/Xcode)", level: 35, color: "#f05138", icon: "actions" },
   { name: "PostgreSQL & MySQL", level: 90, color: "#336791", icon: "postgres" },
   { name: "APIs RESTful & OpenAPI 3 / Swagger", level: 94, color: "#6db33f", icon: "swagger" },
   { name: "Docker & Docker Compose", level: 86, color: "#2496ed", icon: "docker" },
@@ -116,7 +116,7 @@ export const COURSES = [
   "APIs RESTful com Java 21 e Spring Boot 3 Enterprise — Udemy",
   "Testes Automatizados e TDD com JUnit 5 e Mockito — Udemy",
   "Docker e Orquestração de Containers para Desenvolvedores — Udemy",
-  "Desenvolvimento iOS Nativo com Swift & SwiftUI (em aprendizado contínuo)",
+  "Fundamentos de Swift e iOS (em aprendizado; ainda sem Mac para executar o Xcode)",
 ];
 
 export const EXPERIENCES: ResumeExperience[] = [
@@ -171,9 +171,9 @@ export const EXPERIENCES: ResumeExperience[] = [
     company: "Desenvolvimento Mobile & Projetos Comerciais (Freelance)",
     role: "Desenvolvedor Mobile & Backend",
     period: "Períodos Intermitentes / Em Andamento",
-    location: "Salvador / BA & Remoto",
+location: "Navegantes / SC & Remoto",
     description:
-      "Concepção e desenvolvimento do aplicativo mobile nativo Limpapp em Kotlin e Kotlin Multiplatform (KMP), com upload e compressão de fotos ilustrativas dos serviços antes/depois do atendimento, cache offline com Room e integração com API Spring Boot 3. Desenvolvimento de aplicativos multiplataforma em Flutter, soluções em React Native e entregas comerciais sob demanda.",
+      "Projeto principal em andamento: planejamento e prototipação do Limpapp, um marketplace Android para conectar clientes a diaristas e profissionais de limpeza. Os mockups ilustram a proposta; as funcionalidades ainda estão em desenvolvimento. Estudos e entregas complementares em Flutter, React Native e backend Java/Spring.",
     tags: [
       { name: "Kotlin", icon: "kotlin", tone: "tech-kotlin" },
       { name: "KMP", icon: "kotlin", tone: "tech-kotlin" },
@@ -186,26 +186,26 @@ export const EXPERIENCES: ResumeExperience[] = [
 
 export const PROJECTS: ResumeProject[] = [
   {
-    title: "Limpapp — App de Serviços & Limpeza",
-    subtitle: "Mobile Nativo · Kotlin · Compose · KMP · Upload de Fotos",
+    title: "Limpapp — Marketplace de Limpeza sob Demanda",
+    subtitle: "Projeto principal · Android · Kotlin · Jetpack Compose · Em desenvolvimento",
     badge: "EM CONSTRUÇÃO",
-    stack: "Kotlin, Jetpack Compose, KMP, Room Database, Coroutines, Spring Boot 3, PostgreSQL",
+    stack: "Kotlin, Android SDK, Jetpack Compose, KMP",
     description:
-      "Aplicativo mobile nativo em desenvolvimento com Kotlin e Kotlin Multiplatform (KMP). Inclui catálogo de serviços, agenda de atendimentos e fluxo inteligente de upload de fotos ilustrativas dos serviços (antes e depois do trabalho) com compressão local, sincronização offline com Room e integração com API Spring Boot 3.",
-    tags: ["Kotlin", "Compose", "KMP", "Room", "Fotos", "Spring Boot 3"],
-    github: "https://github.com/reinaldobarreto31/limpapp-mobile",
+      "Projeto principal em desenvolvimento: aplicativo Android planejado para conectar clientes a diaristas e profissionais de limpeza. A proposta inclui descoberta de prestadores e solicitação/agendamento de serviços. As telas atuais são mockups; as funcionalidades ainda não estão concluídas e o app não foi publicado em loja.",
+    tags: ["Kotlin", "Android", "Compose", "KMP", "Marketplace", "Protótipo"],
+    github: "https://reinaldobarreto31.github.io/#projects",
     tone: "tech-kotlin",
     icon: "kotlin",
   },
   {
-    title: "App Android Nativo com Jetpack Compose & Clean Arch",
-    subtitle: "Android Nativo · Kotlin · MVVM · Coroutines · Hilt · Room",
+    title: "Kotlin Tasks — Aplicativo Android Nativo",
+    subtitle: "Android Nativo · Kotlin · MVVM · Room Database · Material Design 3",
     badge: "DESTAQUE",
-    stack: "Kotlin, Android SDK, Jetpack Compose, Coroutines, Flow, Room, Hilt, Material 3",
+    stack: "Kotlin, Android SDK, MVVM, Room Database, Material Design 3",
     description:
-      "Aplicativo Android moderno seguindo as diretrizes oficiais da Google: arquitetura limpa em camadas (MVVM), StateFlow, Coroutines, Room para persistência reativa, injeção de dependência com Hilt e consumo de APIs REST.",
-    tags: ["Kotlin", "Compose", "MVVM", "Flow", "Hilt", "Room"],
-    github: "https://github.com/reinaldobarreto31/kotlin-android-native",
+      "Aplicativo Android público para gestão de tarefas, com arquitetura MVVM, persistência local em Room Database e Material Design 3. Inclui telas reais do app e fluxo de criação e filtro de tarefas por prioridade.",
+    tags: ["Kotlin", "Android", "MVVM", "Room", "Material 3"],
+    github: "https://github.com/reinaldobarreto31/kotlin-tasks-android",
     tone: "tech-kotlin",
     icon: "kotlin",
   },
@@ -253,19 +253,19 @@ export const PROJECTS: ResumeProject[] = [
     description:
       "Aplicativo multiplataforma para Android e iOS desenvolvido com Flutter e Dart: widgets customizados, gerenciamento de estado reativo, consumo de APIs RESTful e navegação fluida.",
     tags: ["Flutter", "Dart", "Multiplataforma", "REST APIs", "State Management"],
-    github: "https://github.com/reinaldobarreto31/flutter-cross-app",
+    github: "https://reinaldobarreto31.github.io/#projects",
     tone: "tech-react",
     icon: "react",
   },
   {
-    title: "API RESTful Enterprise em Java & Spring Boot 3",
-    subtitle: "Spring Boot 3 · Spring Security · JPA · PostgreSQL",
+    title: "API CRUD — Java 21 & Spring Boot 3",
+    subtitle: "Backend · Java 21 · Spring Boot 3 · OpenAPI/Swagger · PostgreSQL",
     badge: "API",
-    stack: "Java 21, Spring Boot 3, Spring Data JPA, Spring Security, PostgreSQL, Docker, JUnit 5",
+    stack: "Java 21, Spring Boot 3, Spring Data JPA, PostgreSQL, OpenAPI 3, Docker Compose",
     description:
-      "API corporativa robusta e escalável desenvolvida em Java 21 com Spring Boot 3 sob Clean Architecture. Autenticação stateless via Spring Security 6 e JWT, validações com Bean Validation, documentação Swagger/OpenAPI e testes com JUnit 5 e Mockito.",
-    tags: ["Java 21", "Spring Boot 3", "PostgreSQL", "JWT", "Swagger", "Docker"],
-    github: "https://github.com/reinaldobarreto31/spring-boot-enterprise-api",
+      "API RESTful de operações CRUD desenvolvida com Java 21 e Spring Boot 3. O repositório público documenta persistência PostgreSQL com Spring Data JPA, validação com Bean Validation, documentação OpenAPI/Swagger e execução com Docker Compose.",
+    tags: ["Java 21", "Spring Boot 3", "JPA", "PostgreSQL", "OpenAPI", "Docker"],
+    github: "https://github.com/reinaldobarreto31/spring-boot-swagger-crud",
     tone: "tech-spring",
     icon: "spring",
   },

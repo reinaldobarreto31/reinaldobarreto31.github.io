@@ -79,7 +79,7 @@ function uid() {
 type Tab = "projects" | "experiences" | "about" | "stack";
 
 export function AdminPanel({ open, onClose }: Props) {
-  const { data, update, resetAll } = useAdminData();
+  const { data, update, resetAll, syncStatus, syncError, retrySync } = useAdminData();
   const { logout } = useAuth();
   const [tab, setTab] = useState<Tab>("projects");
   const [flash, setFlash] = useState<string | null>(null);
@@ -109,12 +109,30 @@ export function AdminPanel({ open, onClose }: Props) {
         <div className="flex items-center justify-between gap-3 p-4 md:p-5 border-b border-[#44475a]/50 bg-[linear-gradient(135deg,rgba(109,179,63,.16),rgba(40,42,54,.6))]">
           <div>
             <div className="flex items-center gap-2 text-[#50fa7b] font-bold font-mono text-xs uppercase tracking-wider">
-              <Save size={15} /> Painel Administrativo — Portfolio Java · Spring · Kotlin · Flutter
+              <Save size={15} /> Painel Administrativo — Android/Kotlin · Java/Spring · Node.js
             </div>
             <h2 className="text-white text-lg md:text-xl font-bold mt-1">Editar portfólio sem mexer no código</h2>
-            <p className="text-muted-foreground text-xs md:text-sm mt-0.5">
-              Os dados são salvos em <code className="bg-[#191a21] px-1.5 py-0.5 rounded border border-[#44475a]/60">localStorage</code> e refletidos no portfólio em tempo real (como GIF).
-            </p>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs md:text-sm">
+              <span className={`font-mono ${
+                syncStatus === "synced" ? "text-[#50fa7b]"
+                  : syncStatus === "saving" || syncStatus === "loading" ? "text-[#f1fa8c]"
+                    : syncStatus === "error" ? "text-[#ff6e6e]"
+                      : "text-muted-foreground"
+              }`}>
+                {syncStatus === "synced" && "Sincronizado com Supabase."}
+                {syncStatus === "saving" && "Salvando no Supabase..."}
+                {syncStatus === "loading" && "Carregando dados do Supabase..."}
+                {syncStatus === "empty" && "Supabase conectado. A primeira edição iniciará o salvamento."}
+                {syncStatus === "local" && "Supabase não configurado; alterações ficam neste navegador."}
+                {syncStatus === "error" && "Falha ao sincronizar com o Supabase."}
+              </span>
+              {syncStatus === "error" && (
+                <button type="button" onClick={retrySync} className="text-[#9ed866] underline underline-offset-2">
+                  Tentar novamente
+                </button>
+              )}
+            </div>
+            {syncError && <p className="text-[#ff8c8c] text-[11px] mt-1 break-words">{syncError}</p>}
           </div>
           <div className="flex items-center gap-2 flex-wrap justify-end">
             {flash && (
@@ -412,6 +430,22 @@ function ProjectForm({
       <Field label="Demonstração LIVE (URL — opcional)">
         <input className="inp" value={draft.live ?? ""} onChange={(e) => setDraft({ ...draft, live: e.target.value || undefined })} />
       </Field>
+      <Field label="Imagem/tela (URL ou caminho publicado no site)" span={2}>
+        <input
+          className="inp"
+          placeholder="/screenshots/nome-da-tela.png"
+          value={draft.image ?? ""}
+          onChange={(e) => setDraft({ ...draft, image: e.target.value || undefined })}
+        />
+        <span className="mt-1 block text-[11px] text-muted-foreground">
+          O arquivo precisa estar no repositório para aparecer no GitHub Pages; este painel não envia arquivos ao GitHub.
+        </span>
+      </Field>
+      {draft.image && (
+        <div className="md:col-span-2 rounded-lg border border-[#44475a]/60 bg-black/20 p-2">
+          <img src={draft.image} alt={`Prévia da tela de ${draft.title}`} className="max-h-56 w-auto rounded-md object-contain" />
+        </div>
+      )}
       <Field label="Tecnologias (separadas por vírgula)">
         <input className="inp" value={techStr} onChange={(e) => {
           setTechStr(e.target.value);
@@ -585,7 +619,7 @@ function ExperienceForm({
       <Field label="Empresa"><input className="inp" value={draft.company} onChange={(e) => setDraft({ ...draft, company: e.target.value })} /></Field>
       <Field label="Cargo / Função"><input className="inp" value={draft.role} onChange={(e) => setDraft({ ...draft, role: e.target.value })} /></Field>
       <Field label="Período (ex: mar/2024 – set/2024)"><input className="inp" value={draft.period} onChange={(e) => setDraft({ ...draft, period: e.target.value })} /></Field>
-      <Field label="Localização (ex: Salvador / BA)"><input className="inp" value={draft.location} onChange={(e) => setDraft({ ...draft, location: e.target.value })} /></Field>
+      <Field label="Localização (ex: Navegantes / SC)"><input className="inp" value={draft.location} onChange={(e) => setDraft({ ...draft, location: e.target.value })} /></Field>
       <Field label="Descrição das atividades" span={2}>
         <textarea rows={5} className="inp" value={draft.description} onChange={(e) => setDraft({ ...draft, description: e.target.value })} />
       </Field>

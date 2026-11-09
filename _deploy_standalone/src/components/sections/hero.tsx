@@ -37,7 +37,7 @@ const COMPLEMENTARY_STACK = [
   { label: "Flutter (Intermediário)", icon: <SiFlutter size={14} />, tone: "tech-react" },
   { label: "Dart", icon: <SiDart size={14} />, tone: "tech-react" },
   { label: "React Native (Básico)", icon: <TbBrandReactNative size={15} />, tone: "tech-react" },
-  { label: "iOS / Swift (Noções)", icon: <SiSwift size={14} />, tone: "tech-actions" },
+  { label: "Swift / iOS (em aprendizado; sem Mac/Xcode)", icon: <SiSwift size={14} />, tone: "tech-actions" },
   { label: "PHP (Noções básicas)", icon: <span style={{ fontSize: 10, fontWeight: 700 }}>PHP</span>, tone: "tech-php" },
 ];
 
@@ -171,7 +171,7 @@ export function HeroSection() {
             {/* Complementares Mobile */}
             <div className="flex flex-col gap-1.5">
               <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#38bdf8] flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" /> Complementares · Flutter (Intermediário) · React Native (Básico) · iOS (Noções) · PHP (Noções)
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" /> Complementares · Flutter (Intermediário) · React Native (Básico) · Swift/iOS em aprendizado (sem Mac/Xcode) · PHP (Noções)
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {COMPLEMENTARY_STACK.map(({ label, icon }) => (

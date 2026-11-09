@@ -6,6 +6,17 @@ import {
   type AdminAbout,
   type AdminStackItem,
 } from "./default-data";
+import {
+  getAuthSession,
+  isSupabaseConfigured,
+  loadPortfolioContent,
+  savePortfolioContent,
+  sendPasswordRecovery,
+  setNewPassword,
+  signIn,
+  signOut,
+  type SupabaseSession,
+} from "./supabase-rest";
 
 export type AdminDataType = "projects" | "experiences" | "about" | "stack";
 export type AdminData = {
@@ -16,9 +27,7 @@ export type AdminData = {
 };
 
 const STORAGE_KEY = "portfolio_admin_data_v1";
-const AUTH_KEY = "portfolio_admin_auth_v1";
-const VALID_USER = "reinaldobarretosilva@gmail.com";
-const VALID_PASS = "javaOracle1234";
+export type SyncStatus = "local" | "loading" | "empty" | "saving" | "synced" | "error";
 
 function loadRaw(): AdminData {
   try {
@@ -37,51 +46,243 @@ function loadRaw(): AdminData {
 }
 
 function saveRaw(data: AdminData) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // The Supabase copy remains authoritative when browser storage is unavailable.
+  }
 }
 
-// --- Subscribers pattern (without external deps like zustand)
 type Listener = () => void;
 const listeners = new Set<Listener>();
 let state: AdminData = loadRaw();
-let auth: boolean = localStorage.getItem(AUTH_KEY) === "1";
+let session: SupabaseSession | null = null;
+let authLoading = isSupabaseConfigured;
+let authError: string | null = null;
+let authMessage: string | null = null;
+let recoveryRequired = false;
+let authInit: Promise<void> | null = null;
+let syncStatus: SyncStatus = isSupabaseConfigured ? "loading" : "local";
+let syncError: string | null = null;
+let dataInit: Promise<void> | null = null;
+let saveTimer: ReturnType<typeof setTimeout> | null = null;
+let dataRevision = 0;
 
 function notify() {
   listeners.forEach((l) => l());
 }
 
+function messageFrom(error: unknown) {
+  return error instanceof Error ? error.message : "Não foi possível concluir a operação.";
+}
+
+function isAdminData(value: unknown): value is AdminData {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Partial<AdminData>;
+  return Array.isArray(candidate.projects)
+    && Array.isArray(candidate.experiences)
+    && Array.isArray(candidate.stack)
+    && Boolean(candidate.about && typeof candidate.about === "object");
+}
+
+async function initializeAuth() {
+  if (!isSupabaseConfigured) {
+    authLoading = false;
+    return;
+  }
+  if (authInit) return authInit;
+  authLoading = true;
+  authInit = getAuthSession()
+    .then((current) => {
+      session = current;
+      recoveryRequired = Boolean(current?.recovery);
+      authError = null;
+    })
+    .catch((error: unknown) => {
+      session = null;
+      authError = messageFrom(error);
+    })
+    .finally(() => {
+      authLoading = false;
+      notify();
+    });
+  return authInit;
+}
+
+async function initializeData() {
+  if (!isSupabaseConfigured) {
+    syncStatus = "local";
+    return;
+  }
+  if (dataInit) return dataInit;
+  dataInit = loadPortfolioContent<AdminData>()
+    .then((remoteData) => {
+      if (remoteData && isAdminData(remoteData)) {
+        state = remoteData;
+        saveRaw(state);
+        syncStatus = "synced";
+      } else {
+        syncStatus = "empty";
+      }
+      syncError = null;
+    })
+    .catch((error: unknown) => {
+      syncStatus = "error";
+      syncError = messageFrom(error);
+    })
+    .finally(notify);
+  return dataInit;
+}
+
+function persistCloudCopy() {
+  const savedRevision = dataRevision;
+  syncStatus = "saving";
+  syncError = null;
+  notify();
+  void savePortfolioContent(structuredClone(state))
+    .then(() => {
+      if (savedRevision !== dataRevision) {
+        persistCloudCopy();
+        return;
+      }
+      syncStatus = "synced";
+      syncError = null;
+      notify();
+    })
+    .catch((error: unknown) => {
+      syncStatus = "error";
+      syncError = messageFrom(error);
+      notify();
+    });
+}
+
+function scheduleCloudSave() {
+  if (!isSupabaseConfigured) {
+    syncStatus = "local";
+    notify();
+    return;
+  }
+  dataRevision += 1;
+  syncStatus = "saving";
+  syncError = null;
+  notify();
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    saveTimer = null;
+    persistCloudCopy();
+  }, 700);
+}
+
 export function useAuth() {
-  const [logged, setLogged] = useState(auth);
+  const [snapshot, setSnapshot] = useState(() => ({
+    logged: Boolean(session),
+    loading: authLoading,
+    error: authError,
+    message: authMessage,
+    recoveryRequired,
+  }));
+
   useEffect(() => {
-    const lis = () => setLogged(auth);
+    const lis = () => setSnapshot({
+      logged: Boolean(session),
+      loading: authLoading,
+      error: authError,
+      message: authMessage,
+      recoveryRequired,
+    });
     listeners.add(lis);
+    void initializeAuth();
     return () => {
       listeners.delete(lis);
     };
   }, []);
-  const login = useCallback((user: string, pass: string): boolean => {
-    if (user.trim() === VALID_USER && pass === VALID_PASS) {
-      auth = true;
-      localStorage.setItem(AUTH_KEY, "1");
-      notify();
-      return true;
-    }
-    return false;
-  }, []);
-  const logout = useCallback(() => {
-    auth = false;
-    localStorage.removeItem(AUTH_KEY);
+
+  const login = useCallback(async (email: string, password: string) => {
+    authError = null;
+    authMessage = null;
+    authLoading = true;
     notify();
+    try {
+      session = await signIn(email, password);
+      recoveryRequired = false;
+      authLoading = false;
+      notify();
+      return { ok: true, error: null as string | null };
+    } catch (error) {
+      session = null;
+      authLoading = false;
+      authError = messageFrom(error);
+      notify();
+      return { ok: false, error: authError };
+    }
   }, []);
-  return { logged, login, logout };
+
+  const logout = useCallback(() => {
+    void signOut().finally(() => {
+      session = null;
+      recoveryRequired = false;
+      authMessage = null;
+      notify();
+    });
+  }, []);
+
+  const requestPasswordReset = useCallback(async (email: string) => {
+    authError = null;
+    authMessage = null;
+    notify();
+    try {
+      await sendPasswordRecovery(email);
+      authMessage = "Enviamos o link de recuperação para o e-mail autorizado.";
+      notify();
+      return { ok: true, error: null as string | null };
+    } catch (error) {
+      authError = messageFrom(error);
+      notify();
+      return { ok: false, error: authError };
+    }
+  }, []);
+
+  const changePassword = useCallback(async (password: string) => {
+    authError = null;
+    authMessage = null;
+    notify();
+    try {
+      await setNewPassword(password);
+      recoveryRequired = false;
+      authMessage = "Senha atualizada com sucesso.";
+      notify();
+      return { ok: true, error: null as string | null };
+    } catch (error) {
+      authError = messageFrom(error);
+      notify();
+      return { ok: false, error: authError };
+    }
+  }, []);
+
+  return {
+    ...snapshot,
+    login,
+    logout,
+    requestPasswordReset,
+    changePassword,
+  };
 }
 
 export function useAdminData() {
-  const [data, setData] = useState<AdminData>(state);
+  const [snapshot, setSnapshot] = useState(() => ({
+    data: state,
+    syncStatus,
+    syncError,
+  }));
 
   useEffect(() => {
-    const lis = () => setData({ ...state });
+    const lis = () => setSnapshot({
+      data: state,
+      syncStatus,
+      syncError,
+    });
     listeners.add(lis);
+    void initializeData();
     return () => {
       listeners.delete(lis);
     };
@@ -91,16 +292,28 @@ export function useAdminData() {
     const patch = typeof next === "function" ? next(state) : next;
     state = { ...state, ...patch };
     saveRaw(state);
+    scheduleCloudSave();
     notify();
   }, []);
 
   const resetAll = useCallback(() => {
     state = structuredClone(DEFAULTS);
-    localStorage.removeItem(STORAGE_KEY);
+    saveRaw(state);
+    scheduleCloudSave();
     notify();
   }, []);
 
-  return { data, update, resetAll };
-}
+  const retrySync = useCallback(() => {
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = null;
+    dataRevision += 1;
+    persistCloudCopy();
+  }, []);
 
-export const VALID_CREDS = { user: VALID_USER, passHint: "javaOracle****" };
+  return {
+    ...snapshot,
+    update,
+    resetAll,
+    retrySync,
+  };
+}

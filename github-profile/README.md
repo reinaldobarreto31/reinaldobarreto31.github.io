@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Animated typing header with Java Spring & PHP & Node.js Colors -->
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=25&duration=3000&pause=1000&color=6DB33F&center=true&vCenter=true&width=840&lines=Hi+%F0%9F%91%8B+I'm+Reinaldo+Barreto;1%C2%BA+Java+%26+Spring+Boot+3+Engineer+%E2%98%95;2%C2%BA+PHP+8%2B+%26+Laravel+11+Developer+%F0%9F%90%98;3%C2%BA+Node.js+%26+TypeScript+Full-Stack+%E2%9A%A1;RESTful+APIs+%C2%B7+Microservices+%C2%B7+PostgreSQL+%F0%9F%97%84%EF%B8%8F;Docker+%C2%B7+CI%2FCD+%C2%B7+Clean+Architecture+%F0%9F%9A%80)](https://git.io/typing-svg)
+<!-- Android-first profile: Kotlin, then Java/Spring, then Node.js -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=25&duration=3000&pause=1000&color=7F52FF&center=true&vCenter=true&width=840&lines=Hi+%F0%9F%91%8B+I'm+Reinaldo+Barreto;1%C2%BA+Android+%26+Kotlin+Developer;Jetpack+Compose+%C2%B7+MVVM+%C2%B7+Coroutines+%C2%B7+Room;2%C2%BA+Java+%26+Spring+Boot+3;3%C2%BA+Node.js+%26+TypeScript;Flutter+Intermediate+%C2%B7+React+Native+Basic)](https://git.io/typing-svg)
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
@@ -9,84 +9,84 @@
 
 ## 💻 About Me
 
-```java
-// Developer.java — reinaldobarreto31
+```kotlin
+// Developer.kt — reinaldobarreto31
 
-public class Developer {
-    private final String name = "Reinaldo Barreto da Silva";
-    private final String location = "Salvador, Bahia — Brazil 🇧🇷";
-
-    // 1º Stack Principal: Java Enterprise & Spring Boot (Foco 1)
-    private final String[] primaryStack = {
-        "Java 17 / 21+", "Spring Boot 3", "Spring Data JPA", 
-        "Spring Security (JWT)", "Spring Cloud", "Hibernate", 
-        "PostgreSQL", "Maven", "JUnit 5", "Mockito"
-    };
-
-    // 2º Stack Secundária: PHP & Laravel (Foco 2)
-    private final String[] secondaryStack = {
-        "PHP 8.3", "Laravel 11", "Eloquent ORM", 
-        "Composer", "Blade", "Artisan", "MySQL", 
-        "PHPUnit", "LAMPP IT & Freelance Solutions"
-    };
-
-    // 3º Stack Complementar: JavaScript / TypeScript & Node.js (Foco 3)
-    private final String[] webStack = {
-        "Node.js", "TypeScript 5", "Express / NestJS", 
-        "React 18", "Vue.js 3", "Tailwind CSS", "REST APIs"
-    };
-
-    private final String[] devops = { "Docker", "Docker Compose", "GitHub Actions", "Linux Ubuntu" };
-    private final boolean isHireable = true;
-
-    public String getCurrentFocus() {
-        return "Engenharia de Software com foco em Java & Spring Boot, desenvolvimento web robusto com PHP/Laravel e soluções ágeis em Node.js/TypeScript.";
-    }
+data class Developer(
+    val name: String = "Reinaldo Barreto da Silva",
+    val location: String = "Navegantes, Santa Catarina, Brasil",
+    // 1º foco: desenvolvimento Android nativo com Kotlin
+    val primaryStack: List<String> = listOf(
+        "Kotlin", "Android SDK", "Jetpack Compose", "MVVM",
+        "Coroutines", "StateFlow", "Room", "Hilt", "WorkManager"
+    ),
+    // 2º foco: backend Java
+    val secondaryStack: List<String> = listOf(
+        "Java 17/21+", "Spring Boot 3", "Spring Data JPA",
+        "Spring Security/JWT", "APIs REST", "PostgreSQL", "JUnit"
+    ),
+    // 3º foco: backend Node.js
+    val thirdStack: List<String> = listOf(
+        "Node.js", "TypeScript", "Express/NestJS", "APIs REST"
+    ),
+    val complementarySkills: List<String> = listOf(
+        "Flutter (intermediário)", "React Native (básico)",
+        "Swift/iOS em aprendizado (ainda sem Mac/Xcode)"
+    )
+) {
+    val currentFocus: String
+        get() = "Android nativo com Kotlin, integrado a backends Java/Spring e Node.js."
 }
 ```
+
+Desenvolvedor Mobile com foco em Android nativo usando Kotlin, Jetpack Compose e KMP. Também construo APIs e integrações com Java/Spring Boot e Node.js/TypeScript. Tenho experiência em sistemas de missão crítica e suporte a usuários corporativos. Atualmente, desenvolvo o Limpapp, marketplace Android para conectar clientes a diaristas.
+
+📍 Navegantes, Santa Catarina · [LinkedIn](https://linkedin.com/in/reinaldo-barreto-2a4ba2116) · [Portfólio](https://reinaldobarreto31.github.io/)
+
+## 📱 Projeto Android Principal — Limpapp
+
+<div align="center">
+  <a href="https://reinaldobarreto31.github.io/#projects">
+    <img src="https://reinaldobarreto31.github.io/mockups/mockup-limpapp.svg" alt="Mockup do Limpapp para Android" width="220">
+  </a>
+  <p><strong>Marketplace Android em desenvolvimento</strong><br>
+  Conceito para conectar clientes a diaristas e profissionais de limpeza. As imagens são mockups; o app ainda não foi publicado e suas funcionalidades estão em construção.</p>
+</div>
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 </div>
 
-## 🛠️ Tech Stack por Ordem de Prioridade
+## 🛠️ Stack por Ordem de Prioridade
 
 <div align="center">
 
-### 🥇 1º Java & Spring Boot — Stack Principal (Foco 1)
+### 🥇 1º Mobile Android — Kotlin
 
-[![Java](https://img.shields.io/badge/Java_17%2F21+-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Spring Security](https://img.shields.io/badge/Spring_Security_JWT-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Spring Cloud](https://img.shields.io/badge/Spring_Cloud-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://github.com/reinaldobarreto31)
+[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://github.com/reinaldobarreto31?tab=repositories&q=android)
+[![Android](https://img.shields.io/badge/Android_Nativo-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/reinaldobarreto31?tab=repositories&q=android)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://github.com/reinaldobarreto31?tab=repositories&q=android)
+[![MVVM](https://img.shields.io/badge/MVVM_%C2%B7_Clean_Architecture-6C63FF?style=for-the-badge)](https://github.com/reinaldobarreto31)
+[![Coroutines](https://img.shields.io/badge/Coroutines_%C2%B7_StateFlow-7F52FF?style=for-the-badge)](https://github.com/reinaldobarreto31)
+[![Room](https://img.shields.io/badge/Room_%C2%B7_Hilt_%C2%B7_WorkManager-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/reinaldobarreto31)
+
+### 🥈 2º Backend — Java & Spring
+
+[![Java](https://img.shields.io/badge/Java_17%2F21+-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://github.com/reinaldobarreto31?tab=repositories&q=java)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://github.com/reinaldobarreto31?tab=repositories&q=spring)
+[![Spring Security](https://img.shields.io/badge/Spring_Security_%C2%B7_JWT-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)](https://github.com/reinaldobarreto31)
+[![JPA](https://img.shields.io/badge/Spring_Data_JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white)](https://github.com/reinaldobarreto31)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Maven](https://img.shields.io/badge/Apache_Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://github.com/reinaldobarreto31)
-[![JUnit 5](https://img.shields.io/badge/JUnit_5_TDD-25A162?style=for-the-badge&logo=junit5&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Swagger](https://img.shields.io/badge/OpenAPI_3_Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://github.com/reinaldobarreto31)
+[![JUnit 5](https://img.shields.io/badge/JUnit_5_%C2%B7_TDD-25A162?style=for-the-badge&logo=junit5&logoColor=white)](https://github.com/reinaldobarreto31)
 
-### 🥈 2º PHP & Laravel — Stack Secundária (Foco 2)
+### 🥉 3º Backend — Node.js & TypeScript
 
-[![PHP](https://img.shields.io/badge/PHP_8.3_%F0%9F%90%98-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Laravel](https://img.shields.io/badge/Laravel_11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Eloquent ORM](https://img.shields.io/badge/Eloquent_ORM-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://github.com/reinaldobarreto31)
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Blade](https://img.shields.io/badge/Blade_Templates-F05340?style=for-the-badge&logo=laravel&logoColor=white)](https://github.com/reinaldobarreto31)
-[![PHPUnit](https://img.shields.io/badge/PHPUnit_TDD-3C9CD7?style=for-the-badge&logo=php&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Symfony](https://img.shields.io/badge/Symfony_Components-000000?style=for-the-badge&logo=symfony&logoColor=white)](https://github.com/reinaldobarreto31)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://github.com/reinaldobarreto31?tab=repositories&q=node)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://github.com/reinaldobarreto31)
+[![Express / NestJS](https://img.shields.io/badge/Express_%2F_NestJS-222222?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://github.com/reinaldobarreto31)
 
-### 🥉 3º Node.js, TypeScript & Front-End — Stack Complementar (Foco 3)
-
-[![Node.js](https://img.shields.io/badge/Node.js_20_LTS-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://github.com/reinaldobarreto31)
-[![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://github.com/reinaldobarreto31)
-[![JavaScript](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://github.com/reinaldobarreto31)
-[![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://github.com/reinaldobarreto31)
-[![Vue.js](https://img.shields.io/badge/Vue.js_3-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://github.com/reinaldobarreto31)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/reinaldobarreto31)
-[![Linux Ubuntu](https://img.shields.io/badge/Linux_Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://github.com/reinaldobarreto31)
+**Tecnologias complementares:** Flutter (intermediário) · React Native (básico) · iOS/Swift (em aprendizado; ainda sem Mac para executar o Xcode).
+**Engenharia:** APIs REST · Docker · GitHub Actions · Linux · Clean Architecture · testes automatizados.
 
 </div>
 
@@ -98,18 +98,17 @@ public class Developer {
 
 ```
   ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━●
-  ┃  ☕ 1º Java & Spring Boot 3  ·  🐘 2º PHP & Laravel 11      ┃
-  ┃  ⚡ 3º Node.js & TypeScript  ·  🗄️ PostgreSQL & MySQL       ┃
+  ┃  📱 1º Android Nativo · Kotlin · Jetpack Compose             ┃
+  ┃  ☕ 2º Java · Spring Boot 3  ·  ⚡ 3º Node.js/TypeScript      ┃
   ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━●
 ```
 
 | Projeto | Stack | Descrição |
 |---|---|---|
-| **[Spring Boot Enterprise API](https://github.com/reinaldobarreto31/spring-boot-enterprise-api)** | Java 21 · Spring Boot 3 · Spring Security · JPA · PostgreSQL | API corporativa sob Clean Architecture, autenticação JWT, documentação Swagger e testes automatizados com JUnit 5 / Mockito. |
-| **[Laravel Corporate Portal](https://github.com/reinaldobarreto31/laravel-corporate-portal)** | PHP 8.3 · Laravel 11 · Eloquent ORM · Blade · MySQL | Portal e plataforma de gestão corporativa com painel administrativo, rotinas assíncronas em fila e APIs RESTful. |
-| **[Node.js TypeScript Hub](https://github.com/reinaldobarreto31/nodejs-typescript-hub)** | Node.js · TypeScript · Express · React 18 · Prisma | Aplicação modular full-stack com padrão Repository, tipagem estrita, frontend reativo e banco PostgreSQL via Prisma. |
-| **[Spring Cloud Microservices](https://github.com/reinaldobarreto31/spring-cloud-microservices)** | Spring Cloud · Eureka · Gateway · Resilience4j · Keycloak | Arquitetura distribuída com Service Discovery, API Gateway, circuit breaker e controle de acesso centralizado. |
-| **[Kotlin Tasks Android](https://github.com/reinaldobarreto31/kotlin-tasks-android)** | Kotlin 2.0 · Jetpack Compose · Room DB · Coroutines | Aplicativo Android nativo com interface reativa em Compose, persistência local Room e integração com APIs REST. |
+| **[Limpapp — Marketplace Android](https://reinaldobarreto31.github.io/#projects)** | Kotlin · Android · Jetpack Compose · KMP | Projeto principal em desenvolvimento para conectar clientes a diaristas. As telas atuais são mockups e o app ainda não foi publicado. |
+| **[App de tarefas Android](https://github.com/reinaldobarreto31/kotlin-tasks-android)** | Kotlin · Android SDK · Jetpack Compose · MVVM · Room | Projeto Android nativo com lista de tarefas, filtros e persistência local. |
+| **[Projetos Android no portfólio](https://reinaldobarreto31.github.io/#projects)** | Kotlin · Compose · Room · WorkManager | Telas reais e conceitos de apps Android. Conceitos identificados como protótipos/em desenvolvimento e ainda não publicados em lojas. |
+| **Backend profissional** | Java · Spring Boot · PostgreSQL · APIs REST | Experiência em sistemas corporativos e serviços públicos; consulte o currículo e a experiência no portfólio. |
 
 ---
 

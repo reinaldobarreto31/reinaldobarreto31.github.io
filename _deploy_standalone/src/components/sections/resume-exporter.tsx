@@ -10,18 +10,14 @@ import {
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import {
-  CONTACT,
   PROFESSIONAL_SUMMARY,
   PROFESSIONAL_OBJECTIVE,
-  HARD_SKILLS,
-  METHODOLOGIES,
   EDUCATION,
   COURSES,
   LANGUAGES,
-  EXPERIENCES,
-  PERSONAL_PROJECTS,
 } from "@/lib/resume-data";
 import { onResumeExportImage } from "@/lib/resume-export-bus";
+import { useAdminData } from "@/lib/admin-store";
 
 declare global {
   interface Window { html2canvas?: any; }
@@ -62,9 +58,21 @@ export interface ResumeExporterHandle {
 }
 
 export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
+  const { data } = useAdminData();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(false);
   const exportFnRef = useRef<() => Promise<void>>(Promise.resolve);
+  const resumeExperiences = data.experiences.map((experience) => ({
+    ...experience,
+    tags: experience.tags.map((tag) => ({ name: tag.name })),
+  }));
+  const resumeProjects = data.projects.map((project) => ({
+    title: project.title,
+    stack: project.tech.join(", "),
+    badge: project.badge ?? (project.featured ? "DESTAQUE" : "MOBILE"),
+    description: project.description,
+    tags: project.tech,
+  }));
 
   async function loadHtml2Canvas(): Promise<any> {
     if (window.html2canvas) return window.html2canvas;
@@ -196,7 +204,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
               color: "#94a3b8", marginTop: 10, marginBottom: 0,
               lineHeight: 1.5,
             }}>
-              Desenvolvedor Java / Spring Boot 3 · PHP (Laravel) · Node.js &amp; TypeScript
+              Desenvolvedor Mobile Android/Kotlin · Java 21 &amp; Spring Boot 3 · Node.js/TypeScript
             </p>
           </div>
 
@@ -205,7 +213,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 14 }}>
               <ContactRow icon={<Phone size={14} />} text="+55 (71) 99182-3131" />
               <ContactRow icon={<Mail size={14} />} text="reinaldobarreto31@gmail.com" />
-              <ContactRow icon={<MapPin size={14} />} text="Salvador / BA, Brasil" />
+              <ContactRow icon={<MapPin size={14} />} text="Navegantes, Santa Catarina, Brasil" />
               <ContactRow
                 icon={<Sparkles size={14} />}
                 text="linkedin.com/in/reinaldo-barreto-2a4ba2116"
@@ -217,7 +225,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           <section style={{ marginBottom: 36 }}>
             <h3 style={h3Style("#0078d4")}>Habilidades Técnicas</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 18 }}>
-              {HARD_SKILLS.map((s) => (
+              {data.about.skills.map((s) => (
                 <SkillBarStatic key={s.name} name={s.name} level={s.level} color={s.color} />
               ))}
             </div>
@@ -226,7 +234,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           <section style={{ marginBottom: 36 }}>
             <h3 style={h3Style("#bd93f9")}>Metodologias</h3>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
-              {METHODOLOGIES.map((m) => (
+              {data.about.methodologies.map((m) => (
                 <span
                   key={m}
                   style={{
@@ -250,7 +258,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
             <h3 style={h3Style("#bd93f9")}>Formação Acadêmica</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 14 }}>
               {EDUCATION.map((e) => (
-                <div key={e.course} style={{ display: "flex", gap: 10 }}>
+                <div key={e.degree} style={{ display: "flex", gap: 10 }}>
                   <div
                     style={{
                       width: 32, height: 32, flexShrink: 0, borderRadius: 8,
@@ -263,7 +271,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                   </div>
                   <div>
                     <h4 style={{ fontSize: 13, fontWeight: 700, margin: 0, color: "#f8f8f2" }}>
-                      {e.course}
+                      {e.degree}
                     </h4>
                     <p style={{ fontSize: 11.5, color: "#6272a4", margin: "3px 0 0" }}>{e.school}</p>
                     <p style={{ fontSize: 11, fontFamily: "ui-monospace, monospace", margin: "3px 0 0", color: "#007396" }}>
@@ -384,7 +392,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
                 fontSize: 13, fontFamily: "ui-monospace, monospace",
                 color: "#94a3b8", marginTop: 10, marginBottom: 0,
               }}>
-                Desenvolvedor Java / Spring Boot 3 · PHP (Laravel) · Node.js &amp; TypeScript
+                Desenvolvedor Mobile Android/Kotlin · Java 21 &amp; Spring Boot 3 · Node.js/TypeScript
               </p>
             </div>
             <div style={{ textAlign: "right", fontSize: 12.5, color: "#f8fafc", display: "flex", flexDirection: "column", gap: 7 }}>
@@ -406,7 +414,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
                 <MapPin size={13} style={{ color: "#6db33f" }} />
-                <span>Salvador, Bahia – BA</span>
+                <span>Navegantes, Santa Catarina</span>
               </div>
             </div>
           </div>
@@ -414,7 +422,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           <section style={{ marginBottom: 30 }}>
             <h3 style={h3Col2Style("#6db33f")}>Resumo Profissional</h3>
             <p style={pStyle}>
-              {PROFESSIONAL_SUMMARY[0]}
+              {data.about.summary || PROFESSIONAL_SUMMARY[0]}
             </p>
           </section>
 
@@ -430,7 +438,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
               }}
             >
               <p style={{ ...pStyle, margin: 0, color: "#f8fafc" }}>
-                {PROFESSIONAL_OBJECTIVE}
+                {data.about.objective || PROFESSIONAL_OBJECTIVE}
               </p>
             </div>
           </section>
@@ -438,7 +446,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           <section style={{ marginBottom: 32 }}>
             <h3 style={h3Col2Style("#007396")}>Experiência Profissional</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 20, marginTop: 18 }}>
-              {EXPERIENCES.map((exp) => (
+              {resumeExperiences.map((exp) => (
                 <article
                   key={exp.company}
                   style={{
@@ -500,7 +508,7 @@ export const ResumeExporter = forwardRef<ResumeExporterHandle, {}>((_, ref) => {
           <section>
             <h3 style={h3Col2Style("#0078d4")}>Projetos em Destaque</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 18 }}>
-              {PERSONAL_PROJECTS.map((p) => (
+              {resumeProjects.map((p) => (
                 <article
                   key={p.title}
                   style={{
