@@ -399,6 +399,7 @@ function ProjectRow({
               <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono">Tone: {p.tone}</span>
               <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono">Ícone: {p.icon}</span>
               {p.badge && <span className="px-1.5 py-0.5 rounded border border-[#44475a]/60 text-[10.5px] font-mono bg-[#6db33f]/10 text-[#9ed866]">{p.badge}</span>}
+              {p.distribution === "apk" && <span className="px-1.5 py-0.5 rounded border border-[#7ee787]/40 text-[10.5px] font-mono bg-[#7ee787]/10 text-[#7ee787]">APK · fora da Play Store</span>}
               {p.featured && <span className="px-1.5 py-0.5 rounded border border-[#ffb86c]/50 text-[10.5px] font-mono bg-[#ffb86c]/10 text-[#ffd8a8]">★ DESTAQUE</span>}
             </div>
           </div>
@@ -415,6 +416,7 @@ function ProjectForm({
   onCancel: () => void; onSave: () => void; saving?: boolean;
 }) {
   const [techStr, setTechStr] = useState(draft.tech.join(", "));
+  const [screensStr, setScreensStr] = useState((draft.screens ?? []).join("\n"));
 
   return (
     <div className="grid md:grid-cols-2 gap-3">
@@ -430,7 +432,7 @@ function ProjectForm({
       <Field label="Demonstração LIVE (URL — opcional)">
         <input className="inp" value={draft.live ?? ""} onChange={(e) => setDraft({ ...draft, live: e.target.value || undefined })} />
       </Field>
-      <Field label="Imagem/tela (URL ou caminho publicado no site)" span={2}>
+      <Field label="Tela principal do app (URL ou caminho publicado no site)" span={2}>
         <input
           className="inp"
           placeholder="/screenshots/nome-da-tela.png"
@@ -441,9 +443,28 @@ function ProjectForm({
           O arquivo precisa estar no repositório para aparecer no GitHub Pages; este painel não envia arquivos ao GitHub.
         </span>
       </Field>
-      {draft.image && (
-        <div className="md:col-span-2 rounded-lg border border-[#44475a]/60 bg-black/20 p-2">
-          <img src={draft.image} alt={`Prévia da tela de ${draft.title}`} className="max-h-56 w-auto rounded-md object-contain" />
+      <Field label="Telas do app (uma por linha — o card mostra até 3 lado a lado)" span={2}>
+        <textarea
+          rows={3}
+          className="inp font-mono text-[11.5px]"
+          spellCheck={false}
+          placeholder={"/screenshots/tela-1.png\n/screenshots/tela-2.png"}
+          value={screensStr}
+          onChange={(e) => {
+            setScreensStr(e.target.value);
+            const screens = e.target.value.split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+            setDraft({ ...draft, screens: screens.length ? screens : undefined });
+          }}
+        />
+        <span className="mt-1 block text-[11px] text-muted-foreground">
+          Quando preenchido, substitui a tela principal e exibe as telas em sequência de celular.
+        </span>
+      </Field>
+      {(draft.screens?.length || draft.image) && (
+        <div className="md:col-span-2 rounded-lg border border-[#44475a]/60 bg-black/20 p-2 flex gap-2 overflow-x-auto">
+          {(draft.screens?.length ? draft.screens : [draft.image as string]).map((s) => (
+            <img key={s} src={s} alt={`Prévia da tela de ${draft.title}`} className="max-h-56 w-auto rounded-md object-contain" />
+          ))}
         </div>
       )}
       <Field label="Tecnologias (separadas por vírgula)">
@@ -464,6 +485,17 @@ function ProjectForm({
           </select>
         </Field>
       </div>
+      <Field label="Distribuição do app (selo exibido no card)" span={2}>
+        <select
+          className="inp"
+          value={draft.distribution ?? ""}
+          onChange={(e) => setDraft({ ...draft, distribution: (e.target.value as "apk" | "store" | "") || undefined })}
+        >
+          <option value="">— Não informar —</option>
+          <option value="apk">APK gerado para instalação manual (fora da Google Play Store)</option>
+          <option value="store">Publicado em loja (Google Play)</option>
+        </select>
+      </Field>
       <div className="grid grid-cols-2 gap-3">
         <Field label="Tone / cor predominante (faixa + sombra)">
           <select className="inp" value={draft.tone} onChange={(e) => setDraft({ ...draft, tone: e.target.value as ProjectTone })}>

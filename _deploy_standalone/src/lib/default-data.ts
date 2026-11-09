@@ -35,6 +35,10 @@ export type AdminProject = {
   live?: string;
   /** Caminho da imagem/tela do app (mockup ou screenshot real) exibida no card */
   image?: string;
+  /** Telas do app exibidas lado a lado no card (mockups ou screenshots reais) */
+  screens?: string[];
+  /** Como o app é distribuído: "apk" = arquivo APK (fora da Play Store) ou "store" = loja */
+  distribution?: "apk" | "store";
   badge?: ProjectBadge;
   featured?: boolean;
 };
@@ -86,6 +90,12 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: `${GITHUB}/kotlin-tasks-android`,
       image: "/screenshots/screen_task_list.png",
+      screens: [
+        "/screenshots/screen_task_list.png",
+        "/screenshots/screen_create_task.png",
+        "/screenshots/screen_filter_priority.png",
+      ],
+      distribution: "apk",
       badge: "DESTAQUE",
       featured: true,
     },
@@ -100,6 +110,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-limpapp.svg",
+      distribution: "apk",
       badge: "EM CONSTRUÇÃO",
       featured: true,
     },
@@ -114,6 +125,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-pixpay.svg",
+      distribution: "apk",
       badge: "MOBILE",
       featured: false,
     },
@@ -128,6 +140,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-notafacil.svg",
+      distribution: "apk",
       badge: "MOBILE",
       featured: false,
     },
@@ -142,6 +155,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-habitflow.svg",
+      distribution: "apk",
       badge: "MOBILE",
       featured: false,
     },
@@ -156,6 +170,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-chefexpress.svg",
+      distribution: "apk",
       badge: "MOBILE",
       featured: false,
     },
@@ -170,6 +185,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-climatemp.svg",
+      distribution: "apk",
       badge: "MOBILE",
       featured: false,
     },
@@ -184,6 +200,7 @@ export const DEFAULTS: {
       tone: "tech-kotlin",
       github: "",
       image: "/mockups/mockup-cryptopulse.svg",
+      distribution: "apk",
       badge: "MOBILE",
       featured: false,
     },

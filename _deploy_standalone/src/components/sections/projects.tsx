@@ -72,6 +72,8 @@ function ProjectCard({
   };
   const isFeatured = size !== "normal";
   const isLead = size === "lead";
+  const shots = project.screens?.length ? project.screens : project.image ? [project.image] : [];
+  const shotsHeight = shots.length >= 3 ? "h-[56%]" : shots.length === 2 ? "h-[72%]" : "h-[86%]";
 
   return (
     <motion.article
@@ -98,18 +100,33 @@ function ProjectCard({
             {project.badge}
           </span>
         )}
+        {project.distribution === "apk" && (
+          <span
+            title="Aplicativo distribuído como arquivo APK, fora da Google Play Store"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[9.5px] font-extrabold tracking-wider uppercase bg-[#0b1220]/95 text-[#7ee787] border border-[#7ee787]/40 shadow-[0_6px_16px_rgba(0,0,0,.45)]"
+          >
+            <Package size={10} /> APK · fora da Play Store
+          </span>
+        )}
       </div>
 
-      <div className={`relative flex items-center justify-center overflow-hidden rails-project-head ${project.image ? (isLead ? "h-80 md:h-full md:min-h-[34rem]" : isFeatured ? "h-64 md:h-72" : "h-56") : (isFeatured ? "h-40 md:h-44" : "h-24 md:h-28")}`}>
+      <div className={`relative flex items-center justify-center overflow-hidden rails-project-head ${shots.length > 0 ? (isLead ? "h-80 md:h-full md:min-h-[34rem]" : isFeatured ? "h-64 md:h-72" : "h-56") : (isFeatured ? "h-40 md:h-44" : "h-24 md:h-28")}`}>
         <div className="absolute inset-0 rails-grid opacity-50" />
-        {project.image ? (
-          <div className="relative z-10 h-[86%] aspect-[9/19] rounded-[1.6rem] border-[3px] border-[#1f2430] bg-black shadow-[0_16px_44px_rgba(0,0,0,.55)] overflow-hidden group-hover:scale-[1.03] transition-transform duration-300">
-            <img
-              src={project.image}
-              alt={`Tela do aplicativo ${project.title}`}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+        {shots.length > 0 ? (
+          <div className="relative z-10 flex h-full w-full items-center justify-center gap-2 md:gap-3 px-3 py-4">
+            {shots.slice(0, 3).map((shot) => (
+              <div
+                key={shot}
+                className={`${shotsHeight} aspect-[9/19] shrink-0 rounded-[1.6rem] border-[3px] border-[#1f2430] bg-black shadow-[0_16px_44px_rgba(0,0,0,.55)] overflow-hidden group-hover:scale-[1.03] transition-transform duration-300`}
+              >
+                <img
+                  src={shot}
+                  alt={`Tela do aplicativo ${project.title}`}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
           </div>
         ) : (
           <Icon className={`tech-icon relative z-10 ${isFeatured ? "text-6xl md:text-7xl drop-shadow-[0_6px_14px_rgba(0,0,0,.45)]" : "text-4xl md:text-5xl"}`} />
@@ -212,7 +229,7 @@ export function ProjectsSection({ projects }: Props) {
               Ideias pequenas para evoluir.
             </h3>
             <p className="text-muted-foreground mt-2 text-sm max-w-lg">
-              Mockups de projetos Android pequenos (carteira digital, leitor de notas, hábitos, delivery e clima). São conceitos em desenvolvimento, não aplicativos publicados; o Limpapp é o projeto principal. Backend Java/Spring e Node.js aparecem depois do foco mobile.
+              Mockups de projetos Android pequenos (carteira digital, leitor de notas, hábitos, delivery e clima). As telas exibidas são exemplos do aplicativo; a distribuição é feita por arquivo APK, fora da Google Play Store. São conceitos em desenvolvimento, não aplicativos publicados em loja — o Limpapp é o projeto principal. Backend Java/Spring e Node.js aparecem depois do foco mobile.
             </p>
           </div>
           <a
