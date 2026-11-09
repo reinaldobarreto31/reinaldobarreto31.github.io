@@ -39,35 +39,6 @@ async function pushFile(repo, filePath, localPath) {
   console.log(`  ${ok ? "✓" : "✗"} ${repo}/${filePath}  (${r.status}${r.data?.message ? " " + r.data.message : ""})`);
 }
 
-// ── rails-tasks-api ───────────────────────────────────────────────
-await ensureRepo("rails-tasks-api", "API RESTful CRUD de tarefas com Ruby on Rails 7 e PostgreSQL");
-for (const [fp, lp] of [
-  ["README.md",                                             "projects/rails-tasks-api/README.md"],
-  ["Gemfile",                                               "projects/rails-tasks-api/Gemfile"],
-  ["config/routes.rb",                                      "projects/rails-tasks-api/config/routes.rb"],
-  ["app/controllers/api/v1/tasks_controller.rb",            "projects/rails-tasks-api/app/controllers/api/v1/tasks_controller.rb"],
-  ["app/models/task.rb",                                    "projects/rails-tasks-api/app/models/task.rb"],
-  ["db/migrate/20240601000000_create_tasks.rb",             "projects/rails-tasks-api/db/migrate/20240601000000_create_tasks.rb"],
-  ["db/seeds.rb",                                           "projects/rails-tasks-api/db/seeds.rb"],
-]) await pushFile("rails-tasks-api", fp, lp);
-
-// ── ruby-expense-tracker ──────────────────────────────────────────
-await ensureRepo("ruby-expense-tracker", "Controle de gastos pessoais via CLI em Ruby puro");
-for (const [fp, lp] of [
-  ["README.md",          "projects/ruby-expense-tracker/README.md"],
-  ["expense_tracker.rb", "projects/ruby-expense-tracker/expense_tracker.rb"],
-]) await pushFile("ruby-expense-tracker", fp, lp);
-
-// ── rails-link-shortener ──────────────────────────────────────────
-await ensureRepo("rails-link-shortener", "Encurtador de URLs com Rails 7, Tailwind CSS e Stimulus JS");
-for (const [fp, lp] of [
-  ["README.md",                                      "projects/rails-link-shortener/README.md"],
-  ["Gemfile",                                        "projects/rails-link-shortener/Gemfile"],
-  ["app/models/short_link.rb",                       "projects/rails-link-shortener/app/models/short_link.rb"],
-  ["app/controllers/short_links_controller.rb",      "projects/rails-link-shortener/app/controllers/short_links_controller.rb"],
-  ["app/views/short_links/index.html.erb",           "projects/rails-link-shortener/app/views/short_links/index.html.erb"],
-]) await pushFile("rails-link-shortener", fp, lp);
-
 // ── GitHub Profile README ──────────────────────────────────────────
 await ensureRepo(OWNER, "✨ Reinaldo Barreto — GitHub Profile README");
 await pushFile(OWNER, "README.md", "github-profile/README.md");
