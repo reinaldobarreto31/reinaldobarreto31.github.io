@@ -46,7 +46,7 @@
   <path d="M36 344l4 4 8-8" stroke="#34d399" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
   <text x="68" y="340" fill="#ffffff" font-size="13" font-weight="600">Sincronizacao offline ativa</text>
   <text x="68" y="357" fill="#a1a1aa" font-size="10.5">Persistencia local com Room Database</text>
-  <text x="68" y="390" fill="#38bdf8" font-size="11" font-weight="600">Backend: Java 21 / Spring Boot 3</text>
+  <text x="68" y="390" fill="#3ecf8e" font-size="11" font-weight="600">Backend: Supabase (Postgres · Auth · Storage)</text>
 
   <!-- Bottom navigation -->
   <rect x="0" y="580" width="360" height="60" fill="#0b0f19" stroke="#1f2937" stroke-width="1" />
