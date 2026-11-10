@@ -1,4 +1,4 @@
-export type ProjectBadge = "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "API" | "FULL-STACK" | "MOBILE";
+﻿export type ProjectBadge = "DESTAQUE" | "EM CONSTRUÇÃO" | "LIVE" | "API" | "FULL-STACK" | "MOBILE";
 export type ProjectTone =
   | "tech-java"
   | "tech-spring"
@@ -127,7 +127,7 @@ export const DEFAULTS: {
       image: "/mockups/mockup-pixpay.svg",
       distribution: "apk",
       badge: "MOBILE",
-      featured: false,
+      featured: true,
     },
     {
       id: "proj-notafacil",
@@ -142,7 +142,7 @@ export const DEFAULTS: {
       image: "/mockups/mockup-notafacil.svg",
       distribution: "apk",
       badge: "MOBILE",
-      featured: false,
+      featured: true,
     },
     {
       id: "proj-habitflow",

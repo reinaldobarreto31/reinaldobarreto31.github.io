@@ -152,8 +152,8 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                     <input
                       value={user}
                       onChange={(e) => setUser(e.target.value)}
-                      type="email"
-                      placeholder="e-mail"
+                      type="text"
+                      placeholder="usuário (ex: admin)"
                       className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
                       autoComplete="username"
                       required
@@ -162,14 +162,14 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                       value={pass}
                       onChange={(e) => setPass(e.target.value)}
                       type="password"
-                      placeholder="senha"
+                      placeholder="senha (ex: admin123)"
                       className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
                       autoComplete="current-password"
                       required
                     />
                   </div>
                   <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <span className="text-[10.5px] font-mono text-muted-foreground">Acesso protegido pelo Supabase Auth.</span>
+                    <span className="text-[10.5px] font-mono text-muted-foreground">Credenciais padrão: admin / admin123</span>
                     <button type="submit" disabled={loading} className="rails-button rounded-lg px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
                       {loading ? "Entrando..." : "Entrar"}
                     </button>
