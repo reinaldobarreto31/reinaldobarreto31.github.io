@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Github, Linkedin, Mail, Lock, Unlock, Settings } from "lucide-react";
+import { Github, Linkedin, Mail, Lock, Unlock, Settings, AlertCircle, CheckCircle } from "lucide-react";
 import { useAuth } from "@/lib/admin-store";
 
 type FooterProps = {
@@ -34,9 +34,20 @@ export function Footer({ onOpenAdmin }: FooterProps) {
 
   async function tryLogin(e: React.FormEvent) {
     e.preventDefault();
-    const result = await login(user, pass);
+    setErr(null);
+    const u = (user || "").trim();
+    const p = (pass || "").trim();
+    if (!u) {
+      setErr("Por favor, informe o usuário de acesso.");
+      return;
+    }
+    if (!p) {
+      setErr("Por favor, informe a senha.");
+      return;
+    }
+    const result = await login(u, p);
     if (!result.ok) {
-      setErr(result.error ?? "Não foi possível entrar.");
+      setErr(result.error ?? "Credenciais inválidas. Use usuário 'admin' e senha 'admin123'.");
       return;
     }
     setErr(null);
@@ -103,12 +114,14 @@ export function Footer({ onOpenAdmin }: FooterProps) {
 
           {((showLogin && !logged) || recoveryRequired) && (
             <form
+              noValidate
               onSubmit={recoveryRequired ? submitNewPassword : tryLogin}
-              className="mt-4 w-full max-w-sm mx-auto md:mx-0 bg-[#0b1220] border border-[#6db33f]/40 rounded-xl p-3 text-left animate-in fade-in slide-in-from-bottom-4"
+              className="mt-4 w-full max-w-md mx-auto md:mx-0 bg-card/95 border border-[#7f52ff]/40 rounded-2xl p-4 text-left shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 transition-all"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider" style={{ color: "#6db33f" }}>
-                  <Lock size={14} /> {recoveryRequired ? "Redefinir senha do painel" : "Painel Admin — Login"}
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-border/60">
+                <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider text-[#a78bfa]">
+                  <Lock size={15} className="text-[#a78bfa]" />
+                  <span>{recoveryRequired ? "Redefinir Senha do Painel" : "Painel Administrativo — Login"}</span>
                 </div>
                 <button
                   type="button"
@@ -116,71 +129,101 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                     setShowLogin(false);
                     setErr(null);
                   }}
-                  className="text-muted-foreground hover:text-foreground text-[11px] font-mono"
+                  className="text-muted-foreground hover:text-foreground text-xs font-mono px-2 py-1 rounded-md hover:bg-white/5 transition-colors"
                 >
-                  ✖ fechar
+                  ✖ Fechar
                 </button>
               </div>
+
               {recoveryRequired ? (
-                <>
+                <div className="space-y-3">
                   <input
                     value={newPass}
                     onChange={(e) => setNewPass(e.target.value)}
                     type="password"
                     placeholder="Nova senha (mínimo 8 caracteres)"
-                    className="w-full rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary mb-2"
+                    className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all placeholder:text-muted-foreground/40"
                     autoComplete="new-password"
-                    minLength={8}
-                    required
                   />
                   <input
                     value={confirmPass}
                     onChange={(e) => setConfirmPass(e.target.value)}
                     type="password"
                     placeholder="Confirme a nova senha"
-                    className="w-full rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary mb-2"
+                    className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all placeholder:text-muted-foreground/40"
                     autoComplete="new-password"
-                    required
                   />
-                  <button type="submit" disabled={loading} className="rails-button rounded-lg px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
-                    Atualizar senha
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full rounded-lg px-4 py-2 text-xs font-semibold bg-[#7f52ff] hover:bg-[#6333ea] text-white shadow-md shadow-[#7f52ff]/25 transition-all disabled:opacity-50"
+                  >
+                    {loading ? "Atualizando..." : "Atualizar senha"}
                   </button>
-                </>
+                </div>
               ) : (
-                <>
-                  <div className="grid grid-cols-2 gap-2 mb-2">
-                    <input
-                      value={user}
-                      onChange={(e) => setUser(e.target.value)}
-                      type="text"
-                      placeholder="usuário (ex: admin)"
-                      className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
-                      autoComplete="username"
-                      required
-                    />
-                    <input
-                      value={pass}
-                      onChange={(e) => setPass(e.target.value)}
-                      type="password"
-                      placeholder="senha (ex: admin123)"
-                      className="rounded-lg px-2 py-1.5 text-sm bg-[#070b15] border border-[#1e3a8a]/60 text-foreground outline-none focus:border-primary"
-                      autoComplete="current-password"
-                      required
-                    />
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div>
+                      <label className="block text-[11px] font-mono text-muted-foreground mb-1">Usuário</label>
+                      <input
+                        value={user}
+                        onChange={(e) => {
+                          setUser(e.target.value);
+                          if (err) setErr(null);
+                        }}
+                        type="text"
+                        placeholder="admin"
+                        className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all placeholder:text-muted-foreground/40"
+                        autoComplete="username"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-mono text-muted-foreground mb-1">Senha</label>
+                      <input
+                        value={pass}
+                        onChange={(e) => {
+                          setPass(e.target.value);
+                          if (err) setErr(null);
+                        }}
+                        type="password"
+                        placeholder="admin123"
+                        className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all placeholder:text-muted-foreground/40"
+                        autoComplete="current-password"
+                      />
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <span className="text-[10.5px] font-mono text-muted-foreground">Credenciais padrão: admin / admin123</span>
-                    <button type="submit" disabled={loading} className="rails-button rounded-lg px-3 py-1.5 text-xs font-semibold disabled:opacity-50">
-                      {loading ? "Entrando..." : "Entrar"}
+
+                  <div className="flex items-center justify-between gap-2 pt-1 flex-wrap">
+                    <span className="text-[11px] font-mono text-muted-foreground bg-muted/40 border border-border/50 px-2.5 py-1 rounded-md">
+                      Padrão: <span className="text-foreground font-semibold">admin</span> / <span className="text-foreground font-semibold">admin123</span>
+                    </span>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="rounded-lg px-4 py-2 text-xs font-semibold bg-[#7f52ff] hover:bg-[#6333ea] text-white shadow-md shadow-[#7f52ff]/25 transition-all disabled:opacity-50 inline-flex items-center gap-1.5"
+                    >
+                      <Lock size={12} />
+                      {loading ? "Entrando..." : "Entrar no Painel"}
                     </button>
                   </div>
-                  <button type="button" onClick={() => void sendRecovery()} disabled={loading} className="mt-2 text-[11px] font-mono text-[#9ed866] hover:underline disabled:opacity-50">
-                    Esqueci minha senha
-                  </button>
-                </>
+                </div>
               )}
-              {(err || authError) && <div className="text-[11px] text-[#e44857] mt-1.5 font-mono">{err || authError}</div>}
-              {authMessage && <div className="text-[11px] text-[#9ed866] mt-1.5 font-mono">{authMessage}</div>}
+
+              {/* Mensagens de validação e status estilizadas com Tailwind CSS */}
+              {(err || authError) && (
+                <div className="flex items-center gap-2.5 p-3 mt-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono animate-in fade-in">
+                  <AlertCircle size={15} className="shrink-0 text-rose-400" />
+                  <span>{err || authError}</span>
+                </div>
+              )}
+
+              {authMessage && (
+                <div className="flex items-center gap-2.5 p-3 mt-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono animate-in fade-in">
+                  <CheckCircle size={15} className="shrink-0 text-emerald-400" />
+                  <span>{authMessage}</span>
+                </div>
+              )}
             </form>
           )}
         </div>
