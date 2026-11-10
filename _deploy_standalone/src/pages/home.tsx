@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/sections/hero";
 import { AboutSection } from "@/components/sections/about";
 import { ExperienceSection } from "@/components/sections/experience";
@@ -8,25 +8,55 @@ import { ContactSection } from "@/components/sections/contact";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AdminPanel } from "@/components/sections/admin-panel";
-import { useAdminData } from "@/lib/admin-store";
+import { AdminLoginModal } from "@/components/admin/admin-login-modal";
+import { useAdminData, useAuth } from "@/lib/admin-store";
 
 export default function Home() {
   const { data } = useAdminData();
+  const { logged } = useAuth();
   const [adminOpen, setAdminOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+  const handleOpenAdmin = () => {
+    if (logged) {
+      setAdminOpen(true);
+    } else {
+      setLoginModalOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === "#admin" || window.location.hash === "#login") {
+        handleOpenAdmin();
+      }
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, [logged]);
 
   return (
     <div className="min-h-[100dvh] bg-background text-foreground flex flex-col font-sans selection:bg-primary/30">
-      <Navbar />
+      <Navbar onOpenAdmin={handleOpenAdmin} />
       <main className="flex-1">
-        <HeroSection />
+        <HeroSection onOpenAdmin={handleOpenAdmin} />
         <AboutSection about={data.about} />
         <ExperienceSection experiences={data.experiences} />
         <ProjectsSection projects={data.projects} />
         <StackShowcaseSection stack={data.stack} />
         <ContactSection />
       </main>
-      <Footer onOpenAdmin={() => setAdminOpen(true)} />
+      <Footer onOpenAdmin={handleOpenAdmin} />
 
+      {/* Modal Centrado de Login com Tailwind CSS */}
+      <AdminLoginModal
+        open={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+        onSuccess={() => setAdminOpen(true)}
+      />
+
+      {/* Painel Completo de Gestão CMS */}
       <AdminPanel open={adminOpen} onClose={() => setAdminOpen(false)} />
     </div>
   );

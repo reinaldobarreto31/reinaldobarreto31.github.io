@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { SiKotlin } from "react-icons/si";
-import { Home, User, Briefcase, Code2, Activity, Mail, Sun, Moon } from "lucide-react";
+import { Home, User, Briefcase, Code2, Activity, Mail, Sun, Moon, Settings } from "lucide-react";
 import { useTheme } from "next-themes";
 
-export function Navbar() {
+export function Navbar({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -63,6 +63,17 @@ export function Navbar() {
               </a>
             ))}
           </nav>
+
+          {/* Botão Gestão */}
+          <button
+            type="button"
+            onClick={onOpenAdmin}
+            className="p-2 rounded-lg border border-border bg-card/80 hover:bg-[#7f52ff]/15 text-foreground hover:text-[#a78bfa] transition-all flex items-center justify-center shadow-sm"
+            title="Área de Gestão (Admin)"
+            aria-label="Abrir Área de Gestão"
+          >
+            <Settings size={17} />
+          </button>
 
           {/* Theme Toggle Button */}
           {mounted && (

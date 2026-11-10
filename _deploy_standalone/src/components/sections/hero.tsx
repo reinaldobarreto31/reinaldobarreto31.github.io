@@ -4,7 +4,7 @@ import fotoRei from "@assets/foto_Rei_perfil_1777048784969.png";
 import { SiGithub, SiSpringboot, SiKotlin, SiFlutter, SiPostgresql, SiDocker, SiSwift, SiDart, SiNodedotjs, SiTypescript } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import { TbDeviceMobile, TbBrandReactNative } from "react-icons/tb";
-import { Mail, ArrowDownRight, FileImage, FileDown, ExternalLink } from "lucide-react";
+import { Mail, ArrowDownRight, FileImage, FileDown, ExternalLink, Lock } from "lucide-react";
 import { ResumeExporter, type ResumeExporterHandle } from "./resume-exporter";
 import { toast } from "sonner";
 
@@ -41,7 +41,7 @@ const COMPLEMENTARY_STACK = [
   { label: "PHP (Noções básicas)", icon: <span style={{ fontSize: 10, fontWeight: 700 }}>PHP</span>, tone: "tech-php" },
 ];
 
-export function HeroSection() {
+export function HeroSection({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
   const resumeRef = useRef<ResumeExporterHandle | null>(null);
   const [exportingImg, setExportingImg] = useState(false);
 
@@ -209,15 +209,17 @@ export function HeroSection() {
               Ver Currículo em PDF
             </motion.a>
 
-            <motion.a
-              href="#admin"
+            <motion.button
+              type="button"
+              onClick={() => onOpenAdmin?.()}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: .97 }}
-              className="border border-border text-foreground px-4 py-2.5 rounded-lg font-semibold text-sm hover:border-[#7f52ff]/60 hover:bg-[#7f52ff]/10 transition-all backdrop-blur-md inline-flex items-center gap-2"
+              className="border border-[#7f52ff]/50 bg-[#7f52ff]/10 text-foreground px-4 py-2.5 rounded-lg font-semibold text-sm hover:border-[#7f52ff] hover:bg-[#7f52ff]/20 transition-all backdrop-blur-md inline-flex items-center gap-2 shadow-sm"
+              title="Abrir Painel de Gestão (Admin)"
             >
-              <ExternalLink size={15} />
+              <Lock size={15} className="text-[#a78bfa]" />
               Área de Gestão
-            </motion.a>
+            </motion.button>
 
             <motion.button
               onClick={handleExportImage}
