@@ -109,10 +109,13 @@
     { "name": "Spring Security, JWT & OAuth2", "level": 92 },
     { "name": "APIs RESTful & Documentação OpenAPI 3 / Swagger", "level": 94 },
     { "name": "PostgreSQL, MySQL & Modelagem Relacional", "level": 92 },
+    { "name": "SQL Avançado (CTEs, Window Functions, Procedures, Índices)", "level": 90 },
+    { "name": "SQLite & Bancos Embutidos (desktop/mobile)", "level": 85 },
     { "name": "Clean Architecture, SOLID & Padrões de Projeto", "level": 90 },
     { "name": "Testes Automatizados (JUnit 5, Mockito, TDD)", "level": 88 },
     { "name": "Docker & Ambientes Conteinerizados", "level": 86 },
     { "name": "Python 3 (Django, FastAPI, Tkinter, Kivy, Pygame)", "level": 78 },
+    { "name": "Análise de Dados com Python (Pandas, NumPy, Matplotlib)", "level": 72 },
     { "name": "Node.js & TypeScript (4º foco backend)", "level": 70 },
     { "name": "Flutter & Dart (intermediário)", "level": 68 },
     { "name": "React Native (entregas pontuais cross-platform)", "level": 60 },
@@ -125,6 +128,7 @@
     "Kotlin Multiplatform (KMP)",
     "SOLID Principles",
     "TDD & Testes Automatizados",
+    "SQL Avançado & Modelagem de Dados",
     "APIs RESTful Resilientes",
     "Git Flow & Versionamento Estruturado",
     "CI/CD com GitHub Actions",
@@ -191,11 +195,130 @@
         "techs": [
           { "name": "Pandas", "icon": "🐼" },
           { "name": "NumPy", "icon": "🔢" },
-          { "name": "Matplotlib", "icon": "📊" },
+          { "name": "Matplotlib / Seaborn", "icon": "📊" },
+          { "name": "Plotly", "icon": "📈" },
+          { "name": "Jupyter Notebook", "icon": "📓" },
           { "name": "Selenium / Playwright", "icon": "🤖" },
           { "name": "Requests / httpx", "icon": "🌐" },
-          { "name": "BeautifulSoup", "icon": "🍲" }
+          { "name": "BeautifulSoup", "icon": "🍲" },
+          { "name": "scikit-learn (básico)", "icon": "🧠" }
         ]
+      }
+    ]
+  },
+  "databases": {
+    "intro": "Amplo domínio em SQL e bancos de dados relacionais e não-relacionais: modelagem, consultas avançadas, otimização de índices, procedures e integração com ORMs em projetos enterprise e municipais.",
+    "engines": [
+      {
+        "name": "PostgreSQL",
+        "icon": "🐘",
+        "level": 92,
+        "color": "#336791",
+        "highlights": [
+          "Modelagem relacional avançada (3FN / BCNF)",
+          "Queries complexas: JOINs, CTEs, Window Functions",
+          "Índices (B-tree, GIN, BRIN) e EXPLAIN ANALYZE",
+          "Stored Procedures & Triggers em PL/pgSQL",
+          "Particionamento de tabelas e VACUUM",
+          "Usado em PRODEB, LAMPP e EDZA (produção)"
+        ]
+      },
+      {
+        "name": "MySQL / MariaDB",
+        "icon": "🐬",
+        "level": 88,
+        "color": "#4479A1",
+        "highlights": [
+          "CRUD avançado e transações (InnoDB)",
+          "Procedures, Functions e Events",
+          "Full-Text Search e índices compostos",
+          "Replicação e backup (mysqldump)",
+          "Usado no ERP tributário da EDZA"
+        ]
+      },
+      {
+        "name": "SQLite",
+        "icon": "🗃️",
+        "level": 85,
+        "color": "#003B57",
+        "highlights": [
+          "Banco embutido para apps desktop (Tkinter) e mobile (Kivy)",
+          "WAL mode e performance em single-file DB",
+          "Integrado com SQLAlchemy, Room (Android) e SQLDelight (KMP)"
+        ]
+      },
+      {
+        "name": "Oracle DB (básico)",
+        "icon": "🔴",
+        "level": 55,
+        "color": "#F80000",
+        "highlights": [
+          "PL/SQL básico e consultas em ambiente corporativo",
+          "Contato em projetos de missão crítica do setor público"
+        ]
+      },
+      {
+        "name": "MongoDB (básico)",
+        "icon": "🍃",
+        "level": 50,
+        "color": "#47A248",
+        "highlights": [
+          "Documentos JSON, coleções e índices",
+          "Aggregation pipeline básico",
+          "Integração com Node.js (Mongoose)"
+        ]
+      },
+      {
+        "name": "Redis (básico)",
+        "icon": "🔴",
+        "level": 45,
+        "color": "#DC382D",
+        "highlights": [
+          "Cache de sessão e rate-limiting",
+          "Pub/Sub básico em Spring Boot e Node.js"
+        ]
+      }
+    ],
+    "sqlHighlights": [
+      "JOINs complexos (INNER, LEFT, FULL OUTER, CROSS)",
+      "CTEs (WITH recursivo)",
+      "Window Functions (ROW_NUMBER, RANK, LAG/LEAD)",
+      "Subqueries correlacionadas",
+      "Stored Procedures & Triggers",
+      "Índices e otimização de performance (EXPLAIN)",
+      "Modelagem ER (3FN / BCNF)",
+      "Transações ACID e controle de concorrência",
+      "Spring Data JPA / Hibernate (ORM Java)",
+      "SQLAlchemy (ORM Python)",
+      "Room Database (Android / KMP)"
+    ]
+  },
+  "dataAnalysis": {
+    "intro": "Análise de dados aplicada a contextos reais: relatórios tributários municipais, automação de planilhas e dashboards simples — base sólida em Python para dados com Pandas, NumPy e visualização.",
+    "projects": [
+      {
+        "id": "da-relatorio-arrecadacao",
+        "category": "Análise de Dados · EDAZA · Python",
+        "status": "Entregue · Uso Interno",
+        "title": "Dashboard de Arrecadação Municipal — EDAZA",
+        "summary": "Análise e visualização de dados de arrecadação (ISS, IPTU, ITBI) de múltiplos municípios com Pandas e Matplotlib: séries históricas, comparativos mensais e gráficos de tendência exportados em PDF.",
+        "tags": ["Python 3", "Pandas", "Matplotlib", "PostgreSQL", "MySQL", "openpyxl", "EDAZA", "Dados"]
+      },
+      {
+        "id": "da-sql-relatorios-bi",
+        "category": "SQL · Análise de Dados · Relatórios",
+        "status": "Uso Profissional",
+        "title": "Queries SQL Avançadas para Relatórios Gerenciais",
+        "summary": "Conjunto de queries SQL complexas (CTEs, Window Functions, Subqueries) para geração de relatórios gerenciais de arrecadação municipal, utilizadas em PostgreSQL e MySQL em produção nas prefeituras atendidas pela EDZA.",
+        "tags": ["SQL", "PostgreSQL", "MySQL", "CTE", "Window Functions", "Relatórios", "BI", "EDAZA"]
+      },
+      {
+        "id": "da-pandas-excel",
+        "category": "Análise de Dados · Python · Automação",
+        "status": "Projeto Pessoal",
+        "title": "Automação de Planilhas Excel com Pandas e openpyxl",
+        "summary": "Scripts Python para transformação e análise de grandes planilhas Excel: limpeza de dados, pivot tables, gráficos embutidos e consolidação de múltiplas abas em relatório único formatado.",
+        "tags": ["Python 3", "Pandas", "NumPy", "openpyxl", "Excel", "ETL", "Automação", "Dados"]
       }
     ]
   },

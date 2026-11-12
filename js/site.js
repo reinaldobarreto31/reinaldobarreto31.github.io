@@ -263,6 +263,66 @@ function render(data) {
       .join("");
   }
 
+  // Dados & SQL — Databases
+  const dadosIntroEl = document.getElementById("dados-intro");
+  if (dadosIntroEl && data.dataAnalysis) {
+    dadosIntroEl.textContent = data.dataAnalysis.intro;
+  }
+
+  const dbGridEl = document.getElementById("databases-grid");
+  if (dbGridEl && data.databases && data.databases.engines) {
+    dbGridEl.innerHTML = data.databases.engines
+      .map(
+        (db) => `
+        <div style="
+          background: var(--bg-card);
+          border: 2px solid ${escapeHtml(db.color)};
+          border-radius: var(--radius);
+          padding: 18px 20px;
+          flex: 1 1 220px;
+          max-width: 320px;
+        ">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span style="font-size: 1.6rem;">${escapeHtml(db.icon)}</span>
+            <div>
+              <div style="font-weight: 700; color: ${escapeHtml(db.color)}; font-size: 1rem;">${escapeHtml(db.name)}</div>
+              <div style="font-size: 0.75rem; color: var(--muted);">${db.level}% domínio</div>
+            </div>
+          </div>
+          <div class="bar" style="margin-bottom: 12px;">
+            <span style="width: ${Number(db.level)}%; background: ${escapeHtml(db.color)};"></span>
+          </div>
+          <ul style="padding-left: 16px; color: var(--muted); font-size: 0.82rem; line-height: 1.7; margin: 0;">
+            ${(db.highlights || []).map((h) => `<li>${escapeHtml(h)}</li>`).join("")}
+          </ul>
+        </div>`
+      )
+      .join("");
+  }
+
+  const sqlHlEl = document.getElementById("sql-highlights");
+  if (sqlHlEl && data.databases && data.databases.sqlHighlights) {
+    sqlHlEl.innerHTML = chips(data.databases.sqlHighlights);
+  }
+
+  const dataProjEl = document.getElementById("data-projects");
+  if (dataProjEl && data.dataAnalysis && data.dataAnalysis.projects) {
+    dataProjEl.innerHTML = data.dataAnalysis.projects
+      .map(
+        (proj) => `
+        <article class="card" id="da-${escapeHtml(proj.id)}">
+          <div>
+            <span class="status">${escapeHtml(proj.status || "Projeto")}</span>
+            <p class="kicker" style="margin-top: 4px;">${escapeHtml(proj.category || "")}</p>
+            <h3>${escapeHtml(proj.title)}</h3>
+            <p class="lede" style="font-size: 0.95rem; margin-bottom: 12px;">${escapeHtml(proj.summary)}</p>
+            <div class="chips">${chips(proj.tags)}</div>
+          </div>
+        </article>`
+      )
+      .join("");
+  }
+
   // Python Stack
   const pyStackIntroEl = document.getElementById("python-stack-intro");
   if (pyStackIntroEl && data.pythonStack) {
