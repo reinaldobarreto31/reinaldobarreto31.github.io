@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Lock, X, AlertCircle, CheckCircle, ShieldCheck } from "lucide-react";
+import { Lock, X, AlertCircle, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/lib/admin-store";
 
 type Props = {
@@ -10,14 +10,14 @@ type Props = {
 
 export function AdminLoginModal({ open, onClose, onSuccess }: Props) {
   const { login, loading, error: authError } = useAuth();
-  const [user, setUser] = useState("admin");
-  const [pass, setPass] = useState("admin123");
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
     if (open) {
-      setUser("admin");
-      setPass("admin123");
+      setUser("");
+      setPass("");
       setErr(null);
     }
   }, [open]);
@@ -31,21 +31,23 @@ export function AdminLoginModal({ open, onClose, onSuccess }: Props) {
     const p = (pass || "").trim();
 
     if (!u) {
-      setErr("Por favor, informe o usuário de acesso.");
+      setErr("Por favor, digite o usuário de acesso.");
       return;
     }
     if (!p) {
-      setErr("Por favor, informe a senha.");
+      setErr("Por favor, digite a senha.");
       return;
     }
 
     const result = await login(u, p);
     if (!result.ok) {
-      setErr(result.error ?? "Credenciais inválidas. Use usuário 'admin' e senha 'admin123'.");
+      setErr(result.error ?? "Usuário ou senha inválidos. Acesso não autorizado.");
       return;
     }
 
     setErr(null);
+    setUser("");
+    setPass("");
     onClose();
     onSuccess();
   }
@@ -70,7 +72,7 @@ export function AdminLoginModal({ open, onClose, onSuccess }: Props) {
                 Área de Gestão do Portfólio
               </h3>
               <p className="text-[11px] font-mono text-muted-foreground">
-                Painel Administrativo CMS
+                Acesso Restrito ao Administrador
               </p>
             </div>
           </div>
@@ -85,7 +87,7 @@ export function AdminLoginModal({ open, onClose, onSuccess }: Props) {
           </button>
         </div>
 
-        {/* Form without native browser validation */}
+        {/* Form strictly private - without default password on screen */}
         <form noValidate onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-mono text-muted-foreground mb-1.5 font-medium">
@@ -98,9 +100,10 @@ export function AdminLoginModal({ open, onClose, onSuccess }: Props) {
                 setUser(e.target.value);
                 if (err) setErr(null);
               }}
-              placeholder="admin"
-              className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all font-mono"
+              placeholder="Digite seu usuário"
+              className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all font-mono placeholder:text-muted-foreground/40"
               autoComplete="username"
+              autoFocus
             />
           </div>
 
@@ -115,29 +118,10 @@ export function AdminLoginModal({ open, onClose, onSuccess }: Props) {
                 setPass(e.target.value);
                 if (err) setErr(null);
               }}
-              placeholder="••••••••"
-              className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all font-mono"
+              placeholder="Digite sua senha"
+              className="w-full rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground outline-none focus:border-[#7f52ff] focus:ring-1 focus:ring-[#7f52ff]/40 transition-all font-mono placeholder:text-muted-foreground/40"
               autoComplete="current-password"
             />
-          </div>
-
-          {/* Quick Info Box */}
-          <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#7f52ff]/10 border border-[#7f52ff]/25 text-[11px] font-mono text-muted-foreground">
-            <span className="flex items-center gap-1.5 text-foreground/90">
-              <ShieldCheck size={14} className="text-[#a78bfa]" />
-              Padrão: <strong className="text-[#a78bfa]">admin</strong> / <strong className="text-[#a78bfa]">admin123</strong>
-            </span>
-            <button
-              type="button"
-              onClick={() => {
-                setUser("admin");
-                setPass("admin123");
-                setErr(null);
-              }}
-              className="text-[10px] text-[#a78bfa] hover:underline uppercase font-bold"
-            >
-              Preencher
-            </button>
           </div>
 
           {/* Styled Tailwind Error Alert */}

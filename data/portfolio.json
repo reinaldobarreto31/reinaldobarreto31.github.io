@@ -19,7 +19,7 @@
     "password": "admin123"
   },
   "stack": {
-    "intro": "1º Foco: Mobile Android Nativo (Kotlin, Jetpack Compose e Kotlin Multiplatform) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: Node.js & TypeScript · Complementares: Flutter (intermediário), React Native (básico), Swift/iOS em aprendizado (sem Mac para executar Xcode) e PHP (noções).",
+    "intro": "1º Foco: Mobile Android Nativo (Kotlin, Jetpack Compose e Kotlin Multiplatform) · 2º Foco: Backend Java 21 & Spring Boot 3 · 3º Foco: Python (Django, FastAPI, Tkinter, Kivy, Pygame) · 4º Foco: Node.js & TypeScript · Complementares: Flutter (intermediário), React Native (básico), Swift/iOS em aprendizado (sem Mac para executar Xcode) e PHP (noções).",
     "pillars": [
       {
         "level": "1º Foco",
@@ -55,7 +55,26 @@
       },
       {
         "level": "3º Foco",
-        "title": "Backend Node.js & TypeScript",
+        "title": "🐍 Python — Web · Desktop · Mobile · Games",
+        "subtitle": "Django · FastAPI · Tkinter · Kivy · Pygame",
+        "color": "#3776AB",
+        "items": [
+          "Python 3 (scripting & automação)",
+          "Django & Django REST Framework",
+          "FastAPI & Pydantic (APIs modernas)",
+          "Flask (microframework)",
+          "Tkinter & CustomTkinter (Desktop GUI)",
+          "Kivy & KivyMD (Mobile Android)",
+          "Pygame & Arcade (Jogos 2D)",
+          "SQLAlchemy & SQLite",
+          "Pandas, NumPy, matplotlib",
+          "Selenium / Playwright (automação web)",
+          "PyInstaller (distribuição .exe)"
+        ]
+      },
+      {
+        "level": "4º Foco",
+        "title": "Node.js & TypeScript",
         "subtitle": "Node.js · Express / NestJS · TypeScript",
         "color": "#339933",
         "items": [
@@ -93,7 +112,8 @@
     { "name": "Clean Architecture, SOLID & Padrões de Projeto", "level": 90 },
     { "name": "Testes Automatizados (JUnit 5, Mockito, TDD)", "level": 88 },
     { "name": "Docker & Ambientes Conteinerizados", "level": 86 },
-    { "name": "Node.js & TypeScript (3º foco backend)", "level": 70 },
+    { "name": "Python 3 (Django, FastAPI, Tkinter, Kivy, Pygame)", "level": 78 },
+    { "name": "Node.js & TypeScript (4º foco backend)", "level": 70 },
     { "name": "Flutter & Dart (intermediário)", "level": 68 },
     { "name": "React Native (entregas pontuais cross-platform)", "level": 60 },
     { "name": "Swift / iOS (em aprendizado; ainda sem Mac/Xcode)", "level": 35 },
@@ -109,6 +129,168 @@
     "Git Flow & Versionamento Estruturado",
     "CI/CD com GitHub Actions",
     "Scrum & Metodologias Ágeis"
+  ],
+  "pythonStack": {
+    "intro": "Ecossistema Python completo: automação de processos, desktop com Tkinter/PyQt, jogos com Pygame, apps mobile com Kivy/KivyMD e web com Django, FastAPI e Flask.",
+    "categories": [
+      {
+        "label": "Core & Scripting",
+        "color": "#3776AB",
+        "techs": [
+          { "name": "Python 3", "icon": "🐍" },
+          { "name": "pip / venv", "icon": "📦" },
+          { "name": "Poetry", "icon": "📜" },
+          { "name": "Pytest", "icon": "✅" },
+          { "name": "Type Hints", "icon": "🔷" }
+        ]
+      },
+      {
+        "label": "Web · Backend",
+        "color": "#0C4B33",
+        "techs": [
+          { "name": "Django", "icon": "🎸" },
+          { "name": "Django REST Framework", "icon": "🔌" },
+          { "name": "FastAPI", "icon": "⚡" },
+          { "name": "Flask", "icon": "🌶️" },
+          { "name": "SQLAlchemy", "icon": "🗄️" },
+          { "name": "Pydantic", "icon": "🛡️" },
+          { "name": "Uvicorn / Gunicorn", "icon": "🚀" }
+        ]
+      },
+      {
+        "label": "Desktop · GUI",
+        "color": "#FF8C00",
+        "techs": [
+          { "name": "Tkinter", "icon": "🖥️" },
+          { "name": "PyQt5 / PySide6", "icon": "🎨" },
+          { "name": "CustomTkinter", "icon": "✨" },
+          { "name": "wxPython", "icon": "🪟" }
+        ]
+      },
+      {
+        "label": "Mobile",
+        "color": "#E8A000",
+        "techs": [
+          { "name": "Kivy", "icon": "📱" },
+          { "name": "KivyMD", "icon": "💎" },
+          { "name": "Buildozer (Android)", "icon": "🤖" }
+        ]
+      },
+      {
+        "label": "Jogos · Multimídia",
+        "color": "#CC0000",
+        "techs": [
+          { "name": "Pygame", "icon": "🎮" },
+          { "name": "Arcade", "icon": "🕹️" },
+          { "name": "Pyglet", "icon": "🐦" }
+        ]
+      },
+      {
+        "label": "Dados · IA · Automação",
+        "color": "#9400D3",
+        "techs": [
+          { "name": "Pandas", "icon": "🐼" },
+          { "name": "NumPy", "icon": "🔢" },
+          { "name": "Matplotlib", "icon": "📊" },
+          { "name": "Selenium / Playwright", "icon": "🤖" },
+          { "name": "Requests / httpx", "icon": "🌐" },
+          { "name": "BeautifulSoup", "icon": "🍲" }
+        ]
+      }
+    ]
+  },
+  "pythonProjects": [
+    {
+      "id": "py-edaza-cadastro",
+      "category": "EDAZA · Desktop · Tkinter",
+      "status": "Entregue · Uso Interno",
+      "title": "Sistema de Cadastro e Consulta — EDAZA (Tkinter)",
+      "summary": "Sistema desktop desenvolvido com Python e Tkinter para a EDAZA: cadastro e consulta rápida de contribuintes e processos tributários, com integração a banco de dados SQLite e exportação de relatórios em CSV.",
+      "description": "Ferramenta interna para suporte da equipe de TI e Auditores Fiscais: consulta rápida de NFS-e, ISS e dados de contribuintes sem necessidade de acesso ao ERP principal. Interface responsiva com Tkinter, persistência SQLite e filtros avançados por CPF/CNPJ, período e município.",
+      "tags": ["Python 3", "Tkinter", "SQLite", "CSV", "Automação", "EDAZA", "NFS-e", "ISS"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "py-edaza-relatorio",
+      "category": "EDAZA · Automação · Python",
+      "status": "Entregue · Uso Interno",
+      "title": "Gerador Automático de Relatórios Tributários — EDAZA",
+      "summary": "Script Python que automatiza a geração de relatórios mensais de arrecadação municipal (ISS, IPTU, ITBI) lidos de bases PostgreSQL/MySQL, gerando arquivos Excel formatados e PDFs prontos para auditoria.",
+      "description": "Automação de processo que eliminava horas de trabalho manual: leitura das bases de dados tributárias, cálculos consolidados por município e geração de planilhas Excel com openpyxl e relatórios PDF com reportlab. Usado em prefeituras de Ilhéus, Juazeiro, Candeias e Lauro de Freitas.",
+      "tags": ["Python 3", "openpyxl", "reportlab", "PostgreSQL", "MySQL", "Automação", "EDAZA", "Tributação"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "py-freelance-tkinter-estoque",
+      "category": "Freelance · Desktop · Tkinter",
+      "status": "Entregue · Freelance",
+      "title": "Sistema de Controle de Estoque com Tkinter — Freelance",
+      "summary": "Aplicativo desktop de controle de estoque para pequeno comércio: cadastro de produtos, entradas e saídas, alertas de estoque mínimo e relatórios em PDF. Desenvolvido sob demanda para cliente local.",
+      "description": "Sistema standalone desenvolvido para uma empresa local com Tkinter + SQLite. Possui tela de login, dashboard com gráficos (matplotlib), CRUD de produtos, movimentações e impressão de relatórios. Executável gerado com PyInstaller para distribuição sem necessidade de instalar Python.",
+      "tags": ["Python 3", "Tkinter", "SQLite", "matplotlib", "PyInstaller", "Freelance", "Estoque"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "py-freelance-agenda",
+      "category": "Freelance · Desktop · Tkinter",
+      "status": "Entregue · Freelance",
+      "title": "Agenda de Clientes e Agendamentos — Tkinter",
+      "summary": "Sistema de agenda para salão de beleza com cadastro de clientes, agendamento de serviços, lembretes por horário e histórico de atendimentos. Entregue como executável (.exe) para Windows.",
+      "description": "Aplicação desktop completa para gestão de salão: cadastro de clientes e profissionais, agenda visual por dia/semana, lembretes com notificação via tray do Windows, exportação de agenda em PDF. Tkinter + SQLite + plyer para notificações de sistema.",
+      "tags": ["Python 3", "Tkinter", "SQLite", "plyer", "PyInstaller", "Freelance", "Agenda"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "py-pessoal-fastapi",
+      "category": "Pessoal · Web · FastAPI",
+      "status": "Projeto Pessoal",
+      "title": "API REST de Tarefas com FastAPI + PostgreSQL",
+      "summary": "API RESTful completa construída com FastAPI, SQLAlchemy, PostgreSQL e autenticação JWT. Documentação automática via Swagger UI. Projeto de estudo e referência pessoal de boas práticas em Python para web.",
+      "description": "CRUD de tarefas com autenticação JWT (python-jose), hash de senhas (passlib/bcrypt), paginação, filtros e documentação automática OpenAPI. Deploy com Uvicorn + Docker. Referência de arquitetura limpa em Python web.",
+      "tags": ["Python 3", "FastAPI", "SQLAlchemy", "PostgreSQL", "JWT", "Docker", "Pydantic", "OpenAPI"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "py-pessoal-pygame",
+      "category": "Pessoal · Jogos · Pygame",
+      "status": "Projeto Pessoal",
+      "title": "Jogo 2D de Nave Espacial com Pygame",
+      "summary": "Jogo 2D clássico estilo Space Invaders desenvolvido com Pygame: nave do jogador, inimigos com IA básica, power-ups, sistema de pontuação e efeitos sonoros. Projeto pessoal de aprendizado em jogos.",
+      "description": "Implementação completa de um jogo de arcade 2D em Python com Pygame: loop de jogo, detecção de colisão por sprites, animações por spritesheet, efeitos sonoros com pygame.mixer, ranking local salvo em JSON e tela de game over animada.",
+      "tags": ["Python 3", "Pygame", "2D Game", "Sprites", "Colisão", "Arcade", "Pessoal"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    },
+    {
+      "id": "py-pessoal-kivy",
+      "category": "Pessoal · Mobile · Kivy",
+      "status": "Em estudo · Pessoal",
+      "title": "App de Hábitos com Kivy + KivyMD (Android)",
+      "summary": "Aplicativo mobile de rastreamento de hábitos desenvolvido com Kivy e KivyMD para rodar no Android via Buildozer. Interface com Material Design, gráficos de progresso semanal e notificações.",
+      "description": "Estudo prático de desenvolvimento mobile com Python: app de hábitos com telas em KivyMD (Material Design), banco SQLite com kivy.storage, gráficos com Kivy Garden e build para APK com Buildozer. Demonstra o potencial de Python no mobile sem abandonar o ecossistema.",
+      "tags": ["Python 3", "Kivy", "KivyMD", "Buildozer", "Android", "SQLite", "Mobile", "Pessoal"],
+      "repo": "",
+      "demo": "",
+      "cover": "",
+      "gallery": []
+    }
   ],
   "projects": [
     {

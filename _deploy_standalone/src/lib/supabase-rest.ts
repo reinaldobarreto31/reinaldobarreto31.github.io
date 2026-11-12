@@ -70,7 +70,7 @@ function storedSession(): SupabaseSession | null {
   }
 }
 
-function saveSession(session: SupabaseSession | null) {
+export function saveSession(session: SupabaseSession | null) {
   try {
     if (!session) {
       localStorage.removeItem(SESSION_KEY);

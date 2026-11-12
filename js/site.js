@@ -263,6 +263,81 @@ function render(data) {
       .join("");
   }
 
+  // Python Stack
+  const pyStackIntroEl = document.getElementById("python-stack-intro");
+  if (pyStackIntroEl && data.pythonStack) {
+    pyStackIntroEl.textContent = data.pythonStack.intro;
+  }
+
+  const pyStackGridEl = document.getElementById("python-stack-grid");
+  if (pyStackGridEl && data.pythonStack && data.pythonStack.categories) {
+    pyStackGridEl.innerHTML = data.pythonStack.categories
+      .map(
+        (cat) => `
+        <div style="
+          background: var(--bg-card);
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          padding: 18px 20px;
+          min-width: 200px;
+          flex: 1 1 200px;
+          max-width: 300px;
+        ">
+          <div style="
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: ${escapeHtml(cat.color)};
+            margin-bottom: 12px;
+            border-bottom: 2px solid ${escapeHtml(cat.color)};
+            padding-bottom: 6px;
+          ">${escapeHtml(cat.label)}</div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            ${(cat.techs || [])
+              .map(
+                (t) => `
+              <span style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.88rem;
+                color: var(--fg);
+              ">
+                <span style="font-size: 1.1rem;">${escapeHtml(t.icon)}</span>
+                ${escapeHtml(t.name)}
+              </span>`
+              )
+              .join("")}
+          </div>
+        </div>`
+      )
+      .join("");
+  }
+
+  // Python Projects
+  const pyProjEl = document.getElementById("python-projects");
+  if (pyProjEl && data.pythonProjects) {
+    pyProjEl.innerHTML = data.pythonProjects
+      .map(
+        (proj) => `
+        <article class="card" id="pyproject-${escapeHtml(proj.id)}">
+          <div>
+            <span class="status">${escapeHtml(proj.status || "Projeto")}</span>
+            <p class="kicker" style="margin-top: 4px;">${escapeHtml(proj.category || "")}</p>
+            <h3>${escapeHtml(proj.title)}</h3>
+            <p class="lede" style="font-size: 0.95rem; margin-bottom: 12px;">${escapeHtml(proj.summary)}</p>
+            <div class="chips">${chips(proj.tags)}</div>
+            <div class="chips" style="margin-top: 14px;">
+              ${proj.repo ? `<a class="btn ghost sm" href="${escapeHtml(proj.repo)}" target="_blank" rel="noreferrer">Código no GitHub</a>` : ""}
+              ${proj.demo ? `<a class="btn sm" href="${escapeHtml(proj.demo)}" target="_blank" rel="noreferrer">Demonstração</a>` : ""}
+            </div>
+          </div>
+        </article>`
+      )
+      .join("");
+  }
+
   // Setup dynamic Limpapp upload listener
   setupLimpappUpload(data);
 
